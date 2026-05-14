@@ -1,0 +1,79 @@
+---
+import Button from '../ui/Button.astro';
+---
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-300 border-b border-transparent"
+>
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)] flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="font-(--font-display) font-bold text-[1.375rem] tracking-[-0.03em] no-underline">
+      <span class="text-(--color-text-primary)">Rimo</span><span class="text-gradient-logo">Byte</span>
+    </a>
+
+    <!-- Nav links (desktop) -->
+    <nav class="hidden md:flex items-center gap-8">
+      {['Proyectos', 'Servicios', 'Sobre mí', 'Blog'].map((item) => (
+        <a
+          href={`/${item.toLowerCase().replace(' ', '-').replace('í', 'i')}`}
+          class="font-(--font-body) text-sm font-medium text-(--color-text-secondary) no-underline hover:text-(--color-text-primary) transition-colors duration-200"
+        >
+          {item}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA -->
+    <Button href="/contacto" variant="primary" class="hidden md:inline-flex">
+      Empezar mi web
+    </Button>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2 bg-transparent border-0 cursor-pointer"
+      aria-label="Abrir menú"
+    >
+      <span class="block w-6 h-px bg-(--color-text-primary) transition-all duration-200"></span>
+      <span class="block w-6 h-px bg-(--color-text-primary) transition-all duration-200"></span>
+      <span class="block w-4 h-px bg-(--color-text-primary) transition-all duration-200"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-(--color-bg-base) flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-300"
+>
+  {['Proyectos', 'Servicios', 'Sobre mí', 'Blog', 'Contacto'].map((item) => (
+    <a
+      href={`/${item.toLowerCase().replace(' ', '-').replace('í', 'i')}`}
+      class="font-(--font-display) text-3xl font-semibold text-(--color-text-primary) no-underline"
+    >
+      {item}
+    </a>
+  ))}
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  let open = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      navbar?.classList.add('bg-[rgba(10,10,18,0.85)]', 'backdrop-blur-md', 'border-(--color-border-default)');
+    } else {
+      navbar?.classList.remove('bg-[rgba(10,10,18,0.85)]', 'backdrop-blur-md', 'border-(--color-border-default)');
+    }
+  });
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    menu?.classList.toggle('translate-x-full', !open);
+    menu?.classList.toggle('translate-x-0', open);
+  });
+</script>

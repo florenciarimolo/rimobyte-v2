@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import FeaturedCase from '../components/sections/FeaturedCase.astro';
+import ProjectsStrip from '../components/sections/ProjectsStrip.astro';
+import Stats from '../components/sections/Stats.astro';
+import Features from '../components/sections/Features.astro';
+import FeaturedProjects from '../components/sections/FeaturedProjects.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Services from '../components/sections/Services.astro';
+import AboutSnippet from '../components/sections/AboutSnippet.astro';
+import FAQ from '../components/sections/FAQ.tsx';
+import ContactForm from '../components/sections/ContactForm.tsx';
+import Footer from '../components/sections/Footer.astro';
+---
+<Base>
+  <Navbar />
+  <main>
+    <Hero />
+    <FeaturedCase />
+    <ProjectsStrip />
+    <Stats />
+    <Features />
+    <FeaturedProjects />
+    <Testimonials />
+    <Services />
+    <AboutSnippet />
+    <FAQ client:load />
+    <ContactForm client:load />
+  </main>
+  <Footer />
+</Base>

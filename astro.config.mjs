@@ -1,0 +1,15 @@
+// astro.config.mjs
+// output: 'static' es el default en Astro 6 — páginas con prerender=false son serverless automáticamente
+import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
+import react from '@astrojs/react';
+import vercel from '@astrojs/vercel';
+
+export default defineConfig({
+  adapter: vercel(),
+  integrations: [react()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  site: 'https://rimobyte.com',
+});

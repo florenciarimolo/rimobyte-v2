@@ -1,0 +1,84 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+/* ─── Fuentes ─── */
+@import "@fontsource-variable/inter";
+
+/* ─── Design tokens — RimoByte ─── */
+@theme {
+
+  /* Backgrounds */
+  --color-bg-base:     #0A0A12;
+  --color-bg-elevated: #0F0F1A;
+  --color-bg-surface:  #16162A;
+  --color-bg-subtle:   #1C1C35;
+
+  /* Text */
+  --color-text-primary:   #F0F0F8;
+  --color-text-secondary: rgba(240,240,248,0.6);
+  --color-text-muted:     rgba(240,240,248,0.35);
+
+  /* Blue — único color de acción */
+  --color-blue:        #2B47EC;
+  --color-blue-hover:  #1E35D4;
+  --color-blue-subtle: rgba(43,71,236,0.12);
+  --color-blue-border: rgba(43,71,236,0.25);
+
+  /* Borders */
+  --color-border-default: rgba(240,240,248,0.07);
+  --color-border-hover:   rgba(240,240,248,0.14);
+  --color-border-blue:    rgba(43,71,236,0.3);
+
+  /* Logo gradient — solo para "Byte" y el símbolo */
+  --gradient-logo: linear-gradient(135deg, #196BEE 0%, #6535E5 50%, #E715D1 100%);
+
+  /* Tipografías */
+  --font-display: 'Clash Grotesk', -apple-system, sans-serif;
+  --font-body:    'Inter Variable', -apple-system, sans-serif;
+  --font-mono:    'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+
+  /* Transiciones */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Base styles ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; }
+
+/* Scroll reveal — animación controlada por JS vía IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s var(--ease-spring), transform 0.55s var(--ease-spring);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(2) { transition-delay: 60ms; }
+.reveal:nth-child(3) { transition-delay: 120ms; }
+.reveal:nth-child(4) { transition-delay: 180ms; }
+.reveal:nth-child(5) { transition-delay: 240ms; }
+
+/* Logo gradient text — -webkit-text-fill-color no tiene utilidad Tailwind */
+.text-gradient-logo {
+  background: var(--gradient-logo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Eyebrow — solo con icono ● (componente Eyebrow + FAQ/Contact). Texto azul, chip sutil */
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-(--font-mono) text-[0.7rem] tracking-[0.12em] uppercase text-(--color-blue);
+    background-color: var(--color-blue-subtle);
+    border-color: var(--color-blue-border);
+  }
+}

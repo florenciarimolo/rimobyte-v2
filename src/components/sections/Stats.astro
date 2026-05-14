@@ -1,0 +1,62 @@
+---
+const stats = [
+  { value: '9', label: 'Proyectos entregados' },
+  { value: '5', label: 'Sectores distintos' },
+  {
+    value: '5/5',
+    label: 'Basado en 10 reseñas de Google',
+    star: true,
+    labelNormalCase: true,
+  },
+  { value: '100%', label: 'Clientes con acceso total' },
+];
+---
+<section class="bg-(--color-bg-elevated) py-[clamp(3rem,6vw,5rem)]">
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+      {stats.map((s, i) => (
+        <div
+          class:list={[
+            'reveal text-center px-6 py-4 md:py-0 border-(--color-border-default)',
+            i === 0 && 'border-r border-b md:border-b-0',
+            i === 1 && 'border-b md:border-r md:border-b-0',
+            i === 2 && 'border-r border-b-0 md:border-r',
+            i === 3 && 'max-md:border-0 md:border-0',
+          ]}
+        >
+          <p class="mb-2 flex items-center justify-center gap-1 font-(--font-display) font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-none tracking-[-0.03em] text-(--color-blue)">
+            {s.star ? (
+              <>
+                <span>{s.value}</span>
+                <svg
+                  class="h-[0.5em] w-[0.5em] shrink-0 translate-y-[0.06em] text-(--color-blue)"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </>
+            ) : (
+              s.value
+            )}
+          </p>
+          <p
+            class:list={[
+              'font-(--font-mono) text-[0.65rem] tracking-[0.1em] text-(--color-text-muted)',
+              s.labelNormalCase ? 'normal-case tracking-normal leading-snug' : 'uppercase',
+            ]}
+          >
+            {s.labelNormalCase ? s.label : s.label.toUpperCase()}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

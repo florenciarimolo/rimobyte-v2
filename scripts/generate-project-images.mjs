@@ -1,0 +1,54 @@
+/**
+ * Genera variantes WebP 400w y 800w para tarjetas de la home (strip + featured).
+ * Ejecutar tras añadir o cambiar imágenes en public/assets/projects/*.webp
+ *
+ *   pnpm run images:projects
+ */
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, '../public/assets/projects');
+const outDir = path.join(root, 'generated');
+const widths = [400, 800];
+
+/** Mismos valores que src/data/projectImages.ts */
+const bases = [
+  'vila-lancis-v2',
+  'lucia-nails',
+  'supercapaces',
+  'rockzone',
+  'ariadna-vilalta',
+  'jlgki',
+  'reset7',
+  'decos',
+];
+
+await fs.mkdir(outDir, { recursive: true });
+
+for (const base of bases) {
+  const input = path.join(root, `${base}.webp`);
+  try {
+    await fs.access(input);
+  } catch {
+    console.warn(`[skip] no existe: ${input}`);
+    continue;
+  }
+
+  for (const w of widths) {
+    const dest = path.join(outDir, `${base}-w${w}.webp`);
+    await sharp(input)
+      .resize({
+        width: w,
+        withoutEnlargement: true,
+        fit: 'inside',
+      })
+      .webp({ quality: 82, effort: 4 })
+      .toFile(dest);
+    console.log('OK', path.relative(process.cwd(), dest));
+  }
+}
+
+console.log('Listo.');

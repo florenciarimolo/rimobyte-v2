@@ -1,0 +1,61 @@
+---
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+import ProjectThumb from '../ui/ProjectThumb.astro';
+import { projectImageBase } from '../../data/projectImages';
+
+const projects = [
+  { name: 'Vila i Lancis',   sector: 'Asesoría',      desc: 'Rediseño completo y recuperación de accesos.', slug: 'vila-i-lancis' },
+  { name: 'Lucía Nails Art', sector: 'Estética',      desc: 'Web desde cero con SEO local — primera en Google en su área.', slug: 'lucia-nails-art' },
+  { name: 'de Cos',          sector: 'Tienda online', desc: 'Rescate y rediseño — de 10 a 25 ventas mensuales.', slug: 'de-cos' },
+];
+---
+<section class="bg-(--color-bg-base) py-[clamp(4rem,8vw,7rem)]">
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div class="max-w-[640px]">
+        <Eyebrow text="PORTFOLIO · 9 PROYECTOS" class="mb-5" />
+        <h2 class="font-(--font-display) font-semibold text-[clamp(2rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.02em] text-(--color-text-primary)">
+          Proyectos reales para negocios reales.
+        </h2>
+        <p class="mt-5 text-base leading-[1.75] text-(--color-text-secondary)">
+          Cada web que entrego tiene detrás una historia: un negocio que quería crecer, un autónomo que quería ser encontrado, o una tienda que quería vender online. Aquí van algunos de ellos.
+        </p>
+      </div>
+      <Button href="/proyectos" variant="ghost" class="shrink-0">
+        Ver todos <span aria-hidden="true">→</span>
+      </Button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {projects.map((p) => {
+        const imageBase = projectImageBase(p.slug);
+        return (
+        <a
+          href={`/proyectos/${p.slug}`}
+          class="reveal group block rounded-2xl bg-(--color-bg-elevated) border border-(--color-border-default) overflow-hidden no-underline hover:border-(--color-border-blue) hover:-translate-y-1 transition-all duration-300"
+        >
+          {imageBase ? (
+            <ProjectThumb imageBase={imageBase} alt={`Captura del sitio web: ${p.name}`} />
+          ) : (
+            <div class="aspect-[16/10] bg-(--color-bg-surface) flex items-center justify-center">
+            <span class="text-center font-(--font-mono) text-[0.6rem] tracking-[0.1em] uppercase text-(--color-text-muted)">
+              {p.name}
+            </span>
+            </div>
+          )}
+          <div class="p-5">
+            <p class="mb-2 font-(--font-mono) text-[0.65rem] tracking-[0.1em] uppercase text-(--color-blue)">
+              {p.sector.toUpperCase()}
+            </p>
+            <h3 class="font-(--font-display) text-base font-semibold tracking-[-0.01em] text-(--color-text-primary) mb-2">{p.name}</h3>
+            <p class="text-sm text-(--color-text-secondary) leading-relaxed">{p.desc}</p>
+          </div>
+        </a>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

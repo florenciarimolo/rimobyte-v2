@@ -1,0 +1,45 @@
+---
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+---
+<section class="relative min-h-screen flex items-center bg-(--color-bg-base) pt-24 pb-20">
+
+  <!-- Textura de fondo: grid de puntos muy sutil -->
+  <div
+    class="absolute inset-0 pointer-events-none opacity-[0.03]"
+    style="background-image: radial-gradient(circle, #F0F0F8 1px, transparent 1px); background-size: 32px 32px;"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+    <div class="mx-auto flex max-w-[720px] flex-col items-center text-center">
+
+      <div class="reveal mb-6 w-full flex justify-center">
+        <Eyebrow text="DISEÑO WEB · DESARROLLO · ESPAÑA" />
+      </div>
+
+      <h1 class="reveal font-(--font-display) font-bold text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] text-(--color-text-primary) mb-6">
+        Muchos negocios acaban pagando por una web que <span class="italic">no controlan</span>.
+      </h1>
+
+      <p class="reveal font-(--font-body) text-[clamp(1rem,2vw,1.2rem)] leading-[1.75] text-(--color-text-secondary) mb-10 max-w-[600px]">
+        Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.
+      </p>
+
+      <div class="reveal mb-10 flex flex-wrap justify-center gap-4">
+        <Button href="/contacto" variant="primary">Quiero empezar mi web</Button>
+        <Button href="#contacto" variant="outline">Tengo dudas, cuéntame más</Button>
+      </div>
+
+      <ul class="reveal m-0 flex list-none flex-wrap justify-center gap-x-6 gap-y-2 p-0">
+        {['Tu web, tu propiedad', 'Sin sorpresas', 'Soporte continuo'].map((item) => (
+          <li class="flex items-center gap-2 text-sm text-(--color-text-secondary)">
+            <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-blue) opacity-70"></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </div>
+</section>
