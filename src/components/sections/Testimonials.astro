@@ -1,51 +1,83 @@
 ---
+import Button from '../ui/Button.astro';
 import Eyebrow from '../ui/Eyebrow.astro';
 import QuoteIcon from '../ui/QuoteIcon.astro';
+import { fetchGoogleReviews } from '../../lib/google-reviews';
+
+const place = await fetchGoogleReviews(6);
+const reviews = place?.reviews ?? [];
+const totalReviews = place?.totalReviews ?? 10;
+const googleMapsUrl = place?.googleMapsUrl ?? 'https://maps.google.com/?cid=166247164102179431';
 ---
-<section class="bg-(--color-bg-elevated) py-[clamp(4rem,8vw,7rem)]">
+
+<section class="section-bg--elevated py-[clamp(4rem,8vw,7rem)]">
   <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 
-    <Eyebrow text="TESTIMONIOS" class="mb-5" />
-    <h2 class="font-(--font-display) font-semibold text-[clamp(2rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.02em] text-(--color-text-primary) mb-12">
-      Lo que dicen quienes ya han trabajado conmigo.
+    <Eyebrow text="LO QUE DICEN" />
+    <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-[-0.025em] mb-12">
+      Lo que dicen quienes ya han trabajado <em>conmigo.</em>
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-      <!-- Testimonio principal (2 columnas) -->
-      <div class="reveal md:col-span-2 rounded-2xl bg-(--color-bg-surface) border border-(--color-border-default) p-8">
-        <QuoteIcon class="mb-4 block h-8 w-8 opacity-40 sm:h-9 sm:w-9" />
-        <blockquote class="text-base leading-[1.75] text-(--color-text-primary) italic mb-6 m-0">
-          "Trabajar con Flor es de las mejores decisiones que he podido hacer, ya no solo por lo profesional y perfeccionista que es… sino por su forma de ser. Siempre estuvo ahí para hacer cualquier videollamada."
-        </blockquote>
-        <p class="text-sm font-semibold text-(--color-text-primary)">Juan Carlos García</p>
-        <p class="mt-1 font-(--font-mono) text-[0.65rem] tracking-[0.08em] uppercase text-(--color-text-muted)">
-          ENTRENADOR PERSONAL · JUANCARGARMA.COM
-        </p>
-        <div class="flex items-center gap-1 mt-4">
-          {Array(5).fill(null).map(() => (
-            <span class="text-(--color-blue) text-sm">★</span>
+    {reviews.length > 0 ? (
+      <div
+        class="testimonials-carousel reveal"
+        aria-roledescription="carousel"
+        aria-label="Reseñas de clientes"
+      >
+        <div class="testimonials-carousel__track" aria-live="polite">
+          {reviews.map((review, i) => (
+            <article
+              class:list={['testimonials-carousel__slide', i === 0 && 'is-active']}
+              aria-hidden={i === 0 ? 'false' : 'true'}
+              data-slide={i}
+            >
+              <QuoteIcon variant="ornate" size="xl" tone="strong" class="block mb-6 leading-none" />
+              <blockquote class="testimonials-carousel__quote m-0">
+                "{review.text}"
+              </blockquote>
+              <p class="testimonials-carousel__meta">
+                {review.authorName}
+                <span class="testimonials-carousel__meta-sep" aria-hidden="true">·</span>
+                {review.relativeTime}
+                <span class="testimonials-carousel__meta-sep" aria-hidden="true">·</span>
+                Google
+              </p>
+            </article>
           ))}
         </div>
-      </div>
 
-      <!-- Testimonio secundario -->
-      <div class="reveal rounded-2xl bg-(--color-bg-surface) border border-(--color-border-default) p-7">
-        <QuoteIcon class="mb-3 block h-8 w-8 opacity-40 sm:h-9 sm:w-9" />
-        <blockquote class="text-sm leading-[1.75] text-(--color-text-primary) italic mb-5 m-0">
-          "RimoByte consiguió lo que parecía imposible: que alguien entendiera qué quiero comunicar y lo haga de una forma que me represente."
-        </blockquote>
-        <p class="text-sm font-semibold text-(--color-text-primary)">Ariadna Vilalta</p>
-        <p class="mt-1 font-(--font-mono) text-[0.65rem] tracking-[0.08em] uppercase text-(--color-text-muted)">
-          CIBERPSICÓLOGA · ARIADNAVILALTA.COM
-        </p>
-        <div class="flex items-center gap-1 mt-4">
-          {Array(5).fill(null).map(() => (
-            <span class="text-(--color-blue) text-sm">★</span>
-          ))}
-        </div>
+        {reviews.length > 1 && (
+          <div
+            class="testimonials-carousel__nav"
+            role="tablist"
+            aria-label="Elegir reseña"
+          >
+            {reviews.map((_, i) => (
+              <button
+                type="button"
+                class:list={['testimonials-carousel__dot', i === 0 && 'is-active']}
+                role="tab"
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-label={`Reseña ${i + 1} de ${reviews.length}`}
+                tabindex={i === 0 ? 0 : -1}
+                data-index={i}
+              />
+            ))}
+          </div>
+        )}
       </div>
+    ) : (
+      <p class="text-(--color-text-secondary) text-sm">No se pudieron cargar las reseñas.</p>
+    )}
 
+    <div class="mt-10">
+      <Button href={googleMapsUrl} variant="ghost" external>
+        Ver las {totalReviews} reseñas en Google <span aria-hidden="true">→</span>
+      </Button>
     </div>
   </div>
 </section>
+
+<script>
+  import '../../scripts/testimonials-carousel.ts';
+</script>

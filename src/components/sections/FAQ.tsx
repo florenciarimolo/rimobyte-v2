@@ -1,74 +1,74 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
+
+const display = { fontFamily: "'Clash Grotesk', Inter, sans-serif" };
 
 const faqs = [
-  {
-    q: '¿Cuánto cuesta una web?',
-    a: 'Web corporativa desde 600€, tienda online desde 1.200€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
-  },
-  {
-    q: '¿Cuánto tarda en estar lista?',
-    a: 'Web corporativa 3-4 semanas, tienda online 4-6 semanas. Depende también del contenido — te guío desde el principio.',
-  },
-  {
-    q: '¿Necesito saber de tecnología?',
-    a: 'Para nada. Me encargo de todo lo técnico y te explico solo lo que necesitas saber para gestionar tu web del día a día.',
-  },
-  {
-    q: '¿Qué pasa si ya tengo una web?',
-    a: 'Puedo renovarla, migrarla o mejorarla. Primero la reviso y te digo honestamente qué tiene sentido hacer — sin venderte nada que no necesites.',
-  },
-  {
-    q: '¿Y si después necesito cambiar algo?',
-    a: 'Te enseño a hacer los cambios básicos tú mismo. Y si necesitas algo más complejo, aquí estoy. Con o sin contrato de mantenimiento.',
-  },
+  { q: '¿Cuánto cuesta una web?', a: 'Web corporativa desde 600€, tienda online desde 1.200€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.' },
+  { q: '¿Cuánto tarda en estar lista?', a: 'Web corporativa 3-4 semanas, tienda online 4-6 semanas. Depende también del contenido — te guío desde el principio.' },
+  { q: '¿Necesito saber de tecnología?', a: 'Para nada. Me encargo de todo lo técnico y te explico solo lo que necesitas saber para gestionar tu web del día a día.' },
+  { q: '¿Qué pasa si ya tengo una web?', a: 'Puedo renovarla, migrarla o mejorarla. Primero la reviso y te digo honestamente qué tiene sentido hacer.' },
+  { q: '¿Y si después necesito cambiar algo?', a: 'Te enseño a hacer los cambios básicos tú mismo. Y si necesitas algo más complejo, aquí estoy. Con o sin contrato de mantenimiento.' },
 ];
 
 export default function FAQ() {
+  const baseId = useId();
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-(--color-bg-base) py-[clamp(4rem,8vw,7rem)]">
-      <div className="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-        <div className="max-w-[720px] mx-auto">
-          <div className="flex flex-col items-center text-center">
-            <p className="eyebrow mb-5">
-              <span className="text-[0.5rem] opacity-70">●</span>{' '}PREGUNTAS FRECUENTES
+    <section className="section-bg" style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
+        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '3rem' }}>
+            <p className="eyebrow">
+              <span className="eyebrow__bracket" aria-hidden="true">[</span>
+              PREGUNTAS FRECUENTES
+              <span className="eyebrow__bracket" aria-hidden="true">]</span>
             </p>
-
-            <h2 className="font-(--font-display) font-semibold text-[clamp(2rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.02em] text-(--color-text-primary) mb-12">
-              Dudas habituales antes de empezar.
+            <h2 style={{ fontSize: 'clamp(2rem,3.5vw,3rem)', lineHeight: 1.08, letterSpacing: '-0.025em', margin: 0 }}>
+              Dudas habituales antes de <em style={{ fontStyle: 'italic', color: 'var(--color-blue)' }}>empezar.</em>
             </h2>
           </div>
 
-          <div className="divide-y divide-(--color-border-default) border-t border-b border-(--color-border-default)">
-          {faqs.map((faq, i) => (
-            <div key={i}>
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 py-5 text-left bg-transparent border-0 cursor-pointer"
-              >
-                <span className="font-(--font-display) font-medium text-base text-(--color-text-primary) leading-[1.4]">
-                  {faq.q}
-                </span>
-                <span className="text-(--color-blue) text-xl leading-none shrink-0">
-                  {open === i ? '−' : '+'}
-                </span>
-              </button>
+          <div style={{ borderTop: '1px solid var(--color-border-default)' }}>
+            {faqs.map((f, i) => {
+              const buttonId = `${baseId}-btn-${i}`;
+              const panelId = `${baseId}-panel-${i}`;
+              const isOpen = open === i;
 
-              {/* max-height como valor dinámico — inline style inevitable para animación JS */}
-              <div
-                className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-                style={{ maxHeight: open === i ? '200px' : '0' }}
-              >
-                <p className="text-[0.9375rem] leading-[1.75] text-(--color-text-secondary) pb-5">
-                  {faq.a}
-                </p>
-              </div>
-            </div>
-          ))}
+              return (
+                <div key={f.q} style={{ borderBottom: '1px solid var(--color-border-default)' }}>
+                  <h3 style={{ margin: 0 }}>
+                    <button
+                      id={buttonId}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1.25rem 0', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                    >
+                      <span style={{ ...display, fontWeight: 500, fontSize: '1rem', color: 'white', lineHeight: 1.4 }}>{f.q}</span>
+                      <span aria-hidden="true" style={{ color: 'var(--color-blue)', fontSize: '1.25rem', flexShrink: 0, lineHeight: 1 }}>{isOpen ? '−' : '+'}</span>
+                    </button>
+                  </h3>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    hidden={!isOpen}
+                    className="faq-panel"
+                    style={{
+                      maxHeight: isOpen ? '200px' : '0',
+                      overflow: 'hidden',
+                      transition: 'max-height 0.3s ease',
+                    }}
+                  >
+                    <p style={{ fontSize: '0.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', paddingBottom: '1.25rem', margin: 0 }}>{f.a}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-
       </div>
     </section>
   );

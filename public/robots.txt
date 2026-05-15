@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rimobyte.com/sitemap-index.xml

@@ -3,18 +3,30 @@ interface Props {
   href?: string;
   variant?: 'primary' | 'outline' | 'ghost';
   class?: string;
+  type?: 'button' | 'submit';
+  block?: boolean;
+  external?: boolean;
 }
-const { href, variant = 'primary', class: className = '' } = Astro.props;
+const { href, variant = 'primary', class: cls = '', type = 'button', block = false, external = false } = Astro.props;
 
-const base = 'inline-flex items-center gap-2 font-(--font-body) text-[0.9375rem] font-semibold rounded-lg cursor-pointer no-underline transition-all duration-200 whitespace-nowrap';
+const variantClass = {
+  primary: 'btn btn-primary',
+  outline: 'btn btn-outline',
+  ghost: 'btn btn-ghost',
+}[variant];
 
-const variants = {
-  primary: 'bg-(--color-blue) text-white px-7 py-3.5 border-0 hover:bg-(--color-blue-hover) hover:-translate-y-px active:translate-y-0',
-  outline: 'bg-transparent text-(--color-text-primary) px-7 py-3.5 border border-(--color-border-hover) hover:border-(--color-blue-border) hover:bg-(--color-blue-subtle)',
-  ghost: 'bg-transparent text-(--color-blue) p-0 border-0 hover:gap-3',
-};
+const classes = [variantClass, block && 'btn--block', cls].filter(Boolean);
 ---
 {href
-  ? <a href={href} class:list={[base, variants[variant], className]}><slot /></a>
-  : <button class:list={[base, variants[variant], className]}><slot /></button>
+  ? (
+    <a
+      href={href}
+      class:list={classes}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+    >
+      <slot />
+    </a>
+  )
+  : <button type={type} class:list={classes}><slot /></button>
 }

@@ -1,0 +1,159 @@
+---
+/** Pantalla de carga inicial — símbolo RimoByte con degradado animado */
+---
+<div
+  id="page-loader"
+  class="page-loader"
+  role="status"
+  aria-live="polite"
+  aria-label="Cargando"
+>
+  <div class="page-loader__inner">
+    <div class="page-loader__glow" aria-hidden="true"></div>
+    <div class="page-loader__ring" aria-hidden="true"></div>
+    <div class="page-loader__symbol" aria-hidden="true"></div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var loader = document.getElementById('page-loader');
+    if (!loader) return;
+
+    var MIN_MS = 900;
+    var MAX_MS = 4500;
+    var start = performance.now();
+    var done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+      var wait = Math.max(0, MIN_MS - (performance.now() - start));
+      setTimeout(function () {
+        loader.classList.add('is-done');
+        document.body.classList.remove('is-loading');
+        setTimeout(function () {
+          loader.remove();
+        }, 550);
+      }, wait);
+    }
+
+    if (document.readyState === 'complete') {
+      finish();
+    } else {
+      window.addEventListener('load', finish, { once: true });
+    }
+    setTimeout(finish, MAX_MS);
+  })();
+</script>
+
+<style>
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-base);
+    transition:
+      opacity 0.55s var(--ease-spring),
+      visibility 0.55s var(--ease-spring);
+  }
+
+  .page-loader.is-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .page-loader__inner {
+    position: relative;
+    width: 5.5rem;
+    height: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Degradado animado recortado por la forma del favicon */
+  .page-loader__symbol {
+    position: relative;
+    z-index: 1;
+    width: 4.25rem;
+    height: 4.25rem;
+    background: linear-gradient(
+      135deg,
+      #196bee 0%,
+      #6535e5 38%,
+      #e715d1 72%,
+      #196bee 100%
+    );
+    background-size: 280% 280%;
+  }
+
+  .page-loader__symbol {
+    -webkit-mask-image: url('/favicon.svg');
+    mask-image: url('/favicon.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    animation:
+      loader-gradient 2.4s ease-in-out infinite,
+      loader-float 2.6s ease-in-out infinite;
+  }
+
+  .page-loader__glow {
+    position: absolute;
+    inset: -40%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(101, 53, 229, 0.28) 0%,
+      rgba(25, 107, 238, 0.12) 40%,
+      transparent 70%
+    );
+    animation: loader-glow 2.4s ease-in-out infinite;
+  }
+
+  .page-loader__ring {
+    position: absolute;
+    inset: -8%;
+    border-radius: 50%;
+    border: 1px solid rgba(101, 53, 229, 0.2);
+    animation: loader-ring 2.6s ease-in-out infinite;
+  }
+
+  @keyframes loader-gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+  }
+
+  @keyframes loader-float {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    35%       { transform: scale(1.06) rotate(-4deg); }
+    70%       { transform: scale(0.97) rotate(4deg); }
+  }
+
+  @keyframes loader-glow {
+    0%, 100% { opacity: 0.55; transform: scale(0.92); }
+    50%       { opacity: 1; transform: scale(1.08); }
+  }
+
+  @keyframes loader-ring {
+    0%, 100% { transform: scale(1); opacity: 0.35; }
+    50%       { transform: scale(1.12); opacity: 0.7; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-loader__symbol,
+    .page-loader__glow,
+    .page-loader__ring {
+      animation: none;
+    }
+    .page-loader { transition-duration: 0.15s; }
+  }
+</style>

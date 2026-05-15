@@ -1,0 +1,14 @@
+---
+import { getIconSvg, type IconName } from './icons/registry';
+
+export type { IconName };
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: cls = '' } = Astro.props;
+---
+
+<span class:list={['icon', cls]} set:html={getIconSvg(name)} aria-hidden="true" />

@@ -3,9 +3,10 @@ interface Props {
   text: string;
   class?: string;
 }
-const { text, class: className = '' } = Astro.props;
+const { text, class: cls = '' } = Astro.props;
 ---
-<span class:list={['eyebrow', className]}>
-  <span class="text-[0.5rem] opacity-70">●</span>
-  {text}
-</span>
+<p class:list={['eyebrow', cls]}>
+  <span class="eyebrow__bracket" aria-hidden="true">[</span>
+  <span>{text}</span>
+  <span class="eyebrow__bracket" aria-hidden="true">]</span>
+</p>

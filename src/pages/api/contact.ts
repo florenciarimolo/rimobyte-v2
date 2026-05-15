@@ -5,16 +5,71 @@ export const prerender = false;
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
+const JSON_HEADERS = { 'Content-Type': 'application/json' } as const;
+
+const LIMITS = {
+  nombre: 120,
+  email: 254,
+  negocio: 120,
+  servicio: 120,
+  mensaje: 4000,
+} as const;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function asTrimmedString(value: unknown, maxLength: number): string | null {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.length > maxLength) return null;
+  return trimmed;
+}
+
+function jsonError(message: string, status: number) {
+  return new Response(JSON.stringify({ error: message }), { status, headers: JSON_HEADERS });
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { nombre, email, negocio, servicio, mensaje } = await request.json();
+    const body = await request.json();
+
+    const nombre = asTrimmedString(body.nombre, LIMITS.nombre);
+    const email = asTrimmedString(body.email, LIMITS.email);
+    const negocio = asTrimmedString(body.negocio, LIMITS.negocio);
+    const servicio = asTrimmedString(body.servicio, LIMITS.servicio);
+    const mensajeRaw = body.mensaje;
+    const mensaje =
+      mensajeRaw == null || mensajeRaw === ''
+        ? ''
+        : asTrimmedString(mensajeRaw, LIMITS.mensaje);
 
     if (!nombre || !email || !negocio || !servicio) {
-      return new Response(JSON.stringify({ error: 'Faltan campos obligatorios' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return jsonError('Faltan campos obligatorios o son inválidos', 400);
     }
+
+    if (!EMAIL_RE.test(email)) {
+      return jsonError('Email no válido', 400);
+    }
+
+    if (mensajeRaw != null && mensajeRaw !== '' && mensaje === null) {
+      return jsonError('El mensaje es demasiado largo', 400);
+    }
+
+    const safe = {
+      nombre: escapeHtml(nombre),
+      email: escapeHtml(email),
+      negocio: escapeHtml(negocio),
+      servicio: escapeHtml(servicio),
+      mensaje: mensaje ? escapeHtml(mensaje) : '',
+    };
 
     await resend.emails.send({
       from: 'RimoByte <no-reply@rimobyte.com>',
@@ -23,23 +78,17 @@ export const POST: APIRoute = async ({ request }) => {
       subject: `Nuevo contacto: ${nombre} — ${servicio}`,
       html: `
         <h2 style="font-family:sans-serif">Nuevo mensaje de contacto</h2>
-        <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        <p><strong>Tipo de negocio:</strong> ${negocio}</p>
-        <p><strong>Qué necesita:</strong> ${servicio}</p>
-        ${mensaje ? `<p><strong>Mensaje:</strong> ${mensaje}</p>` : ''}
+        <p><strong>Nombre:</strong> ${safe.nombre}</p>
+        <p><strong>Email:</strong> <a href="mailto:${safe.email}">${safe.email}</a></p>
+        <p><strong>Tipo de negocio:</strong> ${safe.negocio}</p>
+        <p><strong>Qué necesita:</strong> ${safe.servicio}</p>
+        ${safe.mensaje ? `<p><strong>Mensaje:</strong> ${safe.mensaje}</p>` : ''}
       `,
     });
 
-    return new Response(JSON.stringify({ ok: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(JSON.stringify({ ok: true }), { status: 200, headers: JSON_HEADERS });
   } catch (error) {
     console.error('Error Resend:', error);
-    return new Response(JSON.stringify({ error: 'Error al enviar el mensaje' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return jsonError('Error al enviar el mensaje', 500);
   }
 };

@@ -1,0 +1,15 @@
+---
+description: Convenciones Astro para páginas y secciones
+globs: "**/*.astro"
+alwaysApply: false
+---
+
+# Componentes Astro
+
+Consulta [`.agents/skills/astro/SKILL.md`](../../.agents/skills/astro/SKILL.md) para patrones del framework.
+
+- Fetch y datos estáticos en el frontmatter (`---`), no waterfalls en cliente.
+- Islands React: `client:visible` si la sección está below-the-fold; `client:load` solo si hace falta interactividad inmediata above-the-fold.
+- Reutilizar utilidades y tokens de `global.css`; preferir clases Tailwind frente a estilos inline en `.astro`.
+- Un solo `<h1>` por página.
+- Imágenes con `alt` descriptivo; decorativas con `alt=""`.

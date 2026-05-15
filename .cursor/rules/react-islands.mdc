@@ -1,0 +1,15 @@
+---
+description: Islands React — hidratación y rendimiento
+globs: "src/components/**/*.{tsx,ts}"
+alwaysApply: false
+---
+
+# React islands
+
+Consulta [`.agents/skills/react-best-practices/SKILL.md`](../../.agents/skills/react-best-practices/SKILL.md).
+
+- Solo `FAQ` y `ContactForm` (y UI compartida) usan React en este proyecto.
+- Preferir `client:visible` en `index.astro` para secciones bajo el pliegue.
+- Evitar barrel imports pesados; importar directo desde el módulo.
+- Formularios: labels con `htmlFor`/`id`, estados de error con `aria-live`.
+- No añadir `forwardRef` innecesario (React 19).

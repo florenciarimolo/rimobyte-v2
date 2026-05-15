@@ -1,0 +1,15 @@
+---
+description: Contexto base RimoByte — diseño, stack y convenciones
+alwaysApply: true
+---
+
+# RimoByte — reglas base
+
+Lee [`AGENTS.md`](../../AGENTS.md) y [`docs/DESIGN.md`](../../docs/DESIGN.md) antes de cambios de UI.
+
+- Stack: Astro 6, Tailwind 4 (`@theme` en `src/styles/global.css`), React islands mínimos.
+- No introducir fondos claros ni romper tokens de color/tipografía del DESIGN.md.
+- Español en copy visible.
+- React solo para interactividad real; el resto en `.astro`.
+- `site` de producción: `https://rimobyte.com`.
+- Media estático solo en `public/assets/brand/` y `public/assets/projects/` (no `public/img/`).

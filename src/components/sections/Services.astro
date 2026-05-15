@@ -1,46 +1,55 @@
 ---
 import Eyebrow from '../ui/Eyebrow.astro';
-import Button from '../ui/Button.astro';
+import ServiceCard from '../ui/ServiceCard.astro';
+import type { IconName } from '../ui/icons/registry';
 
-const services = [
+const services: {
+  icon: IconName;
+  title: string;
+  desc: string;
+  price: string;
+  href: string;
+}[] = [
   {
+    icon: 'globe',
     title: 'Web corporativa',
-    desc: 'Para negocios que quieren existir profesionalmente en internet. Tus clientes te encuentran, entienden lo que ofreces y te contactan.',
+    desc: 'Para negocios que quieren existir profesionalmente en internet. Tus clientes te encuentran y te contactan.',
     price: 'Desde 600€',
     href: '/servicios/web-corporativa',
   },
   {
+    icon: 'shopping-bag',
     title: 'Tienda online',
-    desc: 'Para negocios que quieren vender mientras duermen. Una tienda que funciona las 24 horas, acepta pagos y gestiona pedidos.',
+    desc: 'Para negocios que quieren vender las 24 horas. Acepta pagos, gestiona pedidos, escala.',
     price: 'Desde 1.200€',
     href: '/servicios/tienda-online',
   },
   {
+    icon: 'wrench',
     title: 'Mantenimiento',
-    desc: 'Para quienes no quieren preocuparse por lo técnico. Actualizaciones, seguridad y soporte cuando lo necesitas. Sin permanencia.',
+    desc: 'Para quienes no quieren preocuparse por lo técnico. Sin permanencia, sin letra pequeña.',
     price: 'Desde 50€/mes',
     href: '/servicios/mantenimiento-web',
   },
 ];
 ---
-<section class="bg-(--color-bg-base) py-[clamp(4rem,8vw,7rem)]">
+<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
   <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 
-    <Eyebrow text="SERVICIOS" class="mb-5" />
-    <h2 class="font-(--font-display) font-semibold text-[clamp(2rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.02em] text-(--color-text-primary) mb-12">
-      Lo que hago, y lo que te consigue.
+    <Eyebrow text="SERVICIOS" />
+    <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-[-0.025em] mb-12">
+      Lo que hago, y lo que <em>te consigue.</em>
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid md:grid-cols-3 gap-3">
       {services.map((s) => (
-        <div class="reveal flex flex-col rounded-2xl bg-(--color-bg-elevated) border border-(--color-border-default) p-7 hover:border-(--color-border-blue) transition-colors duration-200">
-          <h3 class="font-(--font-display) text-xl font-semibold tracking-[-0.01em] text-(--color-text-primary) mb-3">{s.title}</h3>
-          <p class="text-[0.9375rem] leading-[1.75] text-(--color-text-secondary) flex-1 mb-6">{s.desc}</p>
-          <div class="flex items-center justify-between mt-auto">
-            <span class="font-(--font-display) font-semibold text-(--color-text-primary)">{s.price}</span>
-            <Button href={s.href} variant="ghost">Saber más <span aria-hidden="true">→</span></Button>
-          </div>
-        </div>
+        <ServiceCard
+          icon={s.icon}
+          title={s.title}
+          body={s.desc}
+          price={s.price}
+          href={s.href}
+        />
       ))}
     </div>
 

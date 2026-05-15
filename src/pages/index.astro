@@ -2,32 +2,35 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import Hero from '../components/sections/Hero.astro';
+import Marquee from '../components/sections/Marquee.astro';
 import FeaturedCase from '../components/sections/FeaturedCase.astro';
-import ProjectsStrip from '../components/sections/ProjectsStrip.astro';
 import Stats from '../components/sections/Stats.astro';
 import Features from '../components/sections/Features.astro';
-import FeaturedProjects from '../components/sections/FeaturedProjects.astro';
+import ProjectsFan from '../components/sections/ProjectsFan.astro';
+import PhotoStatement from '../components/sections/PhotoStatement.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
 import Services from '../components/sections/Services.astro';
-import AboutSnippet from '../components/sections/AboutSnippet.astro';
 import FAQ from '../components/sections/FAQ.tsx';
 import ContactForm from '../components/sections/ContactForm.tsx';
 import Footer from '../components/sections/Footer.astro';
 ---
-<Base>
+<Base
+  title="RimoByte — Diseño web para negocios locales"
+  description="Flor Rímolo, ingeniera informática freelance. Webs para negocios locales con acompañamiento real y sin letra pequeña."
+>
   <Navbar />
-  <main>
+  <main id="main">
     <Hero />
+    <Marquee />
     <FeaturedCase />
-    <ProjectsStrip />
     <Stats />
     <Features />
-    <FeaturedProjects />
+    <ProjectsFan />
+    <PhotoStatement />
     <Testimonials />
     <Services />
-    <AboutSnippet />
-    <FAQ client:load />
-    <ContactForm client:load />
+    <FAQ client:visible />
+    <ContactForm client:visible />
   </main>
   <Footer />
 </Base>

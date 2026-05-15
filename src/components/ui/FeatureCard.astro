@@ -1,0 +1,31 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  body: string;
+  footnote: string;
+  tall?: boolean;
+  wide?: boolean;
+  class?: string;
+  style?: string;
+}
+const { num, title, body, footnote, tall = false, wide = false, class: cls = '', style = '' } = Astro.props;
+---
+<article
+  class:list={[
+    'surface-card reveal group feature-card',
+    tall && 'feature-card--tall',
+    wide && 'feature-card--wide',
+    cls,
+  ]}
+  style={style}
+>
+  <span class="feature-card__watermark" aria-hidden="true">{num}</span>
+
+  <div class="feature-card__content">
+    <p class="feature-card__num">{num}</p>
+    <h3 class="feature-card__title">{title}</h3>
+    <p class="feature-card__body">{body}</p>
+    <p class="feature-card__footnote">{footnote}</p>
+  </div>
+</article>

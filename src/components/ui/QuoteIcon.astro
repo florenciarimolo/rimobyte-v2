@@ -1,14 +1,44 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
+  /** glyph — comilla tipográfica · ornate — comillas curvas SVG */
+  variant?: 'glyph' | 'ornate';
+  /** lg / sm — glyph en cards · xl — ornate en caso destacado */
+  size?: 'sm' | 'lg' | 'xl';
+  /** subtle — watermark en cards · strong — caso destacado */
+  tone?: 'subtle' | 'strong';
   class?: string;
 }
-const { class: className = '' } = Astro.props;
+const {
+  variant = 'glyph',
+  size = 'lg',
+  tone = 'subtle',
+  class: cls = '',
+} = Astro.props;
+
+const toneClass = tone === 'strong' ? 'opacity-[0.28]' : 'opacity-[0.06]';
+
+const glyphSize =
+  size === 'sm' ? 'text-[4.5rem]' : size === 'xl' ? 'text-[7rem]' : 'text-[5.5rem]';
+
+const ornateSize =
+  size === 'xl' ? 'w-[5.5rem] h-[4.25rem]' : size === 'sm' ? 'w-[3rem] h-[2.25rem]' : 'w-[4rem] h-[3rem]';
 ---
-<svg
-  class:list={['shrink-0 text-(--color-blue) pointer-events-none', className]}
-  viewBox="0 0 24 24"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
-</svg>
+
+{variant === 'ornate' ? (
+  <Icon
+    name="quote-ornate"
+    class:list={['block text-(--color-blue)', toneClass, ornateSize, cls]}
+  />
+) : (
+  <span
+    class:list={[
+      'font-(--font-display) font-bold text-(--color-blue) leading-none select-none pointer-events-none',
+      toneClass,
+      glyphSize,
+      cls,
+    ]}
+    aria-hidden="true"
+  >"</span>
+)}

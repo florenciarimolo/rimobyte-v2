@@ -1,0 +1,19 @@
+---
+interface Props {
+  class?: string;
+  style?: string;
+  /** md — 1.75rem · lg — 2rem */
+  padding?: 'md' | 'lg';
+}
+const { class: cls = '', style = '', padding = 'md' } = Astro.props;
+---
+<div
+  class:list={[
+    'surface-card reveal',
+    padding === 'lg' && 'surface-card--lg',
+    cls,
+  ]}
+  style={style}
+>
+  <slot />
+</div>

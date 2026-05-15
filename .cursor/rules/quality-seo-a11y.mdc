@@ -1,0 +1,23 @@
+---
+description: Checklist SEO y accesibilidad antes de cerrar cambios de UI
+globs: "src/**/*.{astro,tsx}"
+alwaysApply: false
+---
+
+# Calidad SEO + a11y
+
+Skills: [seo](.agents/skills/seo/SKILL.md), [accessibility](.agents/skills/accessibility/SKILL.md).
+
+Antes de dar por cerrado un cambio en páginas o formularios:
+
+**SEO**
+- `title`, `description`, canonical y OG en layout/página
+- Un `h1`; jerarquía `h2`/`h3` coherente
+- Imágenes indexables con `alt` útil
+
+**Accesibilidad**
+- Controles con nombre accesible (`aria-label` o texto visible)
+- Acordeones: `aria-expanded`, `aria-controls`, paneles con `id`
+- `:focus-visible` visible; skip link a `#main` en layout
+- Respetar `prefers-reduced-motion` en animaciones nuevas
+- Formularios: label asociado a cada campo
