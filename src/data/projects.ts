@@ -1,7 +1,14 @@
+export interface ProjectStat {
+  value: string;
+  label: string;
+}
+
 export interface Project {
   slug: string;
   name: string;
   displayName: string;
+  /** Fragmento exacto de `displayName` para destacarlo en el hero (italic + degradado azul). */
+  displayNameHighlight?: string;
   url: string;
   eyebrow: string;
   sector: string;
@@ -16,6 +23,9 @@ export interface Project {
     author: string;
   };
   image: string;
+  stats: ProjectStat[];
+  /** Hero 16:9 — mismo archivo que image hasta tener variantes dedicadas */
+  heroImage?: string;
 }
 
 /** Orden cronológico inverso (más reciente primero) */
@@ -24,6 +34,7 @@ export const projects: Project[] = [
     slug: 'ariadna-vilalta',
     name: 'Ariadna Vilalta',
     displayName: 'Ariadna Vilalta · Plataforma de autoridad para una speaker internacional',
+    displayNameHighlight: 'autoridad',
     url: 'ariadnavilalta.com',
     eyebrow: 'WEB PARA PSICÓLOGOS',
     sector: 'Ciberpsicóloga · Speaker internacional',
@@ -41,11 +52,18 @@ export const projects: Project[] = [
       author: 'Ariadna Vilalta',
     },
     image: '/assets/projects/ariadna-vilalta.webp',
+    heroImage: '/assets/projects/ariadna-vilalta.webp',
+    stats: [
+      { value: 'Internacional', label: 'Posicionamiento como speaker' },
+      { value: 'Autoridad', label: 'Más que catálogo de servicios' },
+      { value: '1ª', label: 'Web que la representa de verdad' },
+    ],
   },
   {
     slug: 'supercapaces',
     name: 'SuperCapaces',
     displayName: 'SuperCapaces · Plataforma de cursos lista para autogestionarse',
+    displayNameHighlight: 'autogestionarse',
     url: 'supercapaces.com',
     eyebrow: 'PLATAFORMA DE CURSOS',
     sector: 'Cursos online para familias',
@@ -63,11 +81,18 @@ export const projects: Project[] = [
       author: 'Carlos Pons',
     },
     image: '/assets/projects/supercapaces.webp',
+    heroImage: '/assets/projects/supercapaces.webp',
+    stats: [
+      { value: '100%', label: 'Gestión autónoma del cliente' },
+      { value: 'Auto', label: 'Automatizaciones de email activas' },
+      { value: 'Escalable', label: 'Sistema de membresías' },
+    ],
   },
   {
     slug: 'fenix-internacional-360',
     name: 'Fénix',
     displayName: 'Fénix · Una web narrativa con propósito real',
+    displayNameHighlight: 'propósito real',
     url: 'fenixinternacional360.com',
     eyebrow: 'WEB CON PROPÓSITO',
     sector: 'Mentorías para madres emprendedoras',
@@ -80,11 +105,18 @@ export const projects: Project[] = [
     result:
       'Desde el lanzamiento ha acompañado a más de 20 madres emprendedoras a través de sus mentorías. Un proyecto donde la tecnología está al servicio de una causa real.',
     image: '/assets/projects/fenix.webp',
+    heroImage: '/assets/projects/fenix.webp',
+    stats: [
+      { value: '+20', label: 'Madres acompañadas' },
+      { value: 'Internacional', label: 'Alcance del proyecto' },
+      { value: 'Narrativa', label: 'Historia personal como eje' },
+    ],
   },
   {
     slug: 'jlg-ki',
     name: 'JLG K&I',
     displayName: 'JLG K&I · De WordPress.com a una web propia y escalable',
+    displayNameHighlight: 'propia',
     url: 'jlgki.com',
     eyebrow: 'WEB CORPORATIVA',
     sector: 'Sitio web corporativo',
@@ -102,11 +134,18 @@ export const projects: Project[] = [
       author: 'Josep Linde',
     },
     image: '/assets/projects/jlg-ki.webp',
+    heroImage: '/assets/projects/jlg-ki.webp',
+    stats: [
+      { value: '100%', label: 'Propiedad recuperada' },
+      { value: 'Continua', label: 'Relación de trabajo' },
+      { value: '∞', label: 'Capacidad de evolucionar' },
+    ],
   },
   {
     slug: 'de-cos',
     name: 'de Cos',
     displayName: 'de Cos · Rescate técnico y +67% de ventas mensuales',
+    displayNameHighlight: '+67%',
     url: 'decos.es',
     eyebrow: 'TIENDA ONLINE',
     sector: 'Tienda online de sandalias artesanales',
@@ -124,11 +163,18 @@ export const projects: Project[] = [
       author: 'Maria Jose',
     },
     image: '/assets/projects/de-cos.webp',
+    heroImage: '/assets/projects/de-cos.webp',
+    stats: [
+      { value: '+67%', label: 'Ventas mensuales' },
+      { value: '300', label: 'Visitas orgánicas al mes' },
+      { value: 'Top', label: 'En Google para keywords clave' },
+    ],
   },
   {
     slug: 'juancar-garma-reset7',
     name: 'Juancar Garma / RESET7',
     displayName: 'Juancar Garma · Landing de ventas que convierte sola',
+    displayNameHighlight: 'convierte',
     url: 'juancargarma.com/reset7',
     eyebrow: 'WEB PARA ENTRENADORES',
     sector: 'Landing page de ventas · Entrenador personal',
@@ -145,11 +191,18 @@ export const projects: Project[] = [
       author: 'Juan Carlos García',
     },
     image: '/assets/projects/juancar-garma-reset7.webp',
+    heroImage: '/assets/projects/juancar-garma-reset7.webp',
+    stats: [
+      { value: '1', label: 'Único objetivo de conversión' },
+      { value: 'Stripe', label: 'Pago integrado' },
+      { value: '7 días', label: 'Reto vendido sin explicaciones' },
+    ],
   },
   {
     slug: 'rock-zone-camp',
     name: 'Rock Zone Camp',
     displayName: 'Rock Zone Camp · Identidad potente con rendimiento 99/100',
+    displayNameHighlight: '99/100',
     url: 'rockzonecamp.com',
     eyebrow: 'EVENTOS Y CAMPAMENTOS',
     sector: 'Campamento de música rock',
@@ -166,11 +219,18 @@ export const projects: Project[] = [
       author: 'Fura Aria',
     },
     image: '/assets/projects/rock-zone-camp.webp',
+    heroImage: '/assets/projects/rock-zone-camp.webp',
+    stats: [
+      { value: '99/100', label: 'Puntuación PageSpeed' },
+      { value: '100%', label: 'Inscripciones online integradas' },
+      { value: 'Multi', label: 'Vídeo e imagen sin lastrar' },
+    ],
   },
   {
     slug: 'vila-i-lancis',
     name: 'Vila i Lancis',
     displayName: 'Vila i Lancis · Rediseño completo y recuperación de accesos',
+    displayNameHighlight: 'recuperación',
     url: 'vilalancis.com',
     eyebrow: 'WEB PARA ASESORÍAS',
     sector: 'Asesoría fiscal, laboral y contable',
@@ -188,11 +248,18 @@ export const projects: Project[] = [
       author: 'Vila i Lancis',
     },
     image: '/assets/projects/vila-i-lancis.webp',
+    heroImage: '/assets/projects/vila-i-lancis.webp',
+    stats: [
+      { value: '100%', label: 'Accesos recuperados' },
+      { value: '3', label: 'Idiomas (ES · CA · EN)' },
+      { value: 'Sin', label: 'Plugins basura ni agencias' },
+    ],
   },
   {
     slug: 'lucia-nails-art',
     name: 'Lucía Nails Art',
     displayName: 'Lucía Nails Art · De invisible en Google a agenda llena',
+    displayNameHighlight: 'agenda llena',
     url: 'lucianailsart.com',
     eyebrow: 'WEB PARA PELUQUERÍAS',
     sector: 'Centro de manicura y estética',
@@ -210,11 +277,46 @@ export const projects: Project[] = [
       author: 'Lucía Martínez',
     },
     image: '/assets/projects/lucia-nails-art.webp',
+    heroImage: '/assets/projects/lucia-nails-art.webp',
+    stats: [
+      { value: '#1', label: 'En Google local de su área' },
+      { value: '100%', label: 'Agenda llena' },
+      { value: '0 → 1', label: 'De ninguna web a referencia local' },
+    ],
   },
 ];
+
+/** Parte `displayName` para envolver la primera coincidencia de `phrase` en `<em>` (hero). */
+export function splitDisplayNameHighlight(
+  displayName: string,
+  phrase?: string,
+): { before: string; em: string; after: string } | null {
+  if (!phrase?.trim()) return null;
+  const i = displayName.indexOf(phrase);
+  if (i === -1) return null;
+  return {
+    before: displayName.slice(0, i),
+    em: phrase,
+    after: displayName.slice(i + phrase.length),
+  };
+}
 
 /** Total de proyectos — único mantenedor cuando cambie el array */
 export const projectCount = projects.length;
 
 /** Eyebrow «PORTFOLIO · N PROYECTOS» — home y página proyectos */
 export const portfolioEyebrowLabel = `PORTFOLIO · ${projectCount} PROYECTOS`;
+
+/** Siguiente según orden del array (índice más alto = más antiguo); navegación cíclica */
+export function getNextProject(currentSlug: string): Project {
+  const index = projects.findIndex((p) => p.slug === currentSlug);
+  const i = index >= 0 ? index : 0;
+  return projects[(i + 1) % projects.length];
+}
+
+/** Anterior según orden del array; navegación cíclica */
+export function getPrevProject(currentSlug: string): Project {
+  const index = projects.findIndex((p) => p.slug === currentSlug);
+  const i = index >= 0 ? index : 0;
+  return projects[(i - 1 + projects.length) % projects.length];
+}

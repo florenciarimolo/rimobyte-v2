@@ -47,6 +47,9 @@
 
   /* Altura del header fijo */
   --nav-height: 5.25rem;
+
+  /* Contenedor principal (navbar, secciones, footer) */
+  --max-width-layout: 1400px;
 }
 
 /* ─── Base ─── */
@@ -1140,4 +1143,62 @@ h1 em, h2 em,
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
+}
+
+/* ============================================
+   PROYECTO — helpers reutilizables (detalle caso)
+   ============================================ */
+
+/* Pill URL externa — hero proyecto */
+.btn-pill-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  text-decoration: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border-blue);
+  background: rgba(43, 71, 236, 0.08);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-pill-ghost:hover {
+  background: rgba(43, 71, 236, 0.15);
+  border-color: var(--color-blue);
+}
+
+/* Barra azul decorativa sobre título — ChallengeApproachOutcome */
+.title-accent::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--color-blue);
+  margin-bottom: 1.5rem;
+}
+
+/* Stats proyecto — números grandes con degradado headline (.headline-gradient ya en global) */
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.625rem, 3vw, 2.35rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin: 0 0 0.75rem;
+  color: var(--color-blue);
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
 }

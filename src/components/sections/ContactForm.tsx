@@ -90,7 +90,7 @@ export default function ContactForm() {
 
   return (
     <section id="contacto" className="section-bg--elevated" style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
+      <div style={{ maxWidth: 'var(--max-width-layout)', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: '4rem', alignItems: 'start' }}>
 
           <div>

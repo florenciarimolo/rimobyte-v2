@@ -13,6 +13,7 @@ import Services from '../components/sections/Services.astro';
 import FAQ from '../components/sections/FAQ.tsx';
 import ContactForm from '../components/sections/ContactForm.tsx';
 import Footer from '../components/sections/Footer.astro';
+import { buildFaqPageJsonLd } from '../data/faq';
 
 const SEO = {
   title: 'Diseñadora web freelance para negocios locales · RimoByte',
@@ -24,6 +25,7 @@ const SEO = {
   title={SEO.title}
   description={SEO.description}
   image={SEO.image}
+  faqPageSchema={buildFaqPageJsonLd()}
 >
   <Navbar />
   <main id="main">

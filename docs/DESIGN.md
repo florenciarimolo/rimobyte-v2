@@ -165,7 +165,7 @@ Estructura real (`Eyebrow.astro`):
 No hay clase `.container` global. Patrón repetido:
 
 ```html
-<div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 ```
 
 ### Padding de secciones

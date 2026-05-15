@@ -1,21 +1,15 @@
 import { useState } from 'react';
 
-const display = { fontFamily: "'Clash Grotesk', Inter, sans-serif" };
+import { faqEntries } from '../../data/faq';
 
-const faqs = [
-  { q: '¿Cuánto cuesta una web?', a: 'Web corporativa desde 600€, tienda online desde 1.200€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.' },
-  { q: '¿Cuánto tarda en estar lista?', a: 'Web corporativa 3-4 semanas, tienda online 4-6 semanas. Depende también del contenido — te guío desde el principio.' },
-  { q: '¿Necesito saber de tecnología?', a: 'Para nada. Me encargo de todo lo técnico y te explico solo lo que necesitas saber para gestionar tu web del día a día.' },
-  { q: '¿Qué pasa si ya tengo una web?', a: 'Puedo renovarla, migrarla o mejorarla. Primero la reviso y te digo honestamente qué tiene sentido hacer.' },
-  { q: '¿Y si después necesito cambiar algo?', a: 'Te enseño a hacer los cambios básicos tú mismo. Y si necesitas algo más complejo, aquí estoy. Con o sin contrato de mantenimiento.' },
-];
+const display = { fontFamily: "'Clash Grotesk', Inter, sans-serif" };
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <section className="section-bg" style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
+      <div style={{ maxWidth: 'var(--max-width-layout)', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '3rem' }}>
             <p className="eyebrow">
@@ -29,7 +23,7 @@ export default function FAQ() {
           </div>
 
           <div style={{ borderTop: '1px solid var(--color-border-default)' }}>
-            {faqs.map((f, i) => {
+            {faqEntries.map((f, i) => {
               const buttonId = `faq-btn-${i}`;
               const panelId = `faq-panel-${i}`;
               const isOpen = open === i;

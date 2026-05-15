@@ -1,0 +1,191 @@
+---
+import { splitDisplayNameHighlight, type Project } from '../../../data/projects';
+import Eyebrow from '../../ui/Eyebrow.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const heroImg = project.heroImage ?? project.image;
+
+const titleParts = splitDisplayNameHighlight(
+  project.displayName,
+  project.displayNameHighlight,
+);
+
+const challengeLead =
+  `${project.challenge.split('.')[0]?.trim() ?? project.challenge}.`;
+const solutionLead =
+  `${project.solution.split('.')[0]?.trim() ?? project.solution}.`;
+
+const externalUrl = `https://${project.url}`;
+---
+
+<section class="hero-proyecto section-bg relative overflow-hidden">
+
+  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+
+    <a href="/proyectos" class="hero-proyecto__back reveal inline-flex items-center gap-2 mb-10">
+      <span aria-hidden="true">←</span>
+      <span>Volver a todos los proyectos</span>
+    </a>
+
+    <div class="hero-proyecto__grid grid gap-12 md:gap-16 items-center">
+
+      <div class="hero-proyecto__text">
+
+        <div class="reveal mb-6">
+          <Eyebrow text={project.eyebrow} />
+        </div>
+
+        <h1 class="reveal headline-gradient font-display font-medium
+                   text-[clamp(2rem,4vw,3.25rem)] leading-[1.06] tracking-[-0.03em]
+                   mb-7">
+          {
+            titleParts ? (
+              <>
+                {titleParts.before}
+                <em>{titleParts.em}</em>
+                {titleParts.after}
+              </>
+            ) : (
+              project.displayName
+            )
+          }
+        </h1>
+
+        <p class="reveal font-body text-[clamp(1rem,1.4vw,1.125rem)]
+                  leading-[1.7] text-text-secondary mb-8">
+          {challengeLead}
+          {solutionLead}
+        </p>
+
+        <a
+          href={externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="reveal btn-pill-ghost"
+        >
+          <span>{project.url}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+      <div class="hero-proyecto__media reveal">
+        <div class="hero-proyecto__window">
+          <div class="hero-proyecto__chrome" aria-hidden="true">
+            <span class="hero-proyecto__dot"></span>
+            <span class="hero-proyecto__dot"></span>
+            <span class="hero-proyecto__dot"></span>
+            <span class="hero-proyecto__urlbar">{project.url}</span>
+          </div>
+          <div class="hero-proyecto__screen">
+            <img
+              src={heroImg}
+              alt={`Captura de la web ${project.name}`}
+              loading="eager"
+              fetchpriority="high"
+              width="1600"
+              height="1000"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .hero-proyecto {
+    padding-block: clamp(6rem, 11vw, 9rem) clamp(4rem, 8vw, 7rem);
+  }
+
+  .hero-proyecto__back {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease, gap 0.2s ease;
+  }
+
+  .hero-proyecto__back:hover {
+    color: var(--color-text-primary);
+    gap: 0.75rem;
+  }
+
+  .hero-proyecto__grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 900px) {
+    .hero-proyecto__grid {
+      grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+    }
+  }
+
+  /* Ventana de navegador con la captura del proyecto */
+  .hero-proyecto__window {
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    box-shadow:
+      0 28px 64px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(43, 71, 236, 0.05);
+  }
+
+  .hero-proyecto__chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(17, 17, 24, 0.95);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .hero-proyecto__dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.12);
+    flex-shrink: 0;
+  }
+
+  .hero-proyecto__urlbar {
+    margin-left: 0.75rem;
+    padding: 0.25rem 0.875rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border-default);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-proyecto__screen {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-bg-subtle);
+  }
+
+  .hero-proyecto__screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+</style>
