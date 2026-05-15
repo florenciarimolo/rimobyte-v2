@@ -177,7 +177,6 @@ astro-island {
 }
 
 body > header {
-  position: relative;
   z-index: 50;
 }
 

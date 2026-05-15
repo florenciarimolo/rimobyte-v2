@@ -1,0 +1,28 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import { portfolioEyebrowLabel } from '../../../data/projects';
+---
+
+<section
+  class="section-bg"
+  style="padding-block: clamp(7rem, 13vw, 11rem) clamp(3rem, 5vw, 4rem);"
+>
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+    <div class="max-w-[760px] reveal">
+      <Eyebrow text={portfolioEyebrowLabel} class="mb-6" />
+
+      <h1
+        class="font-display font-medium text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.03em]"
+      >
+        Proyectos reales para negocios <em>reales.</em>
+      </h1>
+
+      <p
+        class="font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary mt-6 max-w-[580px]"
+      >
+        Cada web tiene detrás una historia: un negocio que quería crecer, un autónomo que
+        quería ser encontrado, o una tienda que quería vender online.
+      </p>
+    </div>
+  </div>
+</section>

@@ -16,14 +16,15 @@ const widths = [400, 800];
 
 /** Mismos valores que src/data/projectImages.ts */
 const bases = [
-  'vila-lancis-v2',
-  'lucia-nails',
+  'vila-i-lancis',
+  'lucia-nails-art',
   'supercapaces',
-  'rockzone',
+  'rock-zone-camp',
   'ariadna-vilalta',
-  'jlgki',
-  'reset7',
-  'decos',
+  'jlg-ki',
+  'juancar-garma-reset7',
+  'de-cos',
+  'fenix',
 ];
 
 await fs.mkdir(outDir, { recursive: true });

@@ -42,7 +42,7 @@ import Button from '../ui/Button.astro';
 >
   {['Proyectos', 'Servicios', 'Sobre mí', 'Contacto'].map(item => (
     <a href={`/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s/g, '-')}`}
-       class="font-display text-3xl font-bold text-white no-underline">{item}</a>
+       class="font-display text-3xl font-medium text-white no-underline">{item}</a>
   ))}
 </div>
 
@@ -56,7 +56,8 @@ import Button from '../ui/Button.astro';
     menuOpen = open;
     mobileMenu.hidden = !open;
     mobileMenu.inert = !open;
-    mobileMenu.style.transform = open ? 'translateX(0)' : 'translateX(100%)';
+    mobileMenu.style.setProperty('--tw-translate-x', open ? '0' : '100%');
+    document.body.style.overflow = open ? 'hidden' : '';
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     if (open) {

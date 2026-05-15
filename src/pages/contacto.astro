@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import ContactForm from '../components/sections/ContactForm.tsx';
+import Footer from '../components/sections/Footer.astro';
+
+const SEO = {
+  title: 'Contacto · RimoByte',
+  description:
+    'Cuéntame tu proyecto y te respondo sin tecnicismos. Diseño y desarrollo web para negocios locales — Flor Rímolo.',
+  image: '/assets/brand/flor-rimobyte.webp',
+};
+---
+
+<Base title={SEO.title} description={SEO.description} image={SEO.image}>
+  <Navbar />
+  <main id="main">
+    <ContactForm client:load />
+  </main>
+  <Footer />
+</Base>

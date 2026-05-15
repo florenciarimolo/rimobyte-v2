@@ -1,5 +1,6 @@
 ---
 import Eyebrow from '../ui/Eyebrow.astro';
+import { portfolioEyebrowLabel } from '../../data/projects';
 
 /* Orden del abanico: Vila i Lancis en el centro (índice 2) */
 const projects = [
@@ -11,11 +12,11 @@ const projects = [
 ];
 
 const imageMap: Record<string, string> = {
-  'vila-i-lancis':   '/assets/projects/vila-lancis-v2.webp',
-  'lucia-nails-art': '/assets/projects/lucia-nails.webp',
-  'rock-zone-camp':  '/assets/projects/rockzone.webp',
+  'vila-i-lancis':   '/assets/projects/vila-i-lancis.webp',
+  'lucia-nails-art': '/assets/projects/lucia-nails-art.webp',
+  'rock-zone-camp':  '/assets/projects/rock-zone-camp.webp',
   'ariadna-vilalta': '/assets/projects/ariadna-vilalta.webp',
-  'de-cos':          '/assets/projects/decos.webp',
+  'de-cos':          '/assets/projects/de-cos.webp',
 };
 
 /* Abanico en W: inclinación hacia el centro, centro más alto */
@@ -35,7 +36,7 @@ function fanTransform(i: number, straight = false) {
 
     <header class="reveal flex flex-wrap items-end justify-between gap-6 mb-10 md:mb-14">
       <div class="max-w-[560px]">
-        <Eyebrow text="PORTFOLIO · 9 PROYECTOS" />
+        <Eyebrow text={portfolioEyebrowLabel} />
         <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-[-0.025em]">
           Proyectos <em>destacados.</em>
         </h2>

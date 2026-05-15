@@ -3,14 +3,15 @@
  * Las variantes responsive se generan en /public/assets/projects/generated/{nombre}-w{400|800}.webp
  */
 export const projectImageBaseBySlug: Record<string, string> = {
-  'vila-i-lancis': 'vila-lancis-v2',
-  'lucia-nails-art': 'lucia-nails',
+  'vila-i-lancis': 'vila-i-lancis',
+  'lucia-nails-art': 'lucia-nails-art',
   supercapaces: 'supercapaces',
-  'rock-zone-camp': 'rockzone',
+  'rock-zone-camp': 'rock-zone-camp',
   'ariadna-vilalta': 'ariadna-vilalta',
-  'jlg-ki': 'jlgki',
-  reset7: 'reset7',
-  'de-cos': 'decos',
+  'jlg-ki': 'jlg-ki',
+  'juancar-garma-reset7': 'juancar-garma-reset7',
+  'de-cos': 'de-cos',
+  'fenix-internacional-360': 'fenix',
 };
 
 export function projectImageBase(slug: string): string | undefined {
