@@ -1,6 +1,22 @@
 ---
 import Button from '../ui/Button.astro';
+import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
+
+/** Mismas rutas que las tarjetas en Services.astro */
+const SERVICE_NAV_LINKS = [
+  { label: 'Web corporativa', href: '/servicios/web-corporativa' },
+  { label: 'Tienda online', href: '/servicios/tienda-online' },
+  { label: 'Mantenimiento', href: '/servicios/mantenimiento-web' },
+] as const;
+
+const navLinkClass =
+  'font-body text-sm text-text-secondary no-underline hover:text-white transition-colors duration-200';
+
+/** Mismo icono que el chevron del <select> en ContactForm (20×20, currentColor) */
+const navChevronClass =
+  'icon inline-flex size-5 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
 ---
+
 <header id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-300 border-b border-transparent">
   <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)] flex items-center justify-between">
 
@@ -9,12 +25,44 @@ import Button from '../ui/Button.astro';
     </a>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Principal">
-      {(['Proyectos', 'Servicios', 'Sobre mí'] as const).map(item => (
-        <a
-          href={`/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s/g, '-')}`}
-          class="font-body text-sm text-text-secondary no-underline hover:text-white transition-colors duration-200"
-        >{item}</a>
-      ))}
+      <a href="/proyectos" class={navLinkClass}>Proyectos</a>
+
+      <div class="relative">
+        <details id="nav-services-desktop" class="group/nav-services">
+          <summary
+            class:list={[
+              navLinkClass,
+              'cursor-pointer list-none inline-flex items-center gap-1.5 select-none',
+              '[&::-webkit-details-marker]:hidden',
+            ]}
+          >
+            Servicios
+            <span
+              class:list={[navChevronClass, 'group-open/nav-services:rotate-180']}
+              aria-hidden="true"
+              set:html={chevronDownSvg}
+            />
+          </summary>
+          <div class="absolute left-0 top-full z-60 pt-2 min-w-54">
+            <div
+              class="flex flex-col rounded-xl border border-border-default bg-bg-elevated/95 backdrop-blur-md py-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
+              role="group"
+              aria-label="Servicios"
+            >
+              {SERVICE_NAV_LINKS.map(({ label, href }) => (
+                <a
+                  href={href}
+                  class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-white hover:bg-bg-subtle transition-colors duration-150"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <a href="/sobre-mi" class={navLinkClass}>Sobre mí</a>
     </nav>
 
     <Button href="#contacto" variant="primary" class="hidden md:inline-flex">Empezar mi web</Button>
@@ -36,20 +84,44 @@ import Button from '../ui/Button.astro';
 
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-40 bg-bg-base flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-300"
+  class="fixed inset-0 z-40 bg-bg-base flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-300 px-6"
   hidden
   inert
 >
-  {['Proyectos', 'Servicios', 'Sobre mí', 'Contacto'].map(item => (
-    <a href={`/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s/g, '-')}`}
-       class="font-display text-3xl font-medium text-white no-underline">{item}</a>
-  ))}
+  <a href="/proyectos" class="font-display text-3xl font-medium text-white no-underline">Proyectos</a>
+
+  <details id="nav-services-mobile" class="group/nav-services-mobile w-full max-w-xs text-center">
+    <summary
+      class:list={[
+        'font-display text-3xl font-medium text-white cursor-pointer list-none inline-flex items-center gap-2 justify-center mx-auto',
+        '[&::-webkit-details-marker]:hidden',
+      ]}
+    >
+      Servicios
+      <span
+        class:list={[navChevronClass, 'group-open/nav-services-mobile:rotate-180']}
+        aria-hidden="true"
+        set:html={chevronDownSvg}
+      />
+    </summary>
+    <div class="mt-6 flex flex-col gap-5 items-center">
+      {SERVICE_NAV_LINKS.map(({ label, href }) => (
+        <a href={href} class="font-body text-lg text-text-secondary no-underline hover:text-white transition-colors">
+          {label}
+        </a>
+      ))}
+    </div>
+  </details>
+
+  <a href="/sobre-mi" class="font-display text-3xl font-medium text-white no-underline">Sobre mí</a>
+  <a href="/contacto" class="font-display text-3xl font-medium text-white no-underline">Contacto</a>
 </div>
 
 <script>
   const navbar = document.getElementById('navbar')!;
   const menuBtn = document.getElementById('menu-btn') as HTMLButtonElement;
   const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
+  const desktopServices = document.getElementById('nav-services-desktop') as HTMLDetailsElement | null;
   let menuOpen = false;
 
   function setMenuOpen(open: boolean) {
@@ -89,7 +161,20 @@ import Button from '../ui/Button.astro';
     if (e.key === 'Escape' && menuOpen) setMenuOpen(false);
   });
 
-  mobileMenu.querySelectorAll('a').forEach(a => {
+  mobileMenu.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  /** Cierra el submenú de Servicios en escritorio al clic fuera */
+  document.addEventListener('click', (e) => {
+    if (!desktopServices?.open) return;
+    const t = e.target as Node;
+    if (!desktopServices.contains(t)) desktopServices.open = false;
+  });
+
+  desktopServices?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      desktopServices.open = false;
+    });
   });
 </script>
