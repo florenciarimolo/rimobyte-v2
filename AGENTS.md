@@ -15,8 +15,9 @@ No contradigas `DESIGN.md` sin motivo explícito del usuario.
 ```bash
 pnpm dev      # astro dev
 pnpm build    # astro build
-pnpm check    # astro check
-pnpm preview  # vista previa de producción
+pnpm check         # astro check (TypeScript + Astro)
+pnpm lint:classes  # clases Tailwind: prohibido text-(--color-*), usar text-text-secondary
+pnpm preview       # vista previa de producción
 ```
 
 ## Stack
@@ -41,10 +42,27 @@ Todo el media va bajo `public/assets/` (no usar `public/img/`):
 
 Favicons y `robots.txt` permanecen en la raíz de `public/`.
 
+### Tailwind 4 (`@theme` en `global.css`)
+
+Los tokens `--color-*` y `--font-*` generan utilidades automáticas. **No uses** sintaxis arbitraria en `class`:
+
+| Evitar | Usar |
+|--------|------|
+| `text-(--color-text-secondary)` | `text-text-secondary` |
+| `text-(--color-text-muted)` | `text-text-muted` |
+| `text-(--color-blue)` | `text-blue` |
+| `bg-(--color-bg-base)` | `bg-bg-base` |
+| `border-(--color-border-default)` | `border-border-default` |
+| `font-(--font-display)` | `font-display` |
+
+En estilos inline de React (`style={{ color: 'var(--color-blue)' }}`) sí usa `var()`.
+
+**Ver todos los avisos:** extensión [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) en Cursor (subraya clases mejorables). **CI/local:** `pnpm lint:classes`.
+
 - Componentes de sección en `src/components/sections/` (`.astro` por defecto)
 - UI reutilizable en `src/components/ui/`
 - React solo cuando hace falta interactividad (`FAQ`, `ContactForm`)
-- Islands below-the-fold: preferir `client:visible` sobre `client:load`
+- Islands React: `client:load` (FAQ, ContactForm); no usar `client:visible` hasta resolver hidratación React 19 en dev
 - Datos estáticos o fetch en frontmatter de `.astro`, no en cliente salvo formularios
 - Copia y UI en **español**
 - No commitear `.env`

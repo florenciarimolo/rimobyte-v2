@@ -14,12 +14,12 @@ const items = [
   'GOOGLE LOCAL',
 ];
 ---
-<div class="hero-screen__marquee w-full section-bg--elevated overflow-hidden border-t border-(--color-border-default) py-3">
+<div class="hero-screen__marquee w-full section-bg--elevated overflow-hidden border-t border-border-default py-3">
   <div class="flex w-max" style="animation: marquee 22s linear infinite;">
     {[...items, ...items].map((item) => (
-      <span class="flex items-center gap-5 px-6 font-(--font-mono) text-[0.6875rem] tracking-[0.12em] uppercase text-(--color-text-muted) whitespace-nowrap">
+      <span class="flex items-center gap-5 px-6 font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-text-muted whitespace-nowrap">
         {item}
-        <span class="text-(--color-blue) text-base opacity-40">·</span>
+        <span class="text-blue text-base opacity-40">·</span>
       </span>
     ))}
   </div>

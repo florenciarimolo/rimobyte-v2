@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
+    "lint:classes": "node scripts/lint-tailwind-classes.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "images:projects": "node scripts/generate-project-images.mjs"

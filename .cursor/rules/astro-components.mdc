@@ -10,6 +10,6 @@ Consulta [`.agents/skills/astro/SKILL.md`](../../.agents/skills/astro/SKILL.md) 
 
 - Fetch y datos estáticos en el frontmatter (`---`), no waterfalls en cliente.
 - Islands React: `client:visible` si la sección está below-the-fold; `client:load` solo si hace falta interactividad inmediata above-the-fold.
-- Reutilizar utilidades y tokens de `global.css`; preferir clases Tailwind frente a estilos inline en `.astro`.
+- Reutilizar utilidades de `@theme` (`text-text-secondary`, `font-display`, `border-border-default`); ver [tailwind-tokens.mdc](tailwind-tokens.mdc). No usar `text-(--color-*)`.
 - Un solo `<h1>` por página.
 - Imágenes con `alt` descriptivo; decorativas con `alt=""`.

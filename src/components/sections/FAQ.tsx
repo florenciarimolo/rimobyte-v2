@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useState } from 'react';
 
 const display = { fontFamily: "'Clash Grotesk', Inter, sans-serif" };
 
@@ -11,7 +11,6 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const baseId = useId();
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -31,8 +30,8 @@ export default function FAQ() {
 
           <div style={{ borderTop: '1px solid var(--color-border-default)' }}>
             {faqs.map((f, i) => {
-              const buttonId = `${baseId}-btn-${i}`;
-              const panelId = `${baseId}-panel-${i}`;
+              const buttonId = `faq-btn-${i}`;
+              const panelId = `faq-panel-${i}`;
               const isOpen = open === i;
 
               return (

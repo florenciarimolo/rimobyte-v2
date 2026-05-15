@@ -150,6 +150,11 @@ body > footer {
   z-index: 1;
 }
 
+/* Islands React: display:contents rompe el pintado de section-bg (backdrop-filter) */
+astro-island {
+  display: block;
+}
+
 /* Tras el hero — vidrio oscuro: fondo visible pero atenuado */
 .section-bg {
   background: rgba(10, 10, 18, 0.55);

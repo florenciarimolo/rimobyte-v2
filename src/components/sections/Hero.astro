@@ -15,7 +15,7 @@ import Button from '../ui/Button.astro';
         Muchos negocios pagan por una web que <em>no controlan.</em>
       </h1>
 
-      <p class="hero-screen__lead reveal text-[clamp(0.9375rem,1.8vw,1.0625rem)] leading-[1.65] text-(--color-text-secondary) mb-5 md:mb-6 max-w-[540px]">
+      <p class="hero-screen__lead reveal text-[clamp(0.9375rem,1.8vw,1.0625rem)] leading-[1.65] text-text-secondary mb-5 md:mb-6 max-w-[540px]">
         Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.
       </p>
 
@@ -26,8 +26,8 @@ import Button from '../ui/Button.astro';
 
       <ul class="hero-screen__checks reveal flex flex-wrap justify-center gap-x-6 gap-y-2 list-none p-0 m-0">
         {['Tu web, tu propiedad', 'Sin sorpresas', 'Soporte continuo'].map(item => (
-          <li class="flex items-center gap-2 font-(--font-body) text-sm text-(--color-text-secondary)">
-            <span class="w-1.5 h-1.5 rounded-full bg-(--color-blue) opacity-60 shrink-0"></span>
+          <li class="flex items-center gap-2 font-body text-sm text-text-secondary">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue opacity-60 shrink-0"></span>
             {item}
           </li>
         ))}

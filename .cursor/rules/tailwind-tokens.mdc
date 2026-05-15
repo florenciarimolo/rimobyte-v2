@@ -1,0 +1,36 @@
+---
+description: Tailwind 4 — usar utilidades de @theme, no sintaxis arbitraria
+globs: "src/**/*.{astro,tsx}"
+alwaysApply: false
+---
+
+# Tokens Tailwind (@theme en global.css)
+
+Los tokens están en `src/styles/global.css` bajo `@theme`. Usa las **utilidades generadas**, no `prop-(--token)`.
+
+## Tipografías
+
+| Token CSS | Utilidad |
+|-----------|----------|
+| `--font-display` | `font-display` |
+| `--font-body` | `font-body` |
+| `--font-mono` | `font-mono` |
+
+❌ `font-(--font-display)` · ✅ `font-display` + `font-bold` si hace falta peso
+
+## Colores
+
+| Token CSS | Texto | Fondo | Borde |
+|-----------|-------|-------|-------|
+| `--color-text-secondary` | `text-text-secondary` | — | — |
+| `--color-text-muted` | `text-text-muted` | — | — |
+| `--color-text-primary` | `text-text-primary` | — | — |
+| `--color-blue` | `text-blue` | `bg-blue` | `border-blue` |
+| `--color-bg-base` | — | `bg-bg-base` | — |
+| `--color-border-default` | — | — | `border-border-default` |
+
+❌ `text-(--color-text-secondary)` · ✅ `text-text-secondary`
+
+En componentes React con estilos inline, `var(--color-*)` sigue siendo válido.
+
+Verificación: `pnpm lint:classes`
