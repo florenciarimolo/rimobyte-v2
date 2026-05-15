@@ -576,6 +576,7 @@ h1 em, h2 em,
 }
 
 .testimonials-carousel__dot {
+  position: relative;
   width: 0.375rem;
   height: 0.375rem;
   padding: 0;
@@ -583,10 +584,22 @@ h1 em, h2 em,
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.22);
   cursor: pointer;
+  overflow: hidden;
   transition:
     width 0.35s ease,
     background-color 0.35s ease,
     opacity 0.35s ease;
+}
+
+.testimonials-carousel__dot-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  background: var(--color-blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
 }
 
 .testimonials-carousel__dot:hover {
@@ -595,11 +608,20 @@ h1 em, h2 em,
 
 .testimonials-carousel__dot.is-active {
   width: 2rem;
-  background: var(--color-blue);
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .testimonials-carousel__dot.is-active:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.testimonials-carousel__dot.is-active:hover .testimonials-carousel__dot-fill {
   background: var(--color-blue-hover, var(--color-blue));
+}
+
+@keyframes testimonials-dot-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -609,6 +631,11 @@ h1 em, h2 em,
 
   .testimonials-carousel__dot {
     transition: none;
+  }
+
+  .testimonials-carousel__dot.is-active .testimonials-carousel__dot-fill {
+    transform: scaleX(1);
+    animation: none;
   }
 }
 

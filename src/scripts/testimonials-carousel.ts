@@ -11,6 +11,32 @@ function initCarousel(root: HTMLElement) {
   let timer: ReturnType<typeof setInterval> | null = null;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  function restartDotProgress() {
+    dots.forEach((dot) => {
+      const fill = dot.querySelector<HTMLElement>('.testimonials-carousel__dot-fill');
+      if (!fill) return;
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.removeProperty('animation');
+      fill.style.removeProperty('animation-play-state');
+    });
+
+    const activeDot = dots[index];
+    if (!activeDot || reducedMotion) return;
+
+    const fill = activeDot.querySelector<HTMLElement>('.testimonials-carousel__dot-fill');
+    if (fill) {
+      fill.style.animation = `testimonials-dot-progress ${AUTOPLAY_MS}ms linear forwards`;
+    }
+  }
+
+  function pauseDotProgress() {
+    dots.forEach((dot) => {
+      const fill = dot.querySelector<HTMLElement>('.testimonials-carousel__dot-fill');
+      if (fill) fill.style.animationPlayState = 'paused';
+    });
+  }
+
   function setSlide(next: number) {
     index = (next + slides.length) % slides.length;
 
@@ -26,6 +52,8 @@ function initCarousel(root: HTMLElement) {
       dot.setAttribute('aria-selected', active ? 'true' : 'false');
       dot.tabIndex = active ? 0 : -1;
     });
+
+    restartDotProgress();
   }
 
   function stop() {
@@ -33,11 +61,13 @@ function initCarousel(root: HTMLElement) {
       clearInterval(timer);
       timer = null;
     }
+    pauseDotProgress();
   }
 
   function start() {
     if (reducedMotion) return;
     stop();
+    restartDotProgress();
     timer = setInterval(() => setSlide(index + 1), AUTOPLAY_MS);
   }
 

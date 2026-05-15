@@ -23,6 +23,7 @@ const googleMapsUrl = place?.googleMapsUrl ?? 'https://maps.google.com/?cid=1662
         class="testimonials-carousel reveal"
         aria-roledescription="carousel"
         aria-label="Reseñas de clientes"
+        style="--carousel-autoplay-ms: 6000ms"
       >
         <div class="testimonials-carousel__track" aria-live="polite">
           {reviews.map((review, i) => (
@@ -61,7 +62,9 @@ const googleMapsUrl = place?.googleMapsUrl ?? 'https://maps.google.com/?cid=1662
                 aria-label={`Reseña ${i + 1} de ${reviews.length}`}
                 tabindex={i === 0 ? 0 : -1}
                 data-index={i}
-              />
+              >
+                <span class="testimonials-carousel__dot-fill" aria-hidden="true"></span>
+              </button>
             ))}
           </div>
         )}
