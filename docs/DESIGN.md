@@ -218,9 +218,9 @@ El `main` y `footer` van en `z-index: 1` sobre este fondo.
 ## 5. Shapes y bordes
 
 ```css
---radius-lg:   14px;    /* cards, foto PhotoStatement */
+--radius-lg:   14px;    /* inputs, textarea, cards, PhotoStatement */
 --radius-xl:   24px;    /* fan-cards de proyectos */
---radius-full: 9999px;  /* botones, inputs pill, dots del carrusel */
+--radius-full: 9999px;  /* botones pill, dots del carrusel */
 ```
 
 ---
@@ -361,11 +361,10 @@ Bloque editorial con borde izquierdo azul `3px`, `QuoteIcon` ornate, headline co
 ### Formulario — `ContactForm.tsx`
 
 - Labels: Space Mono `0.625rem`, uppercase, muted
-- Inputs/selects: Inter, pill (`border-radius: 9999px`), fondo `--color-bg-surface`
-- Textarea: `border-radius: 14px`
-- Chevron del select: `iconDataUri('chevron-down')` desde el registro de iconos
+- Inputs/selects/textarea: Inter, `border-radius: 14px` (`--radius-lg`), fondo `--color-bg-surface`
+- Selects: `appearance: none`; chevron con `Icon` (`chevron-down`) en un contenedor `position: relative` (no `background-image` — el color en `iconDataUri` debe ser hex sin URL-encode, p. ej. `#2B47EC`)
 - Iconos de contacto: `Icon` React (`mail`, `whatsapp`)
-- Submit: `btn btn-primary btn--block`
+- Submit: `btn btn-primary` (ancho al contenido, `align-self: flex-start`; sin `btn--block`)
 
 ### Page loader — `PageLoader.astro`
 

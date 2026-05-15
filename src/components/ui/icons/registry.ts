@@ -26,8 +26,8 @@ export function getIconSvg(name: IconName): string {
   return icons[name];
 }
 
-/** Data URI para usar como background-image (p. ej. selects) */
-export function iconDataUri(name: IconName, color = '%232B47EC'): string {
+/** Data URI para usar como background-image (color en hex/rgb, sin URL-encode) */
+export function iconDataUri(name: IconName, color = '#2B47EC'): string {
   const svg = icons[name]
     .replace(/currentColor/g, color)
     .replace(/\s+/g, ' ')

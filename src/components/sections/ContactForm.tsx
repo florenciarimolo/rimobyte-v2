@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import Icon from '../ui/Icon';
-import { iconDataUri } from '../ui/icons/registry';
 
 const mono = { fontFamily: "'Space Mono', monospace" };
-const pill = { borderRadius: '9999px' };
 
 const inputBase: React.CSSProperties = {
   fontFamily: 'var(--font-body)',
   fontSize: '0.9375rem',
   color: 'white',
-  background: 'var(--color-bg-surface)',
+  backgroundColor: 'var(--color-bg-surface)',
   border: '1px solid var(--color-border-default)',
-  ...pill,
+  borderRadius: '14px',
   padding: '1rem 1.5rem',
   outline: 'none',
   width: '100%',
-  transition: 'border-color 0.2s ease, background 0.2s ease',
+  transition: 'border-color 0.2s ease, background-color 0.2s ease',
   appearance: 'none' as const,
 };
 
@@ -32,11 +30,21 @@ const labelStyle: React.CSSProperties = {
 const selectStyle: React.CSSProperties = {
   ...inputBase,
   paddingRight: '3rem',
-  backgroundImage: `url("${iconDataUri('chevron-down')}")`,
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 1rem center',
-  backgroundSize: '1.25rem',
   cursor: 'pointer',
+};
+
+const selectWrapStyle: React.CSSProperties = {
+  position: 'relative',
+};
+
+const selectChevronStyle: React.CSSProperties = {
+  position: 'absolute',
+  right: '1rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  pointerEvents: 'none',
+  display: 'flex',
+  color: 'rgba(255,255,255,0.55)',
 };
 
 const textFields = [
@@ -126,17 +134,22 @@ export default function ContactForm() {
               {selectFields.map(f => (
                 <div key={f.name}>
                   <label htmlFor={f.id} style={labelStyle}>{f.label}</label>
-                  <select id={f.id} name={f.name} required style={selectStyle} defaultValue="">
-                    <option value="" disabled>Selecciona...</option>
-                    {f.opts.map(o => <option key={o} value={o}>{o}</option>)}
-                  </select>
+                  <div style={selectWrapStyle}>
+                    <select id={f.id} name={f.name} required style={selectStyle} defaultValue="">
+                      <option value="" disabled>Selecciona...</option>
+                      {f.opts.map(o => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                    <span style={selectChevronStyle} aria-hidden="true">
+                      <Icon name="chevron-down" style={{ width: 20, height: 20 }} />
+                    </span>
+                  </div>
                 </div>
               ))}
               <div>
                 <label htmlFor="contact-mensaje" style={labelStyle}>
                   Cuéntame más <span style={{ opacity: 0.5 }}>(opcional)</span>
                 </label>
-                <textarea id="contact-mensaje" name="mensaje" rows={4} placeholder="Describe tu proyecto..." style={{ ...inputBase, borderRadius: '14px', resize: 'vertical' }} />
+                <textarea id="contact-mensaje" name="mensaje" rows={4} placeholder="Describe tu proyecto..." style={{ ...inputBase, resize: 'vertical' }} />
               </div>
 
               {error && (
@@ -148,7 +161,8 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn btn-primary btn--block"
+                className="btn btn-primary"
+                style={{ alignSelf: 'flex-start' }}
                 aria-disabled={loading}
               >
                 {loading ? 'Enviando…' : 'Enviar mensaje →'}
