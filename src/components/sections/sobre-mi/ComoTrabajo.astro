@@ -1,0 +1,64 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Hablamos',
+    body: 'Me cuentas qué necesitas. Si ya lo tienes claro, te doy una estimación de plazos desde el principio. Si todavía tienes dudas, te hago las preguntas necesarias para entender bien tu negocio y lo que quieres conseguir con tu web. Sin prisas.',
+  },
+  {
+    num: '02',
+    title: 'Te explico los costes reales antes de empezar',
+    body: 'Tener una web requiere un dominio y un alojamiento — son tuyos, van a tu nombre y los pagas tú directamente. Antes de nada te explico exactamente cuánto cuestan y dónde contratarlos, para que no haya sorpresas después. Te acompaño en el proceso si lo necesitas.',
+  },
+  {
+    num: '03',
+    title: 'Diseñamos juntos',
+    body: 'Una vez claro el contenido, te presento un par de propuestas de diseño para que elijas la dirección que más te representa. No empiezo a construir nada hasta que estés convencida de lo que vas a tener.',
+  },
+  {
+    num: '04',
+    title: 'Lo construyo y lo revisamos',
+    body: 'Implemento el diseño aprobado y te lo muestro antes de publicar. Tienes margen para pedir ajustes — el objetivo es que cuando salga, sea exactamente lo que esperabas.',
+  },
+  {
+    num: '05',
+    title: 'Tu web sale al mundo — y yo sigo aquí',
+    body: 'Cuando la web está lista, te explico cómo funciona para que no dependas de mí para lo básico. Si quieres que me encargue del mantenimiento técnico, puedo hacerlo — pero no es obligatorio. La web es tuya y siempre lo será.',
+  },
+];
+---
+<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+    <div class="reveal max-w-[47.5rem]">
+      <Eyebrow text="CÓMO TRABAJO" class="mb-8" />
+      <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-[-0.025em]">
+        Cada proyecto sigue el mismo proceso.
+        No porque sea una norma — porque <em>funciona.</em>
+      </h2>
+      <p class="font-body text-base leading-[1.75] text-text-muted mt-4">
+        Cada proyecto sigue el mismo proceso. No porque sea una norma, sino porque funciona.
+      </p>
+    </div>
+
+    <div class="process-steps mt-14 max-w-[47.5rem]">
+      {steps.map((step, i) => (
+        <div class="process-step reveal">
+          <div class="process-step__rail">
+            <span class="process-step__num">{step.num}</span>
+            {i < steps.length - 1 && (
+              <div class="process-step__line" aria-hidden="true" />
+            )}
+          </div>
+          <div class="process-step__content">
+            <h3 class="process-step__title">{step.title}</h3>
+            <p class="font-body text-base leading-[1.75] text-text-secondary">
+              {step.body}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

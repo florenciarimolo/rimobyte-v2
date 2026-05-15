@@ -57,6 +57,14 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 body { margin: 0; }
 body.is-loading { overflow: hidden; }
@@ -875,3 +883,221 @@ h1 em, h2 em,
 
 /* Marquee */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Sobre mí — layouts editoriales */
+.sobre-mi-hero__grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+
+@media (min-width: 768px) {
+  .sobre-mi-hero__grid {
+    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+    align-items: end;
+    gap: clamp(3rem, 5vw, 5rem);
+  }
+
+  .sobre-mi-hero__text {
+    align-self: center;
+  }
+}
+
+.sobre-mi-hero__photo {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .sobre-mi-hero__photo {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.sobre-mi-valores__layout {
+  display: grid;
+  gap: clamp(2.5rem, 4vw, 4rem);
+}
+
+@media (min-width: 768px) {
+  .sobre-mi-valores__layout {
+    grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+    gap: clamp(3rem, 4vw, 4rem);
+    align-items: start;
+  }
+}
+
+.sobre-mi-valores__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .sobre-mi-valores__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.value-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.value-card__num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  margin: 0 0 1rem;
+}
+
+.value-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2vw, 1.3125rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.value-card__body {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.value-card__watermark {
+  position: absolute;
+  right: 0.5rem;
+  bottom: -0.15em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-blue);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+  font-size: clamp(3.25rem, 5.5vw, 4.75rem);
+}
+
+.sobre-mi-historia__inner {
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sobre-mi-historia__inner .eyebrow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sobre-mi-historia__body {
+  margin-top: 2.5rem;
+}
+
+.sobre-mi-historia__highlight {
+  border-left: 3px solid var(--color-blue);
+  padding-left: 1.5rem;
+  text-align: left;
+}
+
+.sobre-mi-testimonials__grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .sobre-mi-testimonials__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.sobre-mi-testimonial-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: clamp(3.5rem, 6vw, 5rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.process-step__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.process-step__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-blue);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.process-step__line {
+  flex: 1;
+  width: 1px;
+  min-height: 2rem;
+  margin-top: 0.75rem;
+  background: var(--color-border-default);
+}
+
+.process-step__content {
+  padding-bottom: clamp(2rem, 4vw, 2.5rem);
+}
+
+.process-step:last-child .process-step__content {
+  padding-bottom: 0;
+}
+
+.process-step__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3125rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.sobre-mi-cta__inner {
+  max-width: 37.5rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sobre-mi-cta__inner .eyebrow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sobre-mi-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}

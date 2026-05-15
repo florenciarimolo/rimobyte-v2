@@ -11,42 +11,71 @@ interface Props {
 }
 
 const {
-  title = 'RimoByte — Diseño web para negocios locales',
-  description = 'Flor Rímolo, ingeniera informática freelance. Webs para negocios locales con acompañamiento real y sin letra pequeña.',
+  title = 'Diseñadora web freelance para negocios locales · RimoByte',
+  description = 'Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
   image = '/assets/brand/flor-rimobyte.webp',
   noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL(image, Astro.site);
 
-const structuredData = {
+// Detectar si es home o sobre-mi para usar schema Person + LocalBusiness
+const isPersonalPage = Astro.url.pathname === '/' || Astro.url.pathname === '/sobre-mi/' || Astro.url.pathname === '/sobre-mi';
+
+// Schema: Person + LocalBusiness (para home y sobre-mi)
+const personBusinessSchema = {
   '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'LocalBusiness',
-      '@id': 'https://rimobyte.com/#business',
-      name: 'RimoByte',
-      url: 'https://rimobyte.com',
-      email: 'info@rimobyte.com',
-      telephone: '+34684713743',
-      image: 'https://rimobyte.com/assets/brand/flor-rimobyte.webp',
-      description,
-      founder: { '@id': 'https://rimobyte.com/#person' },
-      areaServed: { '@type': 'Country', name: 'España' },
-    },
-    {
-      '@type': 'Person',
-      '@id': 'https://rimobyte.com/#person',
-      name: 'Flor Rímolo',
-      jobTitle: 'Ingeniera informática freelance',
-      url: 'https://rimobyte.com',
-      email: 'info@rimobyte.com',
-      image: 'https://rimobyte.com/assets/brand/flor-rimobyte.webp',
-      worksFor: { '@id': 'https://rimobyte.com/#business' },
-    },
-  ],
+  '@type': ['Person', 'LocalBusiness'],
+  name: 'Flor Rímolo',
+  jobTitle: 'Diseñadora web freelance — Ingeniera informática',
+  url: 'https://rimobyte.com',
+  email: 'info@rimobyte.com',
+  telephone: '+34684713743',
+  description: 'Ingeniera informática especializada en desarrollo web para negocios locales.',
+  areaServed: {
+    '@type': 'Country',
+    name: 'España',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Barcelona',
+    addressCountry: 'ES',
+  },
+  priceRange: 'EUR',
+  openingHours: 'Mo-Fr 09:00-18:00',
+  image: 'https://rimobyte.com/assets/brand/flor-rimobyte.webp',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '10',
+    bestRating: '5',
+    worstRating: '5',
+  },
 };
+
+// Schema: WebSite (para cualquier otra página actual)
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'RimoByte',
+  url: 'https://rimobyte.com',
+  description: 'Diseño web freelance para negocios locales. Webs profesionales tuyas desde el primer día.',
+  author: {
+    '@type': 'Person',
+    name: 'Flor Rímolo',
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://rimobyte.com/blog?q={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+// Seleccionar schema según la página
+const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
 ---
 <!doctype html>
 <html lang="es">
@@ -55,25 +84,27 @@ const structuredData = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
-  <link rel="canonical" href={canonicalURL} />
   <title>{title}</title>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:site_name" content="RimoByte" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:url" content={canonicalURL} />
-  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image" content={new URL(image, Astro.site).href} />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="RimoByte" />
+  <meta property="og:url" content={canonicalURL.href} />
 
-  <!-- Twitter -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImageURL} />
+  <meta name="twitter:image" content={new URL(image, Astro.site).href} />
 
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <!-- Canonical -->
+  <link rel="canonical" href={canonicalURL.href} />
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -96,7 +96,7 @@ export default function ContactForm() {
           <div>
             <p className="eyebrow">
               <span className="eyebrow__bracket" aria-hidden="true">[</span>
-              HABLEMOS
+              CONTACTO
               <span className="eyebrow__bracket" aria-hidden="true">]</span>
             </p>
             <h2 style={{ fontSize: 'clamp(2rem,3.5vw,3rem)', lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}>

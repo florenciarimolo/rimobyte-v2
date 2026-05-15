@@ -13,10 +13,17 @@ import Services from '../components/sections/Services.astro';
 import FAQ from '../components/sections/FAQ.tsx';
 import ContactForm from '../components/sections/ContactForm.tsx';
 import Footer from '../components/sections/Footer.astro';
+
+const SEO = {
+  title: 'Diseñadora web freelance para negocios locales · RimoByte',
+  description: 'Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
+  image: '/assets/brand/flor-rimobyte.webp',
+};
 ---
 <Base
-  title="RimoByte — Diseño web para negocios locales"
-  description="Flor Rímolo, ingeniera informática freelance. Webs para negocios locales con acompañamiento real y sin letra pequeña."
+  title={SEO.title}
+  description={SEO.description}
+  image={SEO.image}
 >
   <Navbar />
   <main id="main">

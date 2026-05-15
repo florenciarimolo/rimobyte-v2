@@ -1,0 +1,54 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+
+const values = [
+  {
+    num: '01',
+    title: 'Tu éxito es mi reputación',
+    body: 'Mi reputación depende de que cada proyecto funcione. Así que me aseguro de que funcione.',
+  },
+  {
+    num: '02',
+    title: 'Ingeniería, no solo diseño',
+    body: 'Diseño webs que se ven bien, pero también que cargan rápido, están bien construidas y no se rompen. Hay una diferencia entre una web bonita y una web que funciona.',
+  },
+  {
+    num: '03',
+    title: 'Transparencia desde el minuto uno',
+    body: 'Antes de empezar te explico cuánto cuesta todo — incluido el hosting y el dominio que pagas tú directamente. Sin sorpresas al final.',
+  },
+  {
+    num: '04',
+    title: 'Para el largo plazo',
+    body: 'No desaparezco al entregar. Si quieres que esté para el mantenimiento, aquí estoy. Si no, te dejo todo listo para que puedas seguir sin mí.',
+  },
+];
+---
+<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+    <Eyebrow text="EN QUÉ CREO" class="mb-10" />
+    <div class="sobre-mi-valores__layout">
+
+      <div class="reveal">
+        <p class="font-body text-base leading-[1.75] text-text-primary mb-6">
+          Creo que una web bien hecha no es un gasto — es la única herramienta de ventas que trabaja por ti las 24 horas. Y creo que para que funcione, tiene que ser tuya de verdad. No tuya-entre-comillas, con el hosting a nombre de otro y un contrato de mantenimiento obligatorio. Tuya de verdad: con todos los accesos, en tu cuenta, bajo tu control.
+        </p>
+        <p class="font-body text-sm leading-[1.7] text-text-secondary">
+          Trabajo con negocios locales, pero también con estudios de software que necesitan desarrolladores de confianza para sus proyectos. Cuando otros profesionales del sector confían en ti, algo estás haciendo bien.
+        </p>
+      </div>
+
+      <div class="sobre-mi-valores__cards reveal">
+        {values.map((v) => (
+          <article class="surface-card value-card">
+            <span class="value-card__watermark" aria-hidden="true">{v.num}</span>
+            <p class="value-card__num">{v.num}</p>
+            <h3 class="value-card__title">{v.title}</h3>
+            <p class="value-card__body">{v.body}</p>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import HeroSobreMi from '../components/sections/sobre-mi/HeroSobreMi.astro';
+import Marquee from '../components/sections/Marquee.astro';
+import EnQueCreo from '../components/sections/sobre-mi/EnQueCreo.astro';
+import MiHistoria from '../components/sections/sobre-mi/MiHistoria.astro';
+import ComoTrabajo from '../components/sections/sobre-mi/ComoTrabajo.astro';
+import TestimoniosSobreMi from '../components/sections/sobre-mi/TestimoniosSobreMi.astro';
+import CTAFinal from '../components/sections/sobre-mi/CTAFinal.astro';
+import ContactForm from '../components/sections/ContactForm.tsx';
+import Footer from '../components/sections/Footer.astro';
+
+const SEO = {
+  title: 'Flor Rímolo — Ingeniera informática y diseñadora web freelance · RimoByte',
+  description: 'Graduada en 2019, especializada en desarrollo web para negocios locales. Trabajo directamente con el cliente sin intermediarios. Tu web es tuya desde el primer día.',
+  image: '/assets/brand/flor-rimobyte.webp',
+};
+---
+<Base
+  title={SEO.title}
+  description={SEO.description}
+  image={SEO.image}
+>
+  <Navbar />
+  <main id="main">
+    <HeroSobreMi />
+    <Marquee />
+    <EnQueCreo />
+    <MiHistoria />
+    <ComoTrabajo />
+    <TestimoniosSobreMi />
+    <CTAFinal />
+    <ContactForm client:load />
+  </main>
+  <Footer />
+</Base>

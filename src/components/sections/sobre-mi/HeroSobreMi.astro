@@ -1,0 +1,45 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Icon from '../../ui/Icon.astro';
+---
+<section class="hero-screen__hero relative">
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+    <div class="sobre-mi-hero__grid">
+
+      <div class="sobre-mi-hero__text reveal">
+        <Eyebrow text="INGENIERA INFORMÁTICA · FREELANCE" class="mb-6" />
+
+        <h1 class="text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.03em] mb-4">
+          Construyo webs que<br />funcionan de <em>verdad.</em>
+        </h1>
+
+        <p class="font-body font-medium text-xl text-text-primary mb-5 leading-snug tracking-[-0.01em]">
+          Y me aseguro de que sean siempre tuyas.
+        </p>
+
+        <p class="font-body text-base leading-[1.75] text-text-secondary max-w-[30rem]">
+          Soy Flor Rímolo. Trabajo directamente con negocios locales y autónomos que
+          quieren una presencia online profesional, sin depender de nadie para mantenerla.
+        </p>
+      </div>
+
+      <div class="sobre-mi-hero__photo reveal">
+        <div class="photo-statement__frame">
+          <Icon name="corner-tl" class="photo-statement__corner photo-statement__corner--tl" />
+          <Icon name="corner-br" class="photo-statement__corner photo-statement__corner--br" />
+          <img
+            src="/assets/brand/flor-rimobyte.webp"
+            alt="Flor Rímolo — Ingeniera informática y diseñadora web freelance"
+            width="360"
+            height="480"
+            class="photo-statement__img"
+            style="object-position: center top;"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
