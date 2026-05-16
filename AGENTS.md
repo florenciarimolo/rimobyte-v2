@@ -72,6 +72,8 @@ En estilos inline de React (`style={{ color: 'var(--color-blue)' }}`) sí usa `v
 | Variable | Uso |
 |----------|-----|
 | `RESEND_API_KEY` | Envío de emails en `src/pages/api/contact.ts` |
+| `RECAPTCHA_SITE_KEY` | Clave pública reCAPTCHA v3 (formulario de contacto) |
+| `RECAPTCHA_SECRET_KEY` | Verificación servidor en `/api/contact` |
 | `GOOGLE_PLACES_API_KEY` | Reseñas en `src/lib/google-reviews.ts` |
 
 ## Cuándo leer cada skill

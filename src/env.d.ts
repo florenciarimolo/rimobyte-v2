@@ -10,6 +10,7 @@ interface ImportMetaEnv {
   readonly GOOGLE_PLACES_PLACE_ID?: string;
   readonly RESEND_API_KEY?: string;
   readonly RECAPTCHA_SITE_KEY?: string;
+  readonly RECAPTCHA_SECRET_KEY?: string;
 }
 
 interface ImportMeta {

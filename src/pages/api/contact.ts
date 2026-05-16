@@ -1,7 +1,11 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { verifyRecaptchaToken } from '../../lib/recaptcha';
 
 export const prerender = false;
+
+const recaptchaSecret = import.meta.env.RECAPTCHA_SECRET_KEY?.trim();
+const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY?.trim();
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -61,6 +65,20 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (mensajeRaw != null && mensajeRaw !== '' && mensaje === null) {
       return jsonError('El mensaje es demasiado largo', 400);
+    }
+
+    if (recaptchaSecret) {
+      if (!recaptchaSiteKey) {
+        console.error('RECAPTCHA_SECRET_KEY definida sin RECAPTCHA_SITE_KEY');
+        return jsonError('Error de configuración del servidor', 503);
+      }
+      const verification = await verifyRecaptchaToken(
+        typeof body.recaptchaToken === 'string' ? body.recaptchaToken : null,
+        recaptchaSecret,
+      );
+      if (!verification.ok) {
+        return jsonError('No se pudo verificar la protección anti-spam. Inténtalo de nuevo.', 400);
+      }
     }
 
     const safe = {

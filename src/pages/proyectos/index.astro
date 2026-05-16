@@ -4,7 +4,7 @@ import Navbar from '../../components/sections/Navbar.astro';
 import HeroProyectos from '../../components/sections/proyectos/HeroProyectos.astro';
 import ProjectsGrid from '../../components/sections/proyectos/ProjectsGrid.astro';
 import CTAFinalProyectos from '../../components/sections/proyectos/CTAFinalProyectos.astro';
-import ContactForm from '../../components/sections/ContactForm.tsx';
+import ContactFormIsland from '../../components/sections/ContactFormIsland.astro';
 import Footer from '../../components/sections/Footer.astro';
 import { projectCount } from '../../data/projects';
 
@@ -26,7 +26,7 @@ const SEO = {
     <HeroProyectos />
     <ProjectsGrid />
     <CTAFinalProyectos />
-    <ContactForm client:load />
+    <ContactFormIsland />
   </main>
   <Footer />
 </Base>

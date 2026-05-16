@@ -1,5 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icon from '../ui/Icon';
+
+const RECAPTCHA_ACTION = 'contact';
+
+function loadRecaptchaScript(siteKey: string): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (window.grecaptcha) return Promise.resolve();
+
+  const existing = document.querySelector<HTMLScriptElement>(`script[data-recaptcha="${siteKey}"]`);
+  if (existing) {
+    return new Promise((resolve, reject) => {
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', () => reject(new Error('recaptcha-script')), { once: true });
+    });
+  }
+
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`;
+    script.async = true;
+    script.defer = true;
+    script.dataset.recaptcha = siteKey;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('recaptcha-script'));
+    document.head.appendChild(script);
+  });
+}
+
+async function getRecaptchaToken(siteKey: string): Promise<string> {
+  await loadRecaptchaScript(siteKey);
+  const grecaptcha = window.grecaptcha;
+  if (!grecaptcha) throw new Error('recaptcha-unavailable');
+
+  return new Promise((resolve, reject) => {
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute(siteKey, { action: RECAPTCHA_ACTION })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
+}
 
 const mono = { fontFamily: "'Space Mono', monospace" };
 
@@ -67,21 +108,39 @@ const selectFields = [
   },
 ] as const;
 
-export default function ContactForm() {
+type ContactFormProps = {
+  recaptchaSiteKey?: string;
+};
+
+export default function ContactForm({ recaptchaSiteKey = '' }: ContactFormProps) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const recaptchaEnabled = Boolean(recaptchaSiteKey.trim());
+
+  useEffect(() => {
+    if (!recaptchaEnabled) return;
+    loadRecaptchaScript(recaptchaSiteKey).catch(() => {
+      /* el token se pedirá de nuevo en submit */
+    });
+  }, [recaptchaEnabled, recaptchaSiteKey]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(false);
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, FormDataEntryValue>;
+
     try {
+      let recaptchaToken: string | undefined;
+      if (recaptchaEnabled) {
+        recaptchaToken = await getRecaptchaToken(recaptchaSiteKey);
+      }
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, ...(recaptchaToken ? { recaptchaToken } : {}) }),
       });
       if (res.ok) { setSent(true); } else { setError(true); }
     } catch { setError(true); }
@@ -167,6 +226,37 @@ export default function ContactForm() {
               >
                 {loading ? 'Enviando…' : 'Enviar mensaje →'}
               </button>
+
+              {recaptchaEnabled && (
+                <p
+                  style={{
+                    fontSize: '0.75rem',
+                    lineHeight: 1.5,
+                    color: 'rgba(255,255,255,0.35)',
+                    margin: 0,
+                  }}
+                >
+                  Este sitio está protegido por reCAPTCHA y se aplican la{' '}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'rgba(255,255,255,0.45)' }}
+                  >
+                    Política de privacidad
+                  </a>{' '}
+                  y los{' '}
+                  <a
+                    href="https://policies.google.com/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'rgba(255,255,255,0.45)' }}
+                  >
+                    Términos del servicio
+                  </a>{' '}
+                  de Google.
+                </p>
+              )}
             </form>
           )}
 

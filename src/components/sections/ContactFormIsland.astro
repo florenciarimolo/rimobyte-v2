@@ -1,0 +1,7 @@
+---
+import ContactForm from './ContactForm.tsx';
+
+const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
+---
+
+<ContactForm client:load recaptchaSiteKey={recaptchaSiteKey} />
