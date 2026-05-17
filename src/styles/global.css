@@ -183,6 +183,22 @@ body > header {
   z-index: 50;
 }
 
+/* reCAPTCHA v3 — capa por encima de section-bg / backdrop-filter (main z-index: 1) */
+#recaptcha-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+#recaptcha-root .grecaptcha-badge,
+body > .grecaptcha-badge {
+  z-index: 9998 !important;
+  visibility: visible !important;
+  right: 14px !important;
+  pointer-events: auto;
+}
+
 main > section {
   position: relative;
 }

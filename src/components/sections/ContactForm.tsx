@@ -27,6 +27,16 @@ function loadRecaptchaScript(siteKey: string): Promise<void> {
   });
 }
 
+function mountRecaptchaBadge(): void {
+  if (typeof document === 'undefined') return;
+  const badge = document.querySelector<HTMLElement>('.grecaptcha-badge');
+  const root = document.getElementById('recaptcha-root');
+  if (!badge || !root || badge.parentElement === root) return;
+  root.appendChild(badge);
+  badge.style.zIndex = '9998';
+  badge.style.position = 'fixed';
+}
+
 async function getRecaptchaToken(siteKey: string): Promise<string> {
   await loadRecaptchaScript(siteKey);
   const grecaptcha = window.grecaptcha;
@@ -128,9 +138,21 @@ export default function ContactForm({
 
   useEffect(() => {
     if (!recaptchaEnabled) return;
-    loadRecaptchaScript(recaptchaSiteKey).catch(() => {
-      /* el token se pedirá de nuevo en submit */
-    });
+
+    const observer = new MutationObserver(() => mountRecaptchaBadge());
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    loadRecaptchaScript(recaptchaSiteKey)
+      .then(() => {
+        mountRecaptchaBadge();
+        window.setTimeout(mountRecaptchaBadge, 0);
+        window.setTimeout(mountRecaptchaBadge, 500);
+      })
+      .catch(() => {
+        /* el token se pedirá de nuevo en submit */
+      });
+
+    return () => observer.disconnect();
   }, [recaptchaEnabled, recaptchaSiteKey]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
