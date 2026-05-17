@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { faqEntries } from '../../data/faq';
 
 const display = { fontFamily: "'Clash Grotesk', Inter, sans-serif" };
 
-export default function FAQ() {
+export type FAQItem = { question: string; answer: string };
+
+type FAQProps = {
+  faqs?: FAQItem[];
+};
+
+export default function FAQ({ faqs }: FAQProps) {
   const [open, setOpen] = useState<number | null>(null);
+
+  const entries = useMemo(
+    () => (faqs?.length ? faqs.map((f) => ({ q: f.question, a: f.answer })) : faqEntries),
+    [faqs],
+  );
 
   return (
     <section className="section-bg" style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}>
@@ -23,7 +34,7 @@ export default function FAQ() {
           </div>
 
           <div style={{ borderTop: '1px solid var(--color-border-default)' }}>
-            {faqEntries.map((f, i) => {
+            {entries.map((f, i) => {
               const buttonId = `faq-btn-${i}`;
               const panelId = `faq-panel-${i}`;
               const isOpen = open === i;
@@ -50,7 +61,7 @@ export default function FAQ() {
                     hidden={!isOpen}
                     className="faq-panel"
                     style={{
-                      maxHeight: isOpen ? '200px' : '0',
+                      maxHeight: isOpen ? 'min(90vh, 520px)' : '0',
                       overflow: 'hidden',
                       transition: 'max-height 0.3s ease',
                     }}

@@ -110,9 +110,17 @@ const selectFields = [
 
 type ContactFormProps = {
   recaptchaSiteKey?: string;
+  /** Identificador corto de la página (ej. `web-corporativa`) para el email */
+  origin?: string;
+  /** Evita duplicar `#contacto` cuando ya existe una sección anchor encima */
+  omitAnchor?: boolean;
 };
 
-export default function ContactForm({ recaptchaSiteKey = '' }: ContactFormProps) {
+export default function ContactForm({
+  recaptchaSiteKey = '',
+  origin,
+  omitAnchor = false,
+}: ContactFormProps) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -148,7 +156,11 @@ export default function ContactForm({ recaptchaSiteKey = '' }: ContactFormProps)
   };
 
   return (
-    <section id="contacto" className="section-bg--elevated" style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}>
+    <section
+      {...(!omitAnchor ? { id: 'contacto' } : {})}
+      className="section-bg--elevated"
+      style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}
+    >
       <div style={{ maxWidth: 'var(--max-width-layout)', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: '4rem', alignItems: 'start' }}>
 
@@ -184,6 +196,7 @@ export default function ContactForm({ recaptchaSiteKey = '' }: ContactFormProps)
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} aria-busy={loading}>
+              {origin ? <input type="hidden" name="origin" value={origin} /> : null}
               {textFields.map(f => (
                 <div key={f.name}>
                   <label htmlFor={f.id} style={labelStyle}>{f.label}</label>

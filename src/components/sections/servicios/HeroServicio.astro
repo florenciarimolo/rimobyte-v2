@@ -1,0 +1,71 @@
+---
+import type { Service } from '../../../data/services';
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Button from '../../ui/Button.astro';
+import ServiceIllustration from '../../ui/ServiceIllustration.astro';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<section
+  class="section-bg overflow-hidden"
+  style="padding-block: clamp(7rem, 13vw, 11rem) clamp(4rem, 8vw, 6rem);"
+>
+  <div class="mx-auto max-w-[var(--max-width-layout)] px-[clamp(1.5rem,5vw,4rem)]">
+    <div
+      class="lg:grid lg:grid-cols-[minmax(0,40rem)_minmax(0,1fr)] lg:items-center lg:gap-x-[clamp(2rem,6vw,5rem)]"
+    >
+      <div class="relative z-10 max-w-[640px]">
+        <Eyebrow text={service.eyebrow} class="mb-6" />
+
+        <h1
+          class="reveal headline-gradient mb-6 font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.03em]"
+        >
+          {service.headline}
+          <em>{service.headlineEm}</em>
+        </h1>
+
+        <p
+          class="reveal mb-8 max-w-[520px] font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary"
+        >
+          {service.description}
+        </p>
+
+        <div class="reveal mb-10 flex flex-wrap gap-3">
+          <Button href="#contacto" variant="primary">
+            {service.ctaPrimary}
+          </Button>
+          <Button href="/proyectos" variant="outline">
+            {service.ctaSecondary} →
+          </Button>
+        </div>
+
+        <ul class="reveal m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+          {
+            service.checks.map((check) => (
+              <li class="flex items-center gap-2 font-body text-sm text-text-secondary">
+                <span class="size-1.5 shrink-0 rounded-full bg-blue" aria-hidden="true" />
+                {check}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="hero-illus-wrap hidden lg:flex lg:items-center lg:justify-center">
+        <ServiceIllustration variant={service.illustration} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-illus-wrap {
+    min-height: min(420px, 50vh);
+    padding-inline: clamp(0.5rem, 2vw, 1.5rem);
+  }
+</style>

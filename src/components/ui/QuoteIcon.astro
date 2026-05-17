@@ -4,8 +4,8 @@ import Icon from './Icon.astro';
 interface Props {
   /** glyph — comilla tipográfica · ornate — comillas curvas SVG */
   variant?: 'glyph' | 'ornate';
-  /** lg / sm — glyph en cards · xl — ornate en caso destacado */
-  size?: 'sm' | 'lg' | 'xl';
+  /** xs / sm — cards compactas · lg — glyph · xl — ornate en caso destacado */
+  size?: 'xs' | 'sm' | 'lg' | 'xl';
   /** subtle — watermark en cards · strong — caso destacado */
   tone?: 'subtle' | 'strong';
   class?: string;
@@ -20,10 +20,24 @@ const {
 const toneClass = tone === 'strong' ? 'opacity-[0.28]' : 'opacity-[0.06]';
 
 const glyphSize =
-  size === 'sm' ? 'text-[4.5rem]' : size === 'xl' ? 'text-[7rem]' : 'text-[5.5rem]';
+  size === 'xs'
+    ? 'text-[3rem]'
+    : size === 'sm'
+      ? 'text-[4.5rem]'
+      : size === 'xl'
+        ? 'text-[7rem]'
+        : 'text-[5.5rem]';
 
 const ornateSize =
-  size === 'xl' ? 'w-[5.5rem] h-[4.25rem]' : size === 'sm' ? 'w-[3rem] h-[2.25rem]' : 'w-[4rem] h-[3rem]';
+  size === 'xl'
+    ? 'w-[5.5rem] h-[4.25rem]'
+    : size === 'lg'
+      ? 'w-[4rem] h-[3rem]'
+      : size === 'sm'
+        ? 'w-[3rem] h-[2.25rem]'
+        : size === 'xs'
+          ? 'w-[2rem] h-[1.5rem]'
+          : 'w-[4rem] h-[3rem]';
 ---
 
 {variant === 'ornate' ? (

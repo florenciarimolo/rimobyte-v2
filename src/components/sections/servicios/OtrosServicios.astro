@@ -1,0 +1,40 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import { getOtherServices } from '../../../data/services';
+
+interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+const others = getOtherServices(currentSlug);
+---
+
+{
+  others.length > 0 && (
+    <section class="section-bg--elevated py-[clamp(4rem,7vw,5rem)]">
+      <div class="mx-auto max-w-[var(--max-width-layout)] px-[clamp(1.5rem,5vw,4rem)]">
+        <div class="reveal mb-8">
+          <Eyebrow text="OTROS SERVICIOS" class="mb-4" />
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {others.map((s) => (
+            <a
+              href={`/servicios/${s.slug}`}
+              class="reveal surface-card group flex flex-col gap-3 text-inherit no-underline"
+            >
+              <h3 class="font-display text-[clamp(1.25rem,2vw,1.5rem)] font-medium leading-[1.2] tracking-[-0.02em] text-text-primary">
+                {s.name}
+              </h3>
+              <p class="m-0 font-body text-[0.875rem] leading-[1.7] text-text-secondary">{s.description}</p>
+              <span class="mt-auto inline-flex items-center gap-1 font-mono text-[0.75rem] uppercase tracking-[0.08em] text-blue transition-[gap] duration-200 group-hover:gap-2">
+                Ver servicio <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

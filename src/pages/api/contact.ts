@@ -17,6 +17,8 @@ const LIMITS = {
   negocio: 120,
   servicio: 120,
   mensaje: 4000,
+  /** slug corto de página de origen */
+  origin: 80,
 } as const;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,6 +57,12 @@ export const POST: APIRoute = async ({ request }) => {
         ? ''
         : asTrimmedString(mensajeRaw, LIMITS.mensaje);
 
+    const originRaw = body.origin;
+    const originTrimmed =
+      originRaw == null || originRaw === ''
+        ? ''
+        : asTrimmedString(originRaw, LIMITS.origin);
+
     if (!nombre || !email || !negocio || !servicio) {
       return jsonError('Faltan campos obligatorios o son inválidos', 400);
     }
@@ -65,6 +73,10 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (mensajeRaw != null && mensajeRaw !== '' && mensaje === null) {
       return jsonError('El mensaje es demasiado largo', 400);
+    }
+
+    if (originRaw != null && originRaw !== '' && originTrimmed === null) {
+      return jsonError('El campo de origen no es válido', 400);
     }
 
     if (recaptchaSecret) {
@@ -87,15 +99,19 @@ export const POST: APIRoute = async ({ request }) => {
       negocio: escapeHtml(negocio),
       servicio: escapeHtml(servicio),
       mensaje: mensaje ? escapeHtml(mensaje) : '',
+      origin: originTrimmed ? escapeHtml(originTrimmed) : '',
     };
+
+    const originLabel = safe.origin ? ` [${safe.origin}]` : '';
 
     await resend.emails.send({
       from: 'RimoByte <no-reply@rimobyte.com>',
       to: 'info@rimobyte.com',
       replyTo: email,
-      subject: `Nuevo contacto: ${nombre} — ${servicio}`,
+      subject: `Nuevo contacto${originLabel}: ${nombre} — ${servicio}`,
       html: `
         <h2 style="font-family:sans-serif">Nuevo mensaje de contacto</h2>
+        ${safe.origin ? `<p><strong>Origen:</strong> ${safe.origin}</p>` : ''}
         <p><strong>Nombre:</strong> ${safe.nombre}</p>
         <p><strong>Email:</strong> <a href="mailto:${safe.email}">${safe.email}</a></p>
         <p><strong>Tipo de negocio:</strong> ${safe.negocio}</p>

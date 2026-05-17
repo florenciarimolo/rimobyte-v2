@@ -213,6 +213,70 @@ El `main` y `footer` van en `z-index: 1` sobre este fondo.
 - CTA: `btn-primary`
 - Móvil: menú full-screen con links Clash 3xl
 
+### Marcadores de capítulo — solo páginas de servicio
+
+Las landings bajo `/servicios/*` (ej. `web-corporativa`) son páginas largas con un **hilo de venta lineal**. Ahí se usa un marcador superior distinto del eyebrow: ritmo tipo índice / revista impresa.
+
+**No es un patrón global del sitio.** En home, sobre-mi, proyectos y contacto la jerarquía sigue siendo **eyebrow + cambio de layout** (fan, stats, carrusel, borde editorial, etc.). No añadir marcadores numerados allí salvo que el tipo de página cambie de forma explícita.
+
+#### Formato
+
+```
+/ 02 · Diagnóstico                    04 situaciones
+────────────────────────────────────────────────────
+```
+
+- Izquierda: `/ NN · Etiqueta` — capítulo del argumento de venta.
+- Derecha (opcional): metadata en mono (`04 situaciones`, `07 items`, `Presupuesto cerrado`).
+- Tipografía: Space Mono, `0.625rem`, uppercase, `letter-spacing: 0.18em`, `text-text-muted`.
+- Separador: `border-t border-border-default` + `pt-6` antes del bloque de título.
+- Fila: `flex items-baseline justify-between`.
+
+#### Marcador vs eyebrow
+
+Conviven en la misma sección; no se sustituyen:
+
+| Elemento | Rol |
+|----------|-----|
+| **Marcador** `/ NN · …` | Capítulo del documento (índice, ritmo al hacer scroll). |
+| **Eyebrow** `[ QUÉ INCLUYE ]` | Etiqueta semántica de la sección (mismo sistema que el resto del sitio). |
+
+#### Dónde sí / dónde no
+
+| Bloque | Marcador numerado |
+|--------|-------------------|
+| Hero de servicio (`HeroServicio`) | No — intro fuera del índice (no hay `/ 01`). |
+| Hilo editorial (diagnóstico, alcance, inversión, cierre) | Sí — `02`, `03`, `04`… |
+| Casos reales | No — eyebrow `CASOS REALES` + layout propio (cards). |
+| FAQ, formulario de contacto | No — componentes globales reutilizados (misma UI que home). |
+| Otros servicios | No — solo si hay más de un servicio en `services.ts`; eyebrow basta. |
+
+Implementación: `src/components/sections/servicios/*.astro` y datos en `src/data/services.ts`.
+
+#### Numeración
+
+- La secuencia empieza en **`02`** (el hero es capítulo implícito sin etiqueta).
+- Los números deben ser **consecutivos en todo bloque que lleve marcador**, sin saltos que el usuario vea al hacer scroll (ej. no pasar de `/ 04` a `/ 05` si entre medias hay dos secciones largas sin numerar, salvo que sea decisión documentada).
+- Al añadir un capítulo al hilo (p. ej. marcar Casos como `05`), renumerar los siguientes.
+- Si una sección intermedia no lleva marcador (FAQ, casos), el cierre puede usar **solo etiqueta sin número** (`/ Siguiente paso`) o el número que corresponda al último capítulo del índice — pero no mezclar ambas lógicas en la misma plantilla.
+
+Ejemplo de referencia — web corporativa:
+
+| Orden | Sección | Marcador |
+|-------|---------|----------|
+| 1 | Hero | — |
+| 2 | Para quién es | `/ 02 · Diagnóstico` |
+| 3 | Qué incluye | `/ 03 · Alcance del servicio` |
+| 4 | Precio | `/ 04 · Inversión` |
+| 5 | Casos reales | — |
+| 6 | FAQ | — |
+| 7 | CTA + contacto | `/ 05 · Siguiente paso` (eyebrow aparte: `CUÉNTAME TU PROYECTO`) |
+
+#### Futuro
+
+- Nuevos servicios (tienda online, mantenimiento): mismo patrón en componentes props-driven.
+- Opcional: extraer `SectionChapter.astro` (`number?`, `label`, `meta?`) para no duplicar markup.
+
 ---
 
 ## 5. Shapes y bordes
@@ -432,6 +496,8 @@ Respetar `prefers-reduced-motion: reduce` en carrusel, fondo animado y page load
 | Testimonios en grid estático | Carrusel con datos Google |
 | Foto Flor a sangre en columna | Retrato 3:4 encuadrado + esquinas |
 | Drop-shadow en cards de contenido | Sombra solo en fan-cards de proyectos |
+| Marcadores `/ NN ·` en home, portfolio o contacto | Solo en landings `/servicios/*` (hilo editorial) |
+| Sustituir eyebrow por marcador en servicios | Ambos: marcador = capítulo, eyebrow = etiqueta de sección |
 
 ---
 
@@ -462,13 +528,25 @@ src/
       PhotoStatement.astro
       Testimonials.astro
       Services.astro
+      servicios/          ← landings de servicio (marcadores de capítulo)
+        HeroServicio.astro
+        ParaQuienEs.astro
+        QueIncluye.astro
+        PrecioServicio.astro
+        CasosRelacionados.astro
+        OtrosServicios.astro
+        CTAFinalServicio.astro
       FAQ.tsx
       ContactForm.tsx
       Footer.astro
+  data/
+    services.ts           ← copy y estructura por servicio
   layouts/
     Base.astro
   pages/
     index.astro
+    servicios/
+      web-corporativa.astro
   scripts/
     interactive-dots.ts
     testimonials-carousel.ts
@@ -497,6 +575,7 @@ docs/
 6. **Fan de proyectos** — memorable en desktop; carrusel usable en móvil.
 7. **Retrato encuadrado con esquinas** — Flor visible como persona, no stock hero genérico.
 8. **Un solo azul de acción** — coherencia total en CTAs, iconos y acentos.
+9. **Marcadores de capítulo en servicios** — landings largas con índice `/ NN ·` solo en `/servicios/*`; el resto del sitio usa eyebrow y layout variado.
 
 ---
 
