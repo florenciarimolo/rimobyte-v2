@@ -11,6 +11,7 @@ function isPassthrough(pathname: string): boolean {
     pathname.startsWith('/api/') ||
     pathname.startsWith('/_astro/') ||
     pathname.startsWith('/assets/') ||
+    pathname === '/og.png' ||
     pathname === '/favicon.svg' ||
     pathname === '/site.webmanifest' ||
     pathname === '/robots.txt' ||

@@ -238,6 +238,15 @@ body > .grecaptcha-badge {
   visibility: visible !important;
   right: 14px !important;
   pointer-events: auto;
+  /* .rc-anchor-invisible-text vive en el iframe; recortamos el badge (leyenda en el formulario) */
+  width: 70px !important;
+  overflow: hidden !important;
+}
+
+#recaptcha-root .grecaptcha-badge iframe,
+body > .grecaptcha-badge iframe {
+  width: 70px !important;
+  max-width: 70px !important;
 }
 
 main > section {

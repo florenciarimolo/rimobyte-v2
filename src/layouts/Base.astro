@@ -3,6 +3,7 @@ import '../styles/global.css';
 import CookieBanner from '../components/ui/CookieBanner.astro';
 import PageLoader from '../components/ui/PageLoader.astro';
 import SiteBackground from '../components/ui/SiteBackground.astro';
+import { resolveOgImage } from '../lib/og/url';
 
 interface Props {
   title?: string;
@@ -28,6 +29,8 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImagePath = resolveOgImage({ title, description, image });
+const ogImageUrl = new URL(ogImagePath, Astro.site).href;
 
 // Detectar si es home o sobre-mi para usar schema Person + LocalBusiness
 const isPersonalPage = Astro.url.pathname === '/' || Astro.url.pathname === '/sobre-mi/' || Astro.url.pathname === '/sobre-mi';
@@ -104,7 +107,9 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
   <meta property="og:type" content={ogType} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(image, Astro.site).href} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:site_name" content="RimoByte" />
   <meta property="og:url" content={canonicalURL.href} />
@@ -119,7 +124,7 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={new URL(image, Astro.site).href} />
+  <meta name="twitter:image" content={ogImageUrl} />
 
   <!-- Canonical -->
   <link rel="canonical" href={canonicalURL.href} />
