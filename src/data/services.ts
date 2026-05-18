@@ -173,6 +173,123 @@ export const services: Service[] = [
         'Web profesional para autónomos y negocios locales desde 600€. SEO incluido, tuya desde el primer día, sin dependencias. Presupuesto cerrado antes de empezar.',
     },
   },
+  {
+    slug: 'tienda-online',
+    name: 'Tienda online',
+    eyebrow: 'SERVICIO · TIENDA ONLINE',
+    headline: 'Tu tienda online, sin líos técnicos',
+    headlineEm: 'ni letras pequeñas.',
+    description:
+      'Para negocios y autónomos que quieren llevar sus productos a internet y vender las 24 horas — sin depender de plataformas que se quedan con tu margen ni de agencias que retienen tu tienda.',
+    ctaPrimary: 'Quiero mi tienda online',
+    ctaSecondary: 'Ver proyectos',
+    checks: ['Tuya desde el primer día', 'Sin comisiones por venta', 'SEO incluido'],
+    illustration: 'ecommerce',
+    targetAudience: [
+      'Tienes productos físicos o digitales y quieres venderlos online',
+      'Usas Instagram o el boca a boca pero quieres un canal de ventas propio que no dependa de algoritmos',
+      'Tienes una tienda en Shopify o Wix y estás pagando más comisiones de las que quieres',
+      'Ya tuviste una tienda con una agencia pero no funcionaba o no podías gestionarla tú mismo',
+    ],
+    features: [
+      {
+        title: 'Catálogo de productos',
+        description:
+          'Organizado por categorías, con fotos, descripciones y variantes. Fácil de gestionar tú mismo después de la entrega.',
+      },
+      {
+        title: 'Pasarela de pago',
+        description:
+          'Integración con Stripe y PayPal. Tu dinero va directamente a tu cuenta, sin intermediarios.',
+      },
+      {
+        title: 'Gestión de pedidos y envíos',
+        description:
+          'Panel para gestionar pedidos, estados y opciones de envío adaptadas a tu negocio.',
+      },
+      {
+        title: 'SEO de producto incluido',
+        description: 'Cada producto optimizado para que Google lo encuentre.',
+      },
+      {
+        title: 'Diseño responsive',
+        description: 'El 70% de las compras online se hacen desde el móvil.',
+      },
+      {
+        title: 'Dominio y hosting a tu nombre',
+        description: 'Tuyos, en tu cuenta, bajo tu control.',
+      },
+      {
+        title: 'Formación incluida',
+        description:
+          'Al entregar te explico cómo añadir productos, gestionar pedidos y hacer cambios básicos.',
+      },
+    ],
+    price: 'Desde 1.200€',
+    priceNote:
+      'Hosting, dominio y comisiones de pasarela de pago no incluidos. Tarifas oficiales: stripe.com/es/pricing · paypal.com/es/business/paypal-business-fees',
+    relatedCases: [
+      {
+        slug: 'de-cos',
+        highlight:
+          'Rescate y rediseño completo — pasó de 10-15 ventas mensuales a 25, con 300 visitas orgánicas al mes.',
+        testimonialQuote:
+          'Llegué a Rimobyte por recomendación, y sin duda paso su testigo a quien busque un técnico de confianza.',
+      },
+      {
+        slug: 'juancar-garma-reset7',
+        highlight:
+          'Landing de ventas con Stripe — diseñada para convertir visitas en clientes sin distracciones.',
+        testimonialQuote: 'Trabajar con Flor es de las mejores decisiones que he podido hacer.',
+      },
+    ],
+    faqs: [
+      {
+        question: '¿Qué plataforma usas para la tienda?',
+        answer:
+          'Desarrollo con WooCommerce y con Shopify. Te asesoro sobre cuál se adapta mejor a tu negocio sin ningún interés comercial en ninguna de las dos.',
+      },
+      {
+        question: '¿Puedo gestionar los productos yo mismo después?',
+        answer:
+          'Sí. Al entregar te explico cómo añadir productos, gestionar stock y procesar pedidos.',
+      },
+      {
+        question: '¿Shopify o WooCommerce, qué es mejor para mí?',
+        answer:
+          'Depende de tu negocio. Shopify es más sencillo pero pagas suscripción mensual y comisiones. WooCommerce es tuyo, sin comisiones y sin ataduras.',
+      },
+      {
+        question: '¿Puedo empezar con pocos productos y añadir más después?',
+        answer: 'Perfectamente. La tienda se construye para escalar.',
+      },
+      {
+        question: '¿Cómo cobro a mis clientes?',
+        answer:
+          'Con Stripe y PayPal. El dinero va directamente a tu cuenta. Consulta sus comisiones oficiales en: stripe.com/es/pricing · paypal.com/es/business/paypal-business-fees',
+      },
+      {
+        question: '¿Puedo vender en España y en otros países?',
+        answer: 'Sí. Configuramos impuestos, monedas y envíos según dónde quieras vender.',
+      },
+      {
+        question: '¿Cuánto tarda en estar lista la tienda?',
+        answer:
+          'Entre 4 y 6 semanas desde que tengo el catálogo de productos con fotos y descripciones.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Empezamos con',
+      titleEm: 'tu tienda?',
+      text: 'Cuéntame qué quieres vender y en menos de 24 horas te respondo con una propuesta concreta.',
+      cta: 'Pide tu presupuesto gratuito',
+    },
+    seo: {
+      title: 'Tienda online para pequeño negocio · RimoByte',
+      description:
+        'Tienda WooCommerce o Shopify para pequeños negocios desde 1.200€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
+    },
+  },
 ];
 
 export function getRelatedProject(slug: string): Project | undefined {

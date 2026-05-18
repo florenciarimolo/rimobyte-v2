@@ -147,10 +147,36 @@ body.is-loading { overflow: hidden; }
   }
 }
 
+@keyframes site-bg-breathe-sm {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 0.085;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(1.5deg);
+    opacity: 0.11;
+  }
+}
+
+/* Móvil / tablet: el vidrio de secciones + blur atenúan más el símbolo; subir opacidad levemente.
+   Animación propia: site-bg-breathe pisa `opacity` en frames, no basta con subir solo la base. */
+@media (max-width: 1023px) {
+  .site-bg-symbol {
+    width: clamp(240px, 68vw, 520px);
+    animation: site-bg-breathe-sm 10s ease-in-out infinite;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-bg-symbol {
     animation: none;
     opacity: 0.06;
+  }
+
+  @media (max-width: 1023px) {
+    .site-bg-symbol {
+      opacity: 0.09;
+    }
   }
 }
 
@@ -177,6 +203,21 @@ astro-island {
   background: rgba(17, 17, 24, 0.62);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+}
+
+/* Menos «vidrio» en móvil — deja verse mejor el símbolo de fondo (favicon) sin tocar escritorio */
+@media (max-width: 1023px) {
+  .section-bg {
+    background: rgba(10, 10, 18, 0.36);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .section-bg--elevated {
+    background: rgba(17, 17, 24, 0.42);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 }
 
 body > header {
@@ -231,15 +272,17 @@ h1, h2,
   overflow: visible;
 }
 
-/* Acento italic — degradado azul (padding extra: la cursiva sobresale del bbox) */
+/* Acento italic — degradado azul (clone + padding-inline-end amplio por línea: con slice la «u» en cursiva se cortaba al terminar línea dentro del mismo <em>).
+   Padding-inline-start 0: evita hueco extra entre texto normal y cursiva y no duplica sangría inútil entre líneas. */
 h1 em, h2 em,
 .headline-gradient em {
   font-style: italic;
   font-weight: inherit;
-  display: inline-block;
-  /* padding-left generoso: la cursiva sobresale y hereda el degradado blanco del texto previo */
-  padding: 0.08em 0.28em 0.12em 0.14em;
-  margin: 0 -0.12em 0 0.06em;
+  display: inline;
+  padding-block: 0.06em 0.09em;
+  padding-inline-start: 0;
+  padding-inline-end: 0.28em;
+  margin-inline: 0;
   overflow: visible;
   isolation: isolate;
   position: relative;
