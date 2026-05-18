@@ -7,6 +7,7 @@ import ArticuloRelacionados from '../components/sections/blog/ArticuloRelacionad
 import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import Footer from '../components/sections/Footer.astro';
 import Button from '../components/ui/Button.astro';
+import { blogOgPath } from '../data/blogImages';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection, render } from 'astro:content';
 
@@ -26,8 +27,7 @@ if (post.data.relatedSlugs?.length) {
 }
 
 const articleUrl = new URL(`/blog/${post.id}/`, Astro.site).href;
-const defaultOgImage = '/assets/brand/flor-rimobyte.webp';
-const ogImagePath = post.data.ogImage ?? defaultOgImage;
+const ogImagePath = post.data.ogImage ?? blogOgPath(post.id);
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -39,6 +39,7 @@ const articleSchema = {
   author: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com' },
   publisher: { '@type': 'Organization', name: 'RimoByte', url: 'https://rimobyte.com' },
   mainEntityOfPage: articleUrl,
+  image: new URL(ogImagePath, Astro.site).href,
   keywords: post.data.keywords.join(', '),
 };
 
@@ -69,7 +70,7 @@ const modifiedIso = (post.data.updatedDate ?? post.data.date).toISOString();
     </ArticuloContent>
 
     <section class="section-bg--elevated py-[clamp(4rem,7vw,5rem)]">
-      <div class="max-w-[720px] mx-auto px-[clamp(1.5rem,5vw,4rem)] text-center">
+      <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)] text-center">
         <div class="reveal">
           <h2
             class="headline-gradient font-display font-medium text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] mb-4"

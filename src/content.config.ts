@@ -15,6 +15,7 @@ const blog = defineCollection({
     ctaText: z.string(),
     ctaLink: z.string(),
     relatedSlugs: z.array(z.string()).optional(),
+    coverImage: z.string(),
     ogImage: z.string().optional(),
   }),
 });

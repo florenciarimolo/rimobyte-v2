@@ -1,0 +1,71 @@
+---
+import Icon from './Icon.astro';
+
+const links = [
+  {
+    href: 'mailto:info@rimobyte.com',
+    label: 'Escríbeme un email',
+    icon: 'mail' as const,
+    external: false,
+  },
+  {
+    href: 'https://wa.me/34684713743',
+    label: 'Hablemos por WhatsApp',
+    icon: 'whatsapp' as const,
+    external: true,
+  },
+  {
+    href: '/sobre-mi/',
+    label: 'Conoce más sobre mí',
+    icon: 'globe' as const,
+    external: false,
+  },
+];
+---
+
+<aside class="author-card surface-card not-prose flex flex-col items-center text-center gap-4">
+  <img
+    src="/assets/brand/flor-rimobyte.webp"
+    alt="Flor Rímolo, ingeniera informática y diseñadora web freelance"
+    width="96"
+    height="96"
+    loading="lazy"
+    decoding="async"
+    class="size-24 rounded-full object-cover border border-border-default"
+  />
+
+  <div class="flex flex-col gap-1">
+    <p class="font-display font-medium text-base text-white m-0 leading-tight">Flor Rímolo</p>
+    <p class="font-mono text-[0.625rem] tracking-[0.14em] uppercase text-text-muted m-0">
+      Ingeniera informática freelance
+    </p>
+  </div>
+
+  <p class="font-body text-[0.8125rem] leading-[1.6] text-text-secondary m-0">
+    Diseño y desarrollo webs para negocios locales. Sin agencias intermediarias, sin letra
+    pequeña — tuya desde el primer día.
+  </p>
+
+  <div class="flex items-center gap-2">
+    {
+      links.map(({ href, label, icon, external }) => (
+        <a
+          href={href}
+          aria-label={label}
+          title={label}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          class="author-card__icon inline-flex items-center justify-center size-9 rounded-full border border-border-default text-text-secondary hover:text-white hover:border-border-blue transition-colors"
+        >
+          <Icon name={icon} class="inline-flex size-4 [&_svg]:size-full" />
+        </a>
+      ))
+    }
+  </div>
+</aside>
+
+<style>
+  .author-card {
+    padding: 1.5rem 1.25rem;
+  }
+</style>

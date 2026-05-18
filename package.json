@@ -12,7 +12,8 @@
     "lint:classes": "node scripts/lint-tailwind-classes.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "images:projects": "node scripts/generate-project-images.mjs"
+    "images:projects": "node scripts/generate-project-images.mjs",
+    "images:blog": "node scripts/generate-blog-images.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",

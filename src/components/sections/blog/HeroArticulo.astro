@@ -1,4 +1,5 @@
 ---
+import { blogHeroPath } from '../../../data/blogImages';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -18,10 +19,27 @@ const formattedDate = post.data.date.toLocaleDateString('es-ES', {
   month: 'long',
   year: 'numeric',
 });
+
+const heroImage = blogHeroPath(post.id);
+const heroAlt = '';
 ---
 
-<section class="section-bg" style="padding-block: clamp(7rem, 13vw, 11rem) clamp(3rem, 5vw, 4rem);">
-  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<section class="hero-articulo relative overflow-hidden">
+  <img
+    src={heroImage}
+    alt={heroAlt}
+    width={1600}
+    height={900}
+    fetchpriority="high"
+    decoding="async"
+    class="hero-articulo__bg"
+  />
+  <div class="hero-articulo__overlay" aria-hidden="true"></div>
+
+  <div
+    class="hero-articulo__content relative z-10 max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]"
+    style="padding-block: clamp(7rem, 13vw, 11rem);"
+  >
     <a
       href="/blog/"
       class="reveal inline-flex items-center gap-2 font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-text-muted no-underline mb-10 transition-[gap,color] duration-200 hover:text-white hover:gap-3"
@@ -55,3 +73,26 @@ const formattedDate = post.data.date.toLocaleDateString('es-ES', {
     </div>
   </div>
 </section>
+
+<style>
+  .hero-articulo__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-articulo__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 18, 0.72) 0%,
+      rgba(10, 10, 18, 0.88) 55%,
+      rgba(10, 10, 18, 0.94) 100%
+    );
+    pointer-events: none;
+  }
+</style>
