@@ -13,12 +13,16 @@ No contradigas `DESIGN.md` sin motivo explícito del usuario.
 ## Comandos
 
 ```bash
-pnpm dev      # astro dev
-pnpm build    # astro build
-pnpm check         # astro check (TypeScript + Astro)
-pnpm lint:classes  # clases Tailwind: prohibido text-(--color-*), usar text-text-secondary
-pnpm preview       # vista previa de producción
+pnpm dev              # servidor de desarrollo (Astro)
+pnpm build            # build de producción
+pnpm check            # TypeScript + comprobación Astro
+pnpm preview          # sirve el build local
+pnpm lint:classes     # lint de clases Tailwind
+pnpm images:projects  # variantes WebP del portfolio
+pnpm images:blog      # variantes WebP del blog
 ```
+
+Detalle de cuándo y cómo ejecutar cada script: [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
 
 ## Stack
 
@@ -39,6 +43,7 @@ Todo el media va bajo `public/assets/` (no usar `public/img/`):
 |------|-----------|
 | `assets/brand/` | Imágenes de marca y retratos (ej. `flor-rimobyte.webp`) |
 | `assets/projects/` | Capturas de portfolio; variantes en `generated/` vía `pnpm images:projects` |
+| `assets/blog/` | Portadas de posts; fuente JPG/PNG o WebP; variantes en `generated/` vía `pnpm images:blog` |
 
 Favicons y `robots.txt` permanecen en la raíz de `public/`.
 

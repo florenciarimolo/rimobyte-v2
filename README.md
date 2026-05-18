@@ -1,43 +1,108 @@
-# Astro Starter Kit: Minimal
+# RimoByte v2
 
-```sh
-pnpm create astro@latest -- --template minimal
+Sitio web de [rimobyte.com](https://rimobyte.com) — portfolio y servicios de **Flor Rímolo** (diseño y desarrollo web para negocios locales).
+
+## Stack
+
+- [Astro 6](https://astro.build) — páginas estáticas + API serverless en Vercel
+- [Tailwind CSS 4](https://tailwindcss.com) — tokens en `src/styles/global.css` (`@theme`, sin `tailwind.config.js`)
+- [React 19](https://react.dev) — islands mínimos (FAQ, formulario de contacto)
+- TypeScript estricto · **pnpm** · Node `>=22.12.0`
+
+## Requisitos
+
+- Node.js 22.12 o superior
+- [pnpm](https://pnpm.io)
+
+## Desarrollo local
+
+```bash
+pnpm install
+cp .env.example .env   # rellenar con claves reales (ver tabla inferior)
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El servidor de desarrollo arranca en `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Scripts
 
-Inside of your Astro project, you'll see the following folders and files:
+| Comando | Descripción |
+| :------ | :---------- |
+| `pnpm dev` | Servidor de desarrollo |
+| `pnpm build` | Build de producción en `./dist/` |
+| `pnpm preview` | Vista previa del build |
+| `pnpm check` | Comprobación TypeScript + Astro |
+| `pnpm lint:classes` | Lint de clases Tailwind (evitar `text-(--color-*)`) |
+| `pnpm images:projects` | Genera variantes WebP del portfolio en `public/assets/projects/generated/` |
+| `pnpm images:blog` | Genera variantes WebP de imágenes del blog |
+
+Cuándo ejecutar cada uno, entradas/salidas y flujos de imágenes: **[`docs/SCRIPTS.md`](docs/SCRIPTS.md)**.
+
+## Variables de entorno
+
+Crear un `.env` en la raíz (no commitear). Variables usadas en runtime:
+
+| Variable | Uso |
+| :------- | :-- |
+| `RESEND_API_KEY` | Envío de emails (`/api/contact`) |
+| `RECAPTCHA_SITE_KEY` | reCAPTCHA v3 (formulario de contacto) |
+| `RECAPTCHA_SECRET_KEY` | Verificación servidor en `/api/contact` |
+| `GOOGLE_PLACES_API_KEY` | Reseñas de Google (`src/lib/google-reviews.ts`) |
+| `GOOGLE_PLACES_PLACE_ID` | ID del negocio en Google Places |
+
+## Estructura del proyecto
 
 ```text
 /
 ├── public/
+│   ├── assets/brand/      # Marca y retratos
+│   ├── assets/projects/   # Capturas de portfolio
+│   └── …                  # Favicons, robots.txt
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/
+│   │   ├── sections/      # Secciones de página (.astro)
+│   │   └── ui/            # Componentes reutilizables
+│   ├── content/blog/      # Artículos (Markdown)
+│   ├── data/              # Proyectos, servicios, FAQ, etc.
+│   ├── layouts/           # Base.astro, BlogPost.astro
+│   ├── lib/               # OG images, reCAPTCHA, reseñas…
+│   ├── pages/             # Rutas y API
+│   └── styles/global.css  # Tokens de diseño (@theme)
+├── docs/DESIGN.md         # Sistema de diseño
+├── docs/SCRIPTS.md        # Comandos pnpm y scripts de imágenes
+└── AGENTS.md              # Guía para agentes y convenciones
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Rutas principales
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Ruta | Contenido |
+| :--- | :-------- |
+| `/` | Inicio |
+| `/sobre-mi` | Sobre Flor |
+| `/proyectos` | Portfolio |
+| `/servicios/*` | Web corporativa, tienda online, mantenimiento |
+| `/blog` | Blog |
+| `/contacto` | Formulario de contacto |
+| `/api/contact` | API de contacto (serverless, `prerender = false`) |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Convenciones rápidas
 
-## 🧞 Commands
+- **UI y copy en español.**
+- React solo donde hace falta interactividad; el resto en `.astro`.
+- Media estático en `public/assets/` (no usar `public/img/`).
+- Clases Tailwind: usar utilidades del tema (`text-text-secondary`, `bg-bg-base`) — no `text-(--color-*)`.
+- Islands React con `client:load` (FAQ, ContactForm).
 
-All commands are run from the root of the project, from a terminal:
+Detalle completo en [`AGENTS.md`](AGENTS.md), [`docs/DESIGN.md`](docs/DESIGN.md) y [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Despliegue
 
-## 👀 Want to learn more?
+Desplegado en [Vercel](https://vercel.com) con el adaptador `@astrojs/vercel`. El sitio de producción es `https://rimobyte.com` (`site` en `astro.config.mjs`).
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+pnpm build
+```
+
+## Licencia
+
+Proyecto privado — © Flor Rímolo / RimoByte.
