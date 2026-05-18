@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import LegalDocument from '../components/ui/LegalDocument.astro';
+
+const SEO = {
+  title: 'Política de privacidad · RimoByte',
+  description:
+    'Información sobre el tratamiento de datos personales en rimobyte.com: formulario de contacto, reCAPTCHA, correo y reseñas públicas. Flor Rímolo — RimoByte.',
+  image: '/assets/brand/flor-rimobyte.webp',
+};
+---
+
+<Base title={SEO.title} description={SEO.description} image={SEO.image}>
+  <Navbar />
+  <main id="main">
+    <LegalDocument
+      eyebrow="LEGAL"
+      title="Política de privacidad"
+      description="Te explico de forma clara qué datos recojo, para qué y con qué herramientas, conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018."
+    >
+      <p>
+        <strong>Responsable del tratamiento:</strong> Flor Rímolo (en adelante, «RimoByte»), actividad profesional de desarrollo y diseño web. Contacto:{' '}
+        <a href="mailto:info@rimobyte.com">info@rimobyte.com</a>. Domicilio profesional: Barcelona (España).
+      </p>
+
+      <h3>Datos que tratamos y finalidades</h3>
+      <ul>
+        <li>
+          <strong>Formulario de contacto:</strong> nombre, correo electrónico, tipo de negocio, servicio de interés y, si lo indicas, un mensaje libre. Finalidad: atender tu solicitud y mantener comunicación profesional relacionada con tu consulta.
+        </li>
+        <li>
+          <strong>reCAPTCHA v3 (Google):</strong> al enviar el formulario se genera una señal técnica para detectar abuso automatizado. Puede implicar el tratamiento de datos técnicos por parte de Google según su propia política.
+        </li>
+        <li>
+          <strong>Correo transaccional:</strong> el envío del formulario genera un correo electrónico hacia RimoByte a través del proveedor Resend, que actúa como encargado del tratamiento en la medida en que procesa el mensaje para su entrega.
+        </li>
+        <li>
+          <strong>Reseñas mostradas en la web:</strong> en algunas páginas se muestran opiniones públicamente disponibles en Google (datos facilitados por usuarios en esa plataforma), obtenidas mediante la API de Google Places en el servidor. No se publica tu nombre en la web como visitante; solo se muestran contenidos ya publicados por terceros en Google.
+        </li>
+      </ul>
+
+      <h3>Base legal</h3>
+      <ul>
+        <li>Formulario de contacto y respuesta: ejecución de medidas precontractuales a tu solicitud e interés legítimo en gestionar consultas profesionales.</li>
+        <li>reCAPTCHA: interés legítimo en proteger formularios frente a spam y abuso, de forma proporcionada.</li>
+        <li>Consulta de reseñas en Google Places: interés legítimo en mostrar referencias públicas sobre el servicio.</li>
+      </ul>
+
+      <h3>Conservación</h3>
+      <p>
+        Los datos del formulario se conservan el tiempo necesario para dar respuesta a tu consulta y, en su caso, durante los plazos que resulten aplicables por obligaciones legales o la prescripción de posibles reclamaciones. Los registros técnicos derivados de reCAPTCHA dependen de Google; puedes consultar su política de privacidad en{' '}
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+      </p>
+
+      <h3>Destinatarios y encargados</h3>
+      <p>
+        Pueden tener acceso a tus datos proveedores situados dentro y fuera del Espacio Económico Europeo con las garantías adecuadas, entre otros:
+      </p>
+      <ul>
+        <li>
+          <strong>Google Ireland Limited</strong> (reCAPTCHA). Más información:{' '}
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Google</a>.
+        </li>
+        <li>
+          <strong>Resend</strong> (envío de correo desde el formulario). Información en la documentación y política de privacidad de Resend.
+        </li>
+        <li>
+          <strong>Vercel Inc.</strong> u otro proveedor de alojamiento que haga posible la ejecución del sitio y las rutas de servidor asociadas al formulario, en la medida en que ello sea técnicamente necesario.
+        </li>
+      </ul>
+
+      <h3>Tus derechos</h3>
+      <p>
+        Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad cuando correspondan, así como retirar el consentimiento en los supuestos en los que sea la base del tratamiento. Para ello escribe a{' '}
+        <a href="mailto:info@rimobyte.com">info@rimobyte.com</a>{' '}
+        indicando qué derecho ejerces. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).
+      </p>
+
+      <h3>Actualizaciones</h3>
+      <p>
+        Esta política puede actualizarse para reflejar cambios en el sitio o en la normativa. La versión vigente estará siempre publicada en esta página. Última revisión: mayo de 2026.
+      </p>
+    </LegalDocument>
+  </main>
+  <Footer />
+</Base>

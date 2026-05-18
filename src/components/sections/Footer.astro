@@ -19,7 +19,21 @@ const year = new Date().getFullYear();
         info@rimobyte.com
       </a>
     </div>
-    <div class="mt-8 pt-6 border-t border-border-default text-center">
+    <div class="mt-8 pt-6 border-t border-border-default flex flex-col items-center gap-4 text-center">
+      <nav aria-label="Legal" class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <a
+          href="/politica-privacidad"
+          class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
+        >
+          Política de privacidad
+        </a>
+        <a
+          href="/politica-cookies"
+          class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
+        >
+          Política de cookies
+        </a>
+      </nav>
       <p class="font-mono text-[0.6rem] tracking-[0.1em] uppercase text-text-muted">
         © {year} RimoByte · Flor Rímolo
       </p>

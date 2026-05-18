@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import LegalDocument from '../components/ui/LegalDocument.astro';
+
+const SEO = {
+  title: 'Política de cookies · RimoByte',
+  description:
+    'Qué cookies y tecnologías similares se usan en rimobyte.com, incluido reCAPTCHA v3 de Google, y cómo gestionarlas. RimoByte.',
+  image: '/assets/brand/flor-rimobyte.webp',
+};
+---
+
+<Base title={SEO.title} description={SEO.description} image={SEO.image}>
+  <Navbar />
+  <main id="main">
+    <LegalDocument
+      eyebrow="LEGAL"
+      title="Política de cookies"
+      description="Información sobre el uso de cookies y almacenamiento local en rimobyte.com, de acuerdo con la normativa española en materia de cookies y el RGPD donde aplica."
+    >
+      <p>
+        En este sitio se utilizan cookies propias y de terceros con fines estrictamente necesarios para el funcionamiento seguro del formulario de contacto, así como almacenamiento local para recordar tu elección sobre este aviso.
+      </p>
+
+      <h3>¿Qué son las cookies?</h3>
+      <p>
+        Las cookies son pequeños archivos que se almacenan en tu dispositivo cuando visitas una página. También existen tecnologías similares (por ejemplo, almacenamiento local del navegador).
+      </p>
+
+      <h3>Cookies y tecnologías que utilizamos</h3>
+      <ul>
+        <li>
+          <strong>Google reCAPTCHA v3</strong> (terceros). Se carga cuando utilizas el formulario de contacto para distinguir interacciones humanas de tráfico automatizado. Google puede establecer u o leer cookies en tu dispositivo y tratar datos técnicos. Consulta la información oficial:
+          {' '}<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacidad de Google</a>
+          {' '}y{' '}
+          <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">Uso de cookies de Google</a>.
+        </li>
+        <li>
+          <strong>Preferencia de este aviso (almacenamiento local).</strong> Si pulsas «Entendido» en la barra inferior, guardamos una marca en el almacenamiento local del navegador (localStorage) para no mostrarte el mensaje repetidamente. No es una cookie HTTP, pero tiene una finalidad equivalente a recordar tu preferencia.
+        </li>
+      </ul>
+
+      <h3>Cómo gestionar o deshabilitar cookies</h3>
+      <p>
+        Puedes bloquear o eliminar cookies desde la configuración de tu navegador. Ten en cuenta que desactivar cookies necesarias puede impedir el envío correcto del formulario de contacto (por ejemplo, si reCAPTCHA no puede ejecutarse).
+      </p>
+      <p>
+        Enlaces orientativos a la ayuda de navegadores habituales:
+      </p>
+      <ul>
+        <li>
+          <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome</a>
+        </li>
+        <li>
+          <a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener noreferrer">Firefox</a>
+        </li>
+        <li>
+          <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a>
+        </li>
+        <li>
+          <a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Microsoft Edge</a>
+        </li>
+      </ul>
+
+      <h3>Más información</h3>
+      <p>
+        Para saber qué datos personales pueden tratarse en relación con este sitio y el formulario, consulta la{' '}
+        <a href="/politica-privacidad">política de privacidad</a>. Última revisión: mayo de 2026.
+      </p>
+    </LegalDocument>
+  </main>
+  <Footer />
+</Base>
