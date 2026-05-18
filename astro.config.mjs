@@ -6,10 +6,12 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 import sitemap from '@astrojs/sitemap';
+import { legacySitemapRedirects } from './src/data/sitemapRedirects.ts';
 
 export default defineConfig({
   adapter: vercel(),
   integrations: [react(), sitemap()],
+  redirects: legacySitemapRedirects,
   vite: {
     plugins: [tailwindcss()],
     resolve: {
