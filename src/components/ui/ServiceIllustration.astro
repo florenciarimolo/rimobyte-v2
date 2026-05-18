@@ -162,7 +162,7 @@ const { variant, class: className = '' } = Astro.props;
 
 {variant === 'maintenance' && (
   <div class:list={['service-illustration', className]} aria-hidden="true">
-    <svg width="100%" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="maint-illus-svg" width="100%" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.04" stroke="#2B47EC" stroke-width="0.5">
         <line x1="0" y1="0" x2="0" y2="280" />
         <line x1="40" y1="0" x2="40" y2="280" />
@@ -175,51 +175,60 @@ const { variant, class: className = '' } = Astro.props;
         <line x1="320" y1="0" x2="320" y2="280" />
       </g>
 
-      <g transform="translate(110, 30)">
-        <path
-          d="M50 0 L100 20 L100 75 C100 110 50 140 50 140 C50 140 0 110 0 75 L0 20 Z"
-          stroke="rgba(43,71,236,0.3)"
-          stroke-width="0.5"
-          fill="rgba(43,71,236,0.06)"
-        />
-        <path
-          d="M30 70 L45 85 L72 55"
-          stroke="rgba(43,71,236,0.4)"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          fill="none"
-        />
+      <g class="maint-illus-shield-wrap">
+        <g transform="translate(110, 30)">
+          <path
+            d="M50 0 L100 20 L100 75 C100 110 50 140 50 140 C50 140 0 110 0 75 L0 20 Z"
+            stroke="rgba(43,71,236,0.3)"
+            stroke-width="0.5"
+            fill="rgba(43,71,236,0.06)"
+          />
+          <path
+            d="M30 70 L45 85 L72 55"
+            stroke="rgba(43,71,236,0.4)"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            class="maint-illus-check"
+          />
+        </g>
       </g>
 
       <g transform="translate(230, 20)" opacity="0.15">
-        <circle cx="30" cy="30" r="20" stroke="#2B47EC" stroke-width="1" fill="none" />
-        <circle cx="30" cy="30" r="8" stroke="#2B47EC" stroke-width="0.5" fill="rgba(43,71,236,0.1)" />
-        <rect x="25" y="2" width="10" height="8" rx="2" fill="rgba(43,71,236,0.2)" />
-        <rect x="25" y="50" width="10" height="8" rx="2" fill="rgba(43,71,236,0.2)" />
-        <rect x="2" y="25" width="8" height="10" rx="2" fill="rgba(43,71,236,0.2)" />
-        <rect x="50" y="25" width="8" height="10" rx="2" fill="rgba(43,71,236,0.2)" />
+        <g class="maint-illus-gear-spin">
+          <circle cx="30" cy="30" r="20" stroke="#2B47EC" stroke-width="1" fill="none" />
+          <circle cx="30" cy="30" r="8" stroke="#2B47EC" stroke-width="0.5" fill="rgba(43,71,236,0.1)" />
+          <rect x="25" y="2" width="10" height="8" rx="2" fill="rgba(43,71,236,0.2)" />
+          <rect x="25" y="50" width="10" height="8" rx="2" fill="rgba(43,71,236,0.2)" />
+          <rect x="2" y="25" width="8" height="10" rx="2" fill="rgba(43,71,236,0.2)" />
+          <rect x="50" y="25" width="8" height="10" rx="2" fill="rgba(43,71,236,0.2)" />
+        </g>
       </g>
 
-      <g transform="translate(30, 160)">
-        <rect width="260" height="100" rx="8" stroke="rgba(43,71,236,0.2)" stroke-width="0.5" />
-        <rect x="12" y="12" width="60" height="8" rx="3" fill="rgba(43,71,236,0.15)" />
+      <g class="maint-illus-panel-wrap">
+        <g transform="translate(30, 160)">
+          <rect width="260" height="100" rx="8" stroke="rgba(43,71,236,0.2)" stroke-width="0.5" />
+          <rect x="12" y="12" width="60" height="8" rx="3" fill="rgba(43,71,236,0.15)" />
 
-        <polyline
-          points="12,60 40,55 70,58 100,45 130,48 160,42 190,44 220,38 248,40"
-          stroke="rgba(43,71,236,0.35)"
-          stroke-width="1.5"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
+          <polyline
+            class="maint-illus-chart"
+            points="12,60 40,55 70,58 100,45 130,48 160,42 190,44 220,38 248,40"
+            stroke="rgba(43,71,236,0.35)"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            pathLength="100"
+          />
 
-        <rect x="12" y="76" width="40" height="14" rx="7" fill="rgba(43,71,236,0.12)" />
-        <rect x="60" y="76" width="50" height="14" rx="7" fill="rgba(43,71,236,0.08)" />
-        <rect x="118" y="76" width="45" height="14" rx="7" fill="rgba(43,71,236,0.08)" />
+          <rect x="12" y="76" width="40" height="14" rx="7" fill="rgba(43,71,236,0.12)" />
+          <rect x="60" y="76" width="50" height="14" rx="7" fill="rgba(43,71,236,0.08)" />
+          <rect x="118" y="76" width="45" height="14" rx="7" fill="rgba(43,71,236,0.08)" />
+        </g>
       </g>
 
-      <g opacity="0.06">
+      <g class="maint-illus-rings-bg" opacity="0.06">
         <circle cx="280" cy="130" r="45" stroke="#2B47EC" stroke-width="0.5" />
         <circle cx="280" cy="130" r="25" stroke="#2B47EC" stroke-width="0.5" />
       </g>
@@ -541,6 +550,112 @@ const { variant, class: className = '' } = Astro.props;
     animation: eco-illus-cart 9s cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   }
 
+  /* Mantenimiento hero — escudo flotante, engranaje, gráfico y anillos */
+  .maint-illus-svg {
+    overflow: visible;
+  }
+
+  @keyframes maint-illus-shield-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .maint-illus-shield-wrap {
+    animation: maint-illus-shield-float 6.5s var(--ease-spring) infinite;
+  }
+
+  @keyframes maint-illus-gear-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .maint-illus-gear-spin {
+    transform-box: fill-box;
+    transform-origin: 30px 30px;
+    animation: maint-illus-gear-rotate 24s linear infinite;
+  }
+
+  @keyframes maint-illus-panel-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+  }
+
+  .maint-illus-panel-wrap {
+    animation: maint-illus-panel-float 8s ease-in-out infinite;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes maint-illus-chart {
+    0% {
+      stroke-dashoffset: 100;
+      opacity: 0.55;
+    }
+    42% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    68% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 100;
+      opacity: 0.55;
+    }
+  }
+
+  .maint-illus-chart {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: maint-illus-chart 5.5s ease-in-out infinite;
+  }
+
+  @keyframes maint-illus-check {
+    0%,
+    100% {
+      stroke-opacity: 0.55;
+    }
+    50% {
+      stroke-opacity: 1;
+    }
+  }
+
+  .maint-illus-check {
+    animation: maint-illus-check 3.2s ease-in-out infinite;
+  }
+
+  @keyframes maint-illus-rings {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.06;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.1;
+    }
+  }
+
+  .maint-illus-rings-bg {
+    transform-box: fill-box;
+    transform-origin: 280px 130px;
+    animation: maint-illus-rings 9s ease-in-out infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .svc-illus-float,
     .svc-illus-float-slow,
@@ -567,6 +682,26 @@ const { variant, class: className = '' } = Astro.props;
 
     .eco-illus-checkout {
       transform: scale(1);
+    }
+
+    .maint-illus-shield-wrap,
+    .maint-illus-gear-spin,
+    .maint-illus-panel-wrap,
+    .maint-illus-chart,
+    .maint-illus-check,
+    .maint-illus-rings-bg {
+      animation: none;
+    }
+
+    .maint-illus-chart {
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+
+    .maint-illus-rings-bg {
+      transform: scale(1);
+      opacity: 0.06;
     }
   }
 </style>

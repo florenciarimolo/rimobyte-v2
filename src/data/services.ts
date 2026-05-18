@@ -32,10 +32,18 @@ export interface Service {
   checks: string[];
   illustration: 'corporate' | 'ecommerce' | 'maintenance';
   targetAudience: string[];
+  targetAudienceEyebrow?: string;
+  targetAudienceTitle?: string;
+  targetAudienceTitleEm?: string;
+  targetAudienceFootnote?: string;
+  targetAudienceCountLabel?: string;
   features: ServiceFeature[];
   price: string;
   priceNote: string;
   relatedCases: RelatedCase[];
+  /** Título H2 de CasosRelacionados; por defecto “Proyectos que hablan / por sí solos.” */
+  relatedCasesTitle?: string;
+  relatedCasesTitleEm?: string;
   faqs: ServiceFAQ[];
   ctaFinal: {
     title: string;
@@ -288,6 +296,120 @@ export const services: Service[] = [
       title: 'Tienda online para pequeño negocio · RimoByte',
       description:
         'Tienda WooCommerce o Shopify para pequeños negocios desde 1.200€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
+    },
+  },
+  {
+    slug: 'mantenimiento-web',
+    name: 'Mantenimiento web',
+    eyebrow: 'SERVICIO · MANTENIMIENTO WEB',
+    headline: 'Tu web al día y segura,',
+    headlineEm: 'yo miro por lo técnico.',
+    description:
+      'Para negocios que quieren olvidarse de actualizaciones, seguridad y problemas técnicos — y centrarse en lo que realmente importa: su negocio.',
+    ctaPrimary: 'Quiero saber más',
+    ctaSecondary: 'Ver proyectos',
+    checks: ['Sin permanencia', 'Sin letra pequeña', 'Soporte cuando lo necesitas'],
+    illustration: 'maintenance',
+    targetAudience: [
+      'Plugins desactualizados que abren vulnerabilidades de seguridad',
+      'Actualizaciones de WordPress que rompen el diseño o la funcionalidad',
+      'Copias de seguridad inexistentes — si algo falla, no hay vuelta atrás',
+      'Velocidad degradada que afecta al posicionamiento en Google',
+      'Formularios o integraciones que dejan de funcionar sin que nadie lo note',
+    ],
+    targetAudienceEyebrow: 'POR QUÉ IMPORTA',
+    targetAudienceTitle: 'Lo que pasa cuando nadie cuida',
+    targetAudienceTitleEm: 'tu web.',
+    targetAudienceFootnote:
+      'No es obligatorio contratarlo. Pero es importante que sepas lo que implica no hacerlo.',
+    targetAudienceCountLabel: 'riesgos',
+    features: [
+      {
+        title: 'Actualizaciones periódicas',
+        description:
+          'WordPress, plugins y tema actualizados regularmente para evitar vulnerabilidades y mantener la compatibilidad.',
+      },
+      {
+        title: 'Copias de seguridad automáticas',
+        description:
+          'Backup completo de la web de forma periódica. Si algo falla, se restaura sin perder nada.',
+      },
+      {
+        title: 'Monitorización de seguridad',
+        description:
+          'Control de accesos, detección de actividad sospechosa y protección ante ataques comunes.',
+      },
+      {
+        title: 'Resolución de incidencias',
+        description:
+          'Si algo deja de funcionar, lo resuelvo. Sin tener que buscar a alguien de cero ni explicar cómo está hecha tu web.',
+      },
+      {
+        title: 'Soporte por email',
+        description:
+          'Para consultas, cambios menores y dudas del día a día. Tiempo de respuesta máximo de 24 horas en días laborables.',
+      },
+      {
+        title: 'Comunicación directa',
+        description:
+          'Si detecto algo, te lo comento. Si tienes una duda o algo deja de funcionar, me escribes y te respondo. Sin formularios, sin tickets, directamente conmigo.',
+      },
+    ],
+    price: 'Desde 50€/mes',
+    priceNote:
+      'Desarrollos nuevos, rediseños o funcionalidades adicionales se presupuestan aparte.',
+    relatedCasesTitle: 'Webs que cuido',
+    relatedCasesTitleEm: 'con mantenimiento continuo.',
+    relatedCases: [
+      {
+        slug: 'rock-zone-camp',
+        highlight:
+          'Web con mucho contenido visual que necesita mantenimiento constante para mantener su rendimiento de 99/100 en PageSpeed.',
+        testimonialQuote: 'Se ha convertido en la programadora oficial de nuestro proyecto.',
+      },
+      {
+        slug: 'jlg-ki',
+        highlight:
+          'Relación de trabajo continua desde la migración — con mejoras progresivas y soporte permanente.',
+        testimonialQuote: 'Poner las primeras piedras para una relación de larga duración.',
+      },
+    ],
+    faqs: [
+      {
+        question: '¿Hay permanencia mínima?',
+        answer: 'No. Puedes cancelar cuando quieras sin penalización ni explicación.',
+      },
+      {
+        question: '¿Qué pasa si tengo una web que no has hecho tú?',
+        answer:
+          'Primero la reviso para entender cómo está construida. Si está en condiciones, adelante. Si tiene problemas previos, te lo digo antes de empezar.',
+      },
+      {
+        question: '¿Cuánto tiempo tarda en resolverse una incidencia?',
+        answer:
+          'Un fallo crítico tiene prioridad máxima, respondo el mismo día. Para cambios menores el plazo es de 24-48 horas en días laborables.',
+      },
+      {
+        question: '¿Los cambios de contenido están incluidos?',
+        answer:
+          'Los cambios menores sí. Los desarrollos nuevos o cambios estructurales se presupuestan aparte.',
+      },
+      {
+        question: '¿Puedo cancelar y retomar el servicio más adelante?',
+        answer:
+          'Sí. No hay penalización por cancelar ni por volver. Tu web sigue siendo tuya en cualquier caso.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Quieres olvidarte de los',
+      titleEm: 'problemas técnicos?',
+      text: 'Cuéntame qué web tienes y te digo exactamente qué necesita. Sin compromiso.',
+      cta: 'Consulta gratuita',
+    },
+    seo: {
+      title: 'Mantenimiento web para negocios · RimoByte',
+      description:
+        'Mantenimiento web desde 50€/mes sin permanencia. Actualizaciones, seguridad, copias de seguridad y soporte directo. Sin letra pequeña, sin ataduras.',
     },
   },
 ];

@@ -13,7 +13,7 @@ import FAQ from '../../components/sections/FAQ.tsx';
 import Footer from '../../components/sections/Footer.astro';
 import { services } from '../../data/services';
 
-const service = services.find((s) => s.slug === 'tienda-online')!;
+const service = services.find((s) => s.slug === 'mantenimiento-web')!;
 const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 
 const faqSchema = {
@@ -29,17 +29,17 @@ const faqSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Tienda online para pequeño negocio',
+  name: 'Mantenimiento web para negocios',
   provider: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com' },
   areaServed: { '@type': 'Country', name: 'España' },
   description: service.seo.description,
   offers: {
     '@type': 'Offer',
     priceCurrency: 'EUR',
-    price: '1200',
-    priceSpecification: { '@type': 'PriceSpecification', minPrice: '1200', priceCurrency: 'EUR' },
+    price: '50',
+    priceSpecification: { '@type': 'PriceSpecification', minPrice: '50', priceCurrency: 'EUR' },
   },
-  url: 'https://rimobyte.com/servicios/tienda-online',
+  url: 'https://rimobyte.com/servicios/mantenimiento-web',
 };
 ---
 
@@ -50,7 +50,14 @@ const serviceSchema = {
   <Navbar />
   <main id="main">
     <HeroServicio service={service} />
-    <ParaQuienEs points={service.targetAudience} />
+    <ParaQuienEs
+      points={service.targetAudience}
+      eyebrowText={service.targetAudienceEyebrow}
+      title={service.targetAudienceTitle}
+      titleEm={service.targetAudienceTitleEm}
+      footnote={service.targetAudienceFootnote}
+      countLabel={service.targetAudienceCountLabel}
+    />
     <QueIncluye features={service.features} />
     <PrecioServicio price={service.price} note={service.priceNote} />
     <CasosRelacionados
@@ -68,7 +75,7 @@ const serviceSchema = {
     <ContactForm
       client:load
       recaptchaSiteKey={recaptchaSiteKey}
-      origin="tienda-online"
+      origin="mantenimiento-web"
       omitAnchor
     />
   </main>

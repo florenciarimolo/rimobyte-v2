@@ -6,9 +6,15 @@ import { getRelatedProject } from '../../../data/services';
 
 interface Props {
   cases: RelatedCase[];
+  title?: string;
+  titleEm?: string;
 }
 
-const { cases } = Astro.props;
+const {
+  cases,
+  title = 'Proyectos que hablan',
+  titleEm = 'por sí solos.',
+} = Astro.props;
 ---
 
 <section class="section-bg py-[clamp(5rem,9vw,7rem)]">
@@ -18,7 +24,7 @@ const { cases } = Astro.props;
       <h2
         class="headline-gradient font-display font-medium text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] tracking-[-0.025em]"
       >
-        Proyectos que hablan <em>por sí solos.</em>
+        {title} <em>{titleEm}</em>
       </h2>
     </div>
 

@@ -3,9 +3,21 @@ import Eyebrow from '../../ui/Eyebrow.astro';
 
 interface Props {
   points: string[];
+  eyebrowText?: string;
+  title?: string;
+  titleEm?: string;
+  footnote?: string;
+  countLabel?: string;
 }
 
-const { points } = Astro.props;
+const {
+  points,
+  eyebrowText = '¿PARA QUIÉN ES?',
+  title = 'Si te suena alguna de',
+  titleEm = 'estas situaciones.',
+  footnote,
+  countLabel = 'situaciones',
+} = Astro.props;
 ---
 
 <section class="section-bg relative py-[clamp(5rem,10vw,8rem)]">
@@ -17,16 +29,16 @@ const { points } = Astro.props;
         / 02 · Diagnóstico
       </span>
       <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        {String(points.length).padStart(2, '0')} situaciones
+        {String(points.length).padStart(2, '0')} {countLabel}
       </span>
     </div>
 
     <div class="reveal mb-[clamp(3rem,6vw,5rem)] max-w-[680px]">
-      <Eyebrow text="¿PARA QUIÉN ES?" class="mb-6" />
+      <Eyebrow text={eyebrowText} class="mb-6" />
       <h2
         class="headline-gradient font-display text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.04] tracking-[-0.025em]"
       >
-        Si te suena alguna de <em>estas situaciones.</em>
+        {title} <em>{titleEm}</em>
       </h2>
     </div>
 
@@ -47,6 +59,14 @@ const { points } = Astro.props;
         ))
       }
     </div>
+
+    {
+      footnote && (
+        <p class="reveal mt-6 max-w-[640px] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.65] text-text-secondary">
+          {footnote}
+        </p>
+      )
+    }
   </div>
 </section>
 
