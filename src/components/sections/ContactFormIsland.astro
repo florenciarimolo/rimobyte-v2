@@ -1,11 +1,14 @@
 ---
 import ContactForm from './ContactForm.tsx';
+import { contactOriginFromPathname } from '../../lib/contact-origin';
 
 interface Props {
+  /** Override del slug de origen; si no se pasa, se usa la ruta actual */
   origin?: string;
 }
 
-const { origin } = Astro.props;
+const { origin: originOverride } = Astro.props;
+const origin = originOverride ?? contactOriginFromPathname(Astro.url.pathname);
 const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 ---
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { contactOriginFromPathname } from '../../lib/contact-origin';
 import Icon from '../ui/Icon';
 
 const RECAPTCHA_ACTION = 'contact';
@@ -159,7 +160,12 @@ export default function ContactForm({
     e.preventDefault();
     setLoading(true);
     setError(false);
-    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, FormDataEntryValue>;
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    const originValue =
+      data.origin?.trim() ||
+      origin?.trim() ||
+      (typeof window !== 'undefined' ? contactOriginFromPathname(window.location.pathname) : '');
+    if (originValue) data.origin = originValue;
 
     try {
       let recaptchaToken: string | undefined;
@@ -218,7 +224,7 @@ export default function ContactForm({
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} aria-busy={loading}>
-              {origin ? <input type="hidden" name="origin" value={origin} /> : null}
+              <input type="hidden" name="origin" value={origin ?? ''} />
               {textFields.map(f => (
                 <div key={f.name}>
                   <label htmlFor={f.id} style={labelStyle}>{f.label}</label>
