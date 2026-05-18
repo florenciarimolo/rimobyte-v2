@@ -1,7 +1,12 @@
 ---
 import ContactForm from './ContactForm.tsx';
 
+interface Props {
+  origin?: string;
+}
+
+const { origin } = Astro.props;
 const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 ---
 
-<ContactForm client:load recaptchaSiteKey={recaptchaSiteKey} />
+<ContactForm client:load recaptchaSiteKey={recaptchaSiteKey} origin={origin} />

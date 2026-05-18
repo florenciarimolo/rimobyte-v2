@@ -1,0 +1,88 @@
+---
+import Base from './Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import HeroArticulo from '../components/sections/blog/HeroArticulo.astro';
+import ArticuloContent from '../components/sections/blog/ArticuloContent.astro';
+import ArticuloRelacionados from '../components/sections/blog/ArticuloRelacionados.astro';
+import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
+import Footer from '../components/sections/Footer.astro';
+import Button from '../components/ui/Button.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+let related: CollectionEntry<'blog'>[] = [];
+if (post.data.relatedSlugs?.length) {
+  const allPosts = await getCollection('blog');
+  related = post.data.relatedSlugs
+    .map((id) => allPosts.find((p) => p.id === id))
+    .filter((p): p is CollectionEntry<'blog'> => Boolean(p));
+}
+
+const articleUrl = new URL(`/blog/${post.id}/`, Astro.site).href;
+const defaultOgImage = '/assets/brand/flor-rimobyte.webp';
+const ogImagePath = post.data.ogImage ?? defaultOgImage;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+  author: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com' },
+  publisher: { '@type': 'Organization', name: 'RimoByte', url: 'https://rimobyte.com' },
+  mainEntityOfPage: articleUrl,
+  keywords: post.data.keywords.join(', '),
+};
+
+const publishedIso = post.data.date.toISOString();
+const modifiedIso = (post.data.updatedDate ?? post.data.date).toISOString();
+---
+
+<Base
+  title={`${post.data.title} · RimoByte`}
+  description={post.data.description}
+  image={ogImagePath}
+  ogType="article"
+  articlePublishedTime={publishedIso}
+  articleModifiedTime={modifiedIso}
+>
+  <script
+    slot="head"
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(articleSchema)}
+  />
+
+  <Navbar />
+  <main id="main">
+    <HeroArticulo post={post} />
+    <ArticuloContent>
+      <Content />
+    </ArticuloContent>
+
+    <section class="section-bg--elevated py-[clamp(4rem,7vw,5rem)]">
+      <div class="max-w-[720px] mx-auto px-[clamp(1.5rem,5vw,4rem)] text-center">
+        <div class="reveal">
+          <h2
+            class="headline-gradient font-display font-medium text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] mb-4"
+          >
+            {post.data.ctaText}
+          </h2>
+          <Button href={post.data.ctaLink}>Hablemos →</Button>
+        </div>
+      </div>
+    </section>
+
+    {related.length > 0 && <ArticuloRelacionados posts={related} />}
+    <ContactFormIsland origin="blog" />
+  </main>
+  <Footer />
+</Base>

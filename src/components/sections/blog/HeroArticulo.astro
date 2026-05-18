@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+
+const typeLabels: Record<string, string> = {
+  seo: 'GUÍA',
+  conversion: 'OPINIÓN',
+  nicho: 'SECTOR',
+};
+
+const formattedDate = post.data.date.toLocaleDateString('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<section class="section-bg" style="padding-block: clamp(7rem, 13vw, 11rem) clamp(3rem, 5vw, 4rem);">
+  <div class="max-w-[1200px] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+    <a
+      href="/blog/"
+      class="reveal inline-flex items-center gap-2 font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-text-muted no-underline mb-10 transition-[gap,color] duration-200 hover:text-white hover:gap-3"
+    >
+      <span aria-hidden="true">←</span>
+      <span>Volver al blog</span>
+    </a>
+
+    <div class="max-w-[720px]">
+      <div
+        class="reveal flex items-center gap-2 font-mono text-[0.625rem] tracking-[0.14em] uppercase text-text-muted mb-6"
+      >
+        <span class="text-blue">{typeLabels[post.data.type]}</span>
+        <span class="opacity-40">·</span>
+        <span>{formattedDate}</span>
+        <span class="opacity-40">·</span>
+        <span>{post.data.readingTime} de lectura</span>
+      </div>
+
+      <h1
+        class="reveal headline-gradient font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-[1.05] tracking-[-0.03em]"
+      >
+        {post.data.title}
+      </h1>
+
+      <p
+        class="reveal font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary mt-6 max-w-[620px]"
+      >
+        {post.data.description}
+      </p>
+    </div>
+  </div>
+</section>

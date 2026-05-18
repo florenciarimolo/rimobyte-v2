@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/sections/Navbar.astro';
+import HeroBlog from '../../components/sections/blog/HeroBlog.astro';
+import BlogGrid from '../../components/sections/blog/BlogGrid.astro';
+import Footer from '../../components/sections/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const SEO = {
+  title: 'Blog sobre diseño web para negocios · RimoByte',
+  description:
+    'Consejos y guías sobre webs para negocios locales: cuánto cuesta, cuánto tarda, WordPress vs Shopify y mucho más.',
+};
+---
+
+<Base title={SEO.title} description={SEO.description}>
+  <Navbar />
+  <main id="main">
+    <HeroBlog />
+    <BlogGrid posts={posts} />
+  </main>
+  <Footer />
+</Base>
