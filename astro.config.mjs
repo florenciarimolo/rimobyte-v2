@@ -18,6 +18,17 @@ export default defineConfig({
     resolve: {
       dedupe: ['react', 'react-dom'],
     },
+    // Tras `astro build`, el caché de .vite puede preempaquetar jsx-dev-runtime en
+    // producción (sin jsxDEV) y romper la hidratación en `astro dev`.
+    ...(process.env.NODE_ENV !== 'production' && {
+      optimizeDeps: {
+        esbuildOptions: {
+          define: {
+            'process.env.NODE_ENV': '"development"',
+          },
+        },
+      },
+    }),
   },
   site: 'https://rimobyte.com',
 });
