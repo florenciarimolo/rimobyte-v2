@@ -13,11 +13,57 @@ const posts = (await getCollection('blog')).sort(
 const SEO = {
   title: 'Blog sobre diseño web para negocios · RimoByte',
   description:
-    'Consejos y guías sobre webs para negocios locales: cuánto cuesta, cuánto tarda, WordPress vs Shopify y mucho más.',
+    'Guías sobre cuánto cuesta una web para tu negocio, por qué debe ser tuya (dominio y hosting a tu nombre) y cómo combinar web e Instagram.',
+};
+
+const blogUrl = new URL('/blog/', Astro.site).href;
+
+const blogIndexLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Blog',
+      '@id': `${blogUrl}#blog`,
+      name: 'Blog RimoByte',
+      url: blogUrl,
+      description: SEO.description,
+      inLanguage: 'es-ES',
+      publisher: {
+        '@type': 'Organization',
+        name: 'RimoByte',
+        url: 'https://rimobyte.com/',
+      },
+      blogPost: posts.map((p) => ({
+        '@type': 'BlogPosting',
+        headline: p.data.title,
+        url: new URL(`/blog/${p.id}/`, Astro.site).href,
+        datePublished: p.data.date.toISOString(),
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: new URL('/', Astro.site).href,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: blogUrl,
+        },
+      ],
+    },
+  ],
 };
 ---
 
 <Base title={SEO.title} description={SEO.description}>
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(blogIndexLd)} />
+
   <Navbar />
   <main id="main">
     <HeroBlog />

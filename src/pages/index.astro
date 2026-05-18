@@ -14,18 +14,22 @@ import FAQ from '../components/sections/FAQ.tsx';
 import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import Footer from '../components/sections/Footer.astro';
 import { buildFaqPageJsonLd } from '../data/faq';
+import { fetchPlaceAggregate } from '../lib/google-reviews';
 
 const SEO = {
   title: 'Diseñadora web freelance para negocios locales · RimoByte',
   description: 'Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
+
+const placeAgg = await fetchPlaceAggregate();
 ---
 <Base
   title={SEO.title}
   description={SEO.description}
   image={SEO.image}
   faqPageSchema={buildFaqPageJsonLd()}
+  aggregateRating={placeAgg}
 >
   <Navbar />
   <main id="main">

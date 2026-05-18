@@ -1,13 +1,7 @@
 ---
 import Button from '../ui/Button.astro';
 import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
-
-/** Mismas rutas que las tarjetas en Services.astro */
-const SERVICE_NAV_LINKS = [
-  { label: 'Web corporativa', href: '/servicios/web-corporativa' },
-  { label: 'Tienda online', href: '/servicios/tienda-online' },
-  { label: 'Mantenimiento', href: '/servicios/mantenimiento-web' },
-] as const;
+import { SERVICE_NAV_LINKS } from '../../data/navigation';
 
 const navLinkClass =
   'font-body text-sm text-text-secondary no-underline hover:text-white transition-colors duration-200';
@@ -25,7 +19,7 @@ const navChevronClass =
     </a>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Principal">
-      <a href="/proyectos" class={navLinkClass}>Proyectos</a>
+      <a href="/proyectos/" class={navLinkClass}>Proyectos</a>
 
       <div class="relative">
         <details id="nav-services-desktop" class="group/nav-services">
@@ -63,10 +57,10 @@ const navChevronClass =
       </div>
 
       <a href="/blog/" class={navLinkClass}>Blog</a>
-      <a href="/sobre-mi" class={navLinkClass}>Sobre mí</a>
+      <a href="/sobre-mi/" class={navLinkClass}>Sobre mí</a>
     </nav>
 
-    <Button href="/contacto" variant="primary" class="hidden md:inline-flex">Empezar mi web</Button>
+    <Button href="/contacto/" variant="primary" class="hidden md:inline-flex">Empezar mi web</Button>
 
     <button
       id="menu-btn"
@@ -89,7 +83,7 @@ const navChevronClass =
   hidden
   inert
 >
-  <a href="/proyectos" class="font-display text-3xl font-medium text-white no-underline">Proyectos</a>
+  <a href="/proyectos/" class="font-display text-3xl font-medium text-white no-underline">Proyectos</a>
 
   <details id="nav-services-mobile" class="group/nav-services-mobile w-full max-w-xs text-center">
     <summary
@@ -115,8 +109,8 @@ const navChevronClass =
   </details>
 
   <a href="/blog/" class="font-display text-3xl font-medium text-white no-underline">Blog</a>
-  <a href="/sobre-mi" class="font-display text-3xl font-medium text-white no-underline">Sobre mí</a>
-  <a href="/contacto" class="font-display text-3xl font-medium text-white no-underline">Contacto</a>
+  <a href="/sobre-mi/" class="font-display text-3xl font-medium text-white no-underline">Sobre mí</a>
+  <a href="/contacto/" class="font-display text-3xl font-medium text-white no-underline">Contacto</a>
 </div>
 
 <script>

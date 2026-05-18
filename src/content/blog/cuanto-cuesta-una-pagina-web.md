@@ -6,7 +6,7 @@ type: "seo"
 keywords: ["cuánto cuesta una página web", "precio web negocio", "presupuesto web"]
 readingTime: "5 min"
 ctaText: "¿Quieres saber cuánto costaría tu web?"
-ctaLink: "/servicios/web-corporativa"
+ctaLink: "/servicios/web-corporativa/"
 relatedSlugs: ["tu-web-debe-ser-tuya", "web-o-instagram"]
 coverImage: "/assets/blog/cuanto-cuesta-una-pagina-web.webp"
 ---
@@ -81,4 +81,4 @@ Para un negocio local en España, estos son los rangos reales:
 
 Todo con presupuesto cerrado antes de empezar. Si durante el proyecto surge algo que no estaba contemplado, te lo digo antes de hacerlo — no al final en la factura.
 
-Si quieres saber cuánto costaría exactamente la web que necesitas, [cuéntame tu proyecto](/contacto). Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con una propuesta concreta.
+Si quieres saber cuánto costaría exactamente la web que necesitas, [cuéntame tu proyecto](/contacto/). Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con una propuesta concreta.

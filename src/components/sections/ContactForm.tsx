@@ -125,12 +125,18 @@ type ContactFormProps = {
   origin?: string;
   /** Evita duplicar `#contacto` cuando ya existe una sección anchor encima */
   omitAnchor?: boolean;
+  /** En página dedicada `/contacto/` usar `1` para un único `<h1>` */
+  headingLevel?: 1 | 2;
+  /** Texto del titular principal (h1 en contacto, h2 en el resto) */
+  heading?: string;
 };
 
 export default function ContactForm({
   recaptchaSiteKey = '',
   origin,
   omitAnchor = false,
+  headingLevel = 2,
+  heading = '¿Hablamos?',
 }: ContactFormProps) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -183,6 +189,8 @@ export default function ContactForm({
     finally { setLoading(false); }
   };
 
+  const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
+
   return (
     <section
       {...(!omitAnchor ? { id: 'contacto' } : {})}
@@ -198,9 +206,9 @@ export default function ContactForm({
               CONTACTO
               <span className="eyebrow__bracket" aria-hidden="true">]</span>
             </p>
-            <h2 style={{ fontSize: 'clamp(2rem,3.5vw,3rem)', lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}>
-              ¿Hablamos?
-            </h2>
+            <HeadingTag style={{ fontSize: 'clamp(2rem,3.5vw,3rem)', lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}>
+              {heading}
+            </HeadingTag>
             <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', maxWidth: '380px', marginBottom: '2rem' }}>
               Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con ideas concretas, no con una plantilla de presupuesto.
             </p>

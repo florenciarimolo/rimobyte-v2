@@ -14,10 +14,12 @@ No contradigas `DESIGN.md` sin motivo explícito del usuario.
 
 ```bash
 pnpm dev              # servidor de desarrollo (Astro)
-pnpm build            # build de producción
+pnpm build            # prebuild (favicons, imágenes, OG PNG) + build de producción
 pnpm check            # TypeScript + comprobación Astro
 pnpm preview          # sirve el build local
 pnpm lint:classes     # lint de clases Tailwind
+pnpm images:favicons  # PNG + ICO desde public/favicon.svg
+pnpm images:og        # carteles OG estáticos (páginas con retrato por defecto)
 pnpm images:projects  # variantes WebP del portfolio
 pnpm images:blog      # variantes WebP del blog
 ```
@@ -32,8 +34,12 @@ Detalle de cuándo y cómo ejecutar cada script: [`docs/SCRIPTS.md`](docs/SCRIPT
 - **TypeScript** estricto
 - **pnpm** — Node `>=22.12.0`
 - `site`: `https://rimobyte.com` en `astro.config.mjs`
+- Rutas HTML con **`trailingSlash: 'always'`** (canonical y enlaces internos con `/` final).
+- Redirects legacy SEO en `astro.config.mjs` (`legacySitemapRedirects` en [`src/data/sitemapRedirects.ts`](src/data/sitemapRedirects.ts)).
 
 ## Convenciones
+
+- **Fuentes:** Inter Variable + Space Mono vía npm (`@fontsource/*`) y **Clash Grotesk** autohospedada en `public/assets/fonts/clash-grotesk/*.woff2` (latin básico). Sin CDN de Fontshare ni Google Fonts en producción.
 
 ### Assets estáticos (`public/`)
 
@@ -44,8 +50,10 @@ Todo el media va bajo `public/assets/` (no usar `public/img/`):
 | `assets/brand/` | Imágenes de marca y retratos (ej. `flor-rimobyte.webp`) |
 | `assets/projects/` | Capturas de portfolio; variantes en `generated/` vía `pnpm images:projects` |
 | `assets/blog/` | Portadas de posts; fuente JPG/PNG o WebP; variantes en `generated/` vía `pnpm images:blog` |
+| `assets/og/` | PNG Open Graph pre-generadas (`pnpm images:og`, gitignored en repo) |
+| `assets/fonts/clash-grotesk/` | WOFF2 Clash Grotesk (400–700), licencia Fontshare |
 
-Favicons y `robots.txt` permanecen en la raíz de `public/`.
+`favicon.svg` se versiona en la raíz de `public/`; el resto de favicons PNG/ICO los genera `pnpm images:favicons` (salidas gitignored). `robots.txt` permanece en la raíz de `public/`.
 
 ### Tailwind 4 (`@theme` en `global.css`)
 
@@ -79,7 +87,11 @@ En estilos inline de React (`style={{ color: 'var(--color-blue)' }}`) sí usa `v
 | `RESEND_API_KEY` | Envío de emails en `src/pages/api/contact.ts` |
 | `RECAPTCHA_SITE_KEY` | Clave pública reCAPTCHA v3 (formulario de contacto) |
 | `RECAPTCHA_SECRET_KEY` | Verificación servidor en `/api/contact` |
-| `GOOGLE_PLACES_API_KEY` | Reseñas en `src/lib/google-reviews.ts` |
+| `GOOGLE_PLACES_API_KEY` | Reseñas en la home + **aggregateRating** JSON-LD en `/` y `/sobre-mi/` (`src/lib/google-reviews.ts`) |
+| `GOOGLE_PLACES_PLACE_ID` | Place ID del negocio para Places Details |
+| `PUBLIC_INSTAGRAM_URL` | (Opcional) Perfil Instagram para `sameAs` en JSON-LD Person/LocalBusiness |
+| `PUBLIC_LINKEDIN_URL` | (Opcional) LinkedIn para `sameAs` |
+| `PUBLIC_GBP_URL` | (Opcional) Google Business Profile para `sameAs` |
 
 ## Cuándo leer cada skill
 

@@ -6,7 +6,7 @@ type: "seo"
 keywords: ["web o instagram negocio", "para qué sirve una web", "instagram vs web"]
 readingTime: "6 min"
 ctaText: "¿Listo para tener tu propia web?"
-ctaLink: "/servicios/web-corporativa"
+ctaLink: "/servicios/web-corporativa/"
 relatedSlugs: ["cuanto-cuesta-una-pagina-web", "tu-web-debe-ser-tuya"]
 coverImage: "/assets/blog/web-o-instagram.webp"
 
@@ -83,4 +83,4 @@ La pregunta correcta es: ¿estoy llegando a todas las personas que me buscan? Si
 
 No tienes que elegir. Puedes tener ambos. Y cuando los dos trabajan juntos, tu negocio crece de una forma que ninguno podría conseguir solo.
 
-Si quieres una web que trabaje por ti mientras tú te dedicas a lo que mejor sabes hacer, [cuéntame qué necesitas](/contacto). Sin compromiso y sin tecnicismos.
+Si quieres una web que trabaje por ti mientras tú te dedicas a lo que mejor sabes hacer, [cuéntame qué necesitas](/contacto/). Sin compromiso y sin tecnicismos.

@@ -37,6 +37,16 @@ interface PlacesDetailsResponse {
 
 const PLACES_FIELDS = 'reviews,rating,user_ratings_total,url';
 
+/** Reseñas combinadas + méta — una sola carga Places por proceso (build / request). */
+interface PlaceSnapshot {
+  rating: number;
+  totalReviews: number;
+  googleMapsUrl: string;
+  mergedReviews: GoogleReview[];
+}
+
+let snapshotPromise: Promise<PlaceSnapshot | null> | null = null;
+
 function mapReview(r: PlacesReview): GoogleReview {
   return {
     authorName: r.author_name,
@@ -66,11 +76,7 @@ async function fetchPlacesReviews(
 }
 
 /** Places API devuelve máx. 5 reseñas por idioma; combinamos es + ca para obtener más. */
-function mergeReviewsByAuthor(
-  spanish: GoogleReview[],
-  other: GoogleReview[],
-  limit: number,
-): GoogleReview[] {
+function mergeReviewsByAuthor(spanish: GoogleReview[], other: GoogleReview[], limit: number): GoogleReview[] {
   const byAuthor = new Map<string, GoogleReview>();
 
   for (const review of spanish) {
@@ -82,12 +88,10 @@ function mergeReviewsByAuthor(
     }
   }
 
-  return [...byAuthor.values()]
-    .sort((a, b) => b.time - a.time)
-    .slice(0, limit);
+  return [...byAuthor.values()].sort((a, b) => b.time - a.time).slice(0, limit);
 }
 
-export async function fetchGoogleReviews(limit = 6): Promise<GooglePlaceReviews | null> {
+async function loadPlaceSnapshot(): Promise<PlaceSnapshot | null> {
   const apiKey = import.meta.env.GOOGLE_PLACES_API_KEY;
   const placeId = import.meta.env.GOOGLE_PLACES_PLACE_ID;
 
@@ -113,20 +117,46 @@ export async function fetchGoogleReviews(limit = 6): Promise<GooglePlaceReviews 
 
     const esReviews = (esResult?.reviews ?? []).map(mapReview);
     const caReviews = (caResult?.reviews ?? []).map(mapReview);
-    const reviews = mergeReviewsByAuthor(esReviews, caReviews, limit);
-
-    if (reviews.length === 0) return null;
+    const mergedReviews = mergeReviewsByAuthor(esReviews, caReviews, 50);
 
     return {
-      reviews,
       rating: meta.rating ?? 5,
-      totalReviews: meta.user_ratings_total ?? reviews.length,
+      totalReviews: meta.user_ratings_total ?? mergedReviews.length,
       googleMapsUrl: meta.url ?? `https://www.google.com/maps/place/?q=place_id:${placeId}`,
+      mergedReviews,
     };
   } catch (err) {
     console.warn('[google-reviews] fetch failed:', err);
     return null;
   }
+}
+
+function getPlaceSnapshot(): Promise<PlaceSnapshot | null> {
+  snapshotPromise ??= loadPlaceSnapshot();
+  return snapshotPromise;
+}
+
+export async function fetchGoogleReviews(limit = 6): Promise<GooglePlaceReviews | null> {
+  const snap = await getPlaceSnapshot();
+  if (!snap || snap.mergedReviews.length === 0) return null;
+
+  return {
+    reviews: snap.mergedReviews.slice(0, limit),
+    rating: snap.rating,
+    totalReviews: snap.totalReviews,
+    googleMapsUrl: snap.googleMapsUrl,
+  };
+}
+
+/** Para JSON-LD `aggregateRating` — coincide con Google Places (`rating` + `user_ratings_total`). */
+export async function fetchPlaceAggregate(): Promise<{ ratingValue: number; reviewCount: number } | null> {
+  const snap = await getPlaceSnapshot();
+  if (!snap || snap.totalReviews < 1) return null;
+
+  return {
+    ratingValue: snap.rating,
+    reviewCount: snap.totalReviews,
+  };
 }
 
 export function renderStars(rating: number): string[] {

@@ -1,36 +1,79 @@
 ---
+import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
+import { SERVICE_NAV_LINKS } from '../../data/navigation';
+
 const year = new Date().getFullYear();
+
+const footerLinkClass =
+  'text-sm text-text-secondary no-underline hover:text-white transition-colors duration-200';
+
+const footerChevronClass =
+  'icon inline-flex size-4 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
 ---
+
 <footer class="section-bg--elevated border-t border-border-default py-10">
   <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <a href="/" class="font-display font-medium text-[1.25rem] tracking-[-0.03em] no-underline">
         <span class="text-white">Rimo</span><span class="text-gradient-logo">Byte</span>
       </a>
-      <nav class="flex flex-wrap justify-center gap-6">
-        {['Proyectos', 'Servicios', 'Sobre mí', 'Contacto'].map(item => (
-          <a
-            href={`/${item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s/g, '-')}`}
-            class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
-          >{item}</a>
-        ))}
+
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-3 items-center" aria-label="Pie de página">
+        <a href="/proyectos/" class={footerLinkClass}>Proyectos</a>
+
+        <details id="footer-services" class="group/footer-services relative">
+          <summary
+            class:list={[
+              footerLinkClass,
+              'cursor-pointer list-none inline-flex items-center gap-1 select-none',
+              '[&::-webkit-details-marker]:hidden',
+            ]}
+          >
+            Servicios
+            <span
+              class:list={[footerChevronClass, 'group-open/footer-services:rotate-180']}
+              aria-hidden="true"
+              set:html={chevronDownSvg}
+            />
+          </summary>
+          <div class="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 bottom-full z-60 pb-2 min-w-52">
+            <div
+              class="flex flex-col rounded-xl border border-border-default bg-bg-elevated/95 backdrop-blur-md py-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
+              role="group"
+              aria-label="Servicios"
+            >
+              {
+                SERVICE_NAV_LINKS.map(({ label, href }) => (
+                  <a
+                    href={href}
+                    class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-white hover:bg-bg-subtle transition-colors duration-150 text-center md:text-left whitespace-nowrap"
+                  >
+                    {label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </details>
+
+        <a href="/blog/" class={footerLinkClass}>Blog</a>
+        <a href="/sobre-mi/" class={footerLinkClass}>Sobre mí</a>
+        <a href="/contacto/" class={footerLinkClass}>Contacto</a>
       </nav>
-      <a href="mailto:info@rimobyte.com" class="text-sm text-text-secondary no-underline hover:text-white transition-colors">
+
+      <a
+        href="mailto:info@rimobyte.com"
+        class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
+      >
         info@rimobyte.com
       </a>
     </div>
     <div class="mt-8 pt-6 border-t border-border-default flex flex-col items-center gap-4 text-center">
       <nav aria-label="Legal" class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        <a
-          href="/politica-privacidad"
-          class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
-        >
+        <a href="/politica-privacidad/" class="text-sm text-text-secondary no-underline hover:text-white transition-colors">
           Política de privacidad
         </a>
-        <a
-          href="/politica-cookies"
-          class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
-        >
+        <a href="/politica-cookies/" class="text-sm text-text-secondary no-underline hover:text-white transition-colors">
           Política de cookies
         </a>
       </nav>
@@ -40,3 +83,19 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<script>
+  const footerServices = document.getElementById('footer-services') as HTMLDetailsElement | null;
+
+  footerServices?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      footerServices.open = false;
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!footerServices?.open) return;
+    const t = e.target as Node;
+    if (!footerServices.contains(t)) footerServices.open = false;
+  });
+</script>

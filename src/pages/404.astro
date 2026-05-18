@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import Button from '../components/ui/Button.astro';
+
+const SEO = {
+  title: 'Página no encontrada · RimoByte',
+  description: 'Esta URL no existe o se ha movido. Vuelve al inicio o explora el blog y los proyectos.',
+};
+---
+
+<Base title={SEO.title} description={SEO.description} noindex>
+  <Navbar />
+  <main id="main" class="section-bg--elevated">
+    <div
+      class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(6rem,12vw,9rem)] text-center"
+    >
+      <p class="font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-text-muted mb-6">
+        Error 404
+      </p>
+      <h1 class="headline-gradient font-display font-medium text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-6">
+        Esta página no existe
+      </h1>
+      <p class="font-body text-text-secondary text-[clamp(1rem,1.3vw,1.125rem)] leading-relaxed max-w-xl mx-auto mb-10">
+        Puede que el enlace esté roto o que la página se haya mudado. Si vienes de una búsqueda antigua,
+        prueba estas secciones:
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/">Ir al inicio</Button>
+        <Button href="/blog/" variant="outline">Blog</Button>
+        <Button href="/proyectos/" variant="outline">Proyectos</Button>
+        <Button href="/contacto/" variant="outline">Contacto</Button>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

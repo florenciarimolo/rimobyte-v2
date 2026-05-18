@@ -12,6 +12,7 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [react(), sitemap()],
   redirects: legacySitemapRedirects,
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
     resolve: {

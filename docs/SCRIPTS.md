@@ -10,6 +10,8 @@ Los scripts Node personalizados viven en [`scripts/`](../scripts/).
 - [Lint de clases Tailwind](#lint-de-clases-tailwind)
 - [Imágenes del portfolio](#imágenes-del-portfolio)
 - [Imágenes del blog](#imágenes-del-blog)
+- [Favicons](#favicons)
+- [Open Graph estáticas](#open-graph-estáticas)
 - [Resumen rápido](#resumen-rápido)
 
 ---
@@ -19,10 +21,12 @@ Los scripts Node personalizados viven en [`scripts/`](../scripts/).
 | Comando | Cuándo | Qué hace |
 |---------|--------|----------|
 | `pnpm dev` | Trabajo diario en el sitio | Servidor local con recarga (por defecto `http://localhost:4321`). |
-| `pnpm build` | Antes de deploy o para validar producción | Genera el sitio en `dist/`. |
+| `pnpm build` | Antes de deploy o para validar producción | Ejecuta `prebuild` (favicons, imágenes proyecto/blog, OG PNG) y genera el sitio en `dist/`. |
 | `pnpm preview` | Tras `pnpm build` | Sirve `dist/` como en producción. |
 | `pnpm check` | Antes de un PR o tras cambios de tipos | `astro check`: errores TypeScript y de componentes `.astro`. |
 | `pnpm astro` | Casos puntuales de CLI | Acceso directo al binario de Astro (p. ej. `pnpm astro add …`). |
+
+El hook **`prebuild`** de `pnpm build` ejecuta en orden: `pnpm images:favicons` → `images:projects` → `images:blog` → `images:og`. Para iterar rápido solo en Astro puedes usar `pnpm astro build` (sin regenerar assets); en CI y antes de deploy usa `pnpm build`.
 
 No hace falta volver a ejecutar `dev` o `build` solo porque hayas regenerado imágenes: basta con commitear los `.webp` nuevos. Sí conviene `pnpm check` si tocaste código además de assets.
 
@@ -107,7 +111,7 @@ pnpm images:blog -- --slug=cuanto-cuesta-una-pagina-web
 ### Entrada
 
 - `public/assets/blog/{slug}.jpg`, `.jpeg` o `.png` (recomendado para fotos nuevas).
-- También acepta `{slug}.webp` como fuente (no borra el original en ese caso).
+- También acepta `{slug}.webp` como fuente (no borra el original en ese caso). El script lee el archivo en memoria antes de escribir el maestro `{slug}.webp`, para poder sobrescribir WebP→WebP sin conflicto en sharp.
 
 ### Salida (por slug)
 
@@ -132,6 +136,42 @@ El script aplica la rotación EXIF. Si la fuente era JPG o PNG, **elimina el ori
 
 ---
 
+## Favicons
+
+**Comando:** `pnpm images:favicons`  
+**Script:** [`scripts/generate-favicons.mjs`](../scripts/generate-favicons.mjs)  
+**Dependencias:** [sharp](https://sharp.pixelplumbing.com/), [png-to-ico](https://www.npmjs.com/package/png-to-ico)
+
+### Cuándo ejecutarlo
+
+- Parte del `prebuild` en cada `pnpm build`.
+- Manualmente si cambias [`public/favicon.svg`](../public/favicon.svg).
+
+### Salida en `public/` (gitignored salvo `favicon.svg`)
+
+`favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-192x192.png`, `android-chrome-512x512.png`. Referenciados desde [`src/layouts/Base.astro`](../src/layouts/Base.astro) y [`public/site.webmanifest`](../public/site.webmanifest).
+
+---
+
+## Open Graph estáticas
+
+**Comando:** `pnpm images:og`  
+**Script:** [`scripts/generate-og-images.ts`](../scripts/generate-og-images.ts) (ejecutar con `tsx`)  
+**Dependencias:** sharp, satori (vía [`src/lib/og/generate.ts`](../src/lib/og/generate.ts))
+
+### Cuándo ejecutarlo
+
+- Parte del `prebuild` en cada `pnpm build`.
+- Manualmente tras cambiar título/description SEO de páginas que usan la imagen OG por defecto (no posts ni fichas de proyecto, que llevan `.webp` propios).
+
+### Salida
+
+PNG 1200×630 en `public/assets/og/{basename}.png` (lista en el propio script). El basename coincide con [`pathnameToOgBasename`](../src/lib/og/url.ts). Rutas indexables del blog y proyectos **no** generan PNG aquí (usan capturas/portadas).
+
+La ruta dinámica [`src/pages/og.png.ts`](../src/pages/og.png.ts) sigue disponible como respaldo en desarrollo.
+
+---
+
 ## Resumen rápido
 
 | Necesitas… | Ejecuta |
@@ -141,7 +181,9 @@ El script aplica la rotación EXIF. Si la fuente era JPG o PNG, **elimina el ori
 | Revisar clases Tailwind vs tokens del tema | `pnpm lint:classes` |
 | Nueva o cambiada captura de proyecto | `pnpm images:projects` |
 | Nueva o cambiada portada de blog | `pnpm images:blog` (opcional `--slug=…`) |
-| Probar build de producción | `pnpm build` → `pnpm preview` |
+| Regenerar favicons desde `favicon.svg` | `pnpm images:favicons` |
+| Regenerar carteles OG (páginas con retrato por defecto) | `pnpm images:og` |
+| Probar build de producción completo | `pnpm build` → `pnpm preview` |
 
 ## Assets relacionados
 
@@ -149,4 +191,7 @@ El script aplica la rotación EXIF. Si la fuente era JPG o PNG, **elimina el ori
 |---------|--------|-------------------------|
 | `public/assets/projects/` | `images:projects` | [`AGENTS.md`](../AGENTS.md) |
 | `public/assets/blog/` | `images:blog` | [`AGENTS.md`](../AGENTS.md) |
+| `public/assets/og/` | `images:og` | [`src/lib/og/url.ts`](../src/lib/og/url.ts) |
+| `public/assets/fonts/clash-grotesk/` | — (woff2 versionados en repo; licencia Fontshare) | [`docs/DESIGN.md`](DESIGN.md), [`src/styles/global.css`](../src/styles/global.css) |
+| Raíz `public/` (favicons PNG/ICO) | `images:favicons` | Este doc |
 | `public/assets/brand/` | — (manual) | [`docs/DESIGN.md`](DESIGN.md) |

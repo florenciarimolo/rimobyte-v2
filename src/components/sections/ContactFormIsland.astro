@@ -5,11 +5,19 @@ import { contactOriginFromPathname } from '../../lib/contact-origin';
 interface Props {
   /** Override del slug de origen; si no se pasa, se usa la ruta actual */
   origin?: string;
+  headingLevel?: 1 | 2;
+  heading?: string;
 }
 
-const { origin: originOverride } = Astro.props;
+const { origin: originOverride, headingLevel = 2, heading } = Astro.props;
 const origin = originOverride ?? contactOriginFromPathname(Astro.url.pathname);
 const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 ---
 
-<ContactForm client:load recaptchaSiteKey={recaptchaSiteKey} origin={origin} />
+<ContactForm
+  client:load
+  recaptchaSiteKey={recaptchaSiteKey}
+  origin={origin}
+  headingLevel={headingLevel}
+  heading={heading}
+/>

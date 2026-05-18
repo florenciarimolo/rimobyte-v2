@@ -62,7 +62,7 @@ for (const slug of slugs) {
     continue;
   }
 
-  const pipeline = sharp(inputPath).rotate();
+  const pipeline = sharp(await fs.readFile(inputPath)).rotate();
 
   await pipeline
     .clone()

@@ -21,7 +21,7 @@ const formattedDate = post.data.date.toLocaleDateString('es-ES', {
 });
 
 const heroImage = blogHeroPath(post.id);
-const heroAlt = '';
+const heroAlt = `Portada: ${post.data.title}`;
 ---
 
 <section class="hero-articulo relative overflow-hidden">

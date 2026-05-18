@@ -15,6 +15,13 @@ function normalizeImagePath(image: string): string {
   }
 }
 
+/** Basename del PNG pre-generado en `public/assets/og/` — debe coincidir con `scripts/generate-og-images.ts`. */
+export function pathnameToOgBasename(pathname: string): string {
+  const normalized = pathname.replace(/\/+$/, '') || '/';
+  if (normalized === '/') return 'home';
+  return normalized.slice(1).replace(/\//g, '__');
+}
+
 /** `true` si la página no define una imagen OG propia (usa el retrato por defecto o ninguna). */
 export function isDefaultOgImage(image?: string): boolean {
   if (!image) return true;
@@ -31,14 +38,12 @@ export function buildOgImagePath(title: string, description: string): string {
 }
 
 export function resolveOgImage({
-  title,
-  description,
   image,
+  pathname,
 }: {
-  title: string;
-  description: string;
   image?: string;
+  pathname: string;
 }): string {
   if (!isDefaultOgImage(image)) return image!;
-  return buildOgImagePath(title, description);
+  return `/assets/og/${pathnameToOgBasename(pathname)}.png`;
 }

@@ -555,7 +555,8 @@ src/
   lib/
     google-reviews.ts
 public/
-  favicon.svg · favicon.ico · …
+  favicon.svg (fuente única del símbolo)
+  favicon.ico · PNG favicon · apple-touch · android-chrome — generados con `pnpm images:favicons` (gitignored)
   assets/
     brand/flor-rimobyte.webp
     projects/…

@@ -10,12 +10,32 @@ const SEO = {
     'Cuéntame tu proyecto y te respondo sin tecnicismos. Diseño y desarrollo web para negocios locales — Flor Rímolo.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
+
+const contactUrl = new URL('/contacto/', Astro.site).href;
+
+const contactLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: SEO.title,
+  url: contactUrl,
+  description: SEO.description,
+  inLanguage: 'es-ES',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Flor Rímolo',
+    url: 'https://rimobyte.com/',
+    email: 'info@rimobyte.com',
+    telephone: '+34684713743',
+  },
+};
 ---
 
 <Base title={SEO.title} description={SEO.description} image={SEO.image}>
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(contactLd)} />
+
   <Navbar />
   <main id="main">
-    <ContactFormIsland />
+    <ContactFormIsland headingLevel={1} heading="Contacto · Cuéntame tu proyecto" />
   </main>
   <Footer />
 </Base>

@@ -2,6 +2,7 @@
 import Eyebrow from '../ui/Eyebrow.astro';
 import ServiceCard from '../ui/ServiceCard.astro';
 import type { IconName } from '../ui/icons/registry';
+import { SERVICE_NAV_LINKS } from '../../data/navigation';
 
 const services: {
   icon: IconName;
@@ -15,25 +16,25 @@ const services: {
     title: 'Web corporativa',
     desc: 'Para negocios que quieren existir profesionalmente en internet. Tus clientes te encuentran y te contactan.',
     price: 'Desde 600€',
-    href: '/servicios/web-corporativa',
+    href: SERVICE_NAV_LINKS[0].href,
   },
   {
     icon: 'shopping-bag',
     title: 'Tienda online',
     desc: 'Para negocios que quieren vender las 24 horas. Acepta pagos, gestiona pedidos, escala.',
     price: 'Desde 1.200€',
-    href: '/servicios/tienda-online',
+    href: SERVICE_NAV_LINKS[1].href,
   },
   {
     icon: 'wrench',
     title: 'Mantenimiento',
     desc: 'Para quienes no quieren preocuparse por lo técnico. Sin permanencia, sin letra pequeña.',
     price: 'Desde 50€/mes',
-    href: '/servicios/mantenimiento-web',
+    href: SERVICE_NAV_LINKS[2].href,
   },
 ];
 ---
-<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
+<section id="servicios" class="section-bg py-[clamp(4rem,8vw,7rem)]">
   <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 
     <Eyebrow text="SERVICIOS" />

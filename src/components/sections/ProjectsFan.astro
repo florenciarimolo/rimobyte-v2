@@ -44,7 +44,7 @@ function fanTransform(i: number, straight = false) {
           Cada web que entrego tiene detrás una historia: un negocio que quería crecer, un autónomo que quería ser encontrado, o una tienda que quería vender online. Aquí van algunos de ellos.
         </p>
       </div>
-      <a href="/proyectos" class="projects-fan__link projects-fan__link--desktop">
+      <a href="/proyectos/" class="projects-fan__link projects-fan__link--desktop">
         Ver todos <span aria-hidden="true">→</span>
       </a>
     </header>
@@ -62,7 +62,7 @@ function fanTransform(i: number, straight = false) {
       const img = imageMap[p.slug];
       return (
         <a
-          href={`/proyectos/${p.slug}`}
+          href={`/proyectos/${p.slug}/`}
           class="fan-card"
           style={`
             transform: ${fanTransform(i)};
@@ -96,7 +96,7 @@ function fanTransform(i: number, straight = false) {
     {projects.map((p) => {
       const img = imageMap[p.slug];
       return (
-        <a href={`/proyectos/${p.slug}`} class="fan-card">
+        <a href={`/proyectos/${p.slug}/`} class="fan-card">
           <div class="fan-card__media">
             {img ? (
               <img
@@ -121,7 +121,7 @@ function fanTransform(i: number, straight = false) {
   </div>
 
   <div class="projects-fan__mobile-cta reveal">
-    <a href="/proyectos" class="projects-fan__link">
+    <a href="/proyectos/" class="projects-fan__link">
       Ver todos <span aria-hidden="true">→</span>
     </a>
   </div>

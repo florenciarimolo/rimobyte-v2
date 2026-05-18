@@ -7,11 +7,14 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "pnpm images:favicons && pnpm images:projects && pnpm images:blog && pnpm images:og",
     "build": "astro build",
     "check": "astro check",
     "lint:classes": "node scripts/lint-tailwind-classes.mjs",
     "preview": "astro preview",
     "astro": "astro",
+    "images:favicons": "node scripts/generate-favicons.mjs",
+    "images:og": "tsx scripts/generate-og-images.ts",
     "images:projects": "node scripts/generate-project-images.mjs",
     "images:blog": "node scripts/generate-blog-images.mjs"
   },
@@ -21,6 +24,7 @@
     "@astrojs/vercel": "^10.0.6",
     "@fontsource-variable/inter": "^5.0.0",
     "@fontsource/inter": "^5.2.8",
+    "@fontsource/space-mono": "^5.2.9",
     "astro": "^6.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -33,9 +37,11 @@
     "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "png-to-ico": "^3.0.1",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.14.0",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.22.1",
     "typescript": "^6.0.3"
   },
   "pnpm": {

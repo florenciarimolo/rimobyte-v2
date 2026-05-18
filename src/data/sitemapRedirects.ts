@@ -1,52 +1,21 @@
 /**
- * Rutas públicas de rimobyte-v2 (coinciden con el sitemap generado en build).
- * Referencia del sitemap anterior en producción: https://rimobyte.com/sitemap.xml
- */
-
-/** Rutas indexables del sitio actual — mantener alineadas con `pnpm build` / sitemap. */
-export const publicRoutes = [
-  '/',
-  '/blog',
-  '/blog/cuanto-cuesta-una-pagina-web',
-  '/blog/tu-web-debe-ser-tuya',
-  '/blog/web-o-instagram',
-  '/contacto',
-  '/politica-cookies',
-  '/politica-privacidad',
-  '/proyectos',
-  '/proyectos/ariadna-vilalta',
-  '/proyectos/de-cos',
-  '/proyectos/fenix-internacional-360',
-  '/proyectos/jlg-ki',
-  '/proyectos/juancar-garma-reset7',
-  '/proyectos/lucia-nails-art',
-  '/proyectos/rock-zone-camp',
-  '/proyectos/supercapaces',
-  '/proyectos/vila-i-lancis',
-  '/servicios/mantenimiento-web',
-  '/servicios/tienda-online',
-  '/servicios/web-corporativa',
-  '/sobre-mi',
-] as const;
-
-/**
  * URLs del sitemap de producción (may/2026) sin página equivalente en v2.
- * Redirigen a / para no devolver 404 en enlaces indexados.
+ * Redirigen a la URL temática más cercana (o `/`).
+ *
+ * Las claves coinciden con URLs antiguas indexadas (sin barra final).
  */
 export const legacySitemapRedirects = {
   '/desarrolladora-wordpress-freelance': '/',
-  '/migrar-web-agencia-freelance': '/',
-  '/rescate-wordpress-urgente': '/',
-  '/precios-desarrollo-web': '/',
-  '/rediseno-web-wordpress': '/',
-  '/desarrollo-tienda-online': '/',
-  '/optimizacion-velocidad-wordpress': '/',
+  '/migrar-web-agencia-freelance': '/blog/tu-web-debe-ser-tuya/',
+  '/rescate-wordpress-urgente': '/servicios/mantenimiento-web/',
+  '/precios-desarrollo-web': '/blog/cuanto-cuesta-una-pagina-web/',
+  '/rediseno-web-wordpress': '/servicios/web-corporativa/',
+  '/desarrollo-tienda-online': '/servicios/tienda-online/',
+  '/optimizacion-velocidad-wordpress': '/servicios/mantenimiento-web/',
   '/desarrollo-vue-nuxt-astro': '/',
-  '/blog/cuando-redisenar-web': '/',
-  '/blog/cuanto-cuesta-mantener-wordpress': '/',
-  '/blog/vue-vs-react': '/',
-  '/blog/wordpress-hackeado': '/',
-  '/blog/wordpress-vs-wix': '/',
+  '/blog/cuando-redisenar-web': '/blog/tu-web-debe-ser-tuya/',
+  '/blog/cuanto-cuesta-mantener-wordpress': '/blog/cuanto-cuesta-una-pagina-web/',
+  '/blog/vue-vs-react': '/blog/',
+  '/blog/wordpress-hackeado': '/servicios/mantenimiento-web/',
+  '/blog/wordpress-vs-wix': '/blog/cuanto-cuesta-una-pagina-web/',
 } as const satisfies Record<string, string>;
-
-export const publicRouteSet = new Set<string>(publicRoutes);

@@ -54,15 +54,17 @@ const articleSchema = {
   author: {
     '@type': 'Person',
     name: 'Flor Rímolo',
-    url: 'https://rimobyte.com',
+    url: 'https://rimobyte.com/',
   },
   publisher: {
     '@type': 'Organization',
     name: 'RimoByte',
-    url: 'https://rimobyte.com',
+    url: 'https://rimobyte.com/',
     logo: {
       '@type': 'ImageObject',
       url: publisherLogoUrl,
+      width: 512,
+      height: 512,
     },
   },
   about: { '@type': 'Thing', name: project.sector },

@@ -4,6 +4,7 @@ import CookieBanner from '../components/ui/CookieBanner.astro';
 import PageLoader from '../components/ui/PageLoader.astro';
 import SiteBackground from '../components/ui/SiteBackground.astro';
 import { resolveOgImage } from '../lib/og/url';
+import { publicProfileUrls } from '../lib/site';
 
 interface Props {
   title?: string;
@@ -15,6 +16,8 @@ interface Props {
   articleModifiedTime?: string;
   /** Solo home — FAQPage JSON-LD */
   faqPageSchema?: Record<string, unknown> | null;
+  /** Person + LocalBusiness — desde Google Places cuando hay API configurada */
+  aggregateRating?: { ratingValue: number; reviewCount: number } | null;
 }
 
 const {
@@ -26,16 +29,21 @@ const {
   articlePublishedTime,
   articleModifiedTime,
   faqPageSchema = null,
+  aggregateRating = null,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImagePath = resolveOgImage({ title, description, image });
+const ogImagePath = resolveOgImage({
+  image,
+  pathname: Astro.url.pathname,
+});
 const ogImageUrl = new URL(ogImagePath, Astro.site).href;
 
-// Detectar si es home o sobre-mi para usar schema Person + LocalBusiness
-const isPersonalPage = Astro.url.pathname === '/' || Astro.url.pathname === '/sobre-mi/' || Astro.url.pathname === '/sobre-mi';
+const pathNorm = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isPersonalPage = pathNorm === '/' || pathNorm === '/sobre-mi';
 
-// Schema: Person + LocalBusiness (para home y sobre-mi)
+const sameAs = publicProfileUrls();
+
 const personBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['Person', 'LocalBusiness'],
@@ -57,37 +65,32 @@ const personBusinessSchema = {
   priceRange: 'EUR',
   openingHours: 'Mo-Fr 09:00-18:00',
   image: 'https://rimobyte.com/assets/brand/flor-rimobyte.webp',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    reviewCount: '10',
-    bestRating: '5',
-    worstRating: '5',
-  },
+  ...(aggregateRating &&
+    aggregateRating.reviewCount > 0 && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: String(aggregateRating.ratingValue),
+        reviewCount: String(aggregateRating.reviewCount),
+        bestRating: '5',
+        worstRating: '1',
+      },
+    }),
+  ...(sameAs.length > 0 && { sameAs }),
 };
 
-// Schema: WebSite + SearchAction del blog (plantilla q= cuando exista la ruta /blog)
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'RimoByte',
   url: 'https://rimobyte.com',
+  inLanguage: 'es-ES',
   description: 'Diseño web freelance para negocios locales. Webs profesionales tuyas desde el primer día.',
   author: {
     '@type': 'Person',
     name: 'Flor Rímolo',
   },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: 'https://rimobyte.com/blog?q={search_term_string}',
-    },
-    'query-input': 'required name=search_term_string',
-  },
 };
 
-// Seleccionar schema según la página
 const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
 ---
 <!doctype html>
@@ -143,17 +146,13 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#0A0A12" />
 
-  <!-- Clash Grotesk — Fontshare CDN (no disponible en Fontsource) -->
-  <link rel="preconnect" href="https://api.fontshare.com" />
   <link
-    href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap"
-    rel="stylesheet"
+    rel="preload"
+    href="/assets/fonts/clash-grotesk/clash-grotesk-500.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
   />
-
-  <!-- Space Mono — Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet" />
 </head>
 <body class="is-loading">
   <a href="#main" class="skip-link">Saltar al contenido</a>

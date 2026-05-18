@@ -16,36 +16,63 @@ import { services } from '../../data/services';
 const service = services.find((s) => s.slug === 'tienda-online')!;
 const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: service.faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-  })),
-};
+const serviceUrl = new URL(`/servicios/${service.slug}/`, Astro.site).href;
+const servicesHubUrl = new URL('/#servicios', Astro.site).href;
 
-const serviceSchema = {
+const serviceLdGraph = {
   '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: 'Tienda online para pequeño negocio',
-  provider: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com' },
-  areaServed: { '@type': 'Country', name: 'España' },
-  description: service.seo.description,
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'EUR',
-    price: '1200',
-    priceSpecification: { '@type': 'PriceSpecification', minPrice: '1200', priceCurrency: 'EUR' },
-  },
-  url: 'https://rimobyte.com/servicios/tienda-online',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: service.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    },
+    {
+      '@type': 'Service',
+      name: 'Tienda online para pequeño negocio',
+      provider: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com/' },
+      areaServed: { '@type': 'Country', name: 'España' },
+      description: service.seo.description,
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'EUR',
+        price: '1200',
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: '1200', priceCurrency: 'EUR' },
+      },
+      url: serviceUrl,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: new URL('/', Astro.site).href,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Servicios',
+          item: servicesHubUrl,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: service.name,
+          item: serviceUrl,
+        },
+      ],
+    },
+  ],
 };
 ---
 
 <Base title={service.seo.title} description={service.seo.description}>
-  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(serviceLdGraph)} />
 
   <Navbar />
   <main id="main">
