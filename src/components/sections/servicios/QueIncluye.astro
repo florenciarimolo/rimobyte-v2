@@ -10,7 +10,7 @@ const { features } = Astro.props;
 ---
 
 <section class="section-bg--elevated relative py-[clamp(5rem,10vw,8rem)]">
-  <div class="mx-auto max-w-[var(--max-width-layout)] px-[clamp(1.5rem,5vw,4rem)]">
+  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
     <div
       class="reveal mb-[clamp(3rem,5vw,4.5rem)] flex items-baseline justify-between border-t border-border-default pt-6"
     >
@@ -26,7 +26,7 @@ const { features } = Astro.props;
       <div class="reveal lg:sticky lg:top-[calc(var(--nav-height,5.25rem)+2rem)] lg:self-start">
         <Eyebrow text="QUÉ INCLUYE" class="mb-6" />
         <h2
-          class="headline-gradient font-display text-[clamp(2rem,3.5vw,3rem)] font-medium leading-[1.05] tracking-[-0.025em]"
+          class="headline-gradient font-display text-[clamp(2rem,3.5vw,3rem)] font-medium leading-[1.05] tracking-tight"
         >
           Todo lo que necesitas, <em>sin sorpresas.</em>
         </h2>
@@ -46,7 +46,7 @@ const { features } = Astro.props;
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div class="min-w-0 flex-1">
-                <h3 class="m-0 mb-2 font-display text-[clamp(1.0625rem,1.5vw,1.3125rem)] font-medium leading-[1.25] tracking-[-0.015em] text-text-primary">
+                <h3 class="m-0 mb-2 font-display text-[clamp(1.0625rem,1.5vw,1.3125rem)] font-medium leading-tight tracking-[-0.015em] text-text-primary">
                   {feature.title}
                 </h3>
                 <p class="m-0 max-w-[58ch] font-body text-[0.9375rem] leading-[1.7] text-text-secondary">

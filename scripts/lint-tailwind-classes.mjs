@@ -11,6 +11,20 @@ import { join, relative } from 'node:path';
 const ROOT = new URL('..', import.meta.url).pathname;
 const SRC = join(ROOT, 'src');
 const PATTERN = /\b(text|bg|border|font)-\(--/g;
+const CANONICAL_REPLACEMENTS = [
+  [/max-w-\[var\(--max-width-layout\)\]/g, 'max-w-layout'],
+  [/ease-\[--ease-spring\]/g, 'ease-spring'],
+  [/ease-\[--ease-out\]/g, 'ease-out'],
+  [/duration-\[600ms\]/g, 'duration-600'],
+  [/tracking-\[-0\.025em\]/g, 'tracking-tight'],
+  [/aspect-\[16\/10\]/g, 'aspect-16/10'],
+  [/leading-\[1\.25\]/g, 'leading-tight'],
+  [/leading-\[1\.5\]/g, 'leading-normal'],
+  [/max-w-\[30rem\]/g, 'max-w-120'],
+  [/max-w-\[47\.5rem\]/g, 'max-w-190'],
+  [/tracking-\[0\.1em\]/g, 'tracking-widest'],
+  [/z-\[10001\]/g, 'z-10001'],
+];
 const EXT = /\.(astro|tsx)$/;
 
 function walk(dir, files = []) {
@@ -30,6 +44,12 @@ for (const file of walk(SRC)) {
       hits.push(`${relative(ROOT, file)}: ${line.trim()}`);
     }
     PATTERN.lastIndex = 0;
+    for (const [re, canonical] of CANONICAL_REPLACEMENTS) {
+      re.lastIndex = 0;
+      if (re.test(line)) {
+        hits.push(`${relative(ROOT, file)}: usa \`${canonical}\` en lugar de sintaxis arbitraria → ${line.trim()}`);
+      }
+    }
   }
 }
 

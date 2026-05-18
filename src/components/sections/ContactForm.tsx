@@ -162,7 +162,7 @@ export default function ContactForm({
     return () => observer.disconnect();
   }, [recaptchaEnabled, recaptchaSiteKey]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(false);

@@ -18,11 +18,11 @@ const {
 ---
 
 <section class="section-bg py-[clamp(5rem,9vw,7rem)]">
-  <div class="mx-auto max-w-[var(--max-width-layout)] px-[clamp(1.5rem,5vw,4rem)]">
+  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
     <div class="reveal mb-10">
       <Eyebrow text="CASOS REALES" class="mb-6" />
       <h2
-        class="headline-gradient font-display font-medium text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] tracking-[-0.025em]"
+        class="headline-gradient font-display font-medium text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] tracking-tight"
       >
         {title} <em>{titleEm}</em>
       </h2>
@@ -38,13 +38,13 @@ const {
               href={`/proyectos/${project.slug}/`}
               class="reveal case-card group flex flex-col overflow-hidden rounded-[14px] border border-border-default bg-[rgba(22,22,42,0.38)] text-inherit no-underline transition-[border-color,background] duration-200 hover:border-border-blue hover:bg-[rgba(30,30,53,0.52)]"
             >
-              <div class="aspect-[16/10] overflow-hidden border-b border-border-default">
+              <div class="aspect-16/10 overflow-hidden border-b border-border-default">
                 <img
                   src={project.image}
                   alt={`Captura de ${project.name}`}
                   loading="lazy"
                   decoding="async"
-                  class="block size-full object-cover object-top transition-transform duration-[600ms] ease-[--ease-spring] group-hover:scale-[1.03]"
+                  class="block size-full object-cover object-top transition-transform duration-600 ease-spring group-hover:scale-[1.03]"
                 />
               </div>
 

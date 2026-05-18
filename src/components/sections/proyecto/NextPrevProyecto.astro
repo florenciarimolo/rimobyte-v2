@@ -25,7 +25,7 @@ const { nextProject, prevProject } = Astro.props;
           <span aria-hidden="true">←</span>
           <span>Proyecto anterior</span>
         </div>
-        <div class="nextprev-card__media aspect-[16/10] rounded-[14px] overflow-hidden
+        <div class="nextprev-card__media aspect-16/10 rounded-[14px] overflow-hidden
                     border border-border-default">
           <img
             src={prevProject.image}
@@ -38,7 +38,7 @@ const { nextProject, prevProject } = Astro.props;
         <div>
           <Eyebrow text={prevProject.eyebrow} class="mb-3" />
           <h3 class="font-display font-medium text-[clamp(1.25rem,2vw,1.5rem)]
-                     leading-[1.25] tracking-[-0.02em] text-text-primary m-0">
+                     leading-tight tracking-[-0.02em] text-text-primary m-0">
             {prevProject.displayName}
           </h3>
         </div>
@@ -52,7 +52,7 @@ const { nextProject, prevProject } = Astro.props;
           <span>Siguiente proyecto</span>
           <span aria-hidden="true">→</span>
         </div>
-        <div class="nextprev-card__media aspect-[16/10] rounded-[14px] overflow-hidden
+        <div class="nextprev-card__media aspect-16/10 rounded-[14px] overflow-hidden
                     border border-border-default w-full md:order-2">
           <img
             src={nextProject.image}
@@ -67,7 +67,7 @@ const { nextProject, prevProject } = Astro.props;
             <Eyebrow text={nextProject.eyebrow} />
           </div>
           <h3 class="font-display font-medium text-[clamp(1.25rem,2vw,1.5rem)]
-                     leading-[1.25] tracking-[-0.02em] text-text-primary m-0">
+                     leading-tight tracking-[-0.02em] text-text-primary m-0">
             {nextProject.displayName}
           </h3>
         </div>
