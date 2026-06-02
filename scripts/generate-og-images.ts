@@ -9,6 +9,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { generateOgImage } from '../src/lib/og/generate.ts';
 import { services } from '../src/data/services.ts';
+import { sectors } from '../src/data/sectors.ts';
 import { pathnameToOgBasename, stripBrandSuffix } from '../src/lib/og/url.ts';
 
 /** Mantener alineado con SEO de cada página `.astro`. */
@@ -74,6 +75,14 @@ async function main() {
       basename: pathnameToOgBasename(`/servicios/${s.slug}/`),
       title: s.seo.title,
       description: s.seo.description,
+    });
+  }
+
+  for (const sector of sectors) {
+    entries.push({
+      basename: pathnameToOgBasename(`/${sector.slug}/`),
+      title: sector.seo.title,
+      description: sector.seo.description,
     });
   }
 

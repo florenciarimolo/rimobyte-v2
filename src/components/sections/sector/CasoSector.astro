@@ -1,0 +1,59 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Button from '../../ui/Button.astro';
+import type { SectorCase } from '../../../data/sectors';
+import { getSectorProject } from '../../../data/sectors';
+
+interface Props {
+  caseData: SectorCase;
+}
+
+const { caseData } = Astro.props;
+const project = getSectorProject(caseData.slug);
+if (!project) return;
+---
+
+<section class="section-bg py-[clamp(5rem,9vw,7rem)]">
+  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
+    <div class="reveal mb-8">
+      <Eyebrow text="CASO REAL" class="mb-4" />
+    </div>
+
+    <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.2fr]">
+      <a
+        href={`/proyectos/${project.slug}/`}
+        class="reveal block aspect-16/10 overflow-hidden rounded-[14px] border border-border-default text-inherit no-underline transition-[border-color] duration-300 hover:border-border-blue"
+      >
+        <img
+          src={project.image}
+          alt={`Captura de ${project.name}`}
+          loading="lazy"
+          decoding="async"
+          class="block size-full object-cover object-top transition-transform duration-600 ease-spring hover:scale-[1.03]"
+        />
+      </a>
+
+      <div class="reveal flex flex-col gap-4">
+        <h3 class="headline-gradient font-display text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium leading-[1.2] tracking-[-0.02em]">
+          {project.name}
+        </h3>
+
+        <p class="m-0 font-body text-[0.9375rem] leading-[1.7] text-text-secondary">
+          {caseData.summary}
+        </p>
+
+        {
+          caseData.testimonialQuote && (
+            <blockquote class="m-0 border-l-[3px] border-blue pl-4 font-body text-[0.875rem] italic leading-[1.6] text-text-muted">
+              "{caseData.testimonialQuote}"
+            </blockquote>
+          )
+        }
+
+        <Button href={`/proyectos/${project.slug}/`} variant="ghost" class="mt-2 self-start">
+          Ver el proyecto completo →
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+{
+  "redirects": [
+    {
+      "source": "/desarrolladora-wordpress-freelance",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/migrar-web-agencia-freelance",
+      "destination": "/blog/tu-web-debe-ser-tuya/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rescate-wordpress-urgente",
+      "destination": "/servicios/mantenimiento-web/",
+      "statusCode": 301
+    },
+    {
+      "source": "/precios-desarrollo-web",
+      "destination": "/blog/cuanto-cuesta-una-pagina-web/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rediseno-web-wordpress",
+      "destination": "/servicios/web-corporativa/",
+      "statusCode": 301
+    },
+    {
+      "source": "/desarrollo-tienda-online",
+      "destination": "/servicios/tienda-online/",
+      "statusCode": 301
+    },
+    {
+      "source": "/optimizacion-velocidad-wordpress",
+      "destination": "/servicios/mantenimiento-web/",
+      "statusCode": 301
+    },
+    {
+      "source": "/desarrollo-vue-nuxt-astro",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/cuando-redisenar-web",
+      "destination": "/blog/tu-web-debe-ser-tuya/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/cuanto-cuesta-mantener-wordpress",
+      "destination": "/blog/cuanto-cuesta-una-pagina-web/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/vue-vs-react",
+      "destination": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/wordpress-hackeado",
+      "destination": "/servicios/mantenimiento-web/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/wordpress-vs-wix",
+      "destination": "/blog/cuanto-cuesta-una-pagina-web/",
+      "statusCode": 301
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import FeatureCard from '../../ui/FeatureCard.astro';
+import type { SectorFeature } from '../../../data/sectors';
+
+interface Props {
+  features: SectorFeature[];
+  sectorName: string;
+  intro?: string;
+}
+
+const { features, sectorName, intro } = Astro.props;
+---
+
+<section class="section-bg relative py-[clamp(5rem,10vw,8rem)]">
+  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
+    <div
+      class="reveal mb-[clamp(3rem,6vw,5rem)] grid gap-8 border-t border-border-default pt-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-end lg:gap-x-[clamp(2rem,6vw,5rem)]"
+    >
+      <div>
+        <Eyebrow text="QUÉ NECESITA TU WEB" class="mb-6" />
+        <h2
+          class="headline-gradient m-0 font-display text-[clamp(2rem,3.5vw,3rem)] font-medium leading-[1.05] tracking-tight"
+        >
+          Lo que convierte visitas en mesas en una web para <em>{sectorName}.</em>
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-4 lg:items-end lg:text-right">
+        {
+          intro && (
+            <p class="m-0 max-w-[44ch] font-body text-[0.9375rem] leading-[1.7] text-text-secondary">
+              {intro}
+            </p>
+          )
+        }
+        <p class="m-0 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
+          {String(features.length).padStart(2, '0')} piezas clave
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="hidden gap-3 md:grid"
+      style="grid-template-columns: 5fr 3.5fr 3.5fr; grid-template-rows: auto auto auto;"
+    >
+      {
+        features.map((feature, i) => {
+          const num = String(i + 1).padStart(2, '0');
+          const tall = feature.span === 'tall';
+          const isLast = i === features.length - 1;
+
+          return (
+            <FeatureCard
+              num={num}
+              title={feature.title}
+              body={feature.description}
+              footnote={feature.tag ?? `Punto · ${num}`}
+              tall={tall}
+              wide={feature.span === 'wide'}
+              class="reveal"
+              style={`
+                ${tall ? 'grid-row: span 2;' : ''}
+                ${feature.span === 'wide' ? 'grid-column: span 2;' : ''}
+                ${isLast ? 'grid-column: 1 / -1;' : ''}
+              `}
+            />
+          );
+        })
+      }
+    </div>
+
+    <div class="grid gap-3 md:hidden">
+      {
+        features.map((feature, i) => {
+          const num = String(i + 1).padStart(2, '0');
+          return (
+            <FeatureCard
+              num={num}
+              title={feature.title}
+              body={feature.description}
+              footnote={feature.tag ?? `Punto · ${num}`}
+              class="reveal"
+            />
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

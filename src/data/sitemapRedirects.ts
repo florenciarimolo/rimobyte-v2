@@ -3,6 +3,7 @@
  * Redirigen a la URL temática más cercana (o `/`).
  *
  * Las claves coinciden con URLs antiguas indexadas (sin barra final).
+ * En dev/preview: `src/middleware.ts`. En Vercel: `vercel.json` (pnpm vercel:redirects).
  */
 export const legacySitemapRedirects = {
   '/desarrolladora-wordpress-freelance': '/',

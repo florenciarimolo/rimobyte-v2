@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "pnpm images:favicons && pnpm images:projects && pnpm images:blog && pnpm images:og",
+    "prebuild": "pnpm images:favicons && pnpm images:projects && pnpm images:blog && pnpm images:og && pnpm vercel:redirects",
     "build": "astro build",
     "check": "astro check",
     "lint:classes": "node scripts/lint-tailwind-classes.mjs",
@@ -16,7 +16,8 @@
     "images:favicons": "node scripts/generate-favicons.mjs",
     "images:og": "tsx scripts/generate-og-images.ts",
     "images:projects": "node scripts/generate-project-images.mjs",
-    "images:blog": "node scripts/generate-blog-images.mjs"
+    "images:blog": "node scripts/generate-blog-images.mjs",
+    "vercel:redirects": "tsx scripts/generate-vercel-redirects.ts"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",

@@ -1,0 +1,74 @@
+---
+import type { Sector } from '../../../data/sectors';
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Button from '../../ui/Button.astro';
+
+interface Props {
+  sector: Sector;
+}
+
+const { sector } = Astro.props;
+---
+
+<section
+  class="section-bg relative overflow-hidden"
+  style="padding-block: clamp(7rem, 13vw, 11rem) clamp(4rem, 8vw, 6rem);"
+>
+  <div class="hero-sector__glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
+    <div class="max-w-[760px]">
+      <Eyebrow text={sector.eyebrow} class="mb-6" />
+
+      <h1
+        class="reveal headline-gradient mb-6 font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.03em]"
+      >
+        {sector.headline} <em>{sector.headlineEm}</em>
+      </h1>
+
+      <p
+        class="reveal mb-8 max-w-[580px] font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary"
+      >
+        {sector.description}
+      </p>
+
+      <div class="reveal mb-10 flex flex-wrap gap-3">
+        <Button href="#contacto" variant="primary">{sector.ctaPrimary}</Button>
+        <Button href="/proyectos/" variant="outline">Ver proyectos →</Button>
+      </div>
+
+      <ul class="reveal m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+        {
+          sector.checks.map((check) => (
+            <li class="flex items-center gap-2 font-body text-sm text-text-secondary">
+              <span class="size-1.5 shrink-0 rounded-full bg-blue" aria-hidden="true" />
+              {check}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div
+      class="reveal mt-[clamp(3rem,6vw,4.5rem)] flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border-default pt-6"
+    >
+      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
+        Enfoque hostelería
+      </span>
+      <span aria-hidden="true" class="hidden h-px w-8 bg-border-blue sm:block"></span>
+      {
+        ['Carta digital', 'Reservas propias', 'Google local'].map((item) => (
+          <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-blue">{item}</span>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-sector__glow {
+    background:
+      radial-gradient(ellipse 70% 55% at 12% 18%, rgba(43, 71, 236, 0.14), transparent 68%),
+      radial-gradient(ellipse 45% 40% at 88% 72%, rgba(101, 53, 229, 0.08), transparent 70%);
+  }
+</style>

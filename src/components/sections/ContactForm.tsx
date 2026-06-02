@@ -129,6 +129,16 @@ type ContactFormProps = {
   headingLevel?: 1 | 2;
   /** Texto del titular principal (h1 en contacto, h2 en el resto) */
   heading?: string;
+  /** Fragmento en cursiva del titular (degradado editorial) */
+  headingEm?: string;
+  /** Eyebrow de la columna izquierda */
+  eyebrowText?: string;
+  /** Sustituye el párrafo introductorio por defecto */
+  intro?: string;
+  /** Línea mono con precio o contexto (ej. "Desde 600€ · Presupuesto cerrado") */
+  priceNote?: string;
+  /** Enlace al servicio principal relacionado */
+  serviceLink?: string;
 };
 
 export default function ContactForm({
@@ -137,6 +147,11 @@ export default function ContactForm({
   omitAnchor = false,
   headingLevel = 2,
   heading = '¿Hablamos?',
+  headingEm,
+  eyebrowText = 'CONTACTO',
+  intro,
+  priceNote,
+  serviceLink,
 }: ContactFormProps) {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -203,15 +218,46 @@ export default function ContactForm({
           <div>
             <p className="eyebrow">
               <span className="eyebrow__bracket" aria-hidden="true">[</span>
-              CONTACTO
+              {eyebrowText}
               <span className="eyebrow__bracket" aria-hidden="true">]</span>
             </p>
-            <HeadingTag style={{ fontSize: 'clamp(2rem,3.5vw,3rem)', lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}>
+            <HeadingTag
+              className="headline-gradient"
+              style={{
+                fontSize: 'clamp(2rem,3.5vw,3rem)',
+                lineHeight: 1.08,
+                letterSpacing: '-0.025em',
+                marginBottom: '1.5rem',
+              }}
+            >
               {heading}
+              {headingEm ? <> <em>{headingEm}</em></> : null}
             </HeadingTag>
-            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', maxWidth: '380px', marginBottom: '2rem' }}>
-              Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con ideas concretas, no con una plantilla de presupuesto.
+            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', maxWidth: '380px', marginBottom: priceNote || serviceLink ? '1rem' : '2rem' }}>
+              {intro ??
+                'Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con ideas concretas, no con una plantilla de presupuesto.'}
             </p>
+            {(priceNote || serviceLink) && (
+              <p
+                style={{
+                  ...mono,
+                  fontSize: '0.6875rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.30)',
+                  marginBottom: '2rem',
+                  maxWidth: '380px',
+                }}
+              >
+                {priceNote}
+                {priceNote && serviceLink ? ' · ' : null}
+                {serviceLink ? (
+                  <a href={serviceLink} style={{ color: 'var(--color-blue)', textDecoration: 'none' }}>
+                    Ver servicio completo →
+                  </a>
+                ) : null}
+              </p>
+            )}
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <a href="mailto:info@rimobyte.com" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'white', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
