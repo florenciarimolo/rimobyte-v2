@@ -7,11 +7,18 @@ interface Dot {
 
 const SPACING = 20;
 const DOT_RADIUS = 1.25;
-const DOT_COLOR = 'rgba(101, 53, 229, 0.11)';
 const HOVER_RADIUS = 110;
 const PUSH_STRENGTH = 32;
 const EASE = 0.14;
 const RETURN_EASE = 0.1;
+const FALLBACK_DOT_COLOR = 'rgba(101, 53, 229, 0.11)';
+
+function readDotColor(): string {
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-interactive-dot')
+    .trim();
+  return value || FALLBACK_DOT_COLOR;
+}
 
 function buildDots(w: number, h: number): Dot[] {
   const dots: Dot[] = [];
@@ -46,6 +53,7 @@ function initInteractiveDots() {
   let mouseX = -9999;
   let mouseY = -9999;
   let active = false;
+  let dotColor = readDotColor();
 
   function resize() {
     width = window.innerWidth;
@@ -88,7 +96,7 @@ function initInteractiveDots() {
 
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, DOT_RADIUS, 0, Math.PI * 2);
-      ctx.fillStyle = DOT_COLOR;
+      ctx.fillStyle = dotColor;
       ctx.fill();
     }
   }
@@ -127,6 +135,10 @@ function initInteractiveDots() {
   }
 
   requestAnimationFrame(tick);
+
+  document.addEventListener('themechange', () => {
+    dotColor = readDotColor();
+  });
 }
 
 if (document.readyState === 'loading') {

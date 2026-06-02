@@ -58,7 +58,7 @@ const mono = { fontFamily: "'Space Mono', monospace" };
 const inputBase: React.CSSProperties = {
   fontFamily: 'var(--font-body)',
   fontSize: '0.9375rem',
-  color: 'white',
+  color: 'var(--color-text-primary)',
   backgroundColor: 'var(--color-bg-surface)',
   border: '1px solid var(--color-border-default)',
   borderRadius: '14px',
@@ -74,7 +74,7 @@ const labelStyle: React.CSSProperties = {
   fontSize: '0.625rem',
   letterSpacing: '0.12em',
   textTransform: 'uppercase',
-  color: 'rgba(255,255,255,0.30)',
+  color: 'var(--color-text-muted)',
   marginBottom: '0.5rem',
   display: 'block',
 };
@@ -96,7 +96,7 @@ const selectChevronStyle: React.CSSProperties = {
   transform: 'translateY(-50%)',
   pointerEvents: 'none',
   display: 'flex',
-  color: 'rgba(255,255,255,0.55)',
+  color: 'var(--color-text-secondary)',
 };
 
 const textFields = [
@@ -233,7 +233,7 @@ export default function ContactForm({
               {heading}
               {headingEm ? <> <em>{headingEm}</em></> : null}
             </HeadingTag>
-            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', maxWidth: '380px', marginBottom: priceNote || serviceLink ? '1rem' : '2rem' }}>
+            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--color-text-secondary)', maxWidth: '380px', marginBottom: priceNote || serviceLink ? '1rem' : '2rem' }}>
               {intro ??
                 'Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con ideas concretas, no con una plantilla de presupuesto.'}
             </p>
@@ -244,7 +244,7 @@ export default function ContactForm({
                   fontSize: '0.6875rem',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.30)',
+                  color: 'var(--color-text-muted)',
                   marginBottom: '2rem',
                   maxWidth: '380px',
                 }}
@@ -260,11 +260,11 @@ export default function ContactForm({
             )}
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <a href="mailto:info@rimobyte.com" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'white', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
+              <a href="mailto:info@rimobyte.com" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
                 <Icon name="mail" style={{ width: 20, height: 20, color: 'var(--color-blue)' }} />
                 info@rimobyte.com
               </a>
-              <a href="https://wa.me/34684713743" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'white', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
+              <a href="https://wa.me/34684713743" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
                 <Icon name="whatsapp" style={{ width: 20, height: 20, color: 'var(--color-blue)' }} />
                 +34 684 713 743
               </a>
@@ -273,8 +273,8 @@ export default function ContactForm({
 
           {sent ? (
             <div style={{ textAlign: 'center', padding: '3rem 0' }} role="status" aria-live="polite">
-              <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 500, color: 'white', marginBottom: '0.75rem' }}>¡Mensaje enviado!</p>
-              <p style={{ color: 'rgba(255,255,255,0.55)' }}>Te respondo en menos de 24 horas.</p>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 500, color: 'var(--color-text-primary)', marginBottom: '0.75rem' }}>¡Mensaje enviado!</p>
+              <p style={{ color: 'var(--color-text-secondary)' }}>Te respondo en menos de 24 horas.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} aria-busy={loading}>
@@ -327,7 +327,7 @@ export default function ContactForm({
                   style={{
                     fontSize: '0.75rem',
                     lineHeight: 1.5,
-                    color: 'rgba(255,255,255,0.35)',
+                    color: 'var(--color-text-muted)',
                     margin: 0,
                   }}
                 >
@@ -336,7 +336,7 @@ export default function ContactForm({
                     href="https://policies.google.com/privacy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: 'rgba(255,255,255,0.45)' }}
+                    style={{ color: 'var(--color-text-secondary)' }}
                   >
                     Política de privacidad
                   </a>{' '}
@@ -345,7 +345,7 @@ export default function ContactForm({
                     href="https://policies.google.com/terms"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: 'rgba(255,255,255,0.45)' }}
+                    style={{ color: 'var(--color-text-secondary)' }}
                   >
                     Términos del servicio
                   </a>{' '}

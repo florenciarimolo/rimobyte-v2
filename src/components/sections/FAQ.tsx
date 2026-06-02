@@ -50,7 +50,7 @@ export default function FAQ({ faqs }: FAQProps) {
                       onClick={() => setOpen(isOpen ? null : i)}
                       style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1.25rem 0', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                     >
-                      <span style={{ ...display, fontWeight: 500, fontSize: '1rem', color: 'white', lineHeight: 1.4 }}>{f.q}</span>
+                      <span style={{ ...display, fontWeight: 500, fontSize: '1rem', color: 'var(--color-text-primary)', lineHeight: 1.4 }}>{f.q}</span>
                       <span aria-hidden="true" style={{ color: 'var(--color-blue)', fontSize: '1.25rem', flexShrink: 0, lineHeight: 1 }}>{isOpen ? '−' : '+'}</span>
                     </button>
                   </h3>
@@ -66,7 +66,7 @@ export default function FAQ({ faqs }: FAQProps) {
                       transition: 'max-height 0.3s ease',
                     }}
                   >
-                    <p style={{ fontSize: '0.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', paddingBottom: '1.25rem', margin: 0 }}>{f.a}</p>
+                    <p style={{ fontSize: '0.9375rem', lineHeight: 1.75, color: 'var(--color-text-secondary)', paddingBottom: '1.25rem', margin: 0 }}>{f.a}</p>
                   </div>
                 </div>
               );

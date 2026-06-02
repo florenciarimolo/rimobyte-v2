@@ -144,7 +144,27 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#0A0A12" />
+  <meta name="theme-color" content="#0A0A12" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#EEEDF4" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" id="theme-color-meta" content="#0A0A12" />
+
+  <script is:inline>
+    (function () {
+      var KEY = 'rimobyte-theme';
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      var theme =
+        stored === 'light' || stored === 'dark'
+          ? stored
+          : window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'light'
+            : 'dark';
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      var meta = document.getElementById('theme-color-meta');
+      if (meta) meta.setAttribute('content', theme === 'light' ? '#EEEDF4' : '#0A0A12');
+    })();
+  </script>
 
   <link
     rel="preload"
@@ -163,6 +183,10 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
 
   <script>
     import '../scripts/interactive-dots.ts';
+    import { applyTheme, initThemeListeners, resolveTheme } from '../lib/theme';
+
+    applyTheme(resolveTheme());
+    initThemeListeners();
   </script>
   <script>
     const io = new IntersectionObserver(

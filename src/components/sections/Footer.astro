@@ -5,7 +5,7 @@ import { SERVICE_NAV_LINKS } from '../../data/navigation';
 const year = new Date().getFullYear();
 
 const footerLinkClass =
-  'text-sm text-text-secondary no-underline hover:text-white transition-colors duration-200';
+  'text-sm text-text-secondary no-underline hover:text-text-primary transition-colors duration-200';
 
 const footerChevronClass =
   'icon inline-flex size-4 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
@@ -15,7 +15,7 @@ const footerChevronClass =
   <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <a href="/" class="font-display font-medium text-[1.25rem] tracking-[-0.03em] no-underline">
-        <span class="text-white">Rimo</span><span class="text-gradient-logo">Byte</span>
+        <span class="text-text-primary">Rimo</span><span class="text-gradient-logo">Byte</span>
       </a>
 
       <nav class="flex flex-wrap justify-center gap-x-6 gap-y-3 items-center" aria-label="Pie de página">
@@ -38,7 +38,7 @@ const footerChevronClass =
           </summary>
           <div class="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 bottom-full z-60 pb-2 min-w-52">
             <div
-              class="flex flex-col rounded-xl border border-border-default bg-bg-elevated/95 backdrop-blur-md py-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)]"
+              class="flex flex-col rounded-xl border border-border-default bg-bg-elevated/95 backdrop-blur-md py-2 nav-dropdown"
               role="group"
               aria-label="Servicios"
             >
@@ -46,7 +46,7 @@ const footerChevronClass =
                 SERVICE_NAV_LINKS.map(({ label, href }) => (
                   <a
                     href={href}
-                    class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-white hover:bg-bg-subtle transition-colors duration-150 text-center md:text-left whitespace-nowrap"
+                    class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-text-primary hover:bg-bg-subtle transition-colors duration-150 text-center md:text-left whitespace-nowrap"
                   >
                     {label}
                   </a>
@@ -63,17 +63,17 @@ const footerChevronClass =
 
       <a
         href="mailto:info@rimobyte.com"
-        class="text-sm text-text-secondary no-underline hover:text-white transition-colors"
+        class="text-sm text-text-secondary no-underline hover:text-text-primary transition-colors"
       >
         info@rimobyte.com
       </a>
     </div>
     <div class="mt-8 pt-6 border-t border-border-default flex flex-col items-center gap-4 text-center">
       <nav aria-label="Legal" class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        <a href="/politica-privacidad/" class="text-sm text-text-secondary no-underline hover:text-white transition-colors">
+        <a href="/politica-privacidad/" class="text-sm text-text-secondary no-underline hover:text-text-primary transition-colors">
           Política de privacidad
         </a>
-        <a href="/politica-cookies/" class="text-sm text-text-secondary no-underline hover:text-white transition-colors">
+        <a href="/politica-cookies/" class="text-sm text-text-secondary no-underline hover:text-text-primary transition-colors">
           Política de cookies
         </a>
       </nav>

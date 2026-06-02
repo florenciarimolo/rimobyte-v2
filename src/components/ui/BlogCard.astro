@@ -57,7 +57,7 @@ const cardAlt = `Portada: ${title}`;
     </div>
 
     <h3
-      class="blog-card__title font-display font-medium text-[clamp(1.25rem,1.9vw,1.4375rem)] leading-[1.2] tracking-[-0.02em] m-0 text-white"
+      class="blog-card__title font-display font-medium text-[clamp(1.25rem,1.9vw,1.4375rem)] leading-[1.2] tracking-[-0.02em] m-0 text-text-primary"
     >
       {title}
     </h3>
@@ -72,14 +72,14 @@ const cardAlt = `Portada: ${title}`;
   .blog-card {
     border-radius: 14px;
     border: 1px solid var(--color-border-default);
-    background: rgba(22, 22, 42, 0.38);
+    background: var(--color-surface-card);
     overflow: hidden;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
 
   .blog-card:hover {
     border-color: var(--color-border-blue);
-    background: rgba(30, 30, 53, 0.52);
+    background: var(--color-surface-card-hover);
   }
 
   .blog-card__body {

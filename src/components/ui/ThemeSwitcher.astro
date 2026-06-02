@@ -1,0 +1,91 @@
+---
+/** Alterna tema claro / oscuro; sin preferencia guardada sigue el sistema. */
+---
+
+<button
+  type="button"
+  id="theme-switcher"
+  class="theme-switcher"
+  aria-label="Cambiar a tema claro"
+  title="Cambiar tema"
+>
+  <span class="theme-switcher__icon theme-switcher__icon--sun" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  </span>
+  <span class="theme-switcher__icon theme-switcher__icon--moon" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  </span>
+</button>
+
+<script>
+  import { initThemeListeners, resolveTheme, toggleTheme, type Theme } from '../../lib/theme';
+
+  function syncSwitcher(theme: Theme) {
+    const btn = document.getElementById('theme-switcher');
+    if (!btn) return;
+
+    const isDark = theme === 'dark';
+    btn.setAttribute('aria-label', isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+    btn.setAttribute('data-theme-state', theme);
+  }
+
+  syncSwitcher(resolveTheme());
+  initThemeListeners();
+
+  document.getElementById('theme-switcher')?.addEventListener('click', () => {
+    syncSwitcher(toggleTheme());
+  });
+
+  document.addEventListener('themechange', (e) => {
+    const detail = (e as CustomEvent<{ theme: Theme }>).detail;
+    if (detail?.theme) syncSwitcher(detail.theme);
+  });
+</script>
+
+<style>
+  .theme-switcher {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.375rem;
+    height: 2.375rem;
+    padding: 0;
+    border: 1px solid var(--color-border-default);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .theme-switcher:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
+    background: var(--color-blue-subtle);
+  }
+
+  .theme-switcher__icon {
+    display: none;
+    line-height: 0;
+  }
+
+  .theme-switcher__icon :is(svg) {
+    display: block;
+  }
+
+  .theme-switcher[data-theme-state='dark'] .theme-switcher__icon--sun {
+    display: inline-flex;
+  }
+
+  .theme-switcher[data-theme-state='light'] .theme-switcher__icon--moon {
+    display: inline-flex;
+  }
+</style>
