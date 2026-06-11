@@ -4,7 +4,6 @@
 
 <button
   type="button"
-  id="theme-switcher"
   class="theme-switcher"
   aria-label="Cambiar a tema claro"
   title="Cambiar tema"
@@ -23,28 +22,9 @@
 </button>
 
 <script>
-  import { initThemeListeners, resolveTheme, toggleTheme, type Theme } from '../../lib/theme';
+  import { initThemeSwitchers } from '../../scripts/theme-switcher';
 
-  function syncSwitcher(theme: Theme) {
-    const btn = document.getElementById('theme-switcher');
-    if (!btn) return;
-
-    const isDark = theme === 'dark';
-    btn.setAttribute('aria-label', isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
-    btn.setAttribute('data-theme-state', theme);
-  }
-
-  syncSwitcher(resolveTheme());
-  initThemeListeners();
-
-  document.getElementById('theme-switcher')?.addEventListener('click', () => {
-    syncSwitcher(toggleTheme());
-  });
-
-  document.addEventListener('themechange', (e) => {
-    const detail = (e as CustomEvent<{ theme: Theme }>).detail;
-    if (detail?.theme) syncSwitcher(detail.theme);
-  });
+  initThemeSwitchers();
 </script>
 
 <style>
@@ -81,11 +61,11 @@
     display: block;
   }
 
-  .theme-switcher[data-theme-state='dark'] .theme-switcher__icon--sun {
+  html[data-theme='dark'] .theme-switcher__icon--sun {
     display: inline-flex;
   }
 
-  .theme-switcher[data-theme-state='light'] .theme-switcher__icon--moon {
+  html[data-theme='light'] .theme-switcher__icon--moon {
     display: inline-flex;
   }
 </style>
