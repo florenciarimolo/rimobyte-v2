@@ -1,4 +1,7 @@
 ---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import SectionHead from '../../ui/SectionHead.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
 import type { ServiceFeature } from '../../../data/services';
 
@@ -9,73 +12,29 @@ interface Props {
 const { features } = Astro.props;
 ---
 
-<section class="section-bg--elevated relative py-[clamp(5rem,10vw,8rem)]">
-  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
-    <div
-      class="reveal mb-[clamp(3rem,5vw,4.5rem)] flex items-baseline justify-between border-t border-border-default pt-6"
-    >
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        / 03 · Alcance del servicio
-      </span>
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        {String(features.length).padStart(2, '0')} items
-      </span>
-    </div>
+<SectionShell elevated class="relative">
+  <SiteWrap>
+    <Eyebrow text="QUÉ INCLUYE" class="reveal mb-6" />
+    <SectionHead
+      title="Todo lo que necesitas,"
+      titleEm="sin sorpresas."
+      subtitle="Una lista sin trampa: cada punto es algo que se entrega y que puedes auditar en la web final."
+      class="reveal"
+      narrow={false}
+    />
 
-    <div class="grid gap-x-[clamp(2rem,5vw,5rem)] gap-y-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,2fr)]">
-      <div class="reveal lg:sticky lg:top-[calc(var(--nav-height,5.25rem)+2rem)] lg:self-start">
-        <Eyebrow text="QUÉ INCLUYE" class="mb-6" />
-        <h2
-          class="headline-gradient font-display text-[clamp(2rem,3.5vw,3rem)] font-medium leading-[1.05] tracking-tight"
-        >
-          Todo lo que necesitas, <em>sin sorpresas.</em>
-        </h2>
-        <p class="mt-6 max-w-[34ch] font-body text-[0.9375rem] leading-[1.7] text-text-secondary">
-          Una lista sin trampa: cada punto es algo que se entrega y que puedes auditar en la web final.
-        </p>
-      </div>
-
-      <ol class="m-0 list-none p-0">
-        {
-          features.map((feature, i) => (
-            <li class="reveal include-row group flex items-start gap-6 border-t border-border-default py-8 first:border-t-0 first:pt-0 last:pb-0 md:gap-12">
-              <span
-                aria-hidden="true"
-                class="include-row__num w-[clamp(3.25rem,8vw,5.25rem)] shrink-0 font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-medium leading-[0.9] tracking-[-0.04em] tabular-nums text-blue"
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div class="min-w-0 flex-1">
-                <h3 class="m-0 mb-2 font-display text-[clamp(1.0625rem,1.5vw,1.3125rem)] font-medium leading-tight tracking-[-0.015em] text-text-primary">
-                  {feature.title}
-                </h3>
-                <p class="m-0 max-w-[58ch] font-body text-[0.9375rem] leading-[1.7] text-text-secondary">
-                  {feature.description}
-                </p>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </div>
-</section>
-
-<style>
-  .include-row__num {
-    opacity: 0.5;
-    transition: opacity 0.4s var(--ease-spring), transform 0.5s var(--ease-spring);
-    transform-origin: left center;
-  }
-
-  .include-row:hover .include-row__num {
-    opacity: 1;
-    transform: translateX(2px);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .include-row__num {
-      transition: none;
-    }
-  }
-</style>
+    <ol class="landing-manifest">
+      {
+        features.map((feature, i) => (
+          <li class="landing-manifest__item reveal">
+            <span class="landing-manifest__n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </SiteWrap>
+</SectionShell>

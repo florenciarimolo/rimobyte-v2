@@ -1,6 +1,8 @@
 ---
 import { splitDisplayNameHighlight, type Project } from '../../../data/projects';
 import Eyebrow from '../../ui/Eyebrow.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
   project: Project;
@@ -22,9 +24,9 @@ const solutionLead =
 const externalUrl = `https://${project.url}`;
 ---
 
-<section class="hero-proyecto section-bg relative overflow-hidden">
+<SectionShell padding="hero" class="relative overflow-hidden">
 
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+  <SiteWrap>
 
     <a href="/proyectos/" class="hero-proyecto__back reveal inline-flex items-center gap-2 mb-10">
       <span aria-hidden="true">←</span>
@@ -95,15 +97,11 @@ const externalUrl = `https://${project.url}`;
       </div>
 
     </div>
-  </div>
+  </SiteWrap>
 
-</section>
+</SectionShell>
 
 <style>
-  .hero-proyecto {
-    padding-block: clamp(6rem, 11vw, 9rem) clamp(4rem, 8vw, 7rem);
-  }
-
   .hero-proyecto__back {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -131,7 +129,7 @@ const externalUrl = `https://${project.url}`;
 
   /* Ventana de navegador con la captura del proyecto */
   .hero-proyecto__window {
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     overflow: hidden;
     background: var(--color-bg-surface);
     border: 1px solid var(--color-border-default);

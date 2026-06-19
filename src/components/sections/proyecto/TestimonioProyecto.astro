@@ -1,5 +1,7 @@
 ---
 import QuoteIcon from '../../ui/QuoteIcon.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
   testimonial: { quote: string; author: string };
@@ -9,8 +11,8 @@ interface Props {
 
 const { testimonial, projectUrl } = Astro.props;
 ---
-<section class="section-bg--elevated py-[clamp(5rem,9vw,7rem)]">
-  <div class="max-w-[900px] mx-auto px-[clamp(1.5rem,5vw,4rem)] text-center">
+<SectionShell elevated padding="none" class="py-[clamp(5rem,9vw,7rem)]">
+  <SiteWrap class="max-w-[900px] text-center">
 
     <div class="reveal mb-6 flex justify-center text-blue opacity-70">
       <QuoteIcon variant="ornate" tone="strong" size="xl" />
@@ -28,5 +30,5 @@ const { testimonial, projectUrl } = Astro.props;
       <span class="text-text-muted"> · {projectUrl}</span>
     </p>
 
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

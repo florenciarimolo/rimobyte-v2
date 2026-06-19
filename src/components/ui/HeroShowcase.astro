@@ -1,0 +1,56 @@
+---
+import type { HomeShowcaseProject } from '../../data/homeShowcase';
+import { heroShowcaseProjects } from '../../data/homeShowcase';
+
+interface Props {
+  projects?: HomeShowcaseProject[];
+  moreHref?: string;
+  class?: string;
+}
+
+const {
+  projects = heroShowcaseProjects,
+  moreHref = '/proyectos/',
+  class: cls = '',
+} = Astro.props;
+
+const first = projects[0];
+if (!first) return;
+---
+
+<aside class:list={['hero-showcase', cls]} aria-label="Proyectos recientes">
+  <div class="hero-showcase__frame">
+    <img
+      id="hero-showcase-img"
+      src={first.image}
+      alt={first.name}
+      width="720"
+      height="450"
+    />
+    <div class="hero-showcase__caption">
+      <span id="hero-showcase-name">{first.name}</span>
+      <span id="hero-showcase-sector">{first.sector}</span>
+    </div>
+  </div>
+
+  <ul class="hero-showcase__list" id="hero-showcase-list">
+    {
+      projects.map((project, i) => (
+        <li>
+          <button
+            type="button"
+            class:list={['hero-showcase__item', i === 0 && 'is-active']}
+            data-img={project.image}
+            data-name={project.name}
+            data-sector={project.sector}
+          >
+            <span class="hero-showcase__item-name">{project.name}</span>
+            <span class="hero-showcase__item-meta">{project.url}</span>
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a href={moreHref} class="hero-showcase__more">Ver todos los proyectos →</a>
+</aside>

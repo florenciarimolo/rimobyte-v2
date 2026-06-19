@@ -1,0 +1,19 @@
+---
+interface Props {
+  items: string[];
+  class?: string;
+}
+
+const { items, class: cls = '' } = Astro.props;
+---
+
+<ul class:list={['editorial-stack', cls]} role="list">
+  {
+    items.map((text) => (
+      <li class="editorial-stack__item reveal">
+        <span class="editorial-stack__accent" aria-hidden="true" />
+        <p class="editorial-stack__text">{text}</p>
+      </li>
+    ))
+  }
+</ul>

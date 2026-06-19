@@ -1,45 +1,64 @@
 ---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
-import Icon from '../../ui/Icon.astro';
+import Button from '../../ui/Button.astro';
+
+const checks = ['Graduada en 2019', 'Trabajo directo contigo', 'Tu web es tuya'];
 ---
-<section class="hero-screen__hero relative">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-    <div class="sobre-mi-hero__grid">
 
-      <div class="sobre-mi-hero__text reveal">
-        <Eyebrow text="INGENIERA INFORMÁTICA · FREELANCE" class="mb-6" />
+<SectionShell padding="hero" class="overflow-hidden">
+  <SiteWrap class="grid gap-12 min-[900px]:grid-cols-[1.15fr_0.85fr] min-[900px]:items-center min-[900px]:gap-16">
+    <div class="relative z-10 max-w-[640px]">
+      <Eyebrow text="INGENIERA INFORMÁTICA · FREELANCE" class="mb-6" />
 
-        <h1 class="text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.03em] mb-4">
-          Construyo webs que<br />funcionan de <em>verdad.</em>
-        </h1>
+      <h1
+        class="reveal mb-6 font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.03em] text-text-primary bg-none"
+      >
+        Construyo webs que funcionan de{' '}
+        <em class="font-normal italic text-gradient-logo">verdad.</em>
+      </h1>
 
-        <p class="font-body font-medium text-xl text-text-primary mb-5 leading-snug tracking-[-0.01em]">
-          Y me aseguro de que sean siempre tuyas.
-        </p>
+      <p
+        class="reveal mb-4 max-w-[520px] font-body text-[clamp(1.0625rem,1.4vw,1.25rem)] font-medium leading-snug tracking-[-0.01em] text-text-primary"
+      >
+        Y me aseguro de que sean siempre tuyas.
+      </p>
 
-        <p class="font-body text-base leading-[1.75] text-text-secondary max-w-120">
-          Soy Flor Rímolo. Trabajo directamente con negocios locales y autónomos que
-          quieren una presencia online profesional, sin depender de nadie para mantenerla.
-        </p>
+      <p
+        class="reveal mb-8 max-w-[520px] font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary"
+      >
+        Soy Flor Rímolo. Trabajo directamente con negocios locales y autónomos que quieren una
+        presencia online profesional, sin depender de nadie para mantenerla.
+      </p>
+
+      <div class="reveal mb-10 flex flex-wrap gap-3">
+        <Button href="#contacto" variant="primary">Quiero empezar mi web</Button>
+        <Button href="/proyectos/" variant="outline">Ver mis proyectos →</Button>
       </div>
 
-      <div class="sobre-mi-hero__photo reveal">
-        <div class="photo-statement__frame">
-          <Icon name="corner-tl" class="photo-statement__corner photo-statement__corner--tl" />
-          <Icon name="corner-br" class="photo-statement__corner photo-statement__corner--br" />
-          <img
-            src="/assets/brand/flor-rimobyte.webp"
-            alt="Flor Rímolo — Ingeniera informática y diseñadora web freelance"
-            width="360"
-            height="480"
-            class="photo-statement__img"
-            style="object-position: center top;"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      </div>
-
+      <ul class="reveal m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+        {
+          checks.map((check) => (
+            <li class="flex items-center gap-2 font-body text-sm text-text-secondary">
+              <span class="size-1.5 shrink-0 rounded-full bg-blue" aria-hidden="true" />
+              {check}
+            </li>
+          ))
+        }
+      </ul>
     </div>
-  </div>
-</section>
+
+    <figure class="sobre-mi-hero__photo reveal">
+      <img
+        src="/assets/brand/flor-rimobyte.webp"
+        alt="Flor Rímolo — Ingeniera informática y diseñadora web freelance"
+        width="360"
+        height="450"
+        loading="eager"
+        decoding="async"
+      />
+      <figcaption class="sobre-mi-hero__frame" aria-hidden="true"></figcaption>
+    </figure>
+  </SiteWrap>
+</SectionShell>

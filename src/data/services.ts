@@ -315,7 +315,6 @@ export const services: Service[] = [
       'Actualizaciones de WordPress que rompen el diseño o la funcionalidad',
       'Copias de seguridad inexistentes — si algo falla, no hay vuelta atrás',
       'Velocidad degradada que afecta al posicionamiento en Google',
-      'Formularios o integraciones que dejan de funcionar sin que nadie lo note',
     ],
     targetAudienceEyebrow: 'POR QUÉ IMPORTA',
     targetAudienceTitle: 'Lo que pasa cuando nadie cuida',

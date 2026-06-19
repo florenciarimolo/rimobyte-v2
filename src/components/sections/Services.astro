@@ -1,58 +1,36 @@
 ---
-import Eyebrow from '../ui/Eyebrow.astro';
+import SectionShell from '../ui/SectionShell.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
+import SectionHead from '../ui/SectionHead.astro';
 import ServiceCard from '../ui/ServiceCard.astro';
+import { services } from '../../data/services';
 import type { IconName } from '../ui/icons/registry';
-import { SERVICE_NAV_LINKS } from '../../data/navigation';
 
-const services: {
-  icon: IconName;
-  title: string;
-  desc: string;
-  price: string;
-  href: string;
-}[] = [
-  {
-    icon: 'globe',
-    title: 'Web corporativa',
-    desc: 'Para negocios que quieren existir profesionalmente en internet. Tus clientes te encuentran y te contactan.',
-    price: 'Desde 600€',
-    href: SERVICE_NAV_LINKS[0].href,
-  },
-  {
-    icon: 'shopping-bag',
-    title: 'Tienda online',
-    desc: 'Para negocios que quieren vender las 24 horas. Acepta pagos, gestiona pedidos, escala.',
-    price: 'Desde 1.200€',
-    href: SERVICE_NAV_LINKS[1].href,
-  },
-  {
-    icon: 'wrench',
-    title: 'Mantenimiento',
-    desc: 'Para quienes no quieren preocuparse por lo técnico. Sin permanencia, sin letra pequeña.',
-    price: 'Desde 50€/mes',
-    href: SERVICE_NAV_LINKS[2].href,
-  },
-];
+const iconByIllustration: Record<string, IconName> = {
+  corporate: 'globe',
+  ecommerce: 'shopping-bag',
+  maintenance: 'wrench',
+};
 ---
-<section id="servicios" class="section-bg py-[clamp(4rem,8vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 
-    <Eyebrow text="SERVICIOS" />
-    <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-tight mb-12">
-      Lo que hago, y lo que <em>te consigue.</em>
-    </h2>
+<SectionShell id="servicios">
+  <SiteWrap>
+    <SectionHead
+      title="Servicios"
+      subtitle="Lo que hago, y lo que te consigue."
+      class="reveal"
+    />
 
-    <div class="grid md:grid-cols-3 gap-3">
+    <div class="landing-services">
       {services.map((s) => (
         <ServiceCard
-          icon={s.icon}
-          title={s.title}
-          body={s.desc}
+          icon={iconByIllustration[s.illustration] ?? 'globe'}
+          title={s.name}
+          body={s.description.split('.')[0] + '.'}
           price={s.price}
-          href={s.href}
+          href={`/servicios/${s.slug}/`}
         />
       ))}
     </div>
-
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

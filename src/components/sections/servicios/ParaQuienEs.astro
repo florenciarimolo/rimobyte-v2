@@ -1,5 +1,9 @@
 ---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import SectionHead from '../../ui/SectionHead.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
+import EditorialStack from '../../ui/EditorialStack.astro';
 
 interface Props {
   points: string[];
@@ -7,7 +11,6 @@ interface Props {
   title?: string;
   titleEm?: string;
   footnote?: string;
-  countLabel?: string;
 }
 
 const {
@@ -16,68 +19,28 @@ const {
   title = 'Si te suena alguna de',
   titleEm = 'estas situaciones.',
   footnote,
-  countLabel = 'situaciones',
 } = Astro.props;
 ---
 
-<section class="section-bg relative py-[clamp(5rem,10vw,8rem)]">
-  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
-    <div
-      class="reveal mb-[clamp(3rem,5vw,4.5rem)] flex items-baseline justify-between border-t border-border-default pt-6"
-    >
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        / 02 · Diagnóstico
-      </span>
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        {String(points.length).padStart(2, '0')} {countLabel}
-      </span>
-    </div>
+<SectionShell class="relative">
+  <SiteWrap>
+    <Eyebrow text={eyebrowText} class="reveal mb-6" />
+    <SectionHead
+      title={title}
+      titleEm={titleEm}
+      subtitle="No hace falta encajar en todas. Con una basta para saber si este servicio es para ti."
+      class="reveal"
+      narrow={false}
+    />
 
-    <div class="reveal mb-[clamp(3rem,6vw,5rem)] max-w-[680px]">
-      <Eyebrow text={eyebrowText} class="mb-6" />
-      <h2
-        class="headline-gradient font-display text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.04] tracking-tight"
-      >
-        {title} <em>{titleEm}</em>
-      </h2>
-    </div>
-
-    <div class="grid gap-x-[clamp(2rem,5vw,5rem)] gap-y-[clamp(2.5rem,5vw,4.5rem)] md:grid-cols-2">
-      {
-        points.map((point, i) => (
-          <div class="reveal scenario group relative">
-            <div class="mb-5 flex items-center gap-4">
-              <span class="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-blue">
-                Escenario · {String(i + 1).padStart(2, '0')}
-              </span>
-              <span aria-hidden="true" class="scenario__rule h-px flex-1 bg-border-default" />
-            </div>
-            <p class="m-0 font-display text-[clamp(1.25rem,2vw,1.625rem)] font-medium leading-[1.32] tracking-[-0.018em] text-text-primary">
-              {point}
-            </p>
-          </div>
-        ))
-      }
-    </div>
+    <EditorialStack items={points} />
 
     {
       footnote && (
-        <p class="reveal mt-6 max-w-[640px] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.65] text-text-secondary">
+        <p class="reveal mt-8 max-w-[640px] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.65] text-text-secondary">
           {footnote}
         </p>
       )
     }
-  </div>
-</section>
-
-<style>
-  .scenario__rule {
-    transform-origin: left center;
-    transition: background-color 0.4s var(--ease-spring), transform 0.5s var(--ease-spring);
-  }
-
-  .scenario:hover .scenario__rule {
-    background-color: var(--color-blue);
-    transform: scaleX(1.04);
-  }
-</style>
+  </SiteWrap>
+</SectionShell>

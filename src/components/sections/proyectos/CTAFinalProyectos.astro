@@ -1,10 +1,12 @@
 ---
 import Eyebrow from '../../ui/Eyebrow.astro';
 import Button from '../../ui/Button.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 ---
 
-<section class="section-bg--elevated py-[clamp(4rem,8vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<SectionShell elevated padding="none" class="py-[clamp(4rem,8vw,7rem)]">
+  <SiteWrap>
     <div class="sobre-mi-cta__inner reveal">
       <Eyebrow text="¿HABLAMOS?" class="mb-8" />
 
@@ -22,5 +24,5 @@ import Button from '../../ui/Button.astro';
         <Button href="/sobre-mi/" variant="outline">Conóceme mejor</Button>
       </div>
     </div>
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

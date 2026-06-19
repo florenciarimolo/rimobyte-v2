@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import Hero from '../components/sections/Hero.astro';
-import Marquee from '../components/sections/Marquee.astro';
 import FeaturedCase from '../components/sections/FeaturedCase.astro';
 import Stats from '../components/sections/Stats.astro';
 import Features from '../components/sections/Features.astro';
@@ -10,7 +9,7 @@ import ProjectsFan from '../components/sections/ProjectsFan.astro';
 import PhotoStatement from '../components/sections/PhotoStatement.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
 import Services from '../components/sections/Services.astro';
-import FAQ from '../components/sections/FAQ.tsx';
+import FAQ from '../components/sections/FAQ.astro';
 import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import Footer from '../components/sections/Footer.astro';
 import { buildFaqPageJsonLd } from '../data/faq';
@@ -18,7 +17,7 @@ import { fetchPlaceAggregate } from '../lib/google-reviews';
 
 const SEO = {
   title: 'Diseñadora web freelance para negocios locales · RimoByte',
-  description: 'Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
+  description: 'Soy Flor, ingeniera informática. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 
@@ -34,15 +33,14 @@ const placeAgg = await fetchPlaceAggregate();
   <Navbar />
   <main id="main">
     <Hero />
-    <Marquee />
     <FeaturedCase />
     <Stats />
     <Features />
-    <ProjectsFan />
     <PhotoStatement />
     <Testimonials />
+    <ProjectsFan />
     <Services />
-    <FAQ client:load />
+    <FAQ />
     <ContactFormIsland />
   </main>
   <Footer />

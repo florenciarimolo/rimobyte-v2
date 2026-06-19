@@ -1,6 +1,8 @@
 ---
 import type { Project } from '../../../data/projects';
 import Eyebrow from '../../ui/Eyebrow.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
   nextProject: Project;
@@ -9,8 +11,8 @@ interface Props {
 
 const { nextProject, prevProject } = Astro.props;
 ---
-<section class="section-bg py-[clamp(5rem,9vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<SectionShell padding="none" class="py-[clamp(5rem,9vw,7rem)]">
+  <SiteWrap>
 
     <div class="reveal mb-12">
       <Eyebrow text="MÁS PROYECTOS" />
@@ -25,7 +27,7 @@ const { nextProject, prevProject } = Astro.props;
           <span aria-hidden="true">←</span>
           <span>Proyecto anterior</span>
         </div>
-        <div class="nextprev-card__media aspect-16/10 rounded-[14px] overflow-hidden
+        <div class="nextprev-card__media aspect-16/10 rounded-card overflow-hidden
                     border border-border-default">
           <img
             src={prevProject.image}
@@ -52,7 +54,7 @@ const { nextProject, prevProject } = Astro.props;
           <span>Siguiente proyecto</span>
           <span aria-hidden="true">→</span>
         </div>
-        <div class="nextprev-card__media aspect-16/10 rounded-[14px] overflow-hidden
+        <div class="nextprev-card__media aspect-16/10 rounded-card overflow-hidden
                     border border-border-default w-full md:order-2">
           <img
             src={nextProject.image}
@@ -75,8 +77,8 @@ const { nextProject, prevProject } = Astro.props;
 
     </div>
 
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>
 
 <style>
   .nextprev-card__media img {

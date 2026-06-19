@@ -5,13 +5,12 @@ import HeroSector from '../components/sections/sector/HeroSector.astro';
 import PorQueSector from '../components/sections/sector/PorQueSector.astro';
 import QueNecesitaSector from '../components/sections/sector/QueNecesitaSector.astro';
 import CasoSector from '../components/sections/sector/CasoSector.astro';
-import ContactForm from '../components/sections/ContactForm.tsx';
-import FAQ from '../components/sections/FAQ.tsx';
+import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
+import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
 import { sectors } from '../data/sectors';
 
 const sector = sectors.find((s) => s.slug === 'web-para-restaurantes')!;
-const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 
 const sectorUrl = new URL('/web-para-restaurantes/', Astro.site).href;
 const sectorLdGraph = {
@@ -82,12 +81,9 @@ const sectorLdGraph = {
       intro={sector.featuresIntro}
     />
     {sector.relatedCase && <CasoSector caseData={sector.relatedCase} />}
-    <FAQ faqs={sector.faqs} client:load />
-    <ContactForm
-      client:load
-      recaptchaSiteKey={recaptchaSiteKey}
+    <FAQ faqs={sector.faqs} />
+    <ContactFormIsland
       origin="web-para-restaurantes"
-      eyebrowText="CUÉNTAME TU PROYECTO"
       heading={sector.ctaFinal.title}
       headingEm={sector.ctaFinal.titleEm}
       intro={sector.ctaFinal.text}

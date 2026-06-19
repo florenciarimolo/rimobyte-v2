@@ -1,9 +1,14 @@
 ---
 import Eyebrow from '../../ui/Eyebrow.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 ---
 
-<section class="section-bg" style="padding-block: clamp(7rem, 13vw, 11rem) clamp(3rem, 5vw, 4rem);">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<SectionShell
+  padding="hero"
+  style="padding-block: clamp(7rem, 13vw, 11rem) clamp(3rem, 5vw, 4rem);"
+>
+  <SiteWrap>
     <div class="max-w-[760px]">
       <Eyebrow text="BLOG · CONSEJOS Y RECURSOS" class="mb-6" />
 
@@ -20,5 +25,5 @@ import Eyebrow from '../../ui/Eyebrow.astro';
         debería tomar antes de invertir en su presencia online.
       </p>
     </div>
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

@@ -1,7 +1,6 @@
 ---
 import Icon from './Icon.astro';
 import type { IconName } from './icons/registry';
-import Button from './Button.astro';
 
 interface Props {
   icon: IconName;
@@ -15,18 +14,14 @@ interface Props {
 const { icon, title, body, price, href, class: cls = '' } = Astro.props;
 ---
 
-<article class:list={['surface-card reveal group feature-card service-card', cls]}>
-  <span class="service-card__watermark" aria-hidden="true">
-    <Icon name={icon} class="service-card__watermark-icon" />
-  </span>
-
-  <div class="service-card__content">
-    <Icon name={icon} class="service-card__icon" />
-    <h3 class="service-card__title">{title}</h3>
-    <p class="service-card__body">{body}</p>
-    <div class="service-card__footer">
-      <span class="service-card__price">{price}</span>
-      <Button href={href} variant="ghost">Saber más →</Button>
-    </div>
+<article class:list={['landing-service-card reveal', cls]}>
+  <div class="landing-service-card__graphic" aria-hidden="true">
+    <Icon name={icon} class="landing-service-card__icon" />
   </div>
+  <h3>{title}</h3>
+  <p>{body}</p>
+  <footer class="landing-service-card__foot">
+    <span class="landing-service-card__price">{price}</span>
+    <a href={href} class="landing-service-card__link">Saber más →</a>
+  </footer>
 </article>

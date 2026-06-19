@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { contactOriginFromPathname } from '../../lib/contact-origin';
-import Icon from '../ui/Icon';
 
 const RECAPTCHA_ACTION = 'contact';
 
@@ -53,55 +52,9 @@ async function getRecaptchaToken(siteKey: string): Promise<string> {
   });
 }
 
-const mono = { fontFamily: "'Space Mono', monospace" };
-
-const inputBase: React.CSSProperties = {
-  fontFamily: 'var(--font-body)',
-  fontSize: '0.9375rem',
-  color: 'var(--color-text-primary)',
-  backgroundColor: 'var(--color-bg-surface)',
-  border: '1px solid var(--color-border-default)',
-  borderRadius: '14px',
-  padding: '1rem 1.5rem',
-  outline: 'none',
-  width: '100%',
-  transition: 'border-color 0.2s ease, background-color 0.2s ease',
-  appearance: 'none' as const,
-};
-
-const labelStyle: React.CSSProperties = {
-  ...mono,
-  fontSize: '0.625rem',
-  letterSpacing: '0.12em',
-  textTransform: 'uppercase',
-  color: 'var(--color-text-muted)',
-  marginBottom: '0.5rem',
-  display: 'block',
-};
-
-const selectStyle: React.CSSProperties = {
-  ...inputBase,
-  paddingRight: '3rem',
-  cursor: 'pointer',
-};
-
-const selectWrapStyle: React.CSSProperties = {
-  position: 'relative',
-};
-
-const selectChevronStyle: React.CSSProperties = {
-  position: 'absolute',
-  right: '1rem',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  pointerEvents: 'none',
-  display: 'flex',
-  color: 'var(--color-text-secondary)',
-};
-
 const textFields = [
-  { id: 'contact-nombre', name: 'nombre', label: 'Nombre', type: 'text', placeholder: 'Tu nombre' },
-  { id: 'contact-email', name: 'email', label: 'Email', type: 'email', placeholder: 'tu@email.com' },
+  { id: 'contact-nombre', name: 'nombre', label: 'Nombre', type: 'text' },
+  { id: 'contact-email', name: 'email', label: 'Email', type: 'email' },
 ] as const;
 
 const selectFields = [
@@ -121,24 +74,28 @@ const selectFields = [
 
 type ContactFormProps = {
   recaptchaSiteKey?: string;
-  /** Identificador corto de la página (ej. `web-corporativa`) para el email */
   origin?: string;
-  /** Evita duplicar `#contacto` cuando ya existe una sección anchor encima */
   omitAnchor?: boolean;
-  /** En página dedicada `/contacto/` usar `1` para un único `<h1>` */
   headingLevel?: 1 | 2;
-  /** Texto del titular principal (h1 en contacto, h2 en el resto) */
   heading?: string;
-  /** Fragmento en cursiva del titular (degradado editorial) */
   headingEm?: string;
-  /** Eyebrow de la columna izquierda */
-  eyebrowText?: string;
-  /** Sustituye el párrafo introductorio por defecto */
   intro?: string;
-  /** Línea mono con precio o contexto (ej. "Desde 600€ · Presupuesto cerrado") */
   priceNote?: string;
-  /** Enlace al servicio principal relacionado */
   serviceLink?: string;
+};
+
+const fieldInputStyle: React.CSSProperties = {
+  width: '100%',
+  padding: '0.8rem 0',
+  fontFamily: 'var(--font-body)',
+  fontSize: '0.9375rem',
+  color: 'var(--color-text-primary)',
+  background: 'transparent',
+  border: 'none',
+  borderBottom: '1px solid var(--color-border-hover)',
+  borderRadius: 0,
+  outline: 'none',
+  transition: 'border-color 0.2s',
 };
 
 export default function ContactForm({
@@ -148,7 +105,6 @@ export default function ContactForm({
   headingLevel = 2,
   heading = '¿Hablamos?',
   headingEm,
-  eyebrowText = 'CONTACTO',
   intro,
   priceNote,
   serviceLink,
@@ -205,157 +161,98 @@ export default function ContactForm({
   };
 
   const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
+  const defaultIntro =
+    'Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con ideas concretas, no con una plantilla de presupuesto.';
 
   return (
-    <section
-      {...(!omitAnchor ? { id: 'contacto' } : {})}
-      className="section-bg--elevated"
-      style={{ padding: 'clamp(4rem,8vw,7rem) 0' }}
-    >
-      <div style={{ maxWidth: 'var(--max-width-layout)', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: '4rem', alignItems: 'start' }}>
+    <section {...(!omitAnchor ? { id: 'contacto' } : {})} className="landing-contact">
+      <div className="landing-wrap landing-contact__layout">
+        <div className="landing-contact__left reveal">
+          <HeadingTag>
+            {heading}
+            {headingEm ? (
+              <>
+                {' '}
+                <em className="text-gradient-logo">{headingEm}</em>
+              </>
+            ) : null}
+          </HeadingTag>
+          <p>{intro ?? defaultIntro}</p>
+          {(priceNote || serviceLink) && (
+            <p className="landing-contact__meta">
+              {priceNote}
+              {priceNote && serviceLink ? ' · ' : null}
+              {serviceLink ? (
+                <a href={serviceLink}>Ver servicio completo →</a>
+              ) : null}
+            </p>
+          )}
+          <a href="mailto:info@rimobyte.com" className="landing-contact__email">info@rimobyte.com</a>
+          <a href="tel:+34684713743" className="landing-contact__phone">+34 684 713 743</a>
+        </div>
 
-          <div>
-            <p className="eyebrow">
-              <span className="eyebrow__bracket" aria-hidden="true">[</span>
-              {eyebrowText}
-              <span className="eyebrow__bracket" aria-hidden="true">]</span>
-            </p>
-            <HeadingTag
-              className="headline-gradient"
-              style={{
-                fontSize: 'clamp(2rem,3.5vw,3rem)',
-                lineHeight: 1.08,
-                letterSpacing: '-0.025em',
-                marginBottom: '1.5rem',
-              }}
-            >
-              {heading}
-              {headingEm ? <> <em>{headingEm}</em></> : null}
-            </HeadingTag>
-            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--color-text-secondary)', maxWidth: '380px', marginBottom: priceNote || serviceLink ? '1rem' : '2rem' }}>
-              {intro ??
-                'Sin compromiso y sin tecnicismos. En menos de 24 horas te respondo con ideas concretas, no con una plantilla de presupuesto.'}
-            </p>
-            {(priceNote || serviceLink) && (
-              <p
-                style={{
-                  ...mono,
-                  fontSize: '0.6875rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-text-muted)',
-                  marginBottom: '2rem',
-                  maxWidth: '380px',
-                }}
-              >
-                {priceNote}
-                {priceNote && serviceLink ? ' · ' : null}
-                {serviceLink ? (
-                  <a href={serviceLink} style={{ color: 'var(--color-blue)', textDecoration: 'none' }}>
-                    Ver servicio completo →
-                  </a>
-                ) : null}
+        {sent ? (
+          <div className="reveal" role="status" aria-live="polite" style={{ padding: '2rem 0' }}>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 500, marginBottom: '0.75rem' }}>¡Mensaje enviado!</p>
+            <p style={{ color: 'var(--color-text-secondary)' }}>Te respondo en menos de 24 horas.</p>
+          </div>
+        ) : (
+          <form className="landing-contact__form reveal" onSubmit={handleSubmit} aria-busy={loading}>
+            <input type="hidden" name="origin" value={origin ?? ''} />
+            {textFields.map((f) => (
+              <div key={f.name} className="landing-field">
+                <label htmlFor={f.id}>{f.label}</label>
+                <input
+                  id={f.id}
+                  name={f.name}
+                  type={f.type}
+                  required
+                  style={fieldInputStyle}
+                  autoComplete={f.name === 'nombre' ? 'name' : 'email'}
+                />
+              </div>
+            ))}
+            {selectFields.map((f) => (
+              <div key={f.name} className="landing-field">
+                <label htmlFor={f.id}>{f.label}</label>
+                <select id={f.id} name={f.name} required style={fieldInputStyle} defaultValue="">
+                  <option value="" disabled>Selecciona...</option>
+                  {f.opts.map((o) => <option key={o} value={o}>{o}</option>)}
+                </select>
+              </div>
+            ))}
+            <div className="landing-field">
+              <label htmlFor="contact-mensaje">
+                Cuéntame más <span className="opt">(opcional)</span>
+              </label>
+              <textarea
+                id="contact-mensaje"
+                name="mensaje"
+                rows={3}
+                style={{ ...fieldInputStyle, resize: 'vertical', minHeight: 80 }}
+              />
+            </div>
+
+            {error && (
+              <p role="alert" aria-live="assertive" style={{ fontSize: '0.875rem', color: '#f87171', margin: 0 }}>
+                Hubo un error al enviar. Inténtalo de nuevo o escríbeme a info@rimobyte.com.
               </p>
             )}
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <a href="mailto:info@rimobyte.com" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
-                <Icon name="mail" style={{ width: 20, height: 20, color: 'var(--color-blue)' }} />
-                info@rimobyte.com
-              </a>
-              <a href="https://wa.me/34684713743" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.9375rem', transition: 'color 0.2s' }}>
-                <Icon name="whatsapp" style={{ width: 20, height: 20, color: 'var(--color-blue)' }} />
-                +34 684 713 743
-              </a>
-            </div>
-          </div>
+            <button type="submit" disabled={loading} className="btn btn-primary btn--block" aria-disabled={loading}>
+              {loading ? 'Enviando…' : 'Enviar mensaje'}
+            </button>
 
-          {sent ? (
-            <div style={{ textAlign: 'center', padding: '3rem 0' }} role="status" aria-live="polite">
-              <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 500, color: 'var(--color-text-primary)', marginBottom: '0.75rem' }}>¡Mensaje enviado!</p>
-              <p style={{ color: 'var(--color-text-secondary)' }}>Te respondo en menos de 24 horas.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} aria-busy={loading}>
-              <input type="hidden" name="origin" value={origin ?? ''} />
-              {textFields.map(f => (
-                <div key={f.name}>
-                  <label htmlFor={f.id} style={labelStyle}>{f.label}</label>
-                  <input id={f.id} name={f.name} type={f.type} required placeholder={f.placeholder} style={inputBase} />
-                </div>
-              ))}
-              {selectFields.map(f => (
-                <div key={f.name}>
-                  <label htmlFor={f.id} style={labelStyle}>{f.label}</label>
-                  <div style={selectWrapStyle}>
-                    <select id={f.id} name={f.name} required style={selectStyle} defaultValue="">
-                      <option value="" disabled>Selecciona...</option>
-                      {f.opts.map(o => <option key={o} value={o}>{o}</option>)}
-                    </select>
-                    <span style={selectChevronStyle} aria-hidden="true">
-                      <Icon name="chevron-down" style={{ width: 20, height: 20 }} />
-                    </span>
-                  </div>
-                </div>
-              ))}
-              <div>
-                <label htmlFor="contact-mensaje" style={labelStyle}>
-                  Cuéntame más <span style={{ opacity: 0.5 }}>(opcional)</span>
-                </label>
-                <textarea id="contact-mensaje" name="mensaje" rows={4} placeholder="Describe tu proyecto..." style={{ ...inputBase, resize: 'vertical' }} />
-              </div>
-
-              {error && (
-                <p role="alert" aria-live="assertive" style={{ fontSize: '0.875rem', color: '#f87171', margin: 0 }}>
-                  Hubo un error al enviar. Inténtalo de nuevo o escríbeme a info@rimobyte.com.
-                </p>
-              )}
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn btn-primary"
-                style={{ alignSelf: 'flex-start' }}
-                aria-disabled={loading}
-              >
-                {loading ? 'Enviando…' : 'Enviar mensaje →'}
-              </button>
-
-              {recaptchaEnabled && (
-                <p
-                  style={{
-                    fontSize: '0.75rem',
-                    lineHeight: 1.5,
-                    color: 'var(--color-text-muted)',
-                    margin: 0,
-                  }}
-                >
-                  Este sitio está protegido por reCAPTCHA y se aplican la{' '}
-                  <a
-                    href="https://policies.google.com/privacy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: 'var(--color-text-secondary)' }}
-                  >
-                    Política de privacidad
-                  </a>{' '}
-                  y los{' '}
-                  <a
-                    href="https://policies.google.com/terms"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: 'var(--color-text-secondary)' }}
-                  >
-                    Términos del servicio
-                  </a>{' '}
-                  de Google.
-                </p>
-              )}
-            </form>
-          )}
-
-        </div>
+            {recaptchaEnabled && (
+              <p className="landing-contact__legal">
+                Protegido por reCAPTCHA. Aplican la{' '}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad</a>
+                {' '}y los{' '}
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Términos de Google</a>.
+              </p>
+            )}
+          </form>
+        )}
       </div>
     </section>
   );

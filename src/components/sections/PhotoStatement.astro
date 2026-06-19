@@ -1,45 +1,25 @@
 ---
-import Eyebrow from '../ui/Eyebrow.astro';
-import Button from '../ui/Button.astro';
-import Icon from '../ui/Icon.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
 ---
-<section class="section-bg border-t border-b border-border-default">
-  <div class="max-w-layout mx-auto">
-    <div class="grid md:grid-cols-[42fr_58fr] min-h-[min(520px,auto)] md:min-h-[520px]">
 
-      <!-- Foto — retrato encuadrado, no a altura completa -->
-      <div class="photo-statement__wrap">
-        <div class="photo-statement__frame reveal">
-          <Icon name="corner-tl" class="photo-statement__corner photo-statement__corner--tl" />
-          <Icon name="corner-br" class="photo-statement__corner photo-statement__corner--br" />
-          <img
-            src="/assets/brand/flor-rimobyte.webp"
-            alt="Flor Rímolo — Ingeniera informática freelance"
-            width="720"
-            height="960"
-            class="photo-statement__img"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-
-      <!-- Texto -->
-      <div class="flex flex-col justify-center px-[clamp(2rem,5vw,4rem)] py-16">
-        <div class="reveal">
-          <Eyebrow text="INGENIERA INFORMÁTICA · FREELANCE" />
-          <h2 class="text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.08] tracking-tight mb-6">
-            Me implico en cada proyecto como si fuera <em>mío.</em>
-          </h2>
-          <p class="text-base leading-[1.75] text-text-secondary mb-8 max-w-[400px]">
-            Graduada en 2019. Me hice autónoma porque quería trabajar directamente con el cliente, sin intermediarios, con tiempo para hacer las cosas bien. Cuando hay un problema técnico complejo, lo resuelvo.
-          </p>
-          <Button href="/sobre-mi/" variant="ghost">
-            Conóceme mejor <span aria-hidden="true">→</span>
-          </Button>
-        </div>
-      </div>
-
+<section class="landing-about">
+  <SiteWrap class="landing-about__grid">
+    <figure class="landing-about__photo reveal">
+      <img
+        src="/assets/brand/flor-rimobyte.webp"
+        alt="Flor Rímolo"
+        width="280"
+        height="350"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="landing-about__frame" aria-hidden="true"></figcaption>
+    </figure>
+    <div class="landing-about__text reveal">
+      <h2>Me implico en cada proyecto como si fuera <em>mío.</em></h2>
+      <p>Graduada en 2019. Me hice autónoma porque quería trabajar directamente con el cliente, sin intermediarios, con tiempo para hacer las cosas bien.</p>
+      <p>Cuando hay un problema técnico complejo, lo resuelvo.</p>
+      <a href="/sobre-mi/" class="hero-showcase__more landing-about__more">Sobre mí →</a>
     </div>
-  </div>
+  </SiteWrap>
 </section>

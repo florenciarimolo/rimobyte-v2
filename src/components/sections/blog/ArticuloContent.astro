@@ -1,11 +1,11 @@
 ---
 import AuthorCard from '../../ui/AuthorCard.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 ---
 
-<section class="section-bg--elevated py-[clamp(3rem,6vw,5rem)]">
-  <div
-    class="article-layout max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)] grid gap-10 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_240px]"
-  >
+<SectionShell elevated padding="none" class="py-[clamp(3rem,6vw,5rem)]">
+  <SiteWrap class="article-layout grid gap-10 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_240px]">
     <article class="prose-rimobyte reveal max-w-[720px] w-full mx-auto lg:mx-0">
       <slot />
     </article>
@@ -15,8 +15,8 @@ import AuthorCard from '../../ui/AuthorCard.astro';
         <AuthorCard />
       </div>
     </div>
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>
 
 <style>
   .article-layout__sticky {

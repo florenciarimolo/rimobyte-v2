@@ -1,38 +1,31 @@
 ---
-import Eyebrow from '../ui/Eyebrow.astro';
 import Button from '../ui/Button.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
+import HeroShowcase from '../ui/HeroShowcase.astro';
 ---
-<section class="hero-screen__hero relative">
 
-  <div class="hero-screen__hero-inner relative max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-    <div class="mx-auto flex max-w-[760px] flex-col items-center text-center">
-
-      <div class="reveal flex justify-center">
-        <Eyebrow text="DISEÑO WEB · DESARROLLO · ESPAÑA" />
-      </div>
-
-      <h1 class="hero-screen__title reveal text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.03em] mb-4 md:mb-5">
+<section class="landing-hero">
+  <SiteWrap class="landing-hero__layout">
+    <div class="hero__copy">
+      <Eyebrow text="Diseño web · Desarrollo · España" class="reveal" />
+      <h1 class="reveal">
         Muchos negocios pagan por una web que <em>no controlan.</em>
       </h1>
-
-      <p class="hero-screen__lead reveal text-[clamp(0.9375rem,1.8vw,1.0625rem)] leading-[1.65] text-text-secondary mb-5 md:mb-6 max-w-[540px]">
-        Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.
+      <p class="landing-hero__sub reveal">
+        Soy Flor, ingeniera informática. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.
       </p>
-
-      <div class="hero-screen__ctas reveal flex flex-wrap justify-center gap-3">
+      <div class="landing-hero__btns reveal">
         <Button href="#contacto" variant="primary">Quiero empezar mi web</Button>
-        <Button href="#contacto" variant="outline">Tengo dudas, cuéntame más</Button>
+        <Button href="#por-que" variant="outline">Cómo trabajo</Button>
       </div>
-
-      <ul class="hero-screen__checks reveal flex flex-wrap justify-center gap-x-6 gap-y-2 list-none p-0 m-0">
-        {['Tu web, tu propiedad', 'Sin sorpresas', 'Soporte continuo'].map(item => (
-          <li class="flex items-center gap-2 font-body text-sm text-text-secondary">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue opacity-60 shrink-0"></span>
-            {item}
-          </li>
-        ))}
+      <ul class="landing-hero__checks reveal">
+        <li>Tu web, tu propiedad</li>
+        <li>Sin sorpresas</li>
+        <li>Soporte continuo</li>
       </ul>
-
     </div>
-  </div>
+
+    <HeroShowcase moreHref="#proyectos" class="reveal" />
+  </SiteWrap>
 </section>

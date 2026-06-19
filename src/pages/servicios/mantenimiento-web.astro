@@ -8,13 +8,12 @@ import PrecioServicio from '../../components/sections/servicios/PrecioServicio.a
 import CasosRelacionados from '../../components/sections/servicios/CasosRelacionados.astro';
 import OtrosServicios from '../../components/sections/servicios/OtrosServicios.astro';
 import CTAFinalServicio from '../../components/sections/servicios/CTAFinalServicio.astro';
-import ContactForm from '../../components/sections/ContactForm.tsx';
-import FAQ from '../../components/sections/FAQ.tsx';
+import ContactFormIsland from '../../components/sections/ContactFormIsland.astro';
+import FAQ from '../../components/sections/FAQ.astro';
 import Footer from '../../components/sections/Footer.astro';
 import { services } from '../../data/services';
 
 const service = services.find((s) => s.slug === 'mantenimiento-web')!;
-const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
 
 const serviceUrl = new URL(`/servicios/${service.slug}/`, Astro.site).href;
 const servicesHubUrl = new URL('/#servicios', Astro.site).href;
@@ -83,7 +82,6 @@ const serviceLdGraph = {
       title={service.targetAudienceTitle}
       titleEm={service.targetAudienceTitleEm}
       footnote={service.targetAudienceFootnote}
-      countLabel={service.targetAudienceCountLabel}
     />
     <QueIncluye features={service.features} />
     <PrecioServicio price={service.price} note={service.priceNote} />
@@ -92,19 +90,14 @@ const serviceLdGraph = {
       title={service.relatedCasesTitle}
       titleEm={service.relatedCasesTitleEm}
     />
-    <FAQ faqs={service.faqs} client:load />
+    <FAQ faqs={service.faqs} />
     <OtrosServicios currentSlug={service.slug} />
     <CTAFinalServicio
       title={service.ctaFinal.title}
       titleEm={service.ctaFinal.titleEm}
       text={service.ctaFinal.text}
     />
-    <ContactForm
-      client:load
-      recaptchaSiteKey={recaptchaSiteKey}
-      origin="mantenimiento-web"
-      omitAnchor
-    />
+    <ContactFormIsland origin="mantenimiento-web" omitAnchor />
   </main>
   <Footer />
 </Base>

@@ -1,0 +1,41 @@
+---
+import SectionShell from './SectionShell.astro';
+import SiteWrap from './SiteWrap.astro';
+import Button from './Button.astro';
+
+interface Props {
+  id?: string;
+  title: string;
+  titleEm?: string;
+  text: string;
+  cta: string;
+  ctaHref?: string;
+  elevated?: boolean;
+}
+
+const {
+  id = 'contacto',
+  title,
+  titleEm,
+  text,
+  cta,
+  ctaHref = '/contacto/',
+  elevated = true,
+} = Astro.props;
+---
+
+<SectionShell id={id} elevated={elevated}>
+  <SiteWrap class="text-center max-w-[52ch] mx-auto">
+    <h2 class="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-medium tracking-[-0.03em] text-text-primary mb-4">
+      {title}
+      {titleEm && (
+        <>
+          {' '}
+          <em class="font-normal italic text-gradient-logo">{titleEm}</em>
+        </>
+      )}
+    </h2>
+    <p class="text-text-secondary leading-[1.65] mb-8">{text}</p>
+    <Button href={ctaHref} variant="primary">{cta}</Button>
+  </SiteWrap>
+</SectionShell>

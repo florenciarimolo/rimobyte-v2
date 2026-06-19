@@ -2,6 +2,8 @@
 import type { Sector } from '../../../data/sectors';
 import Eyebrow from '../../ui/Eyebrow.astro';
 import Button from '../../ui/Button.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
   sector: Sector;
@@ -10,20 +12,21 @@ interface Props {
 const { sector } = Astro.props;
 ---
 
-<section
-  class="section-bg relative overflow-hidden"
-  style="padding-block: clamp(7rem, 13vw, 11rem) clamp(4rem, 8vw, 6rem);"
+<SectionShell
+  padding="hero"
+  class="relative overflow-hidden"
 >
   <div class="hero-sector__glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
-  <div class="relative z-10 mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
+  <SiteWrap class="relative z-10">
     <div class="max-w-[760px]">
       <Eyebrow text={sector.eyebrow} class="mb-6" />
 
       <h1
-        class="reveal headline-gradient mb-6 font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.03em]"
+        class="reveal mb-6 font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.03em] text-text-primary"
       >
-        {sector.headline} <em>{sector.headlineEm}</em>
+        {sector.headline}{' '}
+        <em class="font-normal italic text-gradient-logo">{sector.headlineEm}</em>
       </h1>
 
       <p
@@ -62,8 +65,8 @@ const { sector } = Astro.props;
         ))
       }
     </div>
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>
 
 <style>
   .hero-sector__glow {

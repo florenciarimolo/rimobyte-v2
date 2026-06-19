@@ -1,4 +1,6 @@
 ---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
 
 interface Props {
@@ -11,19 +13,8 @@ const { price, note } = Astro.props;
 const cleaned = price.replace(/^Desde\s*/i, '').trim();
 ---
 
-<section class="section-bg relative py-[clamp(5rem,10vw,8rem)]">
-  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
-    <div
-      class="reveal mb-[clamp(3rem,5vw,4.5rem)] flex items-baseline justify-between border-t border-border-default pt-6"
-    >
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        / 04 · Inversión
-      </span>
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        Presupuesto cerrado
-      </span>
-    </div>
-
+<SectionShell class="relative">
+  <SiteWrap>
     <div class="grid gap-x-[clamp(2rem,5vw,5rem)] gap-y-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-end">
       <div class="reveal">
         <Eyebrow text="DESDE" class="mb-3" />
@@ -37,7 +28,7 @@ const cleaned = price.replace(/^Desde\s*/i, '').trim();
         </p>
       </div>
 
-      <div class="reveal price-side relative">
+      <div class="reveal price-side relative border-l border-border-default pl-6 lg:pl-8">
         <Eyebrow text="LO QUE NO ESTÁ INCLUIDO" class="mb-5" />
         <p class="m-0 max-w-[42ch] font-body text-[1rem] leading-[1.7] text-text-secondary">
           {note}
@@ -63,30 +54,5 @@ const cleaned = price.replace(/^Desde\s*/i, '').trim();
         </dl>
       </div>
     </div>
-  </div>
-</section>
-
-<style>
-  .price-side::before {
-    content: '';
-    position: absolute;
-    top: 0.25rem;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--color-blue) 0%, rgba(43, 71, 236, 0) 100%);
-    opacity: 0.5;
-  }
-
-  @media (max-width: 1023px) {
-    .price-side {
-      padding-left: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .price-side {
-      padding-left: clamp(1.5rem, 3vw, 3rem);
-    }
-  }
-</style>
+  </SiteWrap>
+</SectionShell>

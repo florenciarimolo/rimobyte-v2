@@ -1,0 +1,47 @@
+---
+import SectionShell from '../ui/SectionShell.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import { faqEntries } from '../../data/faq';
+
+interface FAQItem {
+  q?: string;
+  a?: string;
+  question?: string;
+  answer?: string;
+}
+
+interface Props {
+  faqs?: FAQItem[];
+  id?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  faqs: faqsProp,
+  id = 'faq',
+  title = 'Preguntas frecuentes',
+  subtitle = 'Dudas habituales antes de empezar.',
+} = Astro.props;
+
+function toFaqEntry(f: FAQItem) {
+  return { q: f.q ?? f.question ?? '', a: f.a ?? f.answer ?? '' };
+}
+
+const entries = (faqsProp ?? faqEntries).map(toFaqEntry);
+---
+
+<SectionShell id={id}>
+  <SiteWrap class="landing-faq-layout">
+    <SectionHead title={title} subtitle={subtitle} class="reveal" />
+    <div class="landing-faq reveal">
+      {entries.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </SiteWrap>
+</SectionShell>

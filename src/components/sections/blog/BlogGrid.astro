@@ -1,5 +1,7 @@
 ---
 import BlogCard from '../../ui/BlogCard.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -9,8 +11,8 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<section class="section-bg py-[clamp(2rem,4vw,3rem)] pb-[clamp(5rem,10vw,8rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<SectionShell padding="none" class="py-[clamp(2rem,4vw,3rem)] pb-[clamp(5rem,10vw,8rem)]">
+  <SiteWrap>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {
         posts.map((post) => (
@@ -25,5 +27,5 @@ const { posts } = Astro.props;
         ))
       }
     </div>
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

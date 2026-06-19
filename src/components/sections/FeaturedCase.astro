@@ -1,31 +1,15 @@
 ---
-import Button from '../ui/Button.astro';
-import QuoteIcon from '../ui/QuoteIcon.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
 ---
-<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-    <div class="reveal relative border-l-[3px] border-blue pl-8 md:pl-14 max-w-[820px]">
 
-      <QuoteIcon variant="ornate" size="xl" tone="strong" class="block mb-4 leading-none" />
-
-      <blockquote class="headline-gradient relative font-display font-medium text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight mb-8 m-0">
-        Tengo toda la <em>agenda llena</em>.
-      </blockquote>
-
-      <div class="md:flex md:items-start gap-10">
-        <div class="flex-1">
-          <p class="text-base leading-[1.75] text-text-secondary mb-5">
-            Lucía tenía un centro de manicura en Esparreguera sin presencia online. Hoy sus clientas la encuentran en Google, reservan por la web y su agenda no tiene huecos.
-          </p>
-          <p class="font-mono text-[0.6rem] tracking-[0.12em] uppercase text-text-muted mb-6">
-            Lucía Martínez · lucianailsart.com
-          </p>
-          <Button href="/proyectos/lucia-nails-art/" variant="ghost">
-            Ver el proyecto <span aria-hidden="true">→</span>
-          </Button>
-        </div>
-      </div>
-
+<section class="landing-case">
+  <SiteWrap class="landing-case__inner">
+    <blockquote class="landing-case__line reveal">
+      «Tengo toda la agenda llena.»
+    </blockquote>
+    <div class="landing-case__story reveal">
+      <p>Lucía tenía un centro de manicura en Esparreguera sin presencia online. Hoy sus clientas la encuentran en Google, reservan por la web y su agenda no tiene huecos.</p>
+      <span class="landing-case__credit">Lucía Martínez — lucianailsart.com</span>
     </div>
-  </div>
+  </SiteWrap>
 </section>

@@ -1,5 +1,7 @@
 ---
 import type { Project } from '../../../data/projects';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
   project: Project;
@@ -13,8 +15,8 @@ const blocks = [
   { title: 'El resultado', body: project.result },
 ];
 ---
-<section class="section-bg py-[clamp(5rem,9vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<SectionShell padding="none" class="py-[clamp(5rem,9vw,7rem)]">
+  <SiteWrap>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-[clamp(2rem,4vw,3rem)]">
       {blocks.map((block) => (
@@ -30,5 +32,5 @@ const blocks = [
       ))}
     </div>
 
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

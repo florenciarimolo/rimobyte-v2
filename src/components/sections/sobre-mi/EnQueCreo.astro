@@ -1,54 +1,68 @@
 ---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import SectionHead from '../../ui/SectionHead.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
 
 const values = [
   {
-    num: '01',
     title: 'Tu éxito es mi reputación',
     body: 'Mi reputación depende de que cada proyecto funcione. Así que me aseguro de que funcione.',
   },
   {
-    num: '02',
     title: 'Ingeniería, no solo diseño',
     body: 'Diseño webs que se ven bien, pero también que cargan rápido, están bien construidas y no se rompen. Hay una diferencia entre una web bonita y una web que funciona.',
   },
   {
-    num: '03',
     title: 'Transparencia desde el minuto uno',
     body: 'Antes de empezar te explico cuánto cuesta todo — incluido el hosting y el dominio que pagas tú directamente. Sin sorpresas al final.',
   },
   {
-    num: '04',
     title: 'Para el largo plazo',
     body: 'No desaparezco al entregar. Si quieres que esté para el mantenimiento, aquí estoy. Si no, te dejo todo listo para que puedas seguir sin mí.',
   },
 ];
 ---
-<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-    <Eyebrow text="EN QUÉ CREO" class="mb-10" />
-    <div class="sobre-mi-valores__layout">
 
-      <div class="reveal">
-        <p class="font-body text-base leading-[1.75] text-text-primary mb-6">
-          Creo que una web bien hecha no es un gasto — es la única herramienta de ventas que trabaja por ti las 24 horas. Y creo que para que funcione, tiene que ser tuya de verdad. No tuya-entre-comillas, con el hosting a nombre de otro y un contrato de mantenimiento obligatorio. Tuya de verdad: con todos los accesos, en tu cuenta, bajo tu control.
-        </p>
-        <p class="font-body text-sm leading-[1.7] text-text-secondary">
-          Trabajo con negocios locales, pero también con estudios de software que necesitan desarrolladores de confianza para sus proyectos. Cuando otros profesionales del sector confían en ti, algo estás haciendo bien.
-        </p>
-      </div>
+<SectionShell class="relative">
+  <SiteWrap>
+    <Eyebrow text="EN QUÉ CREO" class="reveal mb-6" />
+    <SectionHead
+      title="En qué"
+      titleEm="creo"
+      subtitle="Una web bien hecha no es un gasto — es la única herramienta de ventas que trabaja por ti las 24 horas."
+      class="reveal"
+      narrow={false}
+    />
 
-      <div class="sobre-mi-valores__cards reveal">
-        {values.map((v) => (
-          <article class="surface-card value-card">
-            <span class="value-card__watermark" aria-hidden="true">{v.num}</span>
-            <p class="value-card__num">{v.num}</p>
-            <h3 class="value-card__title">{v.title}</h3>
-            <p class="value-card__body">{v.body}</p>
-          </article>
-        ))}
-      </div>
+    <p
+      class="reveal mb-10 max-w-[640px] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.75] text-text-primary"
+    >
+      Y creo que para que funcione, tiene que ser tuya de verdad. No tuya-entre-comillas, con el
+      hosting a nombre de otro y un contrato de mantenimiento obligatorio. Tuya de verdad: con todos
+      los accesos, en tu cuenta, bajo tu control.
+    </p>
 
-    </div>
-  </div>
-</section>
+    <ol class="landing-manifest">
+      {
+        values.map((value, i) => (
+          <li class="landing-manifest__item reveal">
+            <span class="landing-manifest__n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{value.title}</h3>
+              <p>{value.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p
+      class="reveal mt-8 max-w-[640px] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.65] text-text-secondary"
+    >
+      Trabajo con negocios locales, pero también con estudios de software que necesitan
+      desarrolladores de confianza para sus proyectos. Cuando otros profesionales del sector confían
+      en ti, algo estás haciendo bien.
+    </p>
+  </SiteWrap>
+</SectionShell>

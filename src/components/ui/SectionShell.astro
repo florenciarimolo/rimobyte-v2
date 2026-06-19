@@ -1,0 +1,31 @@
+---
+interface Props {
+  id?: string;
+  elevated?: boolean;
+  class?: string;
+  padding?: 'default' | 'none' | 'hero';
+  style?: string;
+}
+
+const { id, elevated = false, class: cls = '', padding = 'default', style } = Astro.props;
+
+const paddingClass =
+  padding === 'hero'
+    ? 'pt-[clamp(7rem,13vw,11rem)] pb-[clamp(4rem,8vw,6rem)]'
+    : padding === 'none'
+      ? ''
+      : 'py-[clamp(4rem,10vw,7rem)]';
+---
+
+<section
+  id={id}
+  style={style}
+  class:list={[
+    'border-b border-border-default',
+    elevated ? 'bg-bg-elevated' : 'bg-bg-base',
+    paddingClass,
+    cls,
+  ]}
+>
+  <slot />
+</section>

@@ -2,7 +2,6 @@
 import '../styles/global.css';
 import CookieBanner from '../components/ui/CookieBanner.astro';
 import PageLoader from '../components/ui/PageLoader.astro';
-import SiteBackground from '../components/ui/SiteBackground.astro';
 import { resolveOgImage } from '../lib/og/url';
 import { publicProfileUrls } from '../lib/site';
 
@@ -94,7 +93,7 @@ const websiteSchema = {
 const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es" class="site-layout">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -174,15 +173,18 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
     crossorigin
   />
 </head>
-<body class="is-loading">
+<body class="is-loading site-layout">
   <a href="#main" class="skip-link">Saltar al contenido</a>
+  <div class="site-grain" aria-hidden="true"></div>
+  <div id="cursor-glow" aria-hidden="true"></div>
   <PageLoader />
-  <SiteBackground />
   <slot />
   <CookieBanner />
 
   <script>
-    import '../scripts/interactive-dots.ts';
+    import '../scripts/site.ts';
+  </script>
+  <script>
     import { applyTheme, initThemeListeners, resolveTheme } from '../lib/theme';
 
     applyTheme(resolveTheme());

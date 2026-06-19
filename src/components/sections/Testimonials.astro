@@ -1,23 +1,15 @@
 ---
-import Button from '../ui/Button.astro';
-import Eyebrow from '../ui/Eyebrow.astro';
-import QuoteIcon from '../ui/QuoteIcon.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
 import { fetchGoogleReviews } from '../../lib/google-reviews';
 
 const place = await fetchGoogleReviews(6);
 const reviews = place?.reviews ?? [];
 const totalReviews = place?.totalReviews ?? 10;
-const googleMapsUrl = place?.googleMapsUrl ?? 'https://maps.google.com/?cid=166247164102179431';
+const googleMapsUrl = place?.googleMapsUrl ?? 'https://www.google.com/maps/place/Desarrolladora+WordPress+Barcelona+-+RimoByte';
 ---
 
-<section class="section-bg--elevated py-[clamp(4rem,8vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-
-    <Eyebrow text="LO QUE DICEN" />
-    <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-tight mb-12">
-      Lo que dicen quienes ya han trabajado <em>conmigo.</em>
-    </h2>
-
+<section class="landing-quote-band">
+  <SiteWrap>
     {reviews.length > 0 ? (
       <div
         class="testimonials-carousel reveal"
@@ -32,9 +24,8 @@ const googleMapsUrl = place?.googleMapsUrl ?? 'https://maps.google.com/?cid=1662
               aria-hidden={i === 0 ? 'false' : 'true'}
               data-slide={i}
             >
-              <QuoteIcon variant="ornate" size="xl" tone="strong" class="block mb-6 leading-none" />
-              <blockquote class="testimonials-carousel__quote m-0">
-                "{review.text}"
+              <blockquote class="landing-quote-band__text testimonials-carousel__quote m-0">
+                «{review.text}»
               </blockquote>
               <p class="testimonials-carousel__meta">
                 {review.authorName}
@@ -70,15 +61,19 @@ const googleMapsUrl = place?.googleMapsUrl ?? 'https://maps.google.com/?cid=1662
         )}
       </div>
     ) : (
-      <p class="text-text-secondary text-sm">No se pudieron cargar las reseñas.</p>
+      <div class="reveal">
+        <p class="landing-quote-band__text">«Ha estat un plaer treballar amb la Florencia pel disseny i migració del lloc web i també posar les primeres pedres per una relació de llarga durada.»</p>
+        <footer>
+          <cite>Josep Linde Gomis</cite>
+          <span>Google · hace 3 meses</span>
+        </footer>
+      </div>
     )}
 
-    <div class="mt-10">
-      <Button href={googleMapsUrl} variant="ghost" external>
-        Ver las {totalReviews} reseñas en Google <span aria-hidden="true">→</span>
-      </Button>
-    </div>
-  </div>
+    <a href={googleMapsUrl} class="landing-quote-band__link reveal" target="_blank" rel="noopener noreferrer">
+      Ver las {totalReviews} reseñas →
+    </a>
+  </SiteWrap>
 </section>
 
 <script>

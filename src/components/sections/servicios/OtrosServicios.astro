@@ -1,4 +1,7 @@
 ---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import SectionHead from '../../ui/SectionHead.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
 import ServiceCard from '../../ui/ServiceCard.astro';
 import type { IconName } from '../../ui/icons/registry';
@@ -11,7 +14,6 @@ interface Props {
 const { currentSlug } = Astro.props;
 const others = getOtherServices(currentSlug);
 
-/** Íconos alineados con `Services.astro` en la home */
 const ICON_BY_SLUG: Partial<Record<string, IconName>> = {
   'web-corporativa': 'globe',
   'tienda-online': 'shopping-bag',
@@ -25,24 +27,23 @@ function iconForSlug(slug: string): IconName {
 
 {
   others.length > 0 && (
-    <section class="section-bg--elevated py-[clamp(4rem,7vw,5rem)]">
-      <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
-        <div class="reveal mb-8">
-          <Eyebrow text="OTROS SERVICIOS" class="mb-4" />
-        </div>
+    <SectionShell elevated padding="none" class="py-[clamp(4rem,7vw,5rem)]">
+      <SiteWrap>
+        <Eyebrow text="OTROS SERVICIOS" class="reveal mb-6" />
+        <SectionHead title="También puedo ayudarte con" titleEm="esto." class="reveal" narrow={false} />
 
-        <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div class="landing-services">
           {others.map((s) => (
             <ServiceCard
               icon={iconForSlug(s.slug)}
               title={s.name}
-              body={s.description}
+              body={s.description.split('.')[0] + '.'}
               price={s.price}
               href={`/servicios/${s.slug}/`}
             />
           ))}
         </div>
-      </div>
-    </section>
+      </SiteWrap>
+    </SectionShell>
   )
 }

@@ -1,33 +1,25 @@
 ---
-const stats = [
-  { value: '9',    label: 'Proyectos entregados' },
-  { value: '5',    label: 'Sectores distintos' },
-  { value: '5/5',  label: 'Basado en 10 reseñas de Google', star: true },
-  { value: '100%', label: 'Clientes con acceso total' },
-];
+import SiteWrap from '../ui/SiteWrap.astro';
+import { projectCount } from '../../data/projects';
 ---
-<section class="section-bg--elevated py-[clamp(3rem,6vw,5rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
-      {stats.map((s, i) => (
-        <div
-          class:list={[
-            'reveal text-center px-5 py-8 md:py-6 md:px-6',
-            i === 0 && 'border-r border-b border-border-default md:border-b-0',
-            i === 1 && 'border-b border-border-default md:border-r md:border-b-0',
-            i === 2 && 'border-r border-border-default md:border-r',
-            i === 3 && '',
-          ]}
-        >
-          <p class="stat__value mb-2.5 flex items-center justify-center gap-1">
-            <span>{s.value}</span>
-            {s.star && <span aria-hidden="true">★</span>}
-          </p>
-          <p class="font-mono text-[0.625rem] leading-normal tracking-[0.12em] uppercase text-text-muted">
-            {s.label}
-          </p>
-        </div>
-      ))}
+
+<section class="landing-metrics">
+  <SiteWrap class="landing-metrics__row">
+    <div class="landing-metrics__cell reveal">
+      <strong data-count={projectCount}>0</strong>
+      <span>Proyectos entregados</span>
     </div>
-  </div>
+    <div class="landing-metrics__cell reveal">
+      <strong data-count="5">0</strong>
+      <span>Sectores distintos</span>
+    </div>
+    <div class="landing-metrics__cell reveal">
+      <strong>5/5 ★</strong>
+      <span>10 reseñas en Google</span>
+    </div>
+    <div class="landing-metrics__cell reveal">
+      <strong data-count="100" data-suffix="%">0</strong>
+      <span>Clientes con acceso total</span>
+    </div>
+  </SiteWrap>
 </section>

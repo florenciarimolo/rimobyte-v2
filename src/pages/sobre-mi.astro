@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import HeroSobreMi from '../components/sections/sobre-mi/HeroSobreMi.astro';
-import Marquee from '../components/sections/Marquee.astro';
 import EnQueCreo from '../components/sections/sobre-mi/EnQueCreo.astro';
 import MiHistoria from '../components/sections/sobre-mi/MiHistoria.astro';
 import ComoTrabajo from '../components/sections/sobre-mi/ComoTrabajo.astro';
@@ -29,13 +28,12 @@ const placeAgg = await fetchPlaceAggregate();
   <Navbar />
   <main id="main">
     <HeroSobreMi />
-    <Marquee />
     <EnQueCreo />
     <MiHistoria />
     <ComoTrabajo />
     <TestimoniosSobreMi />
     <CTAFinal />
-    <ContactFormIsland />
+    <ContactFormIsland origin="sobre-mi" omitAnchor />
   </main>
   <Footer />
 </Base>

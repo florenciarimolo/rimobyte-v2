@@ -9,6 +9,8 @@ import ArticuloRelacionados from '../components/sections/blog/ArticuloRelacionad
 import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import Footer from '../components/sections/Footer.astro';
 import Button from '../components/ui/Button.astro';
+import SectionShell from '../components/ui/SectionShell.astro';
+import SiteWrap from '../components/ui/SiteWrap.astro';
 import { blogOgPath } from '../data/blogImages';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection, render } from 'astro:content';
@@ -116,8 +118,8 @@ const modifiedIso = (post.data.updatedDate ?? post.data.date).toISOString();
       <Content />
     </ArticuloContent>
 
-    <section class="section-bg--elevated py-[clamp(4rem,7vw,5rem)]">
-      <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)] text-center">
+    <SectionShell elevated padding="none" class="py-[clamp(4rem,7vw,5rem)]">
+      <SiteWrap class="text-center">
         <div class="reveal">
           <h2
             class="headline-gradient font-display font-medium text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] mb-4"
@@ -126,8 +128,8 @@ const modifiedIso = (post.data.updatedDate ?? post.data.date).toISOString();
           </h2>
           <Button href={post.data.ctaLink}>Hablemos →</Button>
         </div>
-      </div>
-    </section>
+      </SiteWrap>
+    </SectionShell>
 
     {related.length > 0 && <ArticuloRelacionados posts={related} />}
     <ContactFormIsland />

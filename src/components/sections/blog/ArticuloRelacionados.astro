@@ -1,6 +1,8 @@
 ---
 import BlogCard from '../../ui/BlogCard.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -10,8 +12,8 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<section class="section-bg py-[clamp(5rem,9vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<SectionShell padding="none" class="py-[clamp(5rem,9vw,7rem)]">
+  <SiteWrap>
     <div class="reveal mb-8">
       <Eyebrow text="SIGUE LEYENDO" class="mb-4" />
     </div>
@@ -30,5 +32,5 @@ const { posts } = Astro.props;
         ))
       }
     </div>
-  </div>
-</section>
+  </SiteWrap>
+</SectionShell>

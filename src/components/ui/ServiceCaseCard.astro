@@ -1,0 +1,40 @@
+---
+import Button from './Button.astro';
+import type { Project } from '../../data/projects';
+
+interface Props {
+  quote: string;
+  highlight: string;
+  project: Project;
+  class?: string;
+}
+
+const { quote, highlight, project, class: cls = '' } = Astro.props;
+const projectHref = `/proyectos/${project.slug}/`;
+---
+
+<article class:list={['service-case', cls]}>
+  <div class="service-case__grid">
+    <div class="service-case__content reveal">
+      <blockquote class="service-case__quote">«{quote}»</blockquote>
+      <p class="service-case__highlight">{highlight}</p>
+      <p class="service-case__meta">{project.name} — {project.url}</p>
+      <Button href={projectHref} variant="ghost">Ver proyecto →</Button>
+    </div>
+
+    <a
+      href={projectHref}
+      class="service-case__media reveal"
+      aria-label={`Ver proyecto ${project.name}`}
+    >
+      <img
+        src={project.image}
+        alt={`Captura de ${project.name}`}
+        width="720"
+        height="450"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </div>
+</article>

@@ -1,5 +1,8 @@
 ---
 import Eyebrow from '../../ui/Eyebrow.astro';
+import SectionHead from '../../ui/SectionHead.astro';
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
   eyebrow: string;
@@ -11,61 +14,25 @@ interface Props {
 const { eyebrow, title, titleEm, points } = Astro.props;
 ---
 
-<section class="section-bg--elevated relative py-[clamp(5rem,10vw,8rem)]">
-  <div class="mx-auto max-w-layout px-[clamp(1.5rem,5vw,4rem)]">
-    <div
-      class="reveal mb-[clamp(3rem,6vw,5rem)] grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-end lg:gap-x-[clamp(2rem,6vw,5rem)]"
-    >
-      <div>
-        <Eyebrow text={eyebrow} class="mb-6" />
-        <h2
-          class="headline-gradient m-0 font-display text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.04] tracking-tight"
-        >
-          {title} <em>{titleEm}</em>
-        </h2>
-      </div>
-      <p class="m-0 max-w-[42ch] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.7] text-text-secondary lg:justify-self-end">
-        No hace falta tener todo resuelto. Con identificar el cuello de botella ya se puede diseñar la web
-        correcta.
-      </p>
-    </div>
+<SectionShell elevated padding="none" class="relative py-[clamp(5rem,10vw,8rem)]">
+  <SiteWrap>
+    <Eyebrow text={eyebrow} class="reveal mb-6" />
+    <SectionHead title={title} titleEm={titleEm} class="reveal" narrow={false} />
+    <p class="reveal mb-8 max-w-[42ch] font-body text-[clamp(0.9375rem,1.15vw,1rem)] leading-[1.7] text-text-secondary">
+      No hace falta tener todo resuelto. Con identificar el cuello de botella ya se puede diseñar la web correcta.
+    </p>
 
-    <div class="grid gap-x-[clamp(2rem,5vw,5rem)] gap-y-[clamp(2.5rem,5vw,4.5rem)] md:grid-cols-2">
+    <ol class="landing-manifest">
       {
         points.map((point, i) => (
-          <div class="reveal scenario group relative">
-            <div class="mb-5 flex items-center gap-4">
-              <span class="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-blue">
-                Escenario · {String(i + 1).padStart(2, '0')}
-              </span>
-              <span aria-hidden="true" class="scenario__rule h-px flex-1 bg-border-default" />
+          <li class="landing-manifest__item reveal">
+            <span class="landing-manifest__n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{point}</h3>
             </div>
-            <p class="m-0 font-display text-[clamp(1.25rem,2vw,1.625rem)] font-medium leading-[1.32] tracking-[-0.018em] text-text-primary">
-              {point}
-            </p>
-          </div>
+          </li>
         ))
       }
-    </div>
-  </div>
-</section>
-
-<style>
-  .scenario__rule {
-    transform-origin: left center;
-    transition:
-      background-color 0.4s var(--ease-spring),
-      transform 0.5s var(--ease-spring);
-  }
-
-  .scenario:hover .scenario__rule {
-    background-color: var(--color-blue);
-    transform: scaleX(1.04);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .scenario__rule {
-      transition: none;
-    }
-  }
-</style>
+    </ol>
+  </SiteWrap>
+</SectionShell>

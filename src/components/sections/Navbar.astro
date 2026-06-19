@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
 import ThemeSwitcher from '../ui/ThemeSwitcher.astro';
 import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
 import { SERVICE_NAV_LINKS } from '../../data/navigation';
@@ -7,167 +8,133 @@ import { SERVICE_NAV_LINKS } from '../../data/navigation';
 const navLinkClass =
   'font-body text-sm text-text-secondary no-underline hover:text-text-primary transition-colors duration-200';
 
-/** Mismo icono que el chevron del <select> en ContactForm (20×20, currentColor) */
 const navChevronClass =
   'icon inline-flex size-5 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
 ---
 
-<header id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-300 border-b border-transparent">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)] flex items-center justify-between">
+<header class="site-nav" id="navbar">
+  <div class="site-nav__bar">
+    <SiteWrap class="site-nav__inner">
+      <a href="/" class="site-nav__logo">
+        Rimo<span class="text-gradient-logo">Byte</span>
+      </a>
 
-    <a href="/" class="font-display font-medium text-[1.375rem] tracking-[-0.03em] no-underline">
-      <span class="text-text-primary">Rimo</span><span class="text-gradient-logo">Byte</span>
-    </a>
+      <nav class="site-nav__links" aria-label="Principal">
+        <a href="/proyectos/" class={navLinkClass}>Proyectos</a>
 
-    <nav class="hidden md:flex items-center gap-8" aria-label="Principal">
-      <a href="/proyectos/" class={navLinkClass}>Proyectos</a>
-
-      <div class="relative">
-        <details id="nav-services-desktop" class="group/nav-services">
-          <summary
-            class:list={[
-              navLinkClass,
-              'cursor-pointer list-none inline-flex items-center gap-1.5 select-none',
-              '[&::-webkit-details-marker]:hidden',
-            ]}
-          >
-            Servicios
-            <span
-              class:list={[navChevronClass, 'group-open/nav-services:rotate-180']}
-              aria-hidden="true"
-              set:html={chevronDownSvg}
-            />
-          </summary>
-          <div class="absolute left-0 top-full z-60 pt-2 min-w-54">
-            <div
-              class="nav-dropdown flex flex-col rounded-xl border border-border-default bg-bg-elevated/95 backdrop-blur-md py-2"
-              role="group"
-              aria-label="Servicios"
+        <div class="relative">
+          <details id="nav-services-desktop" class="group/nav-services">
+            <summary
+              class:list={[
+                navLinkClass,
+                'cursor-pointer list-none inline-flex items-center gap-1.5 select-none',
+                '[&::-webkit-details-marker]:hidden',
+              ]}
             >
-              {SERVICE_NAV_LINKS.map(({ label, href }) => (
-                <a
-                  href={href}
-                  class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-text-primary hover:bg-bg-subtle transition-colors duration-150"
-                >
-                  {label}
-                </a>
-              ))}
+              Servicios
+              <span
+                class:list={[navChevronClass, 'group-open/nav-services:rotate-180']}
+                aria-hidden="true"
+                set:html={chevronDownSvg}
+              />
+            </summary>
+            <div class="absolute left-0 top-full z-60 pt-2 min-w-54">
+              <div
+                class="nav-dropdown flex flex-col rounded-xl border border-border-default bg-bg-elevated/95 backdrop-blur-md py-2"
+                role="group"
+                aria-label="Servicios"
+              >
+                {SERVICE_NAV_LINKS.map(({ label, href }) => (
+                  <a
+                    href={href}
+                    class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-text-primary hover:bg-bg-subtle transition-colors duration-150"
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </details>
+          </details>
+        </div>
+
+        <a href="/blog/" class={navLinkClass}>Blog</a>
+        <a href="/sobre-mi/" class={navLinkClass}>Sobre mí</a>
+      </nav>
+
+      <div class="site-nav__actions">
+        <ThemeSwitcher />
+        <div class="hidden md:block">
+          <Button href="/contacto/" variant="primary">Empezar mi web</Button>
+        </div>
+        <button
+          type="button"
+          class="site-nav__burger md:hidden"
+          id="menu-btn"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="nav-drawer"
+        >
+          <span></span><span></span>
+        </button>
       </div>
-
-      <a href="/blog/" class={navLinkClass}>Blog</a>
-      <a href="/sobre-mi/" class={navLinkClass}>Sobre mí</a>
-    </nav>
-
-    <div class="hidden md:flex items-center gap-3">
-      <ThemeSwitcher />
-      <Button href="/contacto/" variant="primary">Empezar mi web</Button>
-    </div>
-
-    <div class="md:hidden flex items-center gap-2">
-      <ThemeSwitcher />
-      <button
-        id="menu-btn"
-        type="button"
-        class="flex flex-col gap-1.5 p-2 bg-transparent border-0 cursor-pointer"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span class="block w-6 h-px bg-text-primary transition-all duration-200"></span>
-        <span class="block w-6 h-px bg-text-primary transition-all duration-200"></span>
-        <span class="block w-4 h-px bg-text-primary transition-all duration-200"></span>
-      </button>
-    </div>
+    </SiteWrap>
   </div>
+  <div class="site-nav__progress" id="nav-progress" aria-hidden="true"></div>
 </header>
 
-<div
-  id="mobile-menu"
-  class="fixed inset-0 z-40 bg-bg-base flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-300 px-6"
-  hidden
-  inert
->
-  <a href="/proyectos/" class="font-display text-3xl font-medium text-text-primary no-underline">Proyectos</a>
+<div class="site-nav__drawer" id="nav-drawer" hidden inert>
+  <nav aria-label="Menú móvil">
+    <a href="/proyectos/">Proyectos</a>
 
-  <details id="nav-services-mobile" class="group/nav-services-mobile w-full max-w-xs text-center">
-    <summary
-      class:list={[
-        'font-display text-3xl font-medium text-text-primary cursor-pointer list-none inline-flex items-center gap-2 justify-center mx-auto',
-        '[&::-webkit-details-marker]:hidden',
-      ]}
-    >
-      Servicios
-      <span
-        class:list={[navChevronClass, 'group-open/nav-services-mobile:rotate-180']}
-        aria-hidden="true"
-        set:html={chevronDownSvg}
-      />
-    </summary>
-    <div class="mt-6 flex flex-col gap-5 items-center">
-      {SERVICE_NAV_LINKS.map(({ label, href }) => (
-        <a href={href} class="font-body text-lg text-text-secondary no-underline hover:text-text-primary transition-colors">
-          {label}
-        </a>
-      ))}
-    </div>
-  </details>
+    <details id="nav-services-mobile" class="group/nav-services-mobile">
+      <summary class="cursor-pointer list-none inline-flex items-center gap-2 [&::-webkit-details-marker]:hidden">
+        Servicios
+        <span
+          class:list={[navChevronClass, 'group-open/nav-services-mobile:rotate-180']}
+          aria-hidden="true"
+          set:html={chevronDownSvg}
+        />
+      </summary>
+      <div class="mt-4 flex flex-col gap-3 pl-1">
+        {SERVICE_NAV_LINKS.map(({ label, href }) => (
+          <a href={href} class="font-body text-lg text-text-secondary no-underline hover:text-text-primary transition-colors">
+            {label}
+          </a>
+        ))}
+      </div>
+    </details>
 
-  <a href="/blog/" class="font-display text-3xl font-medium text-text-primary no-underline">Blog</a>
-  <a href="/sobre-mi/" class="font-display text-3xl font-medium text-text-primary no-underline">Sobre mí</a>
-  <a href="/contacto/" class="font-display text-3xl font-medium text-text-primary no-underline">Contacto</a>
+    <a href="/blog/">Blog</a>
+    <a href="/sobre-mi/">Sobre mí</a>
+    <a href="/contacto/">Contacto</a>
+  </nav>
 </div>
 
 <script>
-  const navbar = document.getElementById('navbar')!;
   const menuBtn = document.getElementById('menu-btn') as HTMLButtonElement;
-  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
+  const drawer = document.getElementById('nav-drawer') as HTMLElement;
   const desktopServices = document.getElementById('nav-services-desktop') as HTMLDetailsElement | null;
   let menuOpen = false;
 
-  function setMenuOpen(open: boolean) {
+  function setMenu(open: boolean) {
     menuOpen = open;
-    mobileMenu.hidden = !open;
-    mobileMenu.inert = !open;
-    mobileMenu.style.setProperty('--tw-translate-x', open ? '0' : '100%');
+    drawer.hidden = !open;
+    drawer.inert = !open;
+    drawer.classList.toggle('is-open', open);
+    menuBtn?.classList.toggle('is-open', open);
+    menuBtn?.setAttribute('aria-expanded', String(open));
+    menuBtn?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     document.body.style.overflow = open ? 'hidden' : '';
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-    if (open) {
-      const firstLink = mobileMenu.querySelector('a') as HTMLAnchorElement | null;
-      firstLink?.focus();
-    }
   }
 
-  function syncNavHeight() {
-    const h = navbar.offsetHeight;
-    if (h > 0) {
-      document.documentElement.style.setProperty('--nav-height', `${h}px`);
-    }
-  }
-  syncNavHeight();
-  window.addEventListener('resize', syncNavHeight, { passive: true });
-  requestAnimationFrame(syncNavHeight);
-
-  function syncNavbarScroll() {
-    navbar.classList.toggle('navbar--scrolled', window.scrollY > 40);
-  }
-  syncNavbarScroll();
-  window.addEventListener('scroll', syncNavbarScroll, { passive: true });
-
-  menuBtn.addEventListener('click', () => setMenuOpen(!menuOpen));
-
+  menuBtn?.addEventListener('click', () => setMenu(!menuOpen));
+  drawer?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuOpen) setMenuOpen(false);
+    if (e.key === 'Escape' && menuOpen) setMenu(false);
   });
 
-  mobileMenu.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => setMenuOpen(false));
-  });
-
-  /** Cierra el submenú de Servicios en escritorio al clic fuera */
   document.addEventListener('click', (e) => {
     if (!desktopServices?.open) return;
     const t = e.target as Node;

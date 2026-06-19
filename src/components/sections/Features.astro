@@ -1,74 +1,56 @@
 ---
-import Eyebrow from '../ui/Eyebrow.astro';
-import FeatureCard from '../ui/FeatureCard.astro';
+import SectionShell from '../ui/SectionShell.astro';
+import SiteWrap from '../ui/SiteWrap.astro';
+import SectionHead from '../ui/SectionHead.astro';
 
 const features = [
   {
-    num: '01', span: 'tall',
+    num: '01',
     title: 'Hablas conmigo, siempre',
-    body: 'No hay intermediarios ni equipos que rotan. Desde el primer mensaje hasta la entrega, soy yo quien diseña, desarrolla y responde. Tú sabes con quién hablas en cada momento.',
+    body: 'No hay intermediarios ni equipos que rotan. Desde el primer mensaje hasta la entrega, soy yo quien diseña, desarrolla y responde.',
     footnote: 'Flor · de principio a fin',
   },
   {
-    num: '02', span: '',
+    num: '02',
     title: 'Tu web es tuya, sin condiciones',
     body: 'El dominio, el hosting y todos los accesos van a tu nombre desde el primer día.',
     footnote: 'Dominio · hosting · accesos',
   },
   {
-    num: '03', span: '',
+    num: '03',
     title: 'Sigo aquí cuando la web ya está',
     body: 'Mantenimiento y soporte continuo sin permanencia.',
     footnote: 'Soporte · sin permanencia',
   },
   {
-    num: '04', span: 'wide',
+    num: '04',
     title: 'Ingeniera, no diseñadora reconvertida',
     body: 'Graduada en 2019. Cuando hay un problema técnico complejo, lo resuelvo. Tu web está construida con criterio de ingeniería, no solo de estética.',
     footnote: 'Ingeniería · no solo diseño',
   },
 ];
 ---
-<section class="section-bg py-[clamp(4rem,8vw,7rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 
-    <Eyebrow text="POR QUÉ RIMOBYTE" />
-    <h2 class="text-[clamp(2rem,3.5vw,3rem)] leading-[1.08] tracking-tight mb-4 max-w-[500px]">
-      Una forma <em>diferente</em> de hacer las cosas.
-    </h2>
-    <p class="text-base leading-[1.75] text-text-secondary mb-12 max-w-[560px]">
-      Cuatro razones que cambian cómo trabajamos juntos — y cómo te quedas tú al final del proyecto.
-    </p>
+<SectionShell id="por-que">
+  <SiteWrap>
+    <SectionHead
+      title="Diseño web para"
+      titleEm="negocios locales"
+      subtitle="Cuatro razones que cambian cómo trabajamos juntos — y cómo te quedas tú al final."
+      class="reveal"
+    />
 
-    <!-- Grid asimétrico — desktop -->
-    <div class="hidden md:grid gap-3" style="grid-template-columns: 5fr 3.5fr 3.5fr; grid-template-rows: auto auto;">
+    <ol class="landing-manifest">
       {features.map((f) => (
-        <FeatureCard
-          num={f.num}
-          title={f.title}
-          body={f.body}
-          footnote={f.footnote}
-          tall={f.span === 'tall'}
-          wide={f.span === 'wide'}
-          style={`
-            ${f.span === 'tall' ? 'grid-row: span 2;' : ''}
-            ${f.span === 'wide' ? 'grid-column: span 2;' : ''}
-          `}
-        />
+        <li class="landing-manifest__item reveal">
+          <span class="landing-manifest__n">{f.num}</span>
+          <div>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+            <span class="landing-manifest__tag">{f.footnote}</span>
+          </div>
+        </li>
       ))}
-    </div>
-
-    <!-- Grid simple — móvil -->
-    <div class="grid md:hidden gap-3">
-      {features.map((f) => (
-        <FeatureCard
-          num={f.num}
-          title={f.title}
-          body={f.body}
-          footnote={f.footnote}
-        />
-      ))}
-    </div>
-
-  </div>
-</section>
+    </ol>
+  </SiteWrap>
+</SectionShell>
