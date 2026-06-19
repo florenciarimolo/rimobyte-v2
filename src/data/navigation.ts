@@ -1,4 +1,4 @@
-/** Rutas compartidas navbar / footer — mantener alineadas con `trailingSlash: 'always'`. */
+/** Rutas compartidas navbar / footer — siempre con barra final (ver middleware + `canonicalPath`). */
 export const SERVICE_NAV_LINKS = [
   { label: 'Web corporativa', href: '/servicios/web-corporativa/' },
   { label: 'Tienda online', href: '/servicios/tienda-online/' },

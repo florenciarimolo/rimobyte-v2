@@ -4,6 +4,7 @@ import CookieBanner from '../components/ui/CookieBanner.astro';
 import PageLoader from '../components/ui/PageLoader.astro';
 import { resolveOgImage } from '../lib/og/url';
 import { publicProfileUrls } from '../lib/site';
+import { canonicalPath } from '../lib/url';
 
 interface Props {
   title?: string;
@@ -31,10 +32,11 @@ const {
   aggregateRating = null,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalPathname = canonicalPath(Astro.url.pathname);
+const canonicalURL = new URL(canonicalPathname, Astro.site);
 const ogImagePath = resolveOgImage({
   image,
-  pathname: Astro.url.pathname,
+  pathname: canonicalPathname,
 });
 const ogImageUrl = new URL(ogImagePath, Astro.site).href;
 

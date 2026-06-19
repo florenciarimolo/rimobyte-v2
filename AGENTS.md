@@ -34,7 +34,7 @@ Detalle de cuándo y cómo ejecutar cada script: [`docs/SCRIPTS.md`](docs/SCRIPT
 - **TypeScript** estricto
 - **pnpm** — Node `>=22.12.0`
 - `site`: `https://rimobyte.com` en `astro.config.mjs`
-- Rutas HTML con **`trailingSlash: 'always'`** (canonical y enlaces internos con `/` final).
+- Rutas HTML con **barra final** en canonical y enlaces internos (`/contacto/`). Astro usa `trailingSlash: 'ignore'`; el middleware en [`src/middleware.ts`](src/middleware.ts) redirige con 301 las variantes sin barra.
 - Redirects legacy SEO en `astro.config.mjs` (`legacySitemapRedirects` en [`src/data/sitemapRedirects.ts`](src/data/sitemapRedirects.ts)).
 
 ## Convenciones

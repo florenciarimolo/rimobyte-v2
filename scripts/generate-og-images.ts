@@ -22,13 +22,13 @@ const STATIC_PAGES: { routePath: string; title: string; description: string }[] 
   },
   {
     routePath: '/sobre-mi/',
-    title: 'Flor Rímolo — Ingeniera informática y diseñadora web freelance · RimoByte',
+    title: 'Flor Rímolo — Diseñadora web freelance · RimoByte',
     description:
       'Graduada en 2019, especializada en desarrollo web para negocios locales. Trabajo directamente con el cliente sin intermediarios. Tu web es tuya desde el primer día.',
   },
   {
     routePath: '/contacto/',
-    title: 'Contacto · RimoByte',
+    title: 'Contacto — Presupuesto web para negocios locales · RimoByte',
     description:
       'Cuéntame tu proyecto y te respondo sin tecnicismos. Diseño y desarrollo web para negocios locales — Flor Rímolo.',
   },
@@ -49,6 +49,12 @@ const STATIC_PAGES: { routePath: string; title: string; description: string }[] 
     title: 'Política de cookies · RimoByte',
     description:
       'Qué cookies y tecnologías similares se usan en rimobyte.com, incluido reCAPTCHA v3 de Google, y cómo gestionarlas. RimoByte.',
+  },
+  {
+    routePath: '/servicios/',
+    title: 'Servicios de diseño web para negocios locales · RimoByte',
+    description:
+      'Web corporativa, tienda online y mantenimiento web para autónomos y negocios locales. Presupuesto cerrado, tuya desde el primer día.',
   },
 ];
 

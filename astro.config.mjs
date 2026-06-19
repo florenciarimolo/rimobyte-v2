@@ -6,10 +6,23 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 import sitemap from '@astrojs/sitemap';
+import { createLastmodLookup } from './src/lib/sitemap-lastmod.ts';
+
+const buildDate = new Date().toISOString();
+const lastmodForUrl = createLastmodLookup(buildDate);
 
 export default defineConfig({
   adapter: vercel(),
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      serialize(item) {
+        const pathname = new URL(item.url).pathname;
+        item.lastmod = lastmodForUrl(pathname);
+        return item;
+      },
+    }),
+  ],
   trailingSlash: 'ignore',
   vite: {
     plugins: [tailwindcss()],

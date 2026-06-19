@@ -16,7 +16,7 @@ import { services } from '../../data/services';
 const service = services.find((s) => s.slug === 'mantenimiento-web')!;
 
 const serviceUrl = new URL(`/servicios/${service.slug}/`, Astro.site).href;
-const servicesHubUrl = new URL('/#servicios', Astro.site).href;
+const servicesHubUrl = new URL('/servicios/', Astro.site).href;
 
 const serviceLdGraph = {
   '@context': 'https://schema.org',
