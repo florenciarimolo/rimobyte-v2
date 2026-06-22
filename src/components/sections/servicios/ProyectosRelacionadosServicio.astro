@@ -1,0 +1,64 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Button from '../../ui/Button.astro';
+import ProjectCardArrow from '../../ui/ProjectCardArrow.astro';
+import { projects } from '../../../data/projects';
+
+interface Props {
+  title: string;
+  titleEm: string;
+  slugs: string[];
+}
+
+const { title, titleEm, slugs } = Astro.props;
+
+const related = slugs
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const gradients = [
+  'linear-gradient(135deg, #196BEE 0%, #6535E5 100%)',
+  'linear-gradient(135deg, #6535E5 0%, #E715D1 100%)',
+  'linear-gradient(135deg, #196BEE 0%, #E715D1 100%)',
+];
+---
+
+<section class="service-v6-related">
+  <SiteWrap>
+    <div class="service-v6-related__head reveal">
+      <h2>
+        {title}
+        <span class="gradient-text">{titleEm}</span>
+      </h2>
+      <Button href="/proyectos/" variant="ghost">Ver todos los proyectos</Button>
+    </div>
+    <div class="service-v6-related__grid">
+      {
+        related.map((project, i) => (
+          <div class="project-card-v6-shell reveal">
+            <a href={`/proyectos/${project.slug}/`} class="service-v6-related__card project-card-v6">
+            <div
+              class="service-v6-related__thumb"
+              style={
+                project.image
+                  ? `background-image: url(${project.image}); background-size: cover; background-position: center;`
+                  : `background: ${gradients[project.thumbGradient ?? i % gradients.length]};`
+              }
+            >
+              {!project.image && project.thumbLetter && <span>{project.thumbLetter}</span>}
+              <span class="service-v6-related__tag">{project.eyebrow}</span>
+            </div>
+            <div class="service-v6-related__info">
+              <div>
+                <h3>{project.name}</h3>
+                <p>{project.sector}</p>
+              </div>
+              <ProjectCardArrow />
+            </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </SiteWrap>
+</section>

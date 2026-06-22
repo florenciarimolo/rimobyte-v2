@@ -7,8 +7,10 @@ import { faqEntries } from '../../data/faq';
 interface FAQItem {
   q?: string;
   a?: string;
+  aHtml?: string;
   question?: string;
   answer?: string;
+  answerHtml?: string;
 }
 
 interface Props {
@@ -29,7 +31,11 @@ const {
 } = Astro.props;
 
 function toFaqEntry(f: FAQItem) {
-  return { q: f.q ?? f.question ?? '', a: f.a ?? f.answer ?? '' };
+  return {
+    q: f.q ?? f.question ?? '',
+    a: f.a ?? f.answer ?? '',
+    aHtml: f.aHtml ?? f.answerHtml,
+  };
 }
 
 const entries = (faqsProp ?? faqEntries).map(toFaqEntry);
@@ -49,7 +55,7 @@ const entries = (faqsProp ?? faqEntries).map(toFaqEntry);
         entries.map((f) => (
           <details class="faq-item">
             <summary>{f.q}</summary>
-            <p>{f.a}</p>
+            {f.aHtml ? <p set:html={f.aHtml} /> : <p>{f.a}</p>}
           </details>
         ))
       }

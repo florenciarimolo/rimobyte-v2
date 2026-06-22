@@ -7,7 +7,7 @@ export interface FaqEntry {
 export const faqEntries: FaqEntry[] = [
   {
     q: '¿Cuánto cuesta una web?',
-    a: 'Web corporativa desde 600€, tienda online desde 1.200€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
+    a: 'Web corporativa desde 600€, tienda online desde 1.500€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
   },
   {
     q: '¿Cuánto tarda en estar lista?',

@@ -1,0 +1,51 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import type { ServiceDetailContent } from '../../../data/serviceDetails';
+
+interface Props {
+  fit: ServiceDetailContent['fit'];
+}
+
+const { fit } = Astro.props;
+---
+
+<section class="service-v6-fit">
+  <SiteWrap>
+    <div class="service-v6-fit__grid">
+      <article class="service-v6-fit__card glass-card reveal">
+        <Pill text={fit.yes.pill} class="mb-5" />
+        <h2>{fit.yes.title}</h2>
+        <ul class="service-v6-fit__list service-v6-fit__list--yes">
+          {
+            fit.yes.items.map((item) => (
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="service-v6-fit__card service-v6-fit__card--dark reveal">
+        <Pill text={fit.no.pill} class="mb-5" />
+        <h2>{fit.no.title}</h2>
+        <ul class="service-v6-fit__list service-v6-fit__list--no">
+          {
+            fit.no.items.map((item) => (
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+  </SiteWrap>
+</section>

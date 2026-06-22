@@ -2,23 +2,19 @@
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/sections/Navbar.astro';
 import Footer from '../../components/sections/Footer.astro';
-import Eyebrow from '../../components/ui/Eyebrow.astro';
-import SectionShell from '../../components/ui/SectionShell.astro';
-import SiteWrap from '../../components/ui/SiteWrap.astro';
-import ServiceCard from '../../components/ui/ServiceCard.astro';
-import { services } from '../../data/services';
-import type { IconName } from '../../components/ui/icons/registry';
+import HeroServiciosHub from '../../components/sections/servicios/HeroServiciosHub.astro';
+import ServicesHubGrid from '../../components/sections/servicios/ServicesHubGrid.astro';
+import DecisionServicios from '../../components/sections/servicios/DecisionServicios.astro';
+import VerticalesServicios from '../../components/sections/servicios/VerticalesServicios.astro';
+import ProcesoServicio from '../../components/sections/servicios/ProcesoServicio.astro';
+import FAQ from '../../components/sections/FAQ.astro';
+import HomeCTA from '../../components/sections/HomeCTA.astro';
+import { hubFaqs, serviceProcessSteps } from '../../data/servicesHub';
 
 const SEO = {
   title: 'Servicios de diseño web para negocios locales · RimoByte',
   description:
     'Web corporativa, tienda online y mantenimiento web para autónomos y negocios locales. Presupuesto cerrado, tuya desde el primer día.',
-};
-
-const iconByIllustration: Record<string, IconName> = {
-  corporate: 'globe',
-  ecommerce: 'shopping-bag',
-  maintenance: 'wrench',
 };
 
 const servicesUrl = new URL('/servicios/', Astro.site).href;
@@ -27,18 +23,8 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Inicio',
-      item: new URL('/', Astro.site).href,
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Servicios',
-      item: servicesUrl,
-    },
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Servicios', item: servicesUrl },
   ],
 };
 ---
@@ -47,66 +33,25 @@ const breadcrumbLd = {
   <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
 
   <Navbar />
-  <main id="main">
-    <SectionShell padding="hero">
-      <SiteWrap>
-        <div class="max-w-[760px] reveal">
-          <Eyebrow text="SERVICIOS · DISEÑO WEB" class="mb-6" />
-
-          <h1
-            class="font-display font-medium text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.03em]"
-          >
-            Webs que representan tu negocio y trabajan <em>por ti.</em>
-          </h1>
-
-          <p
-            class="font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary mt-6 max-w-[580px]"
-          >
-            Tres formas de trabajar juntos: web corporativa, tienda online o mantenimiento. Siempre con
-            presupuesto claro antes de empezar.
-          </p>
-        </div>
-      </SiteWrap>
-    </SectionShell>
-
-    <SectionShell>
-      <SiteWrap>
-        <div class="landing-services">
-          {
-            services.map((s) => (
-              <ServiceCard
-                icon={iconByIllustration[s.illustration] ?? 'globe'}
-                title={s.name}
-                body={s.description.split('.')[0] + '.'}
-                price={s.price}
-                href={`/servicios/${s.slug}/`}
-              />
-            ))
-          }
-        </div>
-
-        <div class="reveal mt-12 text-center font-body text-sm text-text-secondary space-y-2">
-          <p>
-            ¿Tienes un restaurante o bar?
-            <a
-              href="/web-para-restaurantes/"
-              class="text-text-primary no-underline hover:text-blue transition-colors duration-200"
-            >
-              Web para restaurantes →
-            </a>
-          </p>
-          <p>
-            ¿Peluquería o centro de estética?
-            <a
-              href="/web-para-peluquerias/"
-              class="text-text-primary no-underline hover:text-blue transition-colors duration-200"
-            >
-              Web para peluquerías →
-            </a>
-          </p>
-        </div>
-      </SiteWrap>
-    </SectionShell>
+  <main id="main" class="services-hub-v6">
+    <HeroServiciosHub />
+    <ServicesHubGrid />
+    <DecisionServicios />
+    <VerticalesServicios />
+    <ProcesoServicio
+      centered
+      title="El mismo proceso en"
+      titleEm="cada proyecto."
+      description="No porque sea una norma — porque funciona. Cinco pasos sin sorpresas, con presupuesto cerrado y sin que tengas que perseguir nada."
+      steps={serviceProcessSteps}
+    />
+    <FAQ
+      faqs={hubFaqs}
+      title="Sobre presupuestos, plazos y"
+      titleGradient="qué incluye cada cosa."
+      subtitle=""
+    />
+    <HomeCTA />
   </main>
   <Footer />
 </Base>

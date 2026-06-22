@@ -1,0 +1,59 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import Button from '../../ui/Button.astro';
+import type { Service } from '../../../data/services';
+import type { ServiceDetailContent } from '../../../data/serviceDetails';
+
+interface Props {
+  service: Service;
+  detail: ServiceDetailContent;
+}
+
+const { service, detail } = Astro.props;
+---
+
+<section class="service-v6-hero">
+  <SiteWrap>
+    <div class="service-v6-hero__grid reveal">
+      <div class="service-v6-hero__main">
+        <div class="service-v6-hero__pills">
+          {detail.heroPills.map((pill) => <Pill text={pill} />)}
+        </div>
+        <h1>
+          {service.headline}
+          <span class="gradient-text">{service.headlineEm}</span>
+        </h1>
+        <p class="service-v6-hero__lede">{detail.heroLede}</p>
+        <div class="service-v6-hero__cta-row">
+          <Button href="/contacto/" variant="primary">
+            Pedir presupuesto
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Button>
+          <Button href="/proyectos/" variant="ghost">Ver proyectos</Button>
+        </div>
+      </div>
+
+      <aside class="service-v6-hero__aside glass-card">
+        {
+          detail.metaAside.map((row) => (
+            <div class="service-v6-hero__meta-row">
+              <span class="service-v6-hero__meta-label">{row.label}</span>
+              <span class:list={['service-v6-hero__meta-value', row.gradient && 'gradient-text']}>{row.value}</span>
+            </div>
+          ))
+        }
+        <div class="service-v6-hero__aside-cta">
+          <Button href="/contacto/" variant="primary" block>
+            {detail.pricingDetail.cta}
+          </Button>
+          <Button href="https://wa.me/34684713743" variant="ghost" external block>
+            WhatsApp · 684 713 743
+          </Button>
+        </div>
+      </aside>
+    </div>
+  </SiteWrap>
+</section>

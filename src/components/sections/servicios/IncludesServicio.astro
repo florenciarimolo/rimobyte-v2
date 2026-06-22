@@ -1,0 +1,38 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import IncludeIcon from './IncludeIcon.astro';
+import type { ServiceDetailContent } from '../../../data/serviceDetails';
+
+interface Props {
+  detail: ServiceDetailContent;
+}
+
+const { detail } = Astro.props;
+const { includesIntro, includes } = detail;
+---
+
+<section class="service-v6-includes">
+  <SiteWrap>
+    <div class="service-v6-includes__head reveal">
+      <Pill text="Qué incluye" class="mb-5" />
+      <h2>
+        {includesIntro.title}
+        <span class="gradient-text">{includesIntro.titleEm}</span>
+      </h2>
+      <p>{includesIntro.description}</p>
+    </div>
+    <div class="service-v6-includes__grid">
+      {
+        includes.map((item) => (
+          <article class="service-v6-include glass-card reveal">
+            <IncludeIcon name={item.icon} />
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <p class="service-v6-include__extra">{item.extra}</p>
+          </article>
+        ))
+      }
+    </div>
+  </SiteWrap>
+</section>

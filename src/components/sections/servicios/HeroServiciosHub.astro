@@ -1,0 +1,42 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import { services } from '../../../data/services';
+import { serviceDetailBySlug } from '../../../data/serviceDetails';
+
+const quickLinks = services
+  .filter((s) => serviceDetailBySlug[s.slug])
+  .map((s) => ({
+    href: `/servicios/${s.slug}/`,
+    label: s.name,
+    price: s.price,
+    anchor: serviceDetailBySlug[s.slug]?.anchorId,
+  }));
+---
+
+<header class="services-hub-v6__hero">
+  <SiteWrap>
+    <div class="reveal">
+      <Pill text="Servicios" class="mb-6" />
+      <h1>
+        Webs que representan tu negocio y trabajan
+        <span class="gradient-text">por ti.</span>
+      </h1>
+      <p class="services-hub-v6__lede">
+        Tres formas de empezar a trabajar juntas: web corporativa, tienda online o mantenimiento. Siempre con
+        presupuesto cerrado antes de empezar, sin sorpresas a mitad de camino y sin permanencia.
+      </p>
+      <div class="services-hub-v6__quick">
+        {
+          quickLinks.map((link) => (
+            <a href={`#${link.anchor}`} class="services-hub-v6__quick-link">
+              <span class="services-hub-v6__quick-dot" aria-hidden="true" />
+              {link.label}
+              <small>{link.price}</small>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </SiteWrap>
+</header>

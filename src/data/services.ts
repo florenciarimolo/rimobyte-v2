@@ -8,6 +8,8 @@ export interface ServiceFeature {
 export interface ServiceFAQ {
   question: string;
   answer: string;
+  /** HTML opcional para la respuesta visible (schema usa `answer` en texto plano). */
+  answerHtml?: string;
 }
 
 export interface RelatedCase {
@@ -232,7 +234,7 @@ export const services: Service[] = [
           'Al entregar te explico cómo añadir productos, gestionar pedidos y hacer cambios básicos.',
       },
     ],
-    price: 'Desde 1.200€',
+    price: 'Desde 1.500€',
     priceNote: 'Hosting, dominio y comisiones de pasarela de pago no incluidos.',
     relatedCases: [
       {
@@ -272,7 +274,9 @@ export const services: Service[] = [
       {
         question: '¿Cómo cobro a mis clientes?',
         answer:
-          'Con Stripe y PayPal. El dinero va directamente a tu cuenta. Consulta sus comisiones oficiales en: stripe.com/es/pricing · paypal.com/es/business/paypal-business-fees',
+          'Con Stripe y PayPal. El dinero va directamente a tu cuenta. Consulta sus comisiones oficiales en stripe.com/es/pricing y paypal.com/es/business/paypal-business-fees.',
+        answerHtml:
+          'Con Stripe y PayPal. El dinero va directamente a tu cuenta. Consulta sus comisiones oficiales en: <a href="https://stripe.com/es/pricing" target="_blank" rel="noopener noreferrer">stripe.com/es/pricing</a> · <a href="https://www.paypal.com/es/business/paypal-business-fees" target="_blank" rel="noopener noreferrer">paypal.com/es/business/paypal-business-fees</a>.',
       },
       {
         question: '¿Puedo vender en España y en otros países?',
@@ -293,7 +297,7 @@ export const services: Service[] = [
     seo: {
       title: 'Tienda online para pequeño negocio · RimoByte',
       description:
-        'Tienda WooCommerce o Shopify para pequeños negocios desde 1.200€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
+        'Tienda WooCommerce o Shopify para pequeños negocios desde 1.500€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
     },
   },
   {

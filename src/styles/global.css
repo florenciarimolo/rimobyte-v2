@@ -220,6 +220,12 @@ astro-island {
 
 .nav-dropdown {
   box-shadow: var(--color-dropdown-shadow);
+  padding: 6px;
+  gap: 2px;
+}
+
+.nav-dropdown a {
+  border-radius: 10px;
 }
 
 .panel-shadow {

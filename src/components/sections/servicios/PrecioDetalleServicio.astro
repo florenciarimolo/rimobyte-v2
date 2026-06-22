@@ -1,0 +1,60 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Button from '../../ui/Button.astro';
+import type { ServiceDetailContent } from '../../../data/serviceDetails';
+
+interface Props {
+  pricing: ServiceDetailContent['pricingDetail'];
+}
+
+const { pricing } = Astro.props;
+---
+
+<section class="service-v6-pricing" id="precio">
+  <SiteWrap>
+    <div class="service-v6-pricing__card glass-card reveal">
+      <div class="service-v6-pricing__grid">
+        <div class="service-v6-pricing__main">
+          <p class="service-v6-pricing__label">{pricing.label}</p>
+          <h2>
+            {pricing.amount}
+            {pricing.amountSub && <small>{pricing.amountSub}</small>}
+          </h2>
+          <ul class="service-v6-pricing__features">
+            {
+              pricing.features.map((feature) => (
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  {feature}
+                </li>
+              ))
+            }
+          </ul>
+          <Button href="/contacto/" variant="primary">
+            {pricing.cta}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Button>
+        </div>
+
+        <div class="service-v6-pricing__extras">
+          <h3>Extras opcionales</h3>
+          {
+            pricing.extras.map((extra) => (
+              <div class="service-v6-pricing__extra-row">
+                <div class="service-v6-pricing__extra-name">
+                  {extra.name}
+                  {extra.detail && <small>{extra.detail}</small>}
+                </div>
+                <div class="service-v6-pricing__extra-price">{extra.price}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </SiteWrap>
+</section>

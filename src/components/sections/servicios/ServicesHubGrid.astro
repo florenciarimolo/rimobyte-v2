@@ -1,0 +1,65 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Icon from '../../ui/Icon.astro';
+import { services } from '../../../data/services';
+import { serviceDetailBySlug } from '../../../data/serviceDetails';
+import type { IconName } from '../../ui/icons/registry';
+
+const iconByIllustration: Record<string, IconName> = {
+  corporate: 'globe',
+  ecommerce: 'shopping-bag',
+  maintenance: 'wrench',
+};
+---
+
+<section class="services-hub-v6__grid-section">
+  <SiteWrap>
+    <div class="services-hub-v6__grid">
+      {
+        services
+          .filter((s) => serviceDetailBySlug[s.slug])
+          .map((service) => {
+            const detail = serviceDetailBySlug[service.slug]!;
+            const featured = detail.hubFeatured;
+            return (
+              <article
+                id={detail.anchorId}
+                class:list={[
+                  'services-hub-v6__card',
+                  'reveal',
+                  featured ? 'services-hub-v6__card--featured' : 'glass-card',
+                ]}
+              >
+                {detail.hubTag && <span class="services-hub-v6__tag">{detail.hubTag}</span>}
+                <div class="services-hub-v6__icon" aria-hidden="true">
+                  <Icon name={iconByIllustration[service.illustration] ?? 'globe'} class="size-6" />
+                </div>
+                <h3>{service.name}</h3>
+                <p class="services-hub-v6__summary">{service.description}</p>
+                <p class="services-hub-v6__for-label">Ideal si tu negocio</p>
+                <ul class="services-hub-v6__features">
+                  {detail.hubIdealFor.map((item) => (
+                    <li>
+                      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <footer class="services-hub-v6__foot">
+                  <div class="services-hub-v6__price">
+                    <small>{service.priceNote}</small>
+                    <span>{service.price.replace(/^Desde\s*/i, '')}</span>
+                  </div>
+                  <a href={`/servicios/${service.slug}/`} class="services-hub-v6__link">
+                    Saber más →
+                  </a>
+                </footer>
+              </article>
+            );
+          })
+      }
+    </div>
+  </SiteWrap>
+</section>

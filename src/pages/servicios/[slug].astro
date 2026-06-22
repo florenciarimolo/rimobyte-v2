@@ -1,0 +1,101 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/sections/Navbar.astro';
+import Footer from '../../components/sections/Footer.astro';
+import ServiceBreadcrumb from '../../components/sections/servicios/ServiceBreadcrumb.astro';
+import HeroServicioV6 from '../../components/sections/servicios/HeroServicioV6.astro';
+import IncludesServicio from '../../components/sections/servicios/IncludesServicio.astro';
+import EncajeServicio from '../../components/sections/servicios/EncajeServicio.astro';
+import ProcesoServicio from '../../components/sections/servicios/ProcesoServicio.astro';
+import ProyectosRelacionadosServicio from '../../components/sections/servicios/ProyectosRelacionadosServicio.astro';
+import PrecioDetalleServicio from '../../components/sections/servicios/PrecioDetalleServicio.astro';
+import FAQ from '../../components/sections/FAQ.astro';
+import CTAServicio from '../../components/sections/servicios/CTAServicio.astro';
+import ContactFormIsland from '../../components/sections/ContactFormIsland.astro';
+import { services } from '../../data/services';
+import { getServiceDetail, serviceDetailSlugs } from '../../data/serviceDetails';
+import { serviceProcessSteps } from '../../data/servicesHub';
+
+export function getStaticPaths() {
+  return serviceDetailSlugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const service = services.find((s) => s.slug === slug)!;
+const detail = getServiceDetail(slug!)!;
+
+const serviceUrl = new URL(`/servicios/${service.slug}/`, Astro.site).href;
+const servicesHubUrl = new URL('/servicios/', Astro.site).href;
+
+const priceMatch = service.price.match(/[\d.]+/);
+const minPrice = priceMatch?.[0]?.replace(/\./g, '') ?? '600';
+
+const serviceLdGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: service.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    },
+    {
+      '@type': 'Service',
+      name: service.seo.title.split('·')[0]?.trim() ?? service.name,
+      provider: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com/' },
+      areaServed: { '@type': 'Country', name: 'España' },
+      description: service.seo.description,
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'EUR',
+        price: minPrice,
+        priceSpecification: { '@type': 'PriceSpecification', minPrice, priceCurrency: 'EUR' },
+      },
+      url: serviceUrl,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: 'Servicios', item: servicesHubUrl },
+        { '@type': 'ListItem', position: 3, name: service.name, item: serviceUrl },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={service.seo.title} description={service.seo.description}>
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(serviceLdGraph)} />
+
+  <Navbar />
+  <main id="main" class="service-detail-v6">
+    <ServiceBreadcrumb href="/servicios/" />
+    <HeroServicioV6 service={service} detail={detail} />
+    <IncludesServicio detail={detail} />
+    <EncajeServicio fit={detail.fit} />
+    <ProcesoServicio
+      title={detail.processIntro.title}
+      titleEm={detail.processIntro.titleEm}
+      description={detail.processIntro.description}
+      steps={serviceProcessSteps}
+    />
+    <ProyectosRelacionadosServicio
+      title={detail.relatedTitle}
+      titleEm={detail.relatedTitleEm}
+      slugs={detail.relatedSlugs}
+    />
+    <PrecioDetalleServicio pricing={detail.pricingDetail} />
+    <FAQ
+      faqs={service.faqs}
+      title={detail.faqTitle}
+      titleGradient={detail.faqTitleEm}
+      subtitle=""
+    />
+    <CTAServicio title={detail.ctaTitle} titleEm={detail.ctaTitleEm} />
+    <ContactFormIsland origin={service.slug} omitAnchor />
+  </main>
+  <Footer />
+</Base>

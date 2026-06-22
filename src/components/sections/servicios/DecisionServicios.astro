@@ -1,0 +1,44 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import Button from '../../ui/Button.astro';
+import { hubDecisionQuestions } from '../../../data/servicesHub';
+---
+
+<section class="services-hub-v6__decision">
+  <SiteWrap>
+    <div class="services-hub-v6__decision-card glass-card reveal">
+      <div>
+        <Pill text="¿No lo tienes claro?" class="mb-5" />
+        <h2>
+          Elegir <span class="gradient-text">acertando</span> es la mitad del proyecto.
+        </h2>
+        <p>
+          Si dudas entre opciones, mira estas tres preguntas. Y si sigues con dudas, mejor escríbeme: en 24h te
+          respondo con una recomendación honesta — aunque la respuesta sea "todavía no necesitas web".
+        </p>
+        <Button href="/contacto/" variant="primary">
+          Resuelve mis dudas
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </Button>
+      </div>
+      <div class="services-hub-v6__decision-questions">
+        {
+          hubDecisionQuestions.map((q) => (
+            <a href={q.href} class="services-hub-v6__decision-q">
+              <span class="services-hub-v6__decision-num">{q.letter}</span>
+              <span class="services-hub-v6__decision-text">
+                {q.text}
+                <strong>{q.emphasis}</strong>
+                {q.textAfter}
+              </span>
+              <span class="services-hub-v6__decision-answer">{q.answer}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </SiteWrap>
+</section>

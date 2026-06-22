@@ -1,0 +1,33 @@
+---
+import Button from '../../ui/Button.astro';
+import DarkCTA from '../../ui/DarkCTA.astro';
+
+interface Props {
+  title: string;
+  titleEm: string;
+}
+
+const { title, titleEm } = Astro.props;
+---
+
+<DarkCTA pill="Respondo en menos de 24 horas" live>
+  <span slot="title">
+    {title}
+    <span class="gradient-text">{titleEm}</span>
+  </span>
+  <span slot="description">
+    Cuéntame brevemente tu negocio y qué necesitas. Te respondo personalmente con una recomendación concreta y un
+    presupuesto cerrado — no una plantilla.
+  </span>
+  <Fragment slot="actions">
+    <Button href="/contacto/" variant="primary">
+      Escríbeme tu caso
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M5 12h14M13 5l7 7-7 7" />
+      </svg>
+    </Button>
+    <Button href="https://wa.me/34684713743" variant="ghost" external>
+      WhatsApp · 684 713 743
+    </Button>
+  </Fragment>
+</DarkCTA>
