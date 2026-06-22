@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import HeroSector from '../components/sections/sector/HeroSector.astro';
-import PorQueSector from '../components/sections/sector/PorQueSector.astro';
 import QueNecesitaSector from '../components/sections/sector/QueNecesitaSector.astro';
 import CasoSector from '../components/sections/sector/CasoSector.astro';
 import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
@@ -10,9 +9,9 @@ import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
 import { sectors } from '../data/sectors';
 
-const sector = sectors.find((s) => s.slug === 'web-para-restaurantes')!;
+const sector = sectors.find((s) => s.slug === 'web-para-peluquerias')!;
 
-const sectorUrl = new URL('/web-para-restaurantes/', Astro.site).href;
+const sectorUrl = new URL('/web-para-peluquerias/', Astro.site).href;
 const sectorLdGraph = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -26,7 +25,7 @@ const sectorLdGraph = {
     },
     {
       '@type': 'Service',
-      name: 'Web para restaurantes y hostelería',
+      name: 'Diseño web para peluquerías y centros de estética',
       provider: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com/' },
       areaServed: { '@type': 'Country', name: 'España' },
       description: sector.seo.description,
@@ -50,7 +49,7 @@ const sectorLdGraph = {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Web para restaurantes',
+          name: 'Web para peluquerías',
           item: sectorUrl,
         },
       ],
@@ -65,16 +64,6 @@ const sectorLdGraph = {
   <Navbar />
   <main id="main">
     <HeroSector sector={sector} />
-    {
-      sector.painPoints && (
-        <PorQueSector
-          eyebrow={sector.painPoints.eyebrow}
-          title={sector.painPoints.title}
-          titleEm={sector.painPoints.titleEm}
-          points={sector.painPoints.points}
-        />
-      )
-    }
     <QueNecesitaSector
       features={sector.features}
       sectorName={sector.sectorNameShort}
@@ -85,7 +74,7 @@ const sectorLdGraph = {
     {sector.relatedCase && <CasoSector caseData={sector.relatedCase} />}
     <FAQ faqs={sector.faqs} />
     <ContactFormIsland
-      origin="web-para-restaurantes"
+      origin="web-para-peluquerias"
       heading={sector.ctaFinal.title}
       headingEm={sector.ctaFinal.titleEm}
       intro={sector.ctaFinal.text}

@@ -52,19 +52,23 @@ const { sector } = Astro.props;
       </ul>
     </div>
 
-    <div
-      class="reveal mt-[clamp(3rem,6vw,4.5rem)] flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border-default pt-6"
-    >
-      <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
-        Enfoque hostelería
-      </span>
-      <span aria-hidden="true" class="hidden h-px w-8 bg-border-blue sm:block"></span>
-      {
-        ['Carta digital', 'Reservas propias', 'Google local'].map((item) => (
-          <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-blue">{item}</span>
-        ))
-      }
-    </div>
+    {
+      sector.heroStrip && (
+        <div class="reveal mt-[clamp(3rem,6vw,4.5rem)] flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border-default pt-6">
+          <span class="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-text-muted">
+            {sector.heroStrip.label}
+          </span>
+          <span aria-hidden="true" class="hidden h-px w-8 bg-border-blue sm:block" />
+          {
+            sector.heroStrip.tags.map((item) => (
+              <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-blue">
+                {item}
+              </span>
+            ))
+          }
+        </div>
+      )
+    }
   </SiteWrap>
 </SectionShell>
 

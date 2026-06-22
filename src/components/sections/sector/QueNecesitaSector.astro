@@ -9,19 +9,23 @@ interface Props {
   features: SectorFeature[];
   sectorName: string;
   intro?: string;
+  title?: string;
+  titleEm?: string;
 }
 
-const { features, sectorName, intro } = Astro.props;
+const {
+  features,
+  sectorName,
+  intro,
+  title = 'Lo que convierte visitas en mesas',
+  titleEm = `en una web para ${sectorName}.`,
+} = Astro.props;
 ---
 
 <SectionShell padding="none" class="relative py-[clamp(5rem,10vw,8rem)]">
   <SiteWrap>
     <Eyebrow text="QUÉ NECESITA TU WEB" class="reveal mb-6" />
-    <SectionHead
-      title={`Lo que convierte visitas en mesas en una web para ${sectorName}.`}
-      class="reveal"
-      narrow={false}
-    />
+    <SectionHead title={title} titleEm={titleEm} class="reveal" narrow={false} />
     {intro && (
       <p class="reveal mb-8 max-w-[44ch] font-body text-[0.9375rem] leading-[1.7] text-text-secondary">
         {intro}

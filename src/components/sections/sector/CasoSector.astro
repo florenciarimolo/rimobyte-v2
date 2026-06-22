@@ -2,6 +2,8 @@
 import SectionShell from '../../ui/SectionShell.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
+import Button from '../../ui/Button.astro';
+import QuoteIcon from '../../ui/QuoteIcon.astro';
 import type { SectorCase } from '../../../data/sectors';
 import { getSectorProject } from '../../../data/sectors';
 
@@ -12,22 +14,119 @@ interface Props {
 const { caseData } = Astro.props;
 const project = getSectorProject(caseData.slug);
 if (!project) return;
+
+const projectHref = `/proyectos/${project.slug}/`;
+const sectorMeta = [project.sector, project.location].filter(Boolean).join(' · ');
 ---
 
-<SectionShell>
+<SectionShell elevated padding="none" class="py-[clamp(5rem,10vw,8rem)]">
   <SiteWrap>
-    <Eyebrow text="CASO REAL" class="reveal mb-6" />
+    <Eyebrow text="CASO RELACIONADO" class="reveal mb-6" />
 
-    <div class="landing-case__inner">
-      <blockquote class="landing-case__line reveal">
-        {caseData.testimonialQuote ? `«${caseData.testimonialQuote}»` : `«${caseData.summary}»`}
-      </blockquote>
-      <div class="landing-case__story reveal">
-        <p>{caseData.summary}</p>
-        <a href={`/proyectos/${project.slug}/`} class="landing-case__credit">
-          {project.name} — {project.url} →
-        </a>
+    <div class="sector-case reveal">
+      <div class="sector-case__accent" aria-hidden="true"></div>
+
+      <div class="sector-case__body">
+        <div class="sector-case__quote-icon text-blue opacity-70" aria-hidden="true">
+          <QuoteIcon variant="ornate" tone="strong" size="lg" />
+        </div>
+
+        <p class="sector-case__label font-mono text-[0.625rem] uppercase tracking-[0.12em] text-text-muted">
+          {project.name} — {project.url}
+        </p>
+        {sectorMeta && (
+          <p class="sector-case__meta font-mono text-[0.625rem] uppercase tracking-[0.12em] text-text-muted">
+            {sectorMeta}
+          </p>
+        )}
+
+        <div class="sector-case__narrative">
+          <p><strong>Desafío.</strong> {caseData.challenge}</p>
+          <p><strong>Solución.</strong> {caseData.solution}</p>
+        </div>
+
+        <h2 class="sector-case__result headline-gradient font-display font-medium text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.02em]">
+          {caseData.result}{' '}
+          {caseData.resultEm && (
+            <em class="font-normal italic text-gradient-logo">{caseData.resultEm}</em>
+          )}
+        </h2>
+
+        <blockquote class="sector-case__testimonial font-display font-medium italic text-[clamp(1.125rem,2vw,1.375rem)] leading-[1.4] tracking-[-0.015em] text-text-primary">
+          «{caseData.testimonialQuote}»
+        </blockquote>
+
+        <p class="sector-case__author font-mono text-[0.625rem] uppercase tracking-[0.12em] text-text-muted">
+          — {caseData.author}
+        </p>
+
+        <Button href={projectHref} variant="ghost">Ver proyecto →</Button>
       </div>
     </div>
   </SiteWrap>
 </SectionShell>
+
+<style>
+  .sector-case {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-card);
+    overflow: hidden;
+  }
+
+  .sector-case__accent {
+    flex-shrink: 0;
+    width: 3px;
+    background: var(--color-blue);
+  }
+
+  .sector-case__body {
+    flex: 1;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .sector-case__quote-icon {
+    margin-bottom: 1.25rem;
+  }
+
+  .sector-case__label {
+    margin: 0 0 0.25rem;
+  }
+
+  .sector-case__meta {
+    margin: 0 0 1.5rem;
+  }
+
+  .sector-case__narrative {
+    margin-bottom: 1.5rem;
+  }
+
+  .sector-case__narrative p {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .sector-case__narrative p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sector-case__narrative strong {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .sector-case__result {
+    margin: 0 0 1.5rem;
+  }
+
+  .sector-case__testimonial {
+    margin: 0 0 0.75rem;
+  }
+
+  .sector-case__author {
+    margin: 0 0 1.5rem;
+  }
+</style>

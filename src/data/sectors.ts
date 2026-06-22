@@ -17,9 +17,12 @@ export interface SectorFAQ {
 export interface SectorCase {
   /** referencia al proyecto en projects.ts */
   slug: string;
-  /** frase corta destacada */
-  summary: string;
-  testimonialQuote?: string;
+  challenge: string;
+  solution: string;
+  result: string;
+  resultEm?: string;
+  testimonialQuote: string;
+  author: string;
 }
 
 export interface Sector {
@@ -32,6 +35,7 @@ export interface Sector {
   description: string;
   ctaPrimary: string;
   checks: string[];
+  heroStrip?: { label: string; tags: string[] };
   painPoints?: {
     eyebrow: string;
     title: string;
@@ -39,12 +43,14 @@ export interface Sector {
     points: string[];
   };
   featuresIntro?: string;
+  featuresTitle?: string;
+  featuresTitleEm?: string;
   features: SectorFeature[];
   relatedCase?: SectorCase;
   faqs: SectorFAQ[];
   ctaFinal: {
     title: string;
-    titleEm: string;
+    titleEm?: string;
     text: string;
   };
   serviceLink: string;
@@ -70,6 +76,10 @@ export const sectors: Sector[] = [
       'Diseño webs para restaurantes, bares y negocios de hostelería que quieren ser encontrados en Google, mostrar su carta online y facilitar las reservas, sin depender de plataformas que se quedan con tu margen.',
     ctaPrimary: 'Quiero mi web para restaurante',
     checks: ['Carta online actualizable', 'Apareces en Google Maps', 'Tuya desde el primer día'],
+    heroStrip: {
+      label: 'Enfoque hostelería',
+      tags: ['Carta digital', 'Reservas propias', 'Google local'],
+    },
     painPoints: {
       eyebrow: '¿TE SUENA?',
       title: 'Lo que frena a muchos restaurantes',
@@ -83,6 +93,8 @@ export const sectors: Sector[] = [
     },
     featuresIntro:
       'Cinco piezas concretas que convierten visitas en mesas reservadas. Nada genérico: cada una resuelve algo que tus clientes buscan antes de cruzar la puerta.',
+    featuresTitle: 'Lo que convierte visitas en mesas',
+    featuresTitleEm: 'en una web para restaurantes.',
     features: [
       {
         title: 'Carta online actualizable',
@@ -146,6 +158,88 @@ export const sectors: Sector[] = [
       title: 'Web para restaurantes y hostelería · RimoByte',
       description:
         'Webs para restaurantes, bares y hostelería que quieren llenar mesas y aparecer en Google. Carta online, reservas y Google Maps integrados.',
+    },
+  },
+  {
+    slug: 'web-para-peluquerias',
+    name: 'Web para peluquerías',
+    sectorNameShort: 'peluquerías',
+    eyebrow: 'WEB PARA PELUQUERÍAS Y ESTÉTICA',
+    headline: 'Que tus clientes pidan cita online y te encuentren',
+    headlineEm: 'antes que a la competencia.',
+    description:
+      'Diseño webs para peluquerías, salones de belleza y centros de estética que quieren captar clientes nuevos en Google y facilitar las reservas online.',
+    ctaPrimary: 'Quiero mi web para peluquería',
+    checks: ['Reservas online', 'Apareces en Google local', 'Tuya desde el primer día'],
+    featuresTitle: 'Lo que convierte visitas en citas',
+    featuresTitleEm: 'en una web para peluquerías.',
+    features: [
+      {
+        title: 'Reservas online',
+        description:
+          'Para que tus clientes puedan pedir cita directamente desde la web, a cualquier hora, sin tener que llamar.',
+      },
+      {
+        title: 'Catálogo de servicios y precios',
+        description:
+          'Claro, visual y fácil de actualizar. Que el cliente sepa exactamente qué ofreces antes de reservar.',
+      },
+      {
+        title: 'Galería de trabajos',
+        description:
+          'Tus mejores trabajos como carta de presentación. Las fotos convencen más que cualquier descripción.',
+      },
+      {
+        title: 'Presencia en Google local',
+        description:
+          'Optimizada para aparecer cuando alguien busca "peluquería cerca de mí" o en tu ciudad.',
+      },
+      {
+        title: 'Información de contacto y ubicación',
+        description:
+          'Horarios, dirección y cómo llegar. Lo básico que cualquier cliente nuevo busca.',
+      },
+    ],
+    relatedCase: {
+      slug: 'lucia-nails-art',
+      challenge:
+        'Lucía no tenía presencia online y dependía del boca a boca para conseguir clientas nuevas.',
+      solution: 'Web con SEO local optimizado y diseño que refleja la estética de su centro.',
+      result: 'Hoy aparece la primera en Google en su área y tiene',
+      resultEm: 'toda la agenda llena.',
+      testimonialQuote:
+        'Gracias a eso he captado muchísimas clientas y tengo toda la agenda llena.',
+      author: 'Lucía Martínez Reinoso',
+    },
+    faqs: [
+      {
+        question: '¿Integras sistemas de reservas como Booksy o Planfy?',
+        answer:
+          'Sí. Si ya usas una plataforma, la integramos. Si no, te asesoro sobre cuál se adapta mejor a tu negocio.',
+      },
+      {
+        question: '¿Puedo actualizar los precios y servicios yo misma?',
+        answer: 'Sí. Sin llamarme cada vez que cambias una tarifa.',
+      },
+      {
+        question: '¿Para qué necesito una web si ya tengo Instagram?',
+        answer:
+          'Instagram es para quienes ya te siguen. Google es para quienes todavía no te conocen y buscan una peluquería en tu zona.',
+      },
+      {
+        question: '¿Cuánto cuesta?',
+        answer: 'Desde 600€. Siempre presupuesto cerrado antes de empezar.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Hablamos de tu negocio?',
+      text: 'Cuéntame cómo es tu peluquería o centro de estética y qué necesitas. En menos de 24 horas te respondo.',
+    },
+    serviceLink: '/servicios/web-corporativa/',
+    seo: {
+      title: 'Web para peluquerías y centros de estética · RimoByte',
+      description:
+        'Webs para peluquerías y salones de belleza con reservas online y SEO local. Aparece en Google antes que tu competencia. Desde 600€.',
     },
   },
 ];
