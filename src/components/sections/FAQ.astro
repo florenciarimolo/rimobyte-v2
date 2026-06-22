@@ -15,14 +15,17 @@ interface Props {
   faqs?: FAQItem[];
   id?: string;
   title?: string;
+  titleGradient?: string;
   subtitle?: string;
 }
 
 const {
   faqs: faqsProp,
   id = 'faq',
-  title = 'Preguntas frecuentes',
-  subtitle = 'Dudas habituales antes de empezar.',
+  title = 'Dudas habituales antes de',
+  titleGradient = 'empezar.',
+  subtitle =
+    'Estas son las preguntas que más recibo al primer correo. Si la tuya no está aquí, escríbeme — sin compromiso.',
 } = Astro.props;
 
 function toFaqEntry(f: FAQItem) {
@@ -32,16 +35,24 @@ function toFaqEntry(f: FAQItem) {
 const entries = (faqsProp ?? faqEntries).map(toFaqEntry);
 ---
 
-<SectionShell id={id}>
-  <SiteWrap class="landing-faq-layout">
-    <SectionHead title={title} subtitle={subtitle} class="reveal" />
-    <div class="landing-faq reveal">
-      {entries.map((f) => (
-        <details>
-          <summary>{f.q}</summary>
-          <p>{f.a}</p>
-        </details>
-      ))}
+<SectionShell id={id} transparent padding="home" class="home-section--spacious">
+  <SiteWrap>
+    <SectionHead
+      pill="Preguntas frecuentes"
+      title={title}
+      titleGradient={titleGradient}
+      subtitle={subtitle}
+      class="reveal"
+    />
+    <div class="faq-list reveal">
+      {
+        entries.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
     </div>
   </SiteWrap>
 </SectionShell>

@@ -1,31 +1,44 @@
 ---
 import Button from '../ui/Button.astro';
-import Eyebrow from '../ui/Eyebrow.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
-import HeroShowcase from '../ui/HeroShowcase.astro';
+import { projectCount } from '../../data/projects';
+import { fetchPlaceAggregate } from '../../lib/google-reviews';
+
+const placeAgg = await fetchPlaceAggregate();
+const reviewCount = placeAgg?.reviewCount ?? 10;
 ---
 
-<section class="landing-hero">
-  <SiteWrap class="landing-hero__layout">
-    <div class="hero__copy">
-      <Eyebrow text="Diseño web · Desarrollo · España" class="reveal" />
-      <h1 class="reveal">
-        Muchos negocios pagan por una web que <em>no controlan.</em>
-      </h1>
-      <p class="landing-hero__sub reveal">
-        Soy Flor, ingeniera informática. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.
-      </p>
-      <div class="landing-hero__btns reveal">
-        <Button href="#contacto" variant="primary">Quiero empezar mi web</Button>
-        <Button href="#por-que" variant="outline">Cómo trabajo</Button>
-      </div>
-      <ul class="landing-hero__checks reveal">
-        <li>Tu web, tu propiedad</li>
-        <li>Sin sorpresas</li>
-        <li>Soporte continuo</li>
-      </ul>
+<header class="hero-v6">
+  <SiteWrap>
+    <h1 class="reveal">
+      Webs <span class="gradient-text">que venden,</span> no que decoran.
+    </h1>
+    <p class="hero-v6__lede reveal">
+      Soy Flor, ingeniera informática. Diseño y desarrollo webs WordPress a medida para negocios locales que
+      quieren existir profesionalmente online — sin plantillas, sin intermediarios, sin letra pequeña.
+    </p>
+    <div class="hero-v6__cta reveal">
+      <Button href="#contacto" variant="primary">Cuéntame tu proyecto</Button>
+      <Button href="#proyectos" variant="outline">Ver portfolio</Button>
     </div>
 
-    <HeroShowcase moreHref="#proyectos" class="reveal" />
+    <div class="hero-stats reveal">
+      <div class="hero-stat">
+        <div class="hero-stat__num">{projectCount}</div>
+        <div class="hero-stat__label">Negocios online</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat__num">5★</div>
+        <div class="hero-stat__label">{reviewCount} reseñas Google</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat__num">7</div>
+        <div class="hero-stat__label">Años de experiencia</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat__num">100%</div>
+        <div class="hero-stat__label">Propiedad del cliente</div>
+      </div>
+    </div>
   </SiteWrap>
-</section>
+</header>

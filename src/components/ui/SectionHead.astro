@@ -1,26 +1,32 @@
 ---
+import Pill from './Pill.astro';
+
 interface Props {
   title: string;
   titleEm?: string;
+  titleGradient?: string;
   subtitle?: string;
+  pill?: string;
   narrow?: boolean;
   class?: string;
 }
 
-const { title, titleEm, subtitle, narrow = true, class: cls = '' } = Astro.props;
+const { title, titleEm, titleGradient, subtitle, pill, narrow = true, class: cls = '' } = Astro.props;
+const gradientText = titleGradient ?? titleEm;
 ---
 
-<header class:list={['mb-[clamp(2.5rem,5vw,4rem)]', cls]}>
-  <h2 class="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-medium tracking-[-0.03em] mb-2 text-text-primary bg-none">
+<header class:list={['section-head-v6', cls]}>
+  {pill && <Pill text={pill} />}
+  <h2>
     {title}
-    {titleEm && (
+    {gradientText && (
       <>
         {' '}
-        <em class="font-normal italic text-gradient-logo">{titleEm}</em>
+        <span class="gradient-text">{gradientText}</span>
       </>
     )}
   </h2>
   {subtitle && (
-    <p class:list={['text-text-secondary leading-[1.65]', narrow && 'max-w-[40ch]']}>{subtitle}</p>
+    <p class:list={[narrow && 'max-w-[680px]']}>{subtitle}</p>
   )}
 </header>

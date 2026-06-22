@@ -3,54 +3,50 @@ import SectionShell from '../ui/SectionShell.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
 import SectionHead from '../ui/SectionHead.astro';
 
-const features = [
+const principles = [
   {
-    num: '01',
-    title: 'Hablas conmigo, siempre',
-    body: 'No hay intermediarios ni equipos que rotan. Desde el primer mensaje hasta la entrega, soy yo quien diseña, desarrolla y responde.',
-    footnote: 'Flor · de principio a fin',
+    num: '01 / Cercanía',
+    title: 'Hablas siempre conmigo',
+    body: 'Sin equipos que rotan ni cuentas intermedias. Diseño, programo y respondo yo, de principio a fin.',
   },
   {
-    num: '02',
-    title: 'Tu web es tuya, sin condiciones',
-    body: 'El dominio, el hosting y todos los accesos van a tu nombre desde el primer día.',
-    footnote: 'Dominio · hosting · accesos',
+    num: '02 / Propiedad',
+    title: 'Tu web es tuya, de verdad',
+    body: 'Dominio, hosting, accesos y código a tu nombre desde el día uno. Sin cerrojos invisibles.',
   },
   {
-    num: '03',
-    title: 'Sigo aquí cuando la web ya está',
-    body: 'Mantenimiento y soporte continuo sin permanencia.',
-    footnote: 'Soporte · sin permanencia',
+    num: '03 / Continuidad',
+    title: 'Aquí cuando ya está online',
+    body: 'Mantenimiento, actualizaciones y soporte sin permanencia. Te quedas porque quieres.',
   },
   {
-    num: '04',
-    title: 'Ingeniera, no diseñadora reconvertida',
-    body: 'Graduada en 2019. Cuando hay un problema técnico complejo, lo resuelvo. Tu web está construida con criterio de ingeniería, no solo de estética.',
-    footnote: 'Ingeniería · no solo diseño',
+    num: '04 / Criterio',
+    title: 'Ingeniería, no apaños',
+    body: 'Graduada en 2019. Cuando algo se complica — migraciones, APIs, plugins — lo resuelvo con criterio técnico.',
   },
 ];
 ---
 
-<SectionShell id="por-que">
+<SectionShell id="filosofia" transparent padding="home">
   <SiteWrap>
     <SectionHead
-      title="Diseño web para"
-      titleEm="negocios locales"
-      subtitle="Cuatro razones que cambian cómo trabajamos juntos — y cómo te quedas tú al final."
+      pill="Filosofía"
+      title="Cuatro promesas que cambian"
+      titleGradient="cómo trabajamos juntos."
+      subtitle="Trabajo como me gustaría que trabajaran conmigo: con tiempo, con criterio y sin sorpresas. Estas son las cuatro reglas que firmo en cada proyecto."
       class="reveal"
     />
 
-    <ol class="landing-manifest">
-      {features.map((f) => (
-        <li class="landing-manifest__item reveal">
-          <span class="landing-manifest__n">{f.num}</span>
-          <div>
-            <h3>{f.title}</h3>
-            <p>{f.body}</p>
-            <span class="landing-manifest__tag">{f.footnote}</span>
-          </div>
-        </li>
-      ))}
-    </ol>
+    <div class="principles">
+      {
+        principles.map((p) => (
+          <article class="principle glass-card glass-card--hover reveal">
+            <div class="principle__num">{p.num}</div>
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </article>
+        ))
+      }
+    </div>
   </SiteWrap>
 </SectionShell>

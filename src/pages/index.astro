@@ -2,22 +2,21 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import Hero from '../components/sections/Hero.astro';
-import FeaturedCase from '../components/sections/FeaturedCase.astro';
-import Stats from '../components/sections/Stats.astro';
 import Features from '../components/sections/Features.astro';
 import ProjectsFan from '../components/sections/ProjectsFan.astro';
 import PhotoStatement from '../components/sections/PhotoStatement.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
 import Services from '../components/sections/Services.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
 import FAQ from '../components/sections/FAQ.astro';
-import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
+import HomeCTA from '../components/sections/HomeCTA.astro';
 import Footer from '../components/sections/Footer.astro';
 import { buildFaqPageJsonLd } from '../data/faq';
 import { fetchPlaceAggregate } from '../lib/google-reviews';
 
 const SEO = {
-  title: 'Diseñadora web freelance para negocios locales · RimoByte',
-  description: 'Soy Flor, ingeniera informática. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
+  title: 'Desarrollo web WordPress a medida · RimoByte',
+  description:
+    'Flor Rímolo, ingeniera informática. Diseño y desarrollo de webs WordPress y tiendas WooCommerce para negocios locales en España. Tu web, tu propiedad, sin letra pequeña.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 
@@ -33,15 +32,13 @@ const placeAgg = await fetchPlaceAggregate();
   <Navbar />
   <main id="main">
     <Hero />
-    <FeaturedCase />
-    <Stats />
     <Features />
-    <PhotoStatement />
-    <Testimonials />
     <ProjectsFan />
+    <PhotoStatement />
     <Services />
+    <Testimonials />
     <FAQ />
-    <ContactFormIsland />
+    <HomeCTA />
   </main>
   <Footer />
 </Base>

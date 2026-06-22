@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: cls = '' } = Astro.props;
+---
+
+<img
+  src="/favicon.svg"
+  alt=""
+  width="28"
+  height="28"
+  class:list={['logo-mark', cls]}
+  aria-hidden="true"
+  loading="eager"
+  decoding="async"
+/>

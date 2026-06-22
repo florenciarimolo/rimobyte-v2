@@ -1,25 +1,56 @@
 ---
+import Pill from '../ui/Pill.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
 ---
 
-<section class="landing-about">
-  <SiteWrap class="landing-about__grid">
-    <figure class="landing-about__photo reveal">
-      <img
-        src="/assets/brand/flor-rimobyte.webp"
-        alt="Flor Rímolo"
-        width="280"
-        height="350"
-        loading="lazy"
-        decoding="async"
-      />
-      <figcaption class="landing-about__frame" aria-hidden="true"></figcaption>
-    </figure>
-    <div class="landing-about__text reveal">
-      <h2>Me implico en cada proyecto como si fuera <em>mío.</em></h2>
-      <p>Graduada en 2019. Me hice autónoma porque quería trabajar directamente con el cliente, sin intermediarios, con tiempo para hacer las cosas bien.</p>
-      <p>Cuando hay un problema técnico complejo, lo resuelvo.</p>
-      <a href="/sobre-mi/" class="hero-showcase__more landing-about__more">Sobre mí →</a>
+<section class="about-dark-wrap" id="sobre-mi">
+  <SiteWrap>
+    <div class="about-dark">
+      <div class="about-dark__aurora about-dark__aurora--1" aria-hidden="true"></div>
+      <div class="about-dark__aurora about-dark__aurora--2" aria-hidden="true"></div>
+      <div class="about-dark__grid">
+        <figure class="about-dark__photo reveal">
+          <img
+            src="/assets/brand/flor-rimobyte.webp"
+            alt="Flor Rímolo — diseñadora web freelance en Barcelona"
+            width="480"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="about-dark__label">Barcelona · España</figcaption>
+        </figure>
+        <div class="reveal">
+          <Pill text="Quién está detrás" />
+          <h2>
+            Me hice autónoma para hacer <span class="gradient-text">las cosas bien.</span>
+          </h2>
+          <p>
+            Soy Flor Rímolo, ingeniera informática graduada en 2019. Después de años en equipos grandes,
+            monté RimoByte porque quería volver a lo que de verdad me gusta: hablar directamente con quien
+            dirige el negocio, entender qué necesita y construir algo que le sirva durante años.
+          </p>
+          <p>
+            Trabajo con WordPress porque es el sistema que mejor equilibra autonomía y potencia para un
+            negocio pequeño. Y porque cuando me marcho, tú no te quedas atrapada con un código que solo yo
+            entiendo.
+          </p>
+          <div class="about-dark__meta">
+            <div>
+              <span>Base</span>
+              <span>Barcelona, ES</span>
+            </div>
+            <div>
+              <span>Activa desde</span>
+              <span>2019</span>
+            </div>
+            <div>
+              <span>Stack</span>
+              <span>WordPress · WooCommerce</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </SiteWrap>
 </section>

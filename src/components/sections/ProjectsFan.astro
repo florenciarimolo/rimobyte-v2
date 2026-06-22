@@ -1,65 +1,63 @@
 ---
+import Button from '../ui/Button.astro';
 import SectionShell from '../ui/SectionShell.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
 import SectionHead from '../ui/SectionHead.astro';
 import { spotlightProjects } from '../../data/homeShowcase';
+import { projects } from '../../data/projects';
 
-const first = spotlightProjects[0];
+const portfolioProjects = spotlightProjects.slice(0, 4).map((showcase) => {
+  const project = projects.find((p) => p.slug === showcase.slug)!;
+  return {
+    ...showcase,
+    location: project.location,
+    href: `/proyectos/${project.slug}/`,
+  };
+});
+
+const spans = ['portfolio-project--wide', 'portfolio-project--narrow', 'portfolio-project--narrow', 'portfolio-project--wide'];
 ---
 
-<SectionShell id="proyectos">
+<SectionShell id="proyectos" transparent padding="home" class="portfolio-section">
   <SiteWrap>
     <SectionHead
-      title="Proyectos recientes"
-      subtitle="Negocios locales que querían ser encontrados, crecer o vender online."
+      pill="Portfolio · 9 negocios"
+      title="Detrás de cada web, un negocio que"
+      titleGradient="quería crecer."
+      subtitle="Manicuras, sandalias artesanales, asesorías fiscales, campamentos de rock, ciberpsicología, cursos online. Cada proyecto cuenta una historia distinta."
       class="reveal"
     />
 
-    <article class="work-spotlight reveal" id="work-spotlight">
-      <div class="work-spotlight__media">
-        <img
-          id="work-spotlight-img"
-          src={first.image}
-          alt={first.name}
-          width="720"
-          height="450"
-        />
-      </div>
-      <div class="work-spotlight__body">
-        <span class="work-spotlight__sector" id="work-spotlight-sector">{first.sector}</span>
-        <h3 class="work-spotlight__name" id="work-spotlight-name">{first.name}</h3>
-        <p class="work-spotlight__desc" id="work-spotlight-desc">{first.description}</p>
-        <a
-          href={`https://${first.url}`}
-          class="work-spotlight__link"
-          id="work-spotlight-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {first.url} ↗
-        </a>
-      </div>
-    </article>
-
-    <div class="work-picker" id="work-picker" role="tablist" aria-label="Seleccionar proyecto">
-      {spotlightProjects.map((p, i) => (
-        <button
-          type="button"
-          class:list={['work-picker__btn', i === 0 && 'is-active']}
-          role="tab"
-          aria-selected={i === 0 ? 'true' : 'false'}
-          data-img={p.image}
-          data-name={p.name}
-          data-sector={p.sector}
-          data-url={p.url}
-          data-desc={p.description}
-        >
-          <span class="work-picker__idx">{String(i + 1).padStart(2, '0')}</span>
-          <span class="work-picker__label">{p.name}</span>
-        </button>
-      ))}
+    <div class="portfolio-grid">
+      {
+        portfolioProjects.map((p, i) => (
+          <a href={p.href} class:list={['portfolio-project reveal', spans[i]]}>
+            <div
+              class="portfolio-project__thumb"
+              role="img"
+              aria-label={`Captura de ${p.name}`}
+              style={`background-image: url('${p.image}')`}
+            />
+            <div class="portfolio-project__info">
+              <div>
+                <h3>{p.name}</h3>
+                <p>
+                  {p.sector} · {p.location}
+                </p>
+              </div>
+              <span class="portfolio-project__arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))
+      }
     </div>
 
-    <a href="/proyectos/" class="hero-showcase__more work-section__more reveal">Ver todos los proyectos →</a>
+    <div class="portfolio-foot reveal">
+      <Button href="/proyectos/" variant="outline">Ver los 9 proyectos →</Button>
+    </div>
   </SiteWrap>
 </SectionShell>

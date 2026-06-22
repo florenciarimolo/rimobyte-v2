@@ -1,7 +1,7 @@
 ---
 import Button from '../ui/Button.astro';
+import LogoMark from '../ui/LogoMark.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
-import ThemeSwitcher from '../ui/ThemeSwitcher.astro';
 import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
 import { SERVICE_NAV_LINKS } from '../../data/navigation';
 
@@ -12,11 +12,13 @@ const navChevronClass =
   'icon inline-flex size-5 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
 ---
 
-<header class="site-nav" id="navbar">
+<header class="site-nav site-nav--float" id="navbar">
   <div class="site-nav__bar">
-    <SiteWrap class="site-nav__inner">
+    <SiteWrap>
+      <div class="site-nav__inner">
       <a href="/" class="site-nav__logo">
-        Rimo<span class="text-gradient-logo">Byte</span>
+        <LogoMark />
+        RimoByte
       </a>
 
       <nav class="site-nav__links" aria-label="Principal">
@@ -62,7 +64,6 @@ const navChevronClass =
       </nav>
 
       <div class="site-nav__actions">
-        <ThemeSwitcher />
         <div class="hidden md:block">
           <Button href="/contacto/" variant="primary">Empezar mi web</Button>
         </div>
@@ -76,6 +77,7 @@ const navChevronClass =
         >
           <span></span><span></span>
         </button>
+      </div>
       </div>
     </SiteWrap>
   </div>

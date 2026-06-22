@@ -1,27 +1,48 @@
 ---
 import Icon from './Icon.astro';
 import type { IconName } from './icons/registry';
+import type { ServiceFeature } from '../../data/services';
 
 interface Props {
   icon: IconName;
   title: string;
   body: string;
   price: string;
+  priceNote?: string;
   href: string;
+  features?: ServiceFeature[];
   class?: string;
 }
 
-const { icon, title, body, price, href, class: cls = '' } = Astro.props;
+const { icon, title, body, price, priceNote = 'Desde', href, features = [], class: cls = '' } = Astro.props;
+const priceAmount = price.replace(/^Desde\s*/i, '');
 ---
 
-<article class:list={['landing-service-card reveal', cls]}>
-  <div class="landing-service-card__graphic" aria-hidden="true">
-    <Icon name={icon} class="landing-service-card__icon" />
+<article class:list={['service-glass glass-card reveal', cls]}>
+  <div class="service-glass__icon" aria-hidden="true">
+    <Icon name={icon} class="size-6" />
   </div>
   <h3>{title}</h3>
   <p>{body}</p>
-  <footer class="landing-service-card__foot">
-    <span class="landing-service-card__price">{price}</span>
-    <a href={href} class="landing-service-card__link">Saber más →</a>
+  {
+    features.length > 0 && (
+      <ul class="service-glass__features">
+        {features.slice(0, 4).map((f) => (
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            {f.title}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  <footer class="service-glass__foot">
+    <div class="service-glass__price">
+      <small>{priceNote}</small>
+      <span>{priceAmount}</span>
+    </div>
+    <a href={href} class="service-glass__link">Saber más →</a>
   </footer>
 </article>

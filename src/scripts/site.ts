@@ -12,11 +12,15 @@ function initNavProgress() {
   const progressBar = document.getElementById('nav-progress');
   if (!nav) return;
 
+  const isFloatNav = nav.classList.contains('site-nav--float');
+
   const onScroll = () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-    nav.classList.toggle('site-nav--solid', scrollTop > 24);
+    if (!isFloatNav) {
+      nav.classList.toggle('site-nav--solid', scrollTop > 24);
+    }
     progressBar?.style.setProperty('--progress', String(progress));
   };
 

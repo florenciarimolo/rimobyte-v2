@@ -1,0 +1,15 @@
+---
+interface Props {
+  text?: string;
+  dot?: boolean;
+  live?: boolean;
+  class?: string;
+}
+
+const { text, dot = true, live = false, class: cls = '' } = Astro.props;
+---
+
+<span class:list={['pill', cls]}>
+  {dot && <span class:list={['dot', live && 'live']} aria-hidden="true" />}
+  <slot>{text}</slot>
+</span>

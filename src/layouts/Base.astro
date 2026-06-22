@@ -145,52 +145,36 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#0A0A12" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#EEEDF4" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" id="theme-color-meta" content="#0A0A12" />
+  <meta name="theme-color" content="#FAFAFC" />
+  <meta name="theme-color" id="theme-color-meta" content="#FAFAFC" />
 
   <script is:inline>
     (function () {
-      var KEY = 'rimobyte-theme';
-      var stored = null;
-      try { stored = localStorage.getItem(KEY); } catch (e) {}
-      var theme =
-        stored === 'light' || stored === 'dark'
-          ? stored
-          : window.matchMedia('(prefers-color-scheme: light)').matches
-            ? 'light'
-            : 'dark';
-      document.documentElement.dataset.theme = theme;
-      document.documentElement.style.colorScheme = theme;
-      var meta = document.getElementById('theme-color-meta');
-      if (meta) meta.setAttribute('content', theme === 'light' ? '#EEEDF4' : '#0A0A12');
+      document.documentElement.dataset.theme = 'light';
+      document.documentElement.style.colorScheme = 'light';
     })();
   </script>
-
-  <link
-    rel="preload"
-    href="/assets/fonts/clash-grotesk/clash-grotesk-500.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin
-  />
 </head>
 <body class="is-loading site-layout">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#196BEE" />
+        <stop offset="50%" stop-color="#6535E5" />
+        <stop offset="100%" stop-color="#E715D1" />
+      </linearGradient>
+    </defs>
+  </svg>
   <a href="#main" class="skip-link">Saltar al contenido</a>
-  <div class="site-grain" aria-hidden="true"></div>
-  <div id="cursor-glow" aria-hidden="true"></div>
+  <div class="aurora-bg" aria-hidden="true">
+    <div class="aurora-blob"></div>
+  </div>
   <PageLoader />
   <slot />
   <CookieBanner />
 
   <script>
     import '../scripts/site.ts';
-  </script>
-  <script>
-    import { applyTheme, initThemeListeners, resolveTheme } from '../lib/theme';
-
-    applyTheme(resolveTheme());
-    initThemeListeners();
   </script>
   <script>
     const io = new IntersectionObserver(

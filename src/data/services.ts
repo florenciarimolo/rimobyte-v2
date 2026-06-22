@@ -113,8 +113,7 @@ export const services: Service[] = [
       },
     ],
     price: 'Desde 600€',
-    priceNote:
-      'El hosting y el dominio los pagas tú directamente (entre 50€ y 100€/año aproximadamente). Son tuyos, no míos.',
+    priceNote: 'El hosting y el dominio los pagas tú directamente. Son tuyos, no míos.',
     relatedCases: [
       {
         slug: 'vila-i-lancis',
@@ -234,8 +233,7 @@ export const services: Service[] = [
       },
     ],
     price: 'Desde 1.200€',
-    priceNote:
-      'Hosting, dominio y comisiones de pasarela de pago no incluidos. Tarifas oficiales: stripe.com/es/pricing · paypal.com/es/business/paypal-business-fees',
+    priceNote: 'Hosting, dominio y comisiones de pasarela de pago no incluidos.',
     relatedCases: [
       {
         slug: 'de-cos',

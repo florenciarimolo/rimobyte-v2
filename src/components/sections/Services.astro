@@ -13,24 +13,30 @@ const iconByIllustration: Record<string, IconName> = {
 };
 ---
 
-<SectionShell id="servicios">
+<SectionShell id="servicios" transparent padding="home">
   <SiteWrap>
     <SectionHead
-      title="Servicios"
-      subtitle="Lo que hago, y lo que te consigue."
+      pill="Servicios"
+      title="Tres formas de empezar a trabajar"
+      titleGradient="juntas."
+      subtitle="Cada proyecto es único, pero estos son los puntos de partida más habituales. Si tu caso no encaja del todo, escríbeme — lo adaptamos."
       class="reveal"
     />
 
-    <div class="landing-services">
-      {services.map((s) => (
-        <ServiceCard
-          icon={iconByIllustration[s.illustration] ?? 'globe'}
-          title={s.name}
-          body={s.description.split('.')[0] + '.'}
-          price={s.price}
-          href={`/servicios/${s.slug}/`}
-        />
-      ))}
+    <div class="services-glass">
+      {
+        services.map((s) => (
+          <ServiceCard
+            icon={iconByIllustration[s.illustration] ?? 'globe'}
+            title={s.name}
+            body={s.description.split('.')[0] + '.'}
+            price={s.price}
+            priceNote={s.priceNote}
+            href={`/servicios/${s.slug}/`}
+            features={s.features}
+          />
+        ))
+      }
     </div>
   </SiteWrap>
 </SectionShell>

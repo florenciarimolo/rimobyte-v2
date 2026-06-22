@@ -1,81 +1,90 @@
 ---
 import SiteWrap from '../ui/SiteWrap.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import Stars from '../ui/Stars.astro';
+import { featuredTestimonial, testimonialCards } from '../../data/homeTestimonials';
 import { fetchGoogleReviews } from '../../lib/google-reviews';
 
-const place = await fetchGoogleReviews(6);
-const reviews = place?.reviews ?? [];
+const place = await fetchGoogleReviews(1);
 const totalReviews = place?.totalReviews ?? 10;
-const googleMapsUrl = place?.googleMapsUrl ?? 'https://www.google.com/maps/place/Desarrolladora+WordPress+Barcelona+-+RimoByte';
+const googleMapsUrl =
+  place?.googleMapsUrl ?? 'https://www.google.com/maps/place/Desarrolladora+WordPress+Barcelona+-+RimoByte';
+
+function renderFeaturedQuote() {
+  const { quote, quoteHighlight } = featuredTestimonial;
+  if (!quoteHighlight) return quote;
+
+  const idx = quote.indexOf(quoteHighlight);
+  if (idx === -1) return quote;
+
+  return {
+    before: quote.slice(0, idx),
+    highlight: quoteHighlight,
+    after: quote.slice(idx + quoteHighlight.length),
+  };
+}
+
+const featuredQuote = renderFeaturedQuote();
 ---
 
-<section class="landing-quote-band">
+<section class="testimonials-v6" id="testimonios">
   <SiteWrap>
-    {reviews.length > 0 ? (
-      <div
-        class="testimonials-carousel reveal"
-        aria-roledescription="carousel"
-        aria-label="Reseñas de clientes"
-        style="--carousel-autoplay-ms: 6000ms"
-      >
-        <div class="testimonials-carousel__track" aria-live="polite">
-          {reviews.map((review, i) => (
-            <article
-              class:list={['testimonials-carousel__slide', i === 0 && 'is-active']}
-              aria-hidden={i === 0 ? 'false' : 'true'}
-              data-slide={i}
-            >
-              <blockquote class="landing-quote-band__text testimonials-carousel__quote m-0">
-                «{review.text}»
-              </blockquote>
-              <p class="testimonials-carousel__meta">
-                {review.authorName}
-                <span class="testimonials-carousel__meta-sep" aria-hidden="true">·</span>
-                {review.relativeTime}
-                <span class="testimonials-carousel__meta-sep" aria-hidden="true">·</span>
-                Google
-              </p>
-            </article>
-          ))}
+    <SectionHead
+      pill="Lo que dicen"
+      title="Lo que dicen quienes ya han trabajado"
+      titleGradient="conmigo."
+      class="reveal text-center mx-auto"
+    />
+
+    <article class="testimonial-feature glass-card reveal">
+      <Stars />
+      <blockquote>
+        {
+          typeof featuredQuote === 'string' ? (
+            featuredQuote
+          ) : (
+            <>
+              {featuredQuote.before}
+              <span class="gradient-text">{featuredQuote.highlight}</span>
+              {featuredQuote.after}
+            </>
+          )
+        }
+      </blockquote>
+      <div class="testimonial-author">
+        <span class="author-avatar" aria-hidden="true">{featuredTestimonial.initial}</span>
+        <div class="author-info">
+          <strong>{featuredTestimonial.author}</strong>
+          <span>{featuredTestimonial.meta}</span>
         </div>
-
-        {reviews.length > 1 && (
-          <div
-            class="testimonials-carousel__nav"
-            role="tablist"
-            aria-label="Elegir reseña"
-          >
-            {reviews.map((_, i) => (
-              <button
-                type="button"
-                class:list={['testimonials-carousel__dot', i === 0 && 'is-active']}
-                role="tab"
-                aria-selected={i === 0 ? 'true' : 'false'}
-                aria-label={`Reseña ${i + 1} de ${reviews.length}`}
-                tabindex={i === 0 ? 0 : -1}
-                data-index={i}
-              >
-                <span class="testimonials-carousel__dot-fill" aria-hidden="true"></span>
-              </button>
-            ))}
-          </div>
-        )}
       </div>
-    ) : (
-      <div class="reveal">
-        <p class="landing-quote-band__text">«Ha estat un plaer treballar amb la Florencia pel disseny i migració del lloc web i també posar les primeres pedres per una relació de llarga durada.»</p>
-        <footer>
-          <cite>Josep Linde Gomis</cite>
-          <span>Google · hace 3 meses</span>
-        </footer>
-      </div>
-    )}
+    </article>
 
-    <a href={googleMapsUrl} class="landing-quote-band__link reveal" target="_blank" rel="noopener noreferrer">
+    <div class="testimonials-grid">
+      {
+        testimonialCards.map((item) => (
+          <article class="testimonial-card glass-card reveal">
+            <Stars />
+            <p>{item.quote}</p>
+            <div class="testimonial-author">
+              <span class="author-avatar" aria-hidden="true">{item.initial}</span>
+              <div class="author-info">
+                <strong>{item.author}</strong>
+                <span>{item.meta}</span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <a
+      href={googleMapsUrl}
+      class="testimonials-v6__link reveal"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Ver las {totalReviews} reseñas →
     </a>
   </SiteWrap>
 </section>
-
-<script>
-  import '../../scripts/testimonials-carousel.ts';
-</script>
