@@ -1,6 +1,7 @@
 ---
+import Pill from '../../ui/Pill.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
 import type { ProjectStat } from '../../../data/projects';
-import Eyebrow from '../../ui/Eyebrow.astro';
 
 interface Props {
   stats: ProjectStat[];
@@ -8,21 +9,20 @@ interface Props {
 
 const { stats } = Astro.props;
 ---
-<section class="bg-bg-elevated py-[clamp(4rem,8vw,6rem)]">
-  <div class="max-w-layout mx-auto px-[clamp(1.5rem,5vw,4rem)]">
 
-    <div class="reveal flex justify-center mb-12">
-      <Eyebrow text="RESULTADOS DE UN VISTAZO" />
+<section class="project-results-v6" aria-label="Resultados del proyecto">
+  <SiteWrap>
+    <Pill text="Resultados de un vistazo" class="mb-6 reveal" />
+    <div class="project-results-v6__grid">
+      {
+        stats.map((stat) => (
+          <div class="project-result-card reveal">
+            <div class="project-result-card__label">{stat.label}</div>
+            <div class="project-result-card__num gradient-text">{stat.value}</div>
+            {stat.description ? <p class="project-result-card__desc">{stat.description}</p> : null}
+          </div>
+        ))
+      }
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-[900px] mx-auto md:items-stretch">
-      {stats.map((stat) => (
-        <div class="reveal flex flex-col items-center text-center h-full">
-          <p class="stat-value">{stat.value}</p>
-          <p class="stat-label max-w-[220px] mx-auto mt-auto">{stat.label}</p>
-        </div>
-      ))}
-    </div>
-
-  </div>
+  </SiteWrap>
 </section>

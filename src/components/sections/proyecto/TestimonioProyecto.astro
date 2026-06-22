@@ -1,34 +1,46 @@
 ---
-import QuoteIcon from '../../ui/QuoteIcon.astro';
-import SectionShell from '../../ui/SectionShell.astro';
+import Stars from '../../ui/Stars.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
 
 interface Props {
-  testimonial: { quote: string; author: string };
-  /** Dominio público del proyecto (ej. decos.es) */
+  testimonial: { quote: string; quoteHighlight?: string; author: string; role?: string };
   projectUrl: string;
+  authorInitial?: string;
 }
 
-const { testimonial, projectUrl } = Astro.props;
+const { testimonial, projectUrl, authorInitial } = Astro.props;
+const initial = authorInitial ?? testimonial.author.charAt(0).toUpperCase();
+const role = testimonial.role ?? `${projectUrl}`;
+
+function renderQuote(quote: string, quoteHighlight?: string) {
+  if (!quoteHighlight) return quote;
+
+  const idx = quote.indexOf(quoteHighlight);
+  if (idx === -1) return quote;
+
+  return {
+    before: quote.slice(0, idx),
+    highlight: quoteHighlight,
+    after: quote.slice(idx + quoteHighlight.length).replace(/^\s+([.,!?…])/u, '$1'),
+  };
+}
+
+const renderedQuote = renderQuote(testimonial.quote, testimonial.quoteHighlight);
 ---
-<SectionShell elevated padding="none" class="py-[clamp(5rem,9vw,7rem)]">
-  <SiteWrap class="max-w-[900px] text-center">
 
-    <div class="reveal mb-6 flex justify-center text-blue opacity-70">
-      <QuoteIcon variant="ornate" tone="strong" size="xl" />
-    </div>
-
-    <blockquote class="reveal font-display font-medium italic
-                       text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.35] tracking-[-0.015em]
-                       text-text-primary mb-8 m-0">
-      "{testimonial.quote}"
-    </blockquote>
-
-    <p class="reveal font-mono text-xs tracking-[0.12em] uppercase
-              text-text-secondary m-0">
-      — {testimonial.author}
-      <span class="text-text-muted"> · {projectUrl}</span>
-    </p>
-
+<section class="project-quote-v6" aria-label="Testimonio del cliente">
+  <SiteWrap>
+    <figure class="project-quote-v6__card reveal">
+      <Stars />
+      <blockquote>"{typeof renderedQuote === 'string' ? renderedQuote : (<>{renderedQuote.before}<span class="gradient-text">{renderedQuote.highlight}</span>{renderedQuote.after}</>)}"
+</blockquote>
+      <figcaption class="project-quote-v6__author">
+        <div class="project-quote-v6__avatar" aria-hidden="true">{initial}</div>
+        <div class="project-quote-v6__author-info">
+          <strong>{testimonial.author}</strong>
+          <span>{role}</span>
+        </div>
+      </figcaption>
+    </figure>
   </SiteWrap>
-</SectionShell>
+</section>

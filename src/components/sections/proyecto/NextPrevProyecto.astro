@@ -1,8 +1,9 @@
 ---
-import type { Project } from '../../../data/projects';
-import Eyebrow from '../../ui/Eyebrow.astro';
-import SectionShell from '../../ui/SectionShell.astro';
+import Button from '../../ui/Button.astro';
+import Icon from '../../ui/Icon.astro';
+import ProjectOtherThumb from '../../ui/ProjectOtherThumb.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
+import { projectCount, type Project } from '../../../data/projects';
 
 interface Props {
   nextProject: Project;
@@ -11,98 +12,46 @@ interface Props {
 
 const { nextProject, prevProject } = Astro.props;
 ---
-<SectionShell padding="none" class="py-[clamp(5rem,9vw,7rem)]">
+
+<section class="project-other-v6" aria-label="Más proyectos">
   <SiteWrap>
-
-    <div class="reveal mb-12">
-      <Eyebrow text="MÁS PROYECTOS" />
+    <div class="project-other-v6__head reveal">
+      <h2>Más proyectos</h2>
+      <Button href="/proyectos/" variant="ghost">
+        Ver los {projectCount} proyectos
+        <Icon name="arrow-right" />
+      </Button>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
-
-      <a href={`/proyectos/${prevProject.slug}/`}
-         class="nextprev-card reveal group flex flex-col gap-5 no-underline text-inherit text-left">
-        <div class="nextprev-card__label inline-flex items-center gap-2 font-mono
-                    text-[0.6875rem] tracking-[0.12em] uppercase text-text-muted">
-          <span aria-hidden="true">←</span>
-          <span>Proyecto anterior</span>
-        </div>
-        <div class="nextprev-card__media aspect-16/10 rounded-card overflow-hidden
-                    border border-border-default">
-          <img
-            src={prevProject.image}
-            alt={`Captura de ${prevProject.name}`}
-            loading="lazy"
-            decoding="async"
-            class="w-full h-full object-cover object-top block"
-          />
-        </div>
+    <div class="project-other-v6__grid">
+      <a href={`/proyectos/${prevProject.slug}/`} class="project-other-v6__card reveal">
+        <ProjectOtherThumb project={prevProject} />
         <div>
-          <Eyebrow text={prevProject.eyebrow} class="mb-3" />
-          <h3 class="font-display font-medium text-[clamp(1.25rem,2vw,1.5rem)]
-                     leading-tight tracking-[-0.02em] text-text-primary m-0">
-            {prevProject.displayName}
-          </h3>
-        </div>
-      </a>
-
-      <a href={`/proyectos/${nextProject.slug}/`}
-         class="nextprev-card reveal group flex flex-col gap-5 no-underline text-inherit text-left md:text-right md:items-end">
-        <div class="nextprev-card__label inline-flex items-center gap-2 font-mono
-                    text-[0.6875rem] tracking-[0.12em] uppercase text-text-muted
-                    md:order-1">
-          <span>Siguiente proyecto</span>
-          <span aria-hidden="true">→</span>
-        </div>
-        <div class="nextprev-card__media aspect-16/10 rounded-card overflow-hidden
-                    border border-border-default w-full md:order-2">
-          <img
-            src={nextProject.image}
-            alt={`Captura de ${nextProject.name}`}
-            loading="lazy"
-            decoding="async"
-            class="w-full h-full object-cover object-top block"
-          />
-        </div>
-        <div class="md:max-w-full md:order-3 md:flex md:flex-col md:items-end">
-          <div class="mb-3 md:flex md:w-full md:justify-end">
-            <Eyebrow text={nextProject.eyebrow} />
+          <div class="project-other-v6__label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Proyecto anterior
           </div>
-          <h3 class="font-display font-medium text-[clamp(1.25rem,2vw,1.5rem)]
-                     leading-tight tracking-[-0.02em] text-text-primary m-0">
-            {nextProject.displayName}
-          </h3>
+          <h4>{prevProject.displayName}</h4>
         </div>
       </a>
 
+      <a
+        href={`/proyectos/${nextProject.slug}/`}
+        class="project-other-v6__card project-other-v6__card--next reveal"
+      >
+        <ProjectOtherThumb project={nextProject} />
+        <div>
+          <div class="project-other-v6__label">
+            Siguiente proyecto
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </div>
+          <h4>{nextProject.displayName}</h4>
+        </div>
+      </a>
     </div>
-
   </SiteWrap>
-</SectionShell>
-
-<style>
-  .nextprev-card__media img {
-    transition: transform 0.6s var(--ease-spring);
-  }
-
-  .nextprev-card__media {
-    transition: border-color 0.3s var(--ease-spring);
-  }
-
-  .nextprev-card:hover .nextprev-card__media {
-    border-color: var(--color-border-blue);
-  }
-
-  .nextprev-card:hover .nextprev-card__media img {
-    transform: scale(1.04);
-  }
-
-  .nextprev-card__label {
-    transition: gap 0.2s ease, color 0.2s ease;
-  }
-
-  .nextprev-card:hover .nextprev-card__label {
-    gap: 0.75rem;
-    color: var(--color-blue);
-  }
-</style>
+</section>

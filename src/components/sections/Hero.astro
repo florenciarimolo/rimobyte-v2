@@ -1,11 +1,19 @@
 ---
 import Button from '../ui/Button.astro';
+import HeroStats from '../ui/HeroStats.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
 import { projectCount } from '../../data/projects';
 import { fetchPlaceAggregate } from '../../lib/google-reviews';
 
 const placeAgg = await fetchPlaceAggregate();
 const reviewCount = placeAgg?.reviewCount ?? 10;
+
+const heroStats = [
+  { value: String(projectCount), label: 'Negocios online' },
+  { value: '5★', label: `${reviewCount} reseñas Google` },
+  { value: '7', label: 'Años de experiencia' },
+  { value: '100%', label: 'Propiedad del cliente' },
+];
 ---
 
 <header class="hero-v6">
@@ -22,23 +30,6 @@ const reviewCount = placeAgg?.reviewCount ?? 10;
       <Button href="#proyectos" variant="outline">Ver portfolio</Button>
     </div>
 
-    <div class="hero-stats reveal">
-      <div class="hero-stat">
-        <div class="hero-stat__num">{projectCount}</div>
-        <div class="hero-stat__label">Negocios online</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat__num">5★</div>
-        <div class="hero-stat__label">{reviewCount} reseñas Google</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat__num">7</div>
-        <div class="hero-stat__label">Años de experiencia</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat__num">100%</div>
-        <div class="hero-stat__label">Propiedad del cliente</div>
-      </div>
-    </div>
+    <HeroStats stats={heroStats} />
   </SiteWrap>
 </header>

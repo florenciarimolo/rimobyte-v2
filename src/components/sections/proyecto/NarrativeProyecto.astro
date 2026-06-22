@@ -1,0 +1,62 @@
+---
+import SectionHead from '../../ui/SectionHead.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import { getProjectNarrativeBlocks, getProjectNarrativeSubtitle, type Project } from '../../../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const blocks = getProjectNarrativeBlocks(project);
+const subtitle = getProjectNarrativeSubtitle(project);
+---
+
+<section class="project-narrative-v6" id="story">
+  <SiteWrap>
+    <SectionHead
+      pill="El caso, paso a paso"
+      title="La historia"
+      titleGradient="completa."
+      subtitle={subtitle}
+      class="reveal"
+    />
+
+    <div class="project-narrative-v6__story">
+      <nav class="project-narrative-v6__nav" id="story-nav" aria-label="Secciones del caso">
+        {
+          blocks.map((block, i) => (
+            <a href={`#${block.id}`} class:list={[i === 0 && 'is-active']}>
+              <span class="project-narrative-v6__nav-num">{block.num}</span>
+              {block.navLabel}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="project-narrative-v6__content">
+        {
+          blocks.map((block) => (
+            <article class="project-narrative-v6__block" id={block.id}>
+              <div class="project-narrative-v6__block-tag">
+                {block.num} / {block.navLabel}
+              </div>
+              <h3>{block.title}</h3>
+              {block.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+              {
+                block.figure && (
+                  <div class="project-narrative-v6__figure">
+                    <div class="project-narrative-v6__figure-label">{block.figure.label}</div>
+                    <p class="project-narrative-v6__figure-text">{block.figure.text}</p>
+                  </div>
+                )
+              }
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </SiteWrap>
+</section>

@@ -5,6 +5,8 @@ export function initSite() {
   initHeroShowcase();
   initWorkSpotlight();
   initMetricCounts();
+  initProjectFilters();
+  initStoryNav();
 }
 
 function initNavProgress() {
@@ -176,6 +178,58 @@ function initMetricCounts() {
   );
 
   cells.forEach((el) => observer.observe(el));
+}
+
+function initProjectFilters() {
+  const bar = document.getElementById('project-filters');
+  const grid = document.getElementById('projects-grid');
+  if (!bar || !grid) return;
+
+  const chips = bar.querySelectorAll<HTMLButtonElement>('.project-filters__chip');
+  const cards = grid.querySelectorAll<HTMLElement>('.project-card-v6-shell');
+
+  const applyFilter = (filterId: string) => {
+    chips.forEach((chip) => {
+      const active = chip.dataset.filter === filterId;
+      chip.classList.toggle('is-active', active);
+      chip.setAttribute('aria-selected', String(active));
+    });
+
+    cards.forEach((card) => {
+      const cats = card.dataset.categories ?? '';
+      const visible =
+        filterId === 'all' || (cats !== 'all' && cats.split(' ').includes(filterId));
+      card.classList.toggle('is-hidden', !visible);
+    });
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      applyFilter(chip.dataset.filter ?? 'all');
+    });
+  });
+}
+
+function initStoryNav() {
+  const nav = document.getElementById('story-nav');
+  const blocks = document.querySelectorAll<HTMLElement>('.project-narrative-v6__block');
+  const links = nav?.querySelectorAll<HTMLAnchorElement>('a');
+  if (!links?.length || !blocks.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          links.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        }
+      });
+    },
+    { rootMargin: '-30% 0px -60% 0px' },
+  );
+
+  blocks.forEach((block) => observer.observe(block));
 }
 
 if (typeof document !== 'undefined') {

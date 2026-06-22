@@ -1,33 +1,22 @@
 ---
-import { projects } from '../../../data/projects';
+import { getProjectsForListing, projectsListingOrder } from '../../../data/projects';
 import ProjectCard from '../../ui/ProjectCard.astro';
-import SectionShell from '../../ui/SectionShell.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
+
+const listingProjects = getProjectsForListing();
+const spanBySlug = Object.fromEntries(
+  projectsListingOrder.map(({ slug, gridSpan }) => [slug, gridSpan]),
+);
 ---
 
-<SectionShell
-  padding="none"
-  style="padding-block: clamp(2rem, 4vw, 3rem) clamp(5rem, 10vw, 8rem);"
->
+<section aria-label="Listado de proyectos">
   <SiteWrap>
-    <div class="projects-grid">
-      {projects.map((project) => (
-        <ProjectCard project={project} />
-      ))}
+    <div class="projects-grid-v6" id="projects-grid">
+      {
+        listingProjects.map((project) => (
+          <ProjectCard project={project} gridSpan={spanBySlug[project.slug]} />
+        ))
+      }
     </div>
   </SiteWrap>
-</SectionShell>
-
-<style>
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem);
-  }
-
-  @media (min-width: 768px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-</style>
+</section>

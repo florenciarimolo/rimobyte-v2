@@ -4,9 +4,29 @@ import LogoMark from '../ui/LogoMark.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
 import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
 import { SERVICE_NAV_LINKS } from '../../data/navigation';
+import { canonicalPath } from '../../lib/url';
+
+const currentPath = canonicalPath(Astro.url.pathname);
+
+function isNavActive(href: string): boolean {
+  const path = canonicalPath(href);
+  if (path === '/') return currentPath === '/';
+  return currentPath === path || currentPath.startsWith(path);
+}
+
+const isProyectosActive = isNavActive('/proyectos/');
+const isServicesActive = isNavActive('/servicios/');
+const isBlogActive = isNavActive('/blog/');
+const isSobreMiActive = isNavActive('/sobre-mi/');
+const isContactoActive = isNavActive('/contacto/');
 
 const navLinkClass =
   'font-body text-sm text-text-secondary no-underline hover:text-text-primary transition-colors duration-200';
+
+const navLinkActiveClass = 'font-bold text-text-primary';
+
+const drawerLinkClass =
+  'font-body text-lg text-text-secondary no-underline hover:text-text-primary transition-colors';
 
 const navChevronClass =
   'icon inline-flex size-5 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
@@ -22,16 +42,24 @@ const navChevronClass =
       </a>
 
       <nav class="site-nav__links" aria-label="Principal">
-        <a href="/proyectos/" class={navLinkClass}>Proyectos</a>
+        <a
+          href="/proyectos/"
+          class:list={[navLinkClass, isProyectosActive && navLinkActiveClass]}
+          aria-current={isProyectosActive ? 'page' : undefined}
+        >
+          Proyectos
+        </a>
 
         <div class="relative">
           <details id="nav-services-desktop" class="group/nav-services">
             <summary
               class:list={[
                 navLinkClass,
+                isServicesActive && navLinkActiveClass,
                 'cursor-pointer list-none inline-flex items-center gap-1.5 select-none',
                 '[&::-webkit-details-marker]:hidden',
               ]}
+              aria-current={isServicesActive ? 'page' : undefined}
             >
               Servicios
               <span
@@ -46,21 +74,40 @@ const navChevronClass =
                 role="group"
                 aria-label="Servicios"
               >
-                {SERVICE_NAV_LINKS.map(({ label, href }) => (
-                  <a
-                    href={href}
-                    class="px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-text-primary hover:bg-bg-subtle transition-colors duration-150"
-                  >
-                    {label}
-                  </a>
-                ))}
+                {SERVICE_NAV_LINKS.map(({ label, href }) => {
+                  const active = isNavActive(href);
+                  return (
+                    <a
+                      href={href}
+                      class:list={[
+                        'px-4 py-2.5 text-sm text-text-secondary no-underline hover:text-text-primary hover:bg-bg-subtle transition-colors duration-150',
+                        active && 'font-bold text-text-primary',
+                      ]}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {label}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </details>
         </div>
 
-        <a href="/blog/" class={navLinkClass}>Blog</a>
-        <a href="/sobre-mi/" class={navLinkClass}>Sobre mí</a>
+        <a
+          href="/blog/"
+          class:list={[navLinkClass, isBlogActive && navLinkActiveClass]}
+          aria-current={isBlogActive ? 'page' : undefined}
+        >
+          Blog
+        </a>
+        <a
+          href="/sobre-mi/"
+          class:list={[navLinkClass, isSobreMiActive && navLinkActiveClass]}
+          aria-current={isSobreMiActive ? 'page' : undefined}
+        >
+          Sobre mí
+        </a>
       </nav>
 
       <div class="site-nav__actions">
@@ -86,10 +133,23 @@ const navChevronClass =
 
 <div class="site-nav__drawer" id="nav-drawer" hidden inert>
   <nav aria-label="Menú móvil">
-    <a href="/proyectos/">Proyectos</a>
+    <a
+      href="/proyectos/"
+      class:list={[drawerLinkClass, isProyectosActive && navLinkActiveClass]}
+      aria-current={isProyectosActive ? 'page' : undefined}
+    >
+      Proyectos
+    </a>
 
     <details id="nav-services-mobile" class="group/nav-services-mobile">
-      <summary class="cursor-pointer list-none inline-flex items-center gap-2 [&::-webkit-details-marker]:hidden">
+      <summary
+        class:list={[
+          drawerLinkClass,
+          isServicesActive && navLinkActiveClass,
+          'cursor-pointer list-none inline-flex items-center gap-2 [&::-webkit-details-marker]:hidden',
+        ]}
+        aria-current={isServicesActive ? 'page' : undefined}
+      >
         Servicios
         <span
           class:list={[navChevronClass, 'group-open/nav-services-mobile:rotate-180']}
@@ -98,17 +158,42 @@ const navChevronClass =
         />
       </summary>
       <div class="mt-4 flex flex-col gap-3 pl-1">
-        {SERVICE_NAV_LINKS.map(({ label, href }) => (
-          <a href={href} class="font-body text-lg text-text-secondary no-underline hover:text-text-primary transition-colors">
-            {label}
-          </a>
-        ))}
+        {SERVICE_NAV_LINKS.map(({ label, href }) => {
+          const active = isNavActive(href);
+          return (
+            <a
+              href={href}
+              class:list={[drawerLinkClass, active && navLinkActiveClass]}
+              aria-current={active ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          );
+        })}
       </div>
     </details>
 
-    <a href="/blog/">Blog</a>
-    <a href="/sobre-mi/">Sobre mí</a>
-    <a href="/contacto/">Contacto</a>
+    <a
+      href="/blog/"
+      class:list={[drawerLinkClass, isBlogActive && navLinkActiveClass]}
+      aria-current={isBlogActive ? 'page' : undefined}
+    >
+      Blog
+    </a>
+    <a
+      href="/sobre-mi/"
+      class:list={[drawerLinkClass, isSobreMiActive && navLinkActiveClass]}
+      aria-current={isSobreMiActive ? 'page' : undefined}
+    >
+      Sobre mí
+    </a>
+    <a
+      href="/contacto/"
+      class:list={[drawerLinkClass, isContactoActive && navLinkActiveClass]}
+      aria-current={isContactoActive ? 'page' : undefined}
+    >
+      Contacto
+    </a>
   </nav>
 </div>
 

@@ -1,0 +1,27 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import { getProjectFilterCounts, projectFilters } from '../../../data/projects';
+
+const counts = getProjectFilterCounts();
+---
+
+<section class="project-filters" aria-label="Filtrar proyectos por tipo">
+  <SiteWrap>
+    <div class="project-filters__bar" id="project-filters" role="tablist">
+      {
+        projectFilters.map((filter, i) => (
+          <button
+            type="button"
+            class:list={['project-filters__chip', i === 0 && 'is-active']}
+            data-filter={filter.id}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            {filter.label}
+            <span class="project-filters__count">{counts[filter.id] ?? 0}</span>
+          </button>
+        ))
+      }
+    </div>
+  </SiteWrap>
+</section>

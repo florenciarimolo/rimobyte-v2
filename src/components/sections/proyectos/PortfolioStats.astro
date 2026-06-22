@@ -1,0 +1,17 @@
+---
+import HeroStats from '../../ui/HeroStats.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import { distinctSectorCount, projectCount } from '../../../data/projects';
+
+const stats = [
+  { value: String(projectCount), label: 'Proyectos entregados' },
+  { value: String(distinctSectorCount), label: 'Sectores distintos' },
+  { value: '100%', label: 'Online y activos' },
+];
+---
+
+<section class="projects-metrics-v6" aria-label="Resumen del portfolio">
+  <SiteWrap>
+    <HeroStats stats={stats} />
+  </SiteWrap>
+</section>

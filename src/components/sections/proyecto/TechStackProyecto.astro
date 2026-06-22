@@ -1,0 +1,33 @@
+---
+import Pill from '../../ui/Pill.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import type { Project } from '../../../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+{
+  project.techStack && project.techStack.length > 0 && (
+    <section class="project-tech-v6" aria-label="Stack técnico del proyecto">
+      <SiteWrap>
+        <div class="project-tech-v6__card reveal">
+          <Pill text="Bajo el capó" />
+          <h3>Stack técnico del proyecto</h3>
+          <p>
+            {project.stackLabel ?? 'WordPress'} como base, con estructura optimizada para rendimiento y
+            SEO. Sin plugins innecesarios que ralenticen el sitio.
+          </p>
+          <div class="project-tech-v6__chips">
+            {project.techStack.map((chip) => (
+              <span class="project-tech-v6__chip">{chip}</span>
+            ))}
+          </div>
+        </div>
+      </SiteWrap>
+    </section>
+  )
+}

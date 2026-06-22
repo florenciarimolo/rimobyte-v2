@@ -44,10 +44,10 @@
   --color-bg-subtle:   #F2F2F7;
   --color-ink:         #0A0A12;
 
-  /* Text */
+  /* Text — mockup v6: ink-soft / muted */
   --color-text-primary:   #0A0A12;
-  --color-text-secondary: #2C2C38;
-  --color-text-muted:     #545462;
+  --color-text-secondary: #3A3A48;
+  --color-text-muted:     #6B6B7B;
 
   /* Brand */
   --color-blue:        #196BEE;
@@ -124,58 +124,9 @@
   --shadow-deep: 0 30px 60px -20px rgba(10, 10, 18, 0.5);
 }
 
-/* ─── Tema claro — lavanda cálida, sin blanco puro ─── */
+/* Tema claro — v6 Glass/Aurora (mismos tokens que @theme) */
 [data-theme='light'] {
   color-scheme: light;
-
-  --color-bg-base:     #EEEDF4;
-  --color-bg-elevated: #E6E5EF;
-  --color-bg-surface:  #DDDCE8;
-  --color-bg-subtle:   #D3D2E0;
-
-  --color-text-primary:   #12101F;
-  --color-text-secondary: rgba(18, 16, 31, 0.62);
-  --color-text-muted:     rgba(18, 16, 31, 0.38);
-
-  --color-blue-subtle: rgba(43, 71, 236, 0.08);
-  --color-blue-glow:   rgba(43, 71, 236, 0.16);
-
-  --color-border-default: rgba(18, 16, 31, 0.09);
-  --color-border-hover:   rgba(18, 16, 31, 0.16);
-  --color-border-blue:    rgba(43, 71, 236, 0.32);
-
-  --gradient-headline: linear-gradient(180deg, #12101F 0%, rgba(18, 16, 31, 0.58) 100%);
-  --gradient-headline-em: linear-gradient(180deg, #4a62f0 0%, #2b47ec 52%, #1a2ecc 100%);
-
-  --color-section-glass: rgba(238, 237, 244, 0.72);
-  --color-section-glass-elevated: rgba(230, 229, 239, 0.78);
-  --color-section-glass-mobile: rgba(238, 237, 244, 0.58);
-  --color-section-glass-elevated-mobile: rgba(230, 229, 239, 0.64);
-  --color-surface-card: rgba(255, 255, 255, 0.52);
-  --color-surface-card-hover: rgba(255, 255, 255, 0.68);
-  --color-nav-glass: rgba(238, 237, 244, 0.88);
-  --color-dropdown-shadow: 0 16px 48px rgba(18, 16, 31, 0.12);
-  --color-fan-card-bg: rgba(255, 255, 255, 0.72);
-  --color-fan-card-info: rgba(238, 237, 244, 0.96);
-  --color-fan-card-shadow: 0 24px 56px rgba(18, 16, 31, 0.14);
-  --color-fan-card-shadow-hover: 0 32px 72px rgba(18, 16, 31, 0.2);
-  --color-fan-card-overlay-top: rgba(238, 237, 244, 0.15);
-  --color-fan-card-overlay-bottom: rgba(18, 16, 31, 0.22);
-  --color-site-symbol-opacity: 0.045;
-  --color-site-symbol-opacity-breathe: 0.065;
-  --color-site-symbol-opacity-mobile: 0.06;
-  --color-site-symbol-opacity-mobile-breathe: 0.08;
-  --color-carousel-dot: rgba(18, 16, 31, 0.18);
-  --color-carousel-dot-hover: rgba(18, 16, 31, 0.32);
-  --color-interactive-dot: rgba(101, 53, 229, 0.16);
-  --color-hero-articulo-overlay: linear-gradient(
-    180deg,
-    rgba(238, 237, 244, 0.72) 0%,
-    rgba(238, 237, 244, 0.88) 55%,
-    rgba(238, 237, 244, 0.94) 100%
-  );
-
-  --dot-pattern-color: rgba(101, 53, 229, 0.12);
 }
 
 [data-theme='dark'] {
@@ -188,6 +139,9 @@ html {
   background: var(--color-bg-base);
   color: var(--color-text-primary);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -199,7 +153,12 @@ html {
     scroll-behavior: auto;
   }
 }
-body { margin: 0; }
+body {
+  margin: 0;
+  background: var(--color-bg-base);
+  overflow-x: hidden;
+  position: relative;
+}
 body.is-loading { overflow: hidden; }
 
 /* Accesibilidad — skip link y foco visible */
@@ -375,6 +334,17 @@ h1 em, h2 em,
   transition: all 0.25s ease;
 }
 
+.btn .icon svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
 .btn-primary,
 .btn-gradient {
   background: var(--gradient-logo);
@@ -386,12 +356,13 @@ h1 em, h2 em,
 .btn-primary:hover,
 .btn-gradient:hover {
   background-position: 100% 0;
-  transform: translateY(-1px);
   box-shadow: 0 10px 30px -8px rgba(231, 21, 209, 0.55);
 }
 
 .btn-primary:active,
-.btn-gradient:active {
+.btn-gradient:active,
+.btn-outline:active,
+.btn-ghost:active {
   transform: translateY(0);
 }
 
@@ -413,7 +384,7 @@ h1 em, h2 em,
 .btn-outline:hover,
 .btn-ghost:hover {
   background: #fff;
-  gap: 0.625rem;
+  box-shadow: 0 8px 24px -8px rgba(10, 10, 18, 0.4);
 }
 
 .btn-ink {
@@ -1080,7 +1051,14 @@ h1 em, h2 em,
   transition: color 0.2s;
 }
 
-.site-nav__links a:hover {
+.site-nav__links a:hover,
+.site-nav__links summary:hover {
+  color: var(--color-text-primary);
+}
+
+.site-nav__links a[aria-current='page'],
+.site-nav__links summary[aria-current='page'] {
+  font-weight: 700;
   color: var(--color-text-primary);
 }
 
@@ -1168,6 +1146,12 @@ h1 em, h2 em,
   letter-spacing: -0.02em;
   text-decoration: none;
   color: inherit;
+}
+
+.site-nav__drawer a[aria-current='page'],
+.site-nav__drawer summary[aria-current='page'] {
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
 @media (min-width: 768px) {

@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import type { ProjectResultIconName } from '../../data/projects';
+
+interface Props {
+  name: ProjectResultIconName;
+  class?: string;
+}
+
+const { name, class: cls = '' } = Astro.props;
+
+const iconByName = {
+  pulse: 'result-pulse',
+  trend: 'result-trend',
+  clock: 'result-clock',
+  star: 'result-star',
+  grid: 'result-grid',
+  lock: 'result-lock',
+  activity: 'result-activity',
+  chat: 'result-chat',
+  layers: 'result-layers',
+} as const;
+---
+
+<Icon name={iconByName[name]} class:list={['project-result-icon', cls]} />

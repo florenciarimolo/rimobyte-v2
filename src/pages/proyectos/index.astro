@@ -2,9 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/sections/Navbar.astro';
 import HeroProyectos from '../../components/sections/proyectos/HeroProyectos.astro';
+import PortfolioStats from '../../components/sections/proyectos/PortfolioStats.astro';
+import ProjectFilters from '../../components/sections/proyectos/ProjectFilters.astro';
 import ProjectsGrid from '../../components/sections/proyectos/ProjectsGrid.astro';
 import CTAFinalProyectos from '../../components/sections/proyectos/CTAFinalProyectos.astro';
-import ContactFormIsland from '../../components/sections/ContactFormIsland.astro';
 import Footer from '../../components/sections/Footer.astro';
 import { projectCount } from '../../data/projects';
 
@@ -14,7 +15,7 @@ const proyectosPhrase =
     : `${projectCount} proyectos reales`;
 
 const SEO = {
-  title: 'Proyectos web para negocios locales · RimoByte',
+  title: 'Proyectos web para negocios reales · RimoByte',
   description: `${proyectosPhrase}: webs corporativas, tiendas online, landings y plataformas. Casos documentados con desafío, solución y resultado para cada cliente.`,
   image: '/assets/projects/og-proyectos.webp',
 };
@@ -24,9 +25,10 @@ const SEO = {
   <Navbar />
   <main id="main">
     <HeroProyectos />
+    <PortfolioStats />
+    <ProjectFilters />
     <ProjectsGrid />
     <CTAFinalProyectos />
-    <ContactFormIsland />
   </main>
   <Footer />
 </Base>

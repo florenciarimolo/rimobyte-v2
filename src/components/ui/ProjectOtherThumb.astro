@@ -1,0 +1,33 @@
+---
+import type { Project } from '../../data/projects';
+import { projectImageBase } from '../../data/projectImages';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const imageBase = projectImageBase(project.slug);
+const srcset = imageBase
+  ? `/assets/projects/generated/${imageBase}-w400.webp 400w`
+  : undefined;
+---
+
+<div
+  class:list={[
+    'project-other-v6__thumb',
+    `project-card-v6__thumb--${project.thumbGradient}`,
+  ]}
+>
+  <img
+    src={project.image}
+    srcset={srcset}
+    sizes="72px"
+    alt=""
+    class="project-other-v6__thumb-image"
+    width="400"
+    height="250"
+    loading="lazy"
+    decoding="async"
+  />
+</div>

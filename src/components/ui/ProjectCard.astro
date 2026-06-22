@@ -1,147 +1,68 @@
 ---
-import type { Project } from '../../data/projects';
-import Eyebrow from './Eyebrow.astro';
+import type { Project, ProjectGridSpan } from '../../data/projects';
+import { projectImageBase } from '../../data/projectImages';
+import ProjectCardArrow from './ProjectCardArrow.astro';
+import ProjectResultIcon from './ProjectResultIcon.astro';
 
 interface Props {
   project: Project;
+  gridSpan?: ProjectGridSpan;
 }
 
-const { project } = Astro.props;
+const { project, gridSpan = project.gridSpan } = Astro.props;
 
-const challengeFirst =
-  project.challenge.split('.')[0]?.trim() ?? project.challenge;
-const challengeLead = challengeFirst.endsWith('.') ? challengeFirst : `${challengeFirst}.`;
+const spanClass =
+  gridSpan === 'featured'
+    ? 'project-card-v6--featured'
+    : gridSpan === 'span-6'
+      ? 'project-card-v6--span-6'
+      : 'project-card-v6--span-4';
+
+const categoryAttr = project.categories.length > 0 ? project.categories.join(' ') : 'all';
+
+const imageBase = projectImageBase(project.slug);
+const srcset = imageBase
+  ? `/assets/projects/generated/${imageBase}-w400.webp 400w, /assets/projects/generated/${imageBase}-w800.webp 800w`
+  : undefined;
 ---
 
-<a href={`/proyectos/${project.slug}/`} class="project-card reveal group">
-  <div class="project-card__media">
+<div
+  class:list={['project-card-v6-shell reveal', spanClass]}
+  data-categories={categoryAttr}
+>
+  <a href={`/proyectos/${project.slug}/`} class="project-card-v6">
+  <div
+    class:list={[
+      'project-card-v6__thumb',
+      `project-card-v6__thumb--${project.thumbGradient}`,
+    ]}
+  >
     <img
       src={project.image}
+      srcset={srcset}
+      sizes="(min-width: 980px) 50vw, 100vw"
       alt={`Captura de la web ${project.name} — ${project.sector}`}
-      width="720"
-      height="540"
+      class="project-card-v6__image"
+      width="800"
+      height="500"
       loading="lazy"
       decoding="async"
     />
-    <div class="project-card__hover-indicator" aria-hidden="true">
-      <span class="font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-text-primary">
-        Ver caso →
+    <div class="project-card-v6__thumb-shade" aria-hidden="true"></div>
+    <span class="project-card-v6__meta">{project.eyebrow}</span>
+    <span class="project-card-v6__url">{project.url}</span>
+  </div>
+
+  <div class="project-card-v6__content">
+    <h3>{project.displayName}</h3>
+    <p class="project-card-v6__summary">{project.cardSummary}</p>
+    <div class="project-card-v6__result">
+      <span class="project-card-v6__result-text">
+        <ProjectResultIcon name={project.resultIcon} />
+        <span class="gradient-text">{project.resultHighlight}</span>
       </span>
+      <ProjectCardArrow />
     </div>
   </div>
-
-  <div class="project-card__content">
-    <Eyebrow text={project.eyebrow} class="mb-3" />
-
-    <h3 class="project-card__title">
-      {project.displayName}
-    </h3>
-
-    <p class="project-card__summary">
-      <strong>El desafío:</strong> {challengeLead}
-      <strong> El resultado:</strong> {project.result}
-    </p>
-  </div>
-</a>
-
-<style>
-  .project-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
-
-  .project-card__media {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    border: 1px solid var(--color-border-default);
-    background: var(--color-bg-subtle);
-    transition: border-color 0.3s var(--ease-spring);
-  }
-
-  .project-card:hover .project-card__media,
-  .project-card:focus-visible .project-card__media {
-    border-color: var(--color-border-blue);
-  }
-
-  .project-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transition:
-      transform 0.6s var(--ease-spring),
-      filter 0.4s ease;
-  }
-
-  .project-card:hover .project-card__media img,
-  .project-card:focus-visible .project-card__media img {
-    transform: scale(1.03);
-    filter: brightness(0.65);
-  }
-
-  .project-card__hover-indicator {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s var(--ease-spring);
-    pointer-events: none;
-  }
-
-  .project-card:hover .project-card__hover-indicator,
-  .project-card:focus-visible .project-card__hover-indicator {
-    opacity: 1;
-  }
-
-  .project-card:focus-visible {
-    outline: 2px solid var(--color-blue);
-    outline-offset: 4px;
-    border-radius: 4px;
-  }
-
-  .project-card__content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .project-card__title {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(1.375rem, 2.2vw, 1.625rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    background-image: var(--gradient-headline);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0 0 1rem;
-    transition: opacity 0.2s ease;
-  }
-
-  .project-card:hover .project-card__title,
-  .project-card:focus-visible .project-card__title {
-    opacity: 0.92;
-  }
-
-  .project-card__summary {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  .project-card__summary strong {
-    color: var(--color-text-primary);
-    font-weight: 500;
-  }
-</style>
+  </a>
+</div>

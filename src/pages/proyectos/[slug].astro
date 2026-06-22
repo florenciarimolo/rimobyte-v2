@@ -1,34 +1,35 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/sections/Navbar.astro';
+import ProjectBreadcrumb from '../../components/sections/proyecto/ProjectBreadcrumb.astro';
 import HeroProyecto from '../../components/sections/proyecto/HeroProyecto.astro';
 import StatsProyecto from '../../components/sections/proyecto/StatsProyecto.astro';
-import ChallengeApproachOutcome from '../../components/sections/proyecto/ChallengeApproachOutcome.astro';
+import NarrativeProyecto from '../../components/sections/proyecto/NarrativeProyecto.astro';
+import TechStackProyecto from '../../components/sections/proyecto/TechStackProyecto.astro';
 import TestimonioProyecto from '../../components/sections/proyecto/TestimonioProyecto.astro';
 import NextPrevProyecto from '../../components/sections/proyecto/NextPrevProyecto.astro';
-import ContactFormIsland from '../../components/sections/ContactFormIsland.astro';
+import CTAProyecto from '../../components/sections/proyecto/CTAProyecto.astro';
 import Footer from '../../components/sections/Footer.astro';
 import {
   projects,
-  getNextProject,
-  getPrevProject,
-  type Project,
+  getNextProjectInListing,
+  getPrevProjectInListing,
 } from '../../data/projects';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths: GetStaticPaths = () =>
   projects.map((project) => ({
     params: { slug: project.slug },
-    props: { project },
   }));
 
-interface Props {
-  project: Project;
-}
+const slug = Astro.params.slug;
+const project = projects.find((entry) => entry.slug === slug);
 
-const { project } = Astro.props;
-const nextProject = getNextProject(project.slug);
-const prevProject = getPrevProject(project.slug);
+if (!project) {
+  return Astro.redirect('/404');
+}
+const nextProject = getNextProjectInListing(project.slug);
+const prevProject = getPrevProjectInListing(project.slug);
 
 const seoImagePath = project.heroImage ?? project.image;
 
@@ -116,14 +117,20 @@ const projectLdGraph = {
   />
   <Navbar />
   <main id="main">
+    <ProjectBreadcrumb />
     <HeroProyecto project={project} />
     <StatsProyecto stats={project.stats} />
-    <ChallengeApproachOutcome project={project} />
+    <NarrativeProyecto project={project} />
+    <TechStackProyecto project={project} />
     {project.testimonial && (
-      <TestimonioProyecto testimonial={project.testimonial} projectUrl={project.url} />
+      <TestimonioProyecto
+        testimonial={project.testimonial}
+        projectUrl={project.url}
+        authorInitial={project.thumbLetter.charAt(0)}
+      />
     )}
     <NextPrevProyecto nextProject={nextProject} prevProject={prevProject} />
-    <ContactFormIsland />
+    <CTAProyecto />
   </main>
   <Footer />
 </Base>

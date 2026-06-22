@@ -1,0 +1,28 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  stats: Stat[];
+  class?: string;
+}
+
+const { stats, class: cls = '' } = Astro.props;
+const columns = stats.length;
+---
+
+<div
+  class:list={['hero-stats reveal', columns === 3 && 'hero-stats--3', cls]}
+  style={columns !== 3 && columns !== 4 ? `--hero-stats-cols: ${columns}` : undefined}
+>
+  {
+    stats.map((stat) => (
+      <div class="hero-stat">
+        <div class="hero-stat__num">{stat.value}</div>
+        <div class="hero-stat__label">{stat.label}</div>
+      </div>
+    ))
+  }
+</div>

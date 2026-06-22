@@ -1,20 +1,42 @@
+import arrowRightIcon from './arrow-right.svg?raw';
+import arrowUpRightIcon from './arrow-up-right.svg?raw';
 import chevronDownIcon from './chevron-down.svg?raw';
 import cornerBrIcon from './corner-br.svg?raw';
 import cornerTlIcon from './corner-tl.svg?raw';
 import globeIcon from './globe.svg?raw';
 import mailIcon from './mail.svg?raw';
 import quoteOrnateIcon from './quote-ornate.svg?raw';
+import resultActivityIcon from './result-activity.svg?raw';
+import resultChatIcon from './result-chat.svg?raw';
+import resultClockIcon from './result-clock.svg?raw';
+import resultGridIcon from './result-grid.svg?raw';
+import resultLayersIcon from './result-layers.svg?raw';
+import resultLockIcon from './result-lock.svg?raw';
+import resultPulseIcon from './result-pulse.svg?raw';
+import resultStarIcon from './result-star.svg?raw';
+import resultTrendIcon from './result-trend.svg?raw';
 import shoppingBagIcon from './shopping-bag.svg?raw';
 import whatsappIcon from './whatsapp.svg?raw';
 import wrenchIcon from './wrench.svg?raw';
 
 export const icons = {
+  'arrow-right': arrowRightIcon,
+  'arrow-up-right': arrowUpRightIcon,
   'chevron-down': chevronDownIcon,
   'corner-br': cornerBrIcon,
   'corner-tl': cornerTlIcon,
   globe: globeIcon,
   mail: mailIcon,
   'quote-ornate': quoteOrnateIcon,
+  'result-activity': resultActivityIcon,
+  'result-chat': resultChatIcon,
+  'result-clock': resultClockIcon,
+  'result-grid': resultGridIcon,
+  'result-layers': resultLayersIcon,
+  'result-lock': resultLockIcon,
+  'result-pulse': resultPulseIcon,
+  'result-star': resultStarIcon,
+  'result-trend': resultTrendIcon,
   'shopping-bag': shoppingBagIcon,
   whatsapp: whatsappIcon,
   wrench: wrenchIcon,

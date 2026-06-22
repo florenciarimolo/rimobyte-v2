@@ -1,27 +1,20 @@
 ---
-import Eyebrow from '../../ui/Eyebrow.astro';
-import SectionShell from '../../ui/SectionShell.astro';
+import Pill from '../../ui/Pill.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
-import { portfolioEyebrowLabel } from '../../../data/projects';
+import { projectCount } from '../../../data/projects';
 ---
 
-<SectionShell padding="hero">
+<header class="projects-hero-v6">
   <SiteWrap>
-    <div class="max-w-[760px] reveal">
-      <Eyebrow text={portfolioEyebrowLabel} class="mb-6" />
-
-      <h1
-        class="font-display font-medium text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.03em]"
-      >
-        Proyectos reales para negocios <em>reales.</em>
+    <div class="reveal">
+      <Pill text="Portfolio · Casos documentados" class="mb-6" />
+      <h1>
+        Proyectos reales para negocios <span class="gradient-text">reales.</span>
       </h1>
-
-      <p
-        class="font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary mt-6 max-w-[580px]"
-      >
-        Cada web tiene detrás una historia: un negocio que quería crecer, un autónomo que
-        quería ser encontrado, o una tienda que quería vender online.
+      <p class="projects-hero-v6__lede">
+        Cada web tiene detrás una historia: un negocio que quería crecer, un autónomo que quería ser
+        encontrado o una tienda que quería vender online. Estos son los {projectCount}.
       </p>
     </div>
   </SiteWrap>
-</SectionShell>
+</header>

@@ -1,0 +1,30 @@
+---
+import SiteWrap from './SiteWrap.astro';
+import Pill from './Pill.astro';
+
+interface Props {
+  id?: string;
+  pill?: string;
+  live?: boolean;
+  class?: string;
+}
+
+const { id = 'contacto', pill, live = false, class: cls = '' } = Astro.props;
+---
+
+<section class:list={['home-cta-v6', cls]} id={id}>
+  <SiteWrap>
+    <div class="cta-dark-card reveal">
+      {pill && <Pill text={pill} live={live} />}
+      <h2>
+        <slot name="title" />
+      </h2>
+      <p>
+        <slot name="description" />
+      </p>
+      <div class="cta-buttons">
+        <slot name="actions" />
+      </div>
+    </div>
+  </SiteWrap>
+</section>
