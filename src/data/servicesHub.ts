@@ -78,7 +78,7 @@ export const hubVerticals: HubVertical[] = [
   {
     title: 'Psicólogos y terapeutas',
     description: 'Plataforma de autoridad y captación de pacientes.',
-    href: '/proyectos/ariadna-psicologia/',
+    href: '/web-para-psicologos/',
     icon: 'heart',
   },
   {

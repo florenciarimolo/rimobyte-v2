@@ -256,6 +256,7 @@
   border-top: 1px solid var(--color-border-default);
   gap: 1.5rem;
   max-width: 34rem;
+  overflow: visible;
 }
 
 .hero-stats--simple .hero-stat {
@@ -267,6 +268,11 @@
 
 .hero-stats--simple .hero-stat__num {
   font-size: 2rem;
+}
+
+.hero-stats--simple .hero-stat__label {
+  overflow: visible;
+  text-wrap: balance;
 }
 
 /* Logo strip */
@@ -3934,6 +3940,9 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
+  display: inline-block;
+  padding: 0 0.04em 0.1em;
+  line-height: 1.15;
 }
 
 .sector-menu-mockup__header p {

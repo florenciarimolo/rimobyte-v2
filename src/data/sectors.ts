@@ -119,8 +119,8 @@ export interface Sector {
   heroProjectSlug?: string;
   /** Captura móvil del mockup de teléfono en el hero sectorial */
   heroMockupImage?: string;
-  /** Mockup del hero: teléfono (por defecto) o carta de menú */
-  heroMockupType?: 'phone' | 'menu';
+  /** Mockup del hero: teléfono (por defecto), carta de menú o especialidades (psicología) */
+  heroMockupType?: 'phone' | 'menu' | 'practice';
   heroStrip?: { label: string; tags: string[] };
   painPoints?: {
     eyebrow: string;
@@ -1102,6 +1102,198 @@ export const sectors: Sector[] = [
       title: 'Diseño web para cursos y formaciones online · RimoByte',
       description:
         'Plataformas WordPress + LearnDash para creadores de cursos y formaciones online. Pasarela doble (PayPal + Stripe) y newsletter conectada. Desde 600€, sin permanencia.',
+    },
+  },
+  {
+    slug: 'web-para-psicologos',
+    name: 'Web para psicólogos',
+    sectorNameShort: 'psicólogos',
+    eyebrow: 'WEB PARA PSICÓLOGOS Y TERAPEUTAS',
+    headline: 'Confianza antes de la primera sesión,',
+    headlineEm: 'pacientes que encajan.',
+    description:
+      'Webs para psicólogos y terapeutas en consulta privada que quieren que les encuentren en Google, transmitir credibilidad antes del primer contacto y convertir visitas en solicitudes de cita — con una página por especialidad, formularios RGPD y reserva sin depender solo de Doctoralia o Psychology Today.',
+    ctaPrimary: 'Cuéntame tu consulta',
+    checks: ['SEO por especialidad', 'RGPD incluido', 'Tuya desde el primer día'],
+    heroPills: ['Web para psicólogos y terapeutas', 'SEO local · Primera cita'],
+    heroMockupType: 'practice',
+    heroStats: [
+      { value: '1', label: 'Página por especialidad · SEO', gradient: true },
+      { value: 'RGPD', label: 'Formularios y avisos legales', gradient: true },
+      { value: '24/7', label: 'Solicitud de cita disponible', gradient: true },
+    ],
+    heroSecondaryCta: { label: 'Ver concepto visual', href: '#concepto' },
+    painPoints: {
+      eyebrow: 'Lo que más veo en consulta privada',
+      title: 'Tu web tiene que resolver',
+      titleEm: 'tres problemas a la vez.',
+      paragraphs: [
+        {
+          text: 'Hacer una web de psicólogo no es poner una foto bonita y un teléfono. La persona que busca ayuda decide en pocos segundos si puede confiar en ti — y si no encuentra especialidad, enfoque y forma de contacto clara, vuelve al listado de Doctoralia o al siguiente resultado de Google.',
+        },
+        {
+          emphasis: 'El primer problema es la visibilidad:',
+          text: ' que te encuentren cuando buscan "psicólogo + tu ciudad" o "terapia para la ansiedad en [zona]" — no solo tu nombre. El segundo es la confianza: colegiación visible, enfoque terapéutico, tarifas o primeros pasos sin ambigüedad. El tercero es la conversión: pasar de "me interesa" a primera cita con el mínimo roce posible.',
+        },
+        {
+          emphasis: 'Estos tres problemas se resuelven con la misma ingeniería',
+          text: ' que aplico en webs profesionales donde el SEO local, la claridad de la oferta y los formularios conformes a RGPD no son opcionales.',
+        },
+      ],
+      credentialsTitle: 'Lo que tu web tendrá',
+      credentials: [
+        {
+          label: 'Una página por especialidad.',
+          text: 'Ansiedad, pareja, infantil, EMDR… cada una con su SEO, no un listado genérico que Google no posiciona.',
+        },
+        {
+          label: 'Perfil profesional que transmite.',
+          text: 'Formación, colegiación, enfoque y foto — lo que el paciente necesita antes de escribirte.',
+        },
+        {
+          label: 'Primera cita sin fricción.',
+          text: 'Formulario seguro, Calendly, Doctolib o el sistema que ya uses — integrado y visible desde el móvil.',
+        },
+        {
+          label: 'RGPD y deontología.',
+          text: 'Aviso legal, privacidad, cookies y formularios adaptados al tratamiento de datos en salud.',
+        },
+        {
+          label: 'Soporte humano.',
+          text: 'Hablas conmigo, no con un ticket. Diez reseñas de Google con 5/5 lo respaldan.',
+        },
+      ],
+    },
+    concept: {
+      id: 'concepto',
+      eyebrow: 'Cómo se vería tu web',
+      title: 'Concepto visual para',
+      titleEm: 'tu consulta.',
+      intro:
+        'Mockup de cómo construiría la home: quién ayudas y con qué enfoque en el primer pantallazo, especialidades enlazadas cada una a su página, y los tres elementos críticos (cómo pedir cita, modalidad online/presencial y ubicación) siempre a mano.',
+      url: 'tuconsulta.es',
+      browserHeadline: 'Tu consulta,',
+      browserHeadlineEm: 'accesible',
+      browserDescription:
+        'Psicóloga colegiada. Terapia individual, de pareja y online. Primera sesión sin compromiso — cuéntame qué necesitas.',
+      browserPrimaryCta: 'Pedir primera cita',
+      browserSecondaryCta: 'Ver especialidades',
+      miniCards: [
+        { icon: 'clock', title: 'Primera cita', subtitle: 'Online o presencial' },
+        { icon: 'map', title: 'Consulta en tu ciudad', subtitle: 'Cómo llegar →' },
+        { icon: 'phone', title: 'Contacto directo', subtitle: 'Sin intermediarios' },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una web para psicólogos',
+    featuresIntro:
+      'Cada elemento está afinado para consulta privada: lo que el paciente necesita leer antes de confiar, cómo filtra si encajáis y cómo pide cita sin sentirse expuesto.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo trabaja tu consulta.',
+    features: [
+      {
+        icon: 'result-layers',
+        title: 'Página por especialidad',
+        description:
+          'Ansiedad, depresión, pareja, trauma, infantil… cada una con su URL, su copy y su SEO. Google no posiciona un bullet en una página genérica de "servicios".',
+      },
+      {
+        icon: 'result-grid',
+        title: 'Sobre mí con credenciales',
+        description:
+          'Formación, colegiación, número de colegiado, enfoque terapéutico y líneas de trabajo. La confianza clínica empieza antes del primer email.',
+      },
+      {
+        icon: 'result-clock',
+        title: 'Reserva o solicitud de cita',
+        description:
+          'Calendly, Doctolib, Doctoralia embebido o formulario propio con campos mínimos. El paciente sabe qué pasa después de pulsar "enviar".',
+      },
+      {
+        icon: 'globe',
+        title: 'SEO local y por problema',
+        description:
+          'Schema Person + LocalBusiness, Google Business Profile y páginas para "psicólogo + ciudad" y "terapia para [problema] + zona".',
+      },
+      {
+        icon: 'result-lock',
+        title: 'RGPD y confidencialidad',
+        description:
+          'Política de privacidad, aviso legal, cookies y formularios con base legal clara. Imprescindible en un sector donde tratas datos de salud.',
+      },
+      {
+        icon: 'mail',
+        title: 'Tarifas, seguros y FAQs',
+        description:
+          'Página de honorarios (o rango orientativo), si aceptas mutua o solo privado, y preguntas frecuentes que reducen consultas repetitivas por WhatsApp.',
+      },
+    ],
+    relatedProjects: {
+      eyebrow: 'Mi trabajo en webs profesionales',
+      title: 'La ingeniería detrás de tu web,',
+      titleEm: 'aplicada y probada.',
+      intro:
+        'Proyectos donde el SEO, la velocidad y la estructura de contenidos eran críticos — las mismas piezas que sostienen una web de consulta que capta pacientes de verdad.',
+      slugs: ['vila-i-lancis', 'lucia-nails-art'],
+    },
+    offer: {
+      eyebrow: 'Plan completo · Psicología',
+      title: 'Todo lo que tu consulta',
+      titleEm: 'necesita online.',
+      lede:
+        'Una web a medida con páginas por especialidad, perfil profesional, formulario o reserva integrada y SEO local incluido. Plazo cerrado, precio cerrado y formación para que la gestiones tú después. Sin permanencia.',
+      features: [
+        'Diseño 100% a medida con dos direcciones a elegir',
+        'Home + sobre mí + una página por especialidad acordada',
+        'Formulario RGPD o integración con tu sistema de citas',
+        'SEO local + Google Business Profile configurados',
+        'Formación + 30 días de soporte tras la entrega',
+      ],
+      price: '600€',
+      priceNote: 'desde · pago único, sin permanencia',
+      priceDetail:
+        'El precio final depende del número de especialidades/páginas, si integramos Calendly, Doctolib u otro sistema, y si añadimos blog o área de recursos. Te paso presupuesto cerrado antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'psicólogos y terapeutas.',
+    faqs: [
+      {
+        question: '¿Por qué no basta con Doctoralia o Psychology Today?',
+        answer:
+          'Son directorios útiles para visibilidad, pero la comisión, la competencia en la misma ficha y el hecho de que el paciente no está en tu web hacen que pierdas control sobre la primera impresión y los datos. Tu web propia posiciona por especialidad y ciudad, transmite tu enfoque sin compararte en columna con otros colegas, y el contacto llega directo a ti.',
+      },
+      {
+        question: '¿Cuántas páginas de especialidad necesito realmente?',
+        answer:
+          'Al menos una por línea de trabajo que quieras captar en Google: si tratas ansiedad, pareja e infantil, son tres páginas — no tres párrafos en "Servicios". Empezamos por las dos o tres búsquedas que más pacientes te pueden traer y dejamos la estructura preparada para añadir más sin rehacer la web.',
+      },
+      {
+        question: '¿Puedo ofrecer terapia online y presencial en la misma web?',
+        answer:
+          'Sí, y conviene dejarlo claro desde la home: modalidad, zonas horarias si atiendes fuera de tu ciudad, y requisitos técnicos mínimos para sesión online. Cada especialidad puede indicar si está disponible en ambos formatos. También preparo páginas por comunidad autónoma si trabajas en régimen PSYPACT o similar.',
+      },
+      {
+        question: '¿La web cumple con RGPD y el código deontológico?',
+        answer:
+          'Sí. Aviso legal, política de privacidad, cookies, formularios con información al interesado y sin campos clínicos innecesarios en el primer contacto. No sustituyo el asesoramiento de tu colegio profesional, pero conozco las exigencias habituales en webs de salud mental en España.',
+      },
+      {
+        question: '¿Cuánto tarda en estar lista y en empezar a aparecer en Google?',
+        answer:
+          'Entre 3 y 5 semanas desde que tengo textos, foto y datos de colegiación. El SEO local empieza a moverse en 4–12 semanas según competencia en tu ciudad. Las páginas de especialidad largas suelen posicionar antes que una home genérica — por eso insisto en una URL por problema, no en un único listado.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Hablamos de',
+      titleEm: 'tu consulta?',
+      text: 'Cuéntame qué especialidades trabajas, si atiendes online o presencial y qué usas hoy para las citas. Te respondo personalmente con una propuesta concreta, plazos cerrados y precio cerrado antes de empezar.',
+    },
+    serviceLink: '/servicios/web-corporativa/',
+    seo: {
+      title: 'Diseño web para psicólogos y terapeutas · RimoByte',
+      description:
+        'Webs WordPress a medida para psicólogos en consulta privada. Una página por especialidad, SEO local, formularios RGPD y reserva de primera cita. Desde 600€, sin permanencia.',
     },
   },
 ];
