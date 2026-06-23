@@ -26,7 +26,7 @@ const navLinkClass =
 const navLinkActiveClass = 'font-bold text-text-primary';
 
 const drawerLinkClass =
-  'font-body text-lg text-text-secondary no-underline hover:text-text-primary transition-colors';
+  'site-nav__drawer-link text-text-secondary no-underline hover:text-text-primary transition-colors';
 
 const navChevronClass =
   'icon inline-flex size-5 shrink-0 text-text-secondary pointer-events-none transition-transform duration-200 [&_svg]:size-full';
@@ -157,7 +157,7 @@ const navChevronClass =
           set:html={chevronDownSvg}
         />
       </summary>
-      <div class="mt-4 flex flex-col gap-3 pl-1">
+      <div class="site-nav__drawer-subnav">
         {SERVICE_NAV_LINKS.map(({ label, href }) => {
           const active = isNavActive(href);
           return (
@@ -198,21 +198,35 @@ const navChevronClass =
 </div>
 
 <script>
+  const navbar = document.getElementById('navbar') as HTMLElement;
   const menuBtn = document.getElementById('menu-btn') as HTMLButtonElement;
   const drawer = document.getElementById('nav-drawer') as HTMLElement;
   const desktopServices = document.getElementById('nav-services-desktop') as HTMLDetailsElement | null;
   let menuOpen = false;
+
+  function updateDrawerPadding() {
+    if (!navbar || !drawer) return;
+    const gap = 16;
+    const top = navbar.getBoundingClientRect().bottom + gap;
+    drawer.style.setProperty('--site-nav-drawer-top', `${top}px`);
+  }
 
   function setMenu(open: boolean) {
     menuOpen = open;
     drawer.hidden = !open;
     drawer.inert = !open;
     drawer.classList.toggle('is-open', open);
+    navbar?.classList.toggle('site-nav--menu-open', open);
     menuBtn?.classList.toggle('is-open', open);
     menuBtn?.setAttribute('aria-expanded', String(open));
     menuBtn?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) requestAnimationFrame(updateDrawerPadding);
   }
+
+  window.addEventListener('resize', () => {
+    if (menuOpen) updateDrawerPadding();
+  });
 
   menuBtn?.addEventListener('click', () => setMenu(!menuOpen));
   drawer?.querySelectorAll('a').forEach((link) => {

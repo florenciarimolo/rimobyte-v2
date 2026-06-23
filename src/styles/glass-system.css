@@ -1151,7 +1151,7 @@
 .site-nav--float {
   position: sticky;
   top: 16px;
-  z-index: 50;
+  z-index: 100;
   margin-top: 16px;
   background: transparent;
   border: none;

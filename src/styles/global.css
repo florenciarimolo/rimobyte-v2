@@ -1125,11 +1125,18 @@ h1 em, h2 em,
 
 .site-nav__drawer {
   position: fixed;
-  inset: var(--site-nav-h) 0 0;
-  z-index: 99;
+  inset: 0;
+  z-index: 90;
+  min-height: 100dvh;
   background: var(--color-bg-base);
-  border-top: 1px solid var(--color-border-default);
-  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  padding-top: var(
+    --site-nav-drawer-top,
+    calc(var(--site-nav-h) + env(safe-area-inset-top, 0px))
+  );
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  padding-bottom: 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   transform: translateY(-8px);
   opacity: 0;
   pointer-events: none;
@@ -1148,19 +1155,49 @@ h1 em, h2 em,
   gap: 1.25rem;
 }
 
-.site-nav__drawer a {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+.site-nav__drawer-link,
+.site-nav__drawer a,
+.site-nav__drawer summary {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
   text-decoration: none;
   color: inherit;
 }
 
+.site-nav__drawer-subnav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  padding-left: 0.75rem;
+}
+
+.site-nav__drawer-link[aria-current='page'],
 .site-nav__drawer a[aria-current='page'],
 .site-nav__drawer summary[aria-current='page'] {
   font-weight: 700;
   color: var(--color-text-primary);
+}
+
+@media (max-width: 767px) {
+  .site-nav--float {
+    --site-nav-drawer-top: calc(
+      max(16px, env(safe-area-inset-top, 0px)) + var(--site-nav-h) + 48px
+    );
+  }
+
+  .site-nav.site-nav--float.site-nav--menu-open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    padding-top: max(16px, env(safe-area-inset-top, 0px));
+    z-index: 100;
+  }
 }
 
 @media (min-width: 768px) {
