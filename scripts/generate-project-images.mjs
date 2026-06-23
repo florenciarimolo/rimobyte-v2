@@ -26,6 +26,9 @@ const bases = [
   'fenix',
 ];
 
+/** Capturas móvil con nombre propio (no siguen el patrón {proyecto}-mobile) */
+const mobileCaptures = ['vila-lancis-mobile'];
+
 async function generateVariants(name, widths) {
   const input = path.join(root, `${name}.webp`);
   try {
@@ -62,6 +65,10 @@ for (const base of bases) {
   } catch {
     // Sin captura móvil para este proyecto
   }
+}
+
+for (const mobile of mobileCaptures) {
+  await generateVariants(mobile, [320, 640]);
 }
 
 console.log('Listo.');

@@ -14,7 +14,7 @@ const { caseSlug, highlight } = Astro.props;
 const project = getSectorProject(caseSlug)!;
 ---
 
-<section class="sector-v6-case" id="caso-lucia">
+<section class="sector-v6-case" id={highlight.sectionId ?? 'caso-lucia'}>
   <SiteWrap>
     <div class="sector-v6-case__card reveal">
       <div class="sector-v6-case__inner">

@@ -83,6 +83,7 @@ export interface SectorCaseHighlight {
   quote: string;
   quoteAuthor: string;
   ctaLabel: string;
+  sectionId?: string;
 }
 
 export interface SectorFAQ {
@@ -538,6 +539,193 @@ export const sectors: Sector[] = [
       title: 'Diseño web para peluquerías y centros de estética · RimoByte',
       description:
         'Webs WordPress a medida para peluquerías, centros de manicura y estética. SEO local para aparecer #1 en Google y formulario de reservas integrado. Desde 600€.',
+    },
+  },
+  {
+    slug: 'web-para-asesorias',
+    name: 'Web para asesorías',
+    sectorNameShort: 'asesorías',
+    eyebrow: 'WEB PARA ASESORÍAS Y GESTORÍAS',
+    headline: 'Confianza que se ve',
+    headlineEm: 'a primera vista.',
+    description:
+      'Webs WordPress para asesorías fiscales, laborales y gestorías que quieren transmitir solvencia técnica, aparecer en Google cuando buscan asesor en su zona y captar autónomos y pymes nuevos sin depender solo del boca a boca.',
+    ctaPrimary: 'Quiero una web así',
+    checks: ['SEO local', 'Multiidioma', 'Tuya desde el primer día'],
+    heroPills: ['Web para asesorías y gestorías', 'SEO local · Multiidioma'],
+    heroStats: [
+      { value: '3', label: 'Idiomas en producción', gradient: true },
+      { value: '4', label: 'Áreas de servicio integradas', gradient: true },
+      { value: 'RGPD', label: 'Cumplimiento de origen', gradient: true },
+    ],
+    heroSecondaryCta: { label: 'Ver caso real', href: '#caso-vilalancis' },
+    heroProjectSlug: 'vila-i-lancis',
+    heroMockupImage: '/assets/projects/vila-lancis-mobile.webp',
+    painPoints: {
+      eyebrow: 'Lo que más me cuentan',
+      title: 'Si tu asesoría',
+      titleEm: 'se reconoce en alguno de estos cuatro casos…',
+      description:
+        '… probablemente estás perdiendo clientes potenciales antes de que sepan siquiera que existes. Estos son los problemas que más veo en asesorías y gestorías sin web — o con una web que no transmite lo que el cliente busca antes de descolgar el teléfono.',
+      cards: [
+        {
+          icon: 'globe',
+          title: 'Invisible en Google',
+          description:
+            'El autónomo que busca "asesoría fiscal + tu ciudad" no te encuentra. Las grandes plataformas online (Declarando, Holded) copan los primeros resultados.',
+        },
+        {
+          icon: 'result-layers',
+          title: 'Web genérica de plantilla',
+          description:
+            'Si tu web parece la de cualquier otro, el cliente la equipara con cualquier otra. Y el precio se vuelve el único criterio — terreno donde no quieres competir.',
+        },
+        {
+          icon: 'result-chat',
+          title: 'Sin contenido que filtre',
+          description:
+            'Recibes consultas de gente que no es tu cliente ideal: micronegocios sin facturación, dudas puntuales no remuneradas. Sin contenido claro, no filtras.',
+        },
+        {
+          icon: 'result-trend',
+          title: 'Dependencia de la recomendación',
+          description:
+            'Si tu único canal de captación es el boca a boca, tu crecimiento es lineal. La web bien hecha convierte tu reputación local en visibilidad multiplicada.',
+        },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una web para asesorías',
+    featuresIntro:
+      'Cada elemento de la web está afinado para el sector: el autónomo o gerente que decide después de comparar tres asesorías en Google, la confianza que se transmite antes del primer correo y la estructura de servicios que filtra al cliente correcto.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo capta y trabaja una asesoría.',
+    features: [
+      {
+        icon: 'globe',
+        title: 'SEO local geográfico',
+        description:
+          'Estructura optimizada para "asesoría/gestoría + ciudad o comarca". Schema LocalBusiness, Google Business Profile y landings por localidad si trabajas varias zonas.',
+      },
+      {
+        icon: 'globe',
+        title: 'Multiidioma nativo',
+        description:
+          'ES, CAT, EN o los que necesites — gestionados con Polylang o WPML. Pensado para zonas bilingües, expatriados o empresas internacionales como cliente.',
+      },
+      {
+        icon: 'result-layers',
+        title: 'Landings por área de servicio',
+        description:
+          'Una página específica para Fiscal, Laboral, Contable y Mercantil — cada una con su SEO propio. Apareces para búsquedas mucho más concretas que "asesoría".',
+      },
+      {
+        icon: 'result-grid',
+        title: 'Presentación del equipo',
+        description:
+          'Sección "Sobre nosotros" con foto, biografía y especialización de cada asesor. La confianza profesional necesita cara — ningún cliente firma con un logo anónimo.',
+      },
+      {
+        icon: 'mail',
+        title: 'Formulario de consulta gratuita',
+        description:
+          'Captador inteligente con campos clave (tipo de negocio, facturación aproximada, urgencia). Llega a tu correo segmentado para que respondas solo a los que encajan.',
+      },
+      {
+        icon: 'result-lock',
+        title: 'Cumplimiento RGPD/LSSI',
+        description:
+          'Aviso legal, política de privacidad, política de cookies y banner de consentimiento configurados desde el día uno. Lo que la AEPD pide a una empresa que asesora a otras.',
+      },
+    ],
+    relatedCase: {
+      slug: 'vila-i-lancis',
+      challenge:
+        'Trabajaban con una agencia que no respondía y no tenían acceso a su propio WordPress.',
+      solution: 'Rediseño completo con web limpia, multiidioma y SEO local por ciudad.',
+      result: 'Una web seria que transmite confianza y que por primera vez es',
+      resultEm: 'realmente suya.',
+      testimonialQuote:
+        'Queríamos una web seria, clara y en los tres idiomas que hablan nuestros clientes. Flor entendió a la primera que vendíamos confianza, no servicios sueltos.',
+      author: 'Vila & Lancis',
+    },
+    caseHighlight: {
+      sectionId: 'caso-vilalancis',
+      eyebrow: 'Caso real · Asesorías',
+      title: 'Vila & Lancis: la web de la',
+      titleEm: 'asesoría de La Roca.',
+      description:
+        'Asesoría fiscal, laboral y contable en La Roca del Vallès con servicio a domicilio en varias localidades de Barcelona. Su web combina presentación profesional del equipo, estructura clara de servicios por área y soporte multiidioma para llegar al cliente catalanoparlante y al expatriado de la zona.',
+      stats: [
+        { value: '3', label: 'Idiomas (ES · CAT · EN)', gradient: true },
+        { value: '4', label: 'Áreas con landing propia', gradient: true },
+        { value: '+', label: 'Varias localidades atendidas', gradient: true },
+      ],
+      quote:
+        'Queríamos una web seria, clara y en los tres idiomas que hablan nuestros clientes. Flor entendió a la primera que vendíamos confianza, no servicios sueltos.',
+      quoteAuthor: 'Vila & Lancis · vilalancis.com',
+      ctaLabel: 'Leer el caso completo',
+    },
+    offer: {
+      eyebrow: 'Plan completo · Asesorías',
+      title: 'Todo lo que tu asesoría',
+      titleEm: 'necesita online.',
+      lede:
+        'Una web a medida con SEO local, soporte multiidioma y formulario inteligente de captación. Diseño que transmite la solvencia que tus clientes esperan antes de firmar. Sin permanencia.',
+      features: [
+        'Diseño 100% a medida (sin plantillas)',
+        'Landings por área de servicio (fiscal, laboral, contable…)',
+        'Multiidioma (ES + CAT y/o EN según necesites)',
+        'SEO local y Google Business Profile',
+        'Formulario de consulta gratuita segmentado',
+        'Avisos legales, RGPD y cookies configurados',
+        'Sesión de formación + soporte 30 días',
+      ],
+      price: '600€',
+      priceNote: 'desde · pago único',
+      priceDetail:
+        'El precio final depende del número de idiomas, landings por área y si añadimos área cliente privada. Te paso presupuesto cerrado antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'asesorías y gestorías.',
+    faqs: [
+      {
+        question: '¿Necesito la web en catalán o inglés además de en español?',
+        answer:
+          'Depende de tu zona y tu cliente objetivo. Si estás en Catalunya, Baleares o Valencia, tener la versión en catalán/valenciano abre mucho mercado local — el cliente medio busca y firma en su idioma. Si trabajas con expatriados, empresas internacionales o tienes plan de captación fuera del territorio, EN suma. En Vila & Lancis lanzamos las tres versiones (ES/CAT/EN) precisamente por eso. Lo definimos antes de empezar el proyecto.',
+      },
+      {
+        question: '¿Cómo me ayuda una web a captar autónomos y pymes nuevos?',
+        answer:
+          'De dos formas. Primero, SEO local: cuando alguien busca "asesoría fiscal + tu ciudad" o "gestoría autónomos + comarca", apareces. Segundo, conversión: una vez te encuentran, la web transmite el nivel profesional adecuado — equipo presentado, áreas de servicio claras, casos o testimonios — para que te elijan a ti y no a la asesoría online genérica. Sin esos dos pilares, dependes solo del boca a boca.',
+      },
+      {
+        question: '¿Hace falta tener blog de actualidad fiscal y laboral?',
+        answer:
+          'No es obligatorio, pero ayuda mucho al SEO si lo mantienes. Un par de artículos al mes sobre "renta 2026", "modelo 130", "alta de autónomo en…" te posicionan para búsquedas concretas que tu cliente potencial hace. Si no tienes tiempo para escribir, lo dejamos preparado para activarlo cuando puedas — sin penalización.',
+      },
+      {
+        question: '¿Cumple la web con RGPD y la normativa de protección de datos?',
+        answer:
+          'Sí, y es uno de los puntos que más reviso en este sector. Aviso legal, política de privacidad, política de cookies, banner de consentimiento configurable y formularios con doble opt-in donde aplique. Una asesoría que falla en esto pierde credibilidad — porque es exactamente lo que asesora a sus clientes.',
+      },
+      {
+        question: '¿Se puede añadir un área cliente privada después?',
+        answer:
+          'Sí. Si más adelante quieres que tus clientes suban documentos, descarguen sus declaraciones o vean el estado de sus gestiones, lo integramos como ampliación. Lo más habitual: empezamos con la web informativa + captación, y al año añadimos el área cliente cuando ya tienes claro qué procesos quieres digitalizar.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Hablamos de',
+      titleEm: 'tu asesoría?',
+      text: 'Cuéntame brevemente cómo es tu asesoría o gestoría, dónde estás y qué tipo de cliente quieres captar. Te respondo personalmente con una propuesta concreta — no una plantilla.',
+    },
+    serviceLink: '/servicios/web-corporativa/',
+    seo: {
+      title: 'Diseño web para asesorías y gestorías · RimoByte',
+      description:
+        'Webs WordPress a medida para asesorías y gestorías. SEO local, multiidioma y diseño profesional que transmite confianza. Desde 600€, sin permanencia.',
     },
   },
 ];

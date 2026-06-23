@@ -72,7 +72,7 @@ export const hubVerticals: HubVertical[] = [
   {
     title: 'Asesorías y gestorías',
     description: 'Web seria que transmite solvencia técnica.',
-    href: '/proyectos/vila-i-lancis/',
+    href: '/web-para-asesorias/',
     icon: 'briefcase',
   },
   {
