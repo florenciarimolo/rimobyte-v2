@@ -728,4 +728,192 @@ export const sectors: Sector[] = [
         'Webs WordPress a medida para asesorías y gestorías. SEO local, multiidioma y diseño profesional que transmite confianza. Desde 600€, sin permanencia.',
     },
   },
+  {
+    slug: 'web-para-entrenadores-personales',
+    name: 'Web para entrenadores personales',
+    sectorNameShort: 'entrenadores personales',
+    eyebrow: 'WEB PARA ENTRENADORES PERSONALES',
+    headline: 'De seguidor de Instagram a',
+    headlineEm: 'cliente que paga.',
+    description:
+      'Webs y landings para entrenadores personales que quieren convertir su audiencia en clientes que pagan — con pasarela Stripe integrada, programa enchufado a su app de seguimiento y ventas funcionando 24/7 sin tener que perseguir Bizums.',
+    ctaPrimary: 'Quiero una web así',
+    checks: ['Stripe integrado', 'Venta 24/7', 'Tuya desde el primer día'],
+    heroPills: ['Web para entrenadores personales', 'Stripe · Programas online'],
+    heroStats: [
+      { value: '+700', label: 'Clientes vendidos online', gradient: true },
+      { value: '24/7', label: 'Venta automatizada', gradient: true },
+      { value: 'Stripe', label: 'Pasarela integrada', gradient: true },
+    ],
+    heroSecondaryCta: { label: 'Ver caso real', href: '#caso-reset7' },
+    heroProjectSlug: 'juancar-garma-reset7',
+    heroMockupImage: '/assets/projects/reset7-mobile.webp',
+    painPoints: {
+      eyebrow: 'Lo que más me cuentan',
+      title: 'Si como entrenador',
+      titleEm: 'te suena alguno de estos cuatro casos…',
+      description:
+        '… probablemente estás dejando ventas sobre la mesa cada mes. Estos son los problemas que más veo en entrenadores personales que tienen audiencia pero no consiguen monetizarla bien — o que la cobranza les come horas que deberían estar entrenando.',
+      cards: [
+        {
+          icon: 'result-trend',
+          title: 'Audiencia que no compra',
+          description:
+            'Miles de seguidores en Instagram, pero cuando lanzas un programa nadie pasa por caja. Te falta el sitio donde explicarlo a fondo y cobrar con un clic.',
+        },
+        {
+          icon: 'shopping-bag',
+          title: 'Cobros por Bizum y caos',
+          description:
+            'Persigues pagos, confirmas por WhatsApp, anotas en Excel quién pagó. Cada nuevo cliente te roba 20 minutos antes incluso de empezar a entrenarlo.',
+        },
+        {
+          icon: 'result-clock',
+          title: 'Solo facturas mientras entrenas',
+          description:
+            'Tus ingresos están atados a tus horas. Sin un producto digital empaquetado, no puedes crecer sin clonarte — y la energía es finita.',
+        },
+        {
+          icon: 'globe',
+          title: 'Invisible fuera de Instagram',
+          description:
+            'Si alguien busca "entrenador personal + tu ciudad" o "perder peso en casa programa", no apareces. Solo te encuentran quienes ya te siguen.',
+        },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una web para entrenadores',
+    featuresIntro:
+      'Cada elemento está afinado para el sector: el seguidor de Instagram que decide en 60 segundos, el programa que necesita explicar bien para venderse y la integración técnica que conecta venta y app de seguimiento sin que tú toques nada.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo vendes tú.',
+    features: [
+      {
+        icon: 'shopping-bag',
+        title: 'Pasarela Stripe integrada',
+        description:
+          'Tarjeta, Apple Pay, Google Pay y Bizum. El cliente paga en un clic, recibe la factura automáticamente y tú no tocas un Excel nunca más.',
+      },
+      {
+        icon: 'result-activity',
+        title: 'Landing de venta optimizada',
+        description:
+          'Página dedicada a cada programa con copy de conversión, antes/después, testimonios y CTA repetido. Hecha para que entren desde Instagram y salgan habiendo comprado.',
+      },
+      {
+        icon: 'wrench',
+        title: 'Conexión con tu app',
+        description:
+          'Integración con Harbiz, Trainerize, TrueCoach o la app que uses. El cliente paga en la web y entra automáticamente con sus credenciales — sin que tú lo metas a mano.',
+      },
+      {
+        icon: 'result-clock',
+        title: 'Agenda y llamadas (Calendly)',
+        description:
+          'Para el cliente que prefiere hablar antes de comprar — sesión gratuita reservable desde la propia web. Integración con Calendly o el sistema de citas que prefieras.',
+      },
+      {
+        icon: 'result-grid',
+        title: 'Sección antes/después',
+        description:
+          'Galería de transformaciones reales con consentimiento de los clientes. Es lo que más convierte en este sector — más que cualquier copy o promesa.',
+      },
+      {
+        icon: 'globe',
+        title: 'SEO de programa y zona',
+        description:
+          'Optimizado para búsquedas tipo "entrenador personal + ciudad", "programa pérdida de grasa online" o "rutina en casa sin material". Te encuentran quienes aún no te siguen.',
+      },
+    ],
+    relatedCase: {
+      slug: 'juancar-garma-reset7',
+      challenge:
+        'Juancar tenía un programa con resultados reales pero sin una landing que lo comunicara y cobrara sola.',
+      solution:
+        'Landing de venta con Stripe, conexión a la app de seguimiento y copy centrado en conversión.',
+      result: 'Un programa que se vende solo mientras él entrena — más de',
+      resultEm: '700 clientes online.',
+      testimonialQuote:
+        'Quería que la persona entrase, viese el programa, pagase y empezase en la app sin que yo tuviera que tocar nada. La landing lo hace exactamente así — yo me dedico a entrenar.',
+      author: 'Juancar Garma',
+    },
+    caseHighlight: {
+      sectionId: 'caso-reset7',
+      eyebrow: 'Caso real · Entrenadores',
+      title: 'RESET7: el programa que',
+      titleEm: 'se vende solo.',
+      description:
+        'Juancar Garma, entrenador personal con audiencia activa, necesitaba una landing dedicada para su programa de 4 semanas de pérdida de grasa. Diseñamos una página de venta optimizada para conversión con Stripe integrado, conexión directa con la app de seguimiento y testimonios reales con antes/después. Más de 700 personas la han usado para empezar.',
+      stats: [
+        { value: '+700', label: 'Clientes que han comprado', gradient: true },
+        { value: 'Hoy', label: 'Acceso inmediato al pagar', gradient: true },
+        { value: '0', label: 'Fricción en el pago', gradient: true },
+      ],
+      quote:
+        'Quería que la persona entrase, viese el programa, pagase y empezase en la app sin que yo tuviera que tocar nada. La landing lo hace exactamente así — yo me dedico a entrenar.',
+      quoteAuthor: 'Juancar Garma · juancargarma.com/reset7',
+      ctaLabel: 'Leer el caso completo',
+    },
+    offer: {
+      eyebrow: 'Plan completo · Entrenadores',
+      title: 'Todo lo que tu negocio',
+      titleEm: 'de entrenamiento necesita.',
+      lede:
+        'Una web a medida con landing de venta, pasarela Stripe y conexión con tu app de seguimiento. Pensada para vender programas online mientras tú entrenas o duermes. Sin permanencia.',
+      features: [
+        'Diseño 100% a medida (sin plantillas)',
+        'Landing dedicada por programa o producto',
+        'Pasarela Stripe (tarjeta, Apple/Google Pay, Bizum)',
+        'Integración con tu app (Harbiz, Trainerize, TrueCoach…)',
+        'Sección antes/después y testimonios',
+        'Integración con Calendly + email marketing',
+        'Sesión de formación + soporte 30 días',
+      ],
+      price: '600€',
+      priceNote: 'desde · pago único',
+      priceDetail:
+        'El precio final depende del número de programas/landings, si conectamos app de seguimiento externa y si añadimos área cliente. Te paso presupuesto cerrado antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'entrenadores personales.',
+    faqs: [
+      {
+        question: '¿Funciona si vendo solo entrenamiento presencial?',
+        answer:
+          'Sí, y el enfoque cambia ligeramente: priorizamos SEO local ("entrenador personal + tu ciudad"), formulario de contacto para sesión gratuita y Calendly para que reserven la valoración inicial directamente. La pasarela Stripe la integramos igual para cobrar packs de sesiones de una sentada en lugar de un Bizum por mes.',
+      },
+      {
+        question: '¿Qué comisión cobra Stripe por cada venta?',
+        answer:
+          'Stripe cobra 1,4% + 0,25€ por transacción europea (1,9% para tarjetas no europeas). Sin cuotas mensuales ni permanencia. Para un programa de 30€, esto son unos 0,67€ — mucho más barato que cualquier alternativa de la competencia, y sin perder tiempo conciliando Bizums.',
+      },
+      {
+        question: '¿Puedo conectar mi app de seguimiento actual?',
+        answer:
+          'Sí. Trabajo habitualmente con Harbiz (la que usa Juancar en RESET7), Trainerize y TrueCoach, pero conecto cualquier app que tenga API o webhook. El flujo típico: cliente paga en la web → recibe email con sus credenciales → entra a la app con su plan ya cargado. Todo sin que tú toques nada.',
+      },
+      {
+        question: '¿Necesito tener antes/después o testimonios para que funcione?',
+        answer:
+          'Ayudan muchísimo — son el motor de conversión nº1 en este sector. Si aún no los tienes, podemos lanzar sin ellos y diseñar la sección preparada para añadirlos cuando consigas los primeros. Importante: siempre con consentimiento explícito por escrito del cliente (RGPD), y te ayudo con el formulario de cesión de imagen.',
+      },
+      {
+        question: '¿Se pueden vender varios programas a distintos precios?',
+        answer:
+          'Sí, sin límite. Cada programa puede tener su propia landing (como hace RESET7 dentro de juancargarma.com) con su precio, su descripción y su flujo de checkout. También funcionan modelos de suscripción mensual, packs y upgrades — lo definimos según tu modelo de negocio.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Hablamos de',
+      titleEm: 'tu programa?',
+      text: 'Cuéntame brevemente qué programas vendes (o quieres vender), qué app usas para el seguimiento y dónde tienes tu audiencia. Te respondo personalmente con una propuesta concreta — no una plantilla.',
+    },
+    serviceLink: '/servicios/web-corporativa/',
+    seo: {
+      title: 'Diseño web para entrenadores personales · RimoByte',
+      description:
+        'Webs y landings para entrenadores personales con pasarela de pago integrada. Vende tus programas online 24/7 con Stripe. Desde 600€, sin permanencia.',
+    },
+  },
 ];

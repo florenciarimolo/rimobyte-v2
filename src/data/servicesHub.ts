@@ -84,7 +84,7 @@ export const hubVerticals: HubVertical[] = [
   {
     title: 'Entrenadores personales',
     description: 'Landing page que convierte sin intervención manual.',
-    href: '/proyectos/juancar-entrenador/',
+    href: '/web-para-entrenadores-personales/',
     icon: 'dumbbell',
   },
   {

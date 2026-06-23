@@ -27,7 +27,7 @@ const bases = [
 ];
 
 /** Capturas móvil con nombre propio (no siguen el patrón {proyecto}-mobile) */
-const mobileCaptures = ['vila-lancis-mobile'];
+const mobileCaptures = ['vila-lancis-mobile', 'reset7-mobile'];
 
 async function generateVariants(name, widths) {
   const input = path.join(root, `${name}.webp`);
