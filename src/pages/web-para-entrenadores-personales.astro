@@ -7,7 +7,6 @@ import PainPointsSector from '../components/sections/sector/PainPointsSector.ast
 import CasoSectorV6 from '../components/sections/sector/CasoSectorV6.astro';
 import SectorFeaturesV6 from '../components/sections/sector/SectorFeaturesV6.astro';
 import OfertaSector from '../components/sections/sector/OfertaSector.astro';
-import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
 import { sectors } from '../data/sectors';
@@ -93,14 +92,6 @@ const sectorLdGraph = {
       title={sector.faqTitle ?? 'Dudas habituales antes de'}
       titleGradient={sector.faqTitleEm ?? 'empezar.'}
       subtitle=""
-    />
-    <ContactFormIsland
-      origin="web-para-entrenadores-personales"
-      heading={sector.ctaFinal.title}
-      headingEm={sector.ctaFinal.titleEm}
-      intro={sector.ctaFinal.text}
-      priceNote="Desde 600€ · Presupuesto cerrado"
-      serviceLink={sector.serviceLink}
     />
   </main>
   <Footer />
