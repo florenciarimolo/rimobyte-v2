@@ -1,0 +1,73 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import type { SectorConcept } from '../../../data/sectors';
+
+interface Props {
+  concept: SectorConcept;
+}
+
+const { concept } = Astro.props;
+
+const miniIcons = {
+  clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  map: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.32 1.78.6 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.28 1.73.48 2.63.6A2 2 0 0 1 22 16.92z"/></svg>`,
+};
+---
+
+<section class="sector-v6-concept" id={concept.id}>
+  <SiteWrap>
+    <div class="sector-v6-concept__head reveal">
+      <Pill text={concept.eyebrow} class="sector-v6-concept__pill" />
+      <h2>
+        {concept.title}
+        <span class="gradient-text">{concept.titleEm}</span>
+      </h2>
+      <p>{concept.intro}</p>
+    </div>
+
+    <div class="sector-v6-concept__stage reveal">
+      <div class="sector-v6-concept__browser-wrap">
+        <div class="sector-v6-concept__browser">
+          <div class="sector-v6-concept__browser-bar">
+            <div class="sector-v6-concept__browser-dots" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="sector-v6-concept__browser-url">
+              <span aria-hidden="true">🔒</span> <strong>{concept.url}</strong>
+            </div>
+          </div>
+          <div class="sector-v6-concept__browser-content">
+            <h3>
+              {concept.browserHeadline} <em>{concept.browserHeadlineEm}</em>
+              <br />
+              en el centro.
+            </h3>
+            <p>{concept.browserDescription}</p>
+            <div class="sector-v6-concept__browser-buttons">
+              <span>{concept.browserPrimaryCta}</span>
+              <span>{concept.browserSecondaryCta}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sector-v6-concept__mini-cards">
+          {
+            concept.miniCards.map((card) => (
+              <div class="sector-v6-concept__mini">
+                <span class="sector-v6-concept__mini-icon" aria-hidden="true">
+                  <span class="icon" set:html={miniIcons[card.icon]} />
+                </span>
+                <div class="sector-v6-concept__mini-text">
+                  <strong>{card.title}</strong>
+                  <span>{card.subtitle}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </SiteWrap>
+</section>

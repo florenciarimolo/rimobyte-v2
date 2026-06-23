@@ -17,6 +17,45 @@ export interface SectorPainCard {
   description: string;
 }
 
+export interface SectorParagraph {
+  emphasis?: string;
+  text: string;
+}
+
+export interface SectorCredential {
+  label: string;
+  text: string;
+}
+
+export interface SectorConceptMiniCard {
+  icon: 'clock' | 'map' | 'phone';
+  title: string;
+  subtitle: string;
+}
+
+export interface SectorConcept {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  titleEm: string;
+  intro: string;
+  url: string;
+  browserHeadline: string;
+  browserHeadlineEm: string;
+  browserDescription: string;
+  browserPrimaryCta: string;
+  browserSecondaryCta: string;
+  miniCards: SectorConceptMiniCard[];
+}
+
+export interface SectorRelatedProjects {
+  eyebrow: string;
+  title: string;
+  titleEm: string;
+  intro: string;
+  slugs: string[];
+}
+
 export interface SectorStat {
   value: string;
   label: string;
@@ -79,6 +118,8 @@ export interface Sector {
   heroProjectSlug?: string;
   /** Captura móvil del mockup de teléfono en el hero sectorial */
   heroMockupImage?: string;
+  /** Mockup del hero: teléfono (por defecto) o carta de menú */
+  heroMockupType?: 'phone' | 'menu';
   heroStrip?: { label: string; tags: string[] };
   painPoints?: {
     eyebrow: string;
@@ -87,7 +128,12 @@ export interface Sector {
     description?: string;
     points?: string[];
     cards?: SectorPainCard[];
+    paragraphs?: SectorParagraph[];
+    credentialsTitle?: string;
+    credentials?: SectorCredential[];
   };
+  concept?: SectorConcept;
+  relatedProjects?: SectorRelatedProjects;
   featuresIntro?: string;
   featuresEyebrow?: string;
   featuresTitle?: string;
@@ -122,94 +168,186 @@ export const sectors: Sector[] = [
     name: 'Web para restaurantes',
     sectorNameShort: 'restaurantes',
     eyebrow: 'WEB PARA RESTAURANTES',
-    headline: 'Tu restaurante merece una web que llene mesas, no que ocupe',
-    headlineEm: 'espacio en internet.',
+    headline: 'Carta clara, mesas llenas,',
+    headlineEm: 'cero comisiones.',
     description:
-      'Diseño webs para restaurantes, bares y negocios de hostelería que quieren ser encontrados en Google, mostrar su carta online y facilitar las reservas, sin depender de plataformas que se quedan con tu margen.',
-    ctaPrimary: 'Quiero mi web para restaurante',
-    checks: ['Carta online actualizable', 'Apareces en Google Maps', 'Tuya desde el primer día'],
-    heroStrip: {
-      label: 'Enfoque hostelería',
-      tags: ['Carta digital', 'Reservas propias', 'Google local'],
-    },
+      'Webs para restaurantes y bares que quieren mostrar su carta como toca, recibir reservas directas y posicionarse en Google sin pagar comisión por cada cliente que entra por la puerta.',
+    ctaPrimary: 'Cuéntame tu local',
+    checks: ['Carta digital', 'Reservas directas', 'SEO local'],
+    heroPills: ['Web para restaurantes y bares', 'Carta digital · Reservas'],
+    heroMockupType: 'menu',
+    heroSecondaryCta: { label: 'Ver concepto visual', href: '#concepto' },
     painPoints: {
-      eyebrow: '¿TE SUENA?',
-      title: 'Lo que frena a muchos restaurantes',
-      titleEm: 'antes de abrir la web.',
-      points: [
-        'La carta está en PDF y cada cambio de precio implica llamar a alguien.',
-        'En Google aparece TheFork o el perfil de otro antes que tu propio negocio.',
-        'Las reservas van por Instagram o WhatsApp — sin sistema, sin control.',
-        'Tienes web, pero en móvil se ve mal y no aparece en búsquedas locales.',
+      eyebrow: 'Lo que más veo en hostelería',
+      title: 'Tu web tiene que resolver',
+      titleEm: 'tres problemas a la vez.',
+      paragraphs: [
+        {
+          text: 'Hacer una web de restaurante no es solo cuestión de mostrar bonitas fotos de platos. El comensal moderno decide en 30 segundos en el móvil — y si no encuentra lo que busca, se va a la competencia que sale a continuación en Google.',
+        },
+        {
+          emphasis: 'El primer problema es la visibilidad:',
+          text: ' que te encuentren cuando alguien busca "dónde comer cerca de mí" en su zona y hora exacta. El segundo es la decisión: una vez te encuentran, que vean carta, horario y cómo llegar sin tener que rebuscar. El tercero es la reserva: convertir el interés en una mesa confirmada antes de que cambien de idea.',
+        },
+        {
+          emphasis: 'Estos tres problemas se resuelven con la misma ingeniería',
+          text: ' que he aplicado en proyectos donde el SEO local, la velocidad y la integración de reservas eran críticos.',
+        },
+      ],
+      credentialsTitle: 'Lo que tu web tendrá',
+      credentials: [
+        {
+          label: 'SEO local hiperafinado.',
+          text: 'Schema Restaurant, Google Business Profile y palabras clave de tu zona.',
+        },
+        {
+          label: 'Integraciones limpias.',
+          text: 'Covermanager, TheFork, Google Reserve o sistema propio — el que mejor te encaje.',
+        },
+        {
+          label: 'Velocidad técnica garantizada.',
+          text: 'Lighthouse 95+, fotos optimizadas y carga inferior a 1.5 segundos.',
+        },
+        {
+          label: 'Cero plataformas atadas.',
+          text: 'Tu web es tuya — sin comisiones por reserva ni tarifas encubiertas.',
+        },
+        {
+          label: 'Soporte humano.',
+          text: 'Hablas conmigo, no con un ticket. Diez reseñas de Google con 5/5 lo respaldan.',
+        },
       ],
     },
+    concept: {
+      id: 'concepto',
+      eyebrow: 'Cómo se vería tu web',
+      title: 'Concepto visual para',
+      titleEm: 'tu restaurante.',
+      intro:
+        'Mockup de cómo construiría la home: un primer pantallazo claro con CTA de reserva, carta organizada por secciones y los tres elementos críticos para hostelería (horario, mapa, llamada directa) siempre visibles.',
+      url: 'turestaurante.es',
+      browserHeadline: 'Cocina',
+      browserHeadlineEm: 'de casa',
+      browserDescription:
+        'Producto de mercado, recetas tradicionales y un equipo que lleva veinte años haciendo lo que ama. Reserva tu mesa.',
+      browserPrimaryCta: 'Reservar mesa',
+      browserSecondaryCta: 'Ver carta',
+      miniCards: [
+        { icon: 'clock', title: 'Abierto ahora', subtitle: 'Cierra a las 23:30' },
+        { icon: 'map', title: 'Calle Mayor, 14', subtitle: 'Cómo llegar →' },
+        { icon: 'phone', title: '91 123 45 67', subtitle: 'Llamar ahora' },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una web para hostelería',
     featuresIntro:
-      'Cinco piezas concretas que convierten visitas en mesas reservadas. Nada genérico: cada una resuelve algo que tus clientes buscan antes de cruzar la puerta.',
-    featuresTitle: 'Lo que convierte visitas en mesas',
-    featuresTitleEm: 'en una web para restaurantes.',
+      'Cada elemento de la web está afinado para el sector: lo que el comensal necesita ver antes de decidir, cómo llega físicamente y cómo reserva sin pasar por terceros.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo funciona tu sala.',
     features: [
       {
-        title: 'Carta online actualizable',
+        icon: 'shopping-bag',
+        title: 'Carta digital editable',
         description:
-          'Para que puedas cambiar precios, platos y menús tú mismo, sin llamar a nadie.',
-        tag: 'Carta · autoservicio',
-        span: 'tall',
+          'Carta organizada por secciones que tú actualizas en 2 minutos. Cambias precios, añades platos del día o marcas agotados sin tocar código.',
       },
       {
+        icon: 'result-clock',
         title: 'Reservas directas',
         description:
-          'Formulario o integración con tu sistema de reservas para reservar mesa sin salir de tu web.',
-        tag: 'Reservas · sin comisiones',
+          'Sistema integrado con confirmación automática. Sin comisiones por reserva (a diferencia de TheFork o Covermanager) — la mesa va directa a tu correo y agenda.',
       },
       {
-        title: 'Presencia en Google Maps',
+        icon: 'globe',
+        title: 'SEO geolocalizado',
         description:
-          'Web enlazada con tu Google Business Profile para aparecer en búsquedas locales.',
-        tag: 'SEO · búsqueda local',
+          'Schema Restaurant + LocalBusiness, integración con Google Maps y Google Business Profile. Apareces cuando buscan "restaurante + tu zona" o "comer cerca de mí".',
       },
       {
-        title: 'Fotos que abren el apetito',
-        description: 'Diseño pensado para que las fotos de tus platos sean las protagonistas.',
-        tag: 'Visual · conversión',
-        span: 'wide',
-      },
-      {
-        title: 'Horarios y ubicación claros',
+        icon: 'result-pulse',
+        title: 'Horarios en tiempo real',
         description:
-          'Lo primero que busca alguien antes de ir a un restaurante. Fácil de encontrar, siempre actualizada.',
-        tag: 'Info · acceso directo',
+          'Tu web sabe si está abierto o cerrado y lo muestra al visitante. Crítico para el comensal de última hora que decide en el móvil.',
+      },
+      {
+        icon: 'result-layers',
+        title: 'Galería de fotos cuidada',
+        description:
+          'Tus platos, el local y el equipo en alta calidad. Conexión con Instagram para que la galería se alimente sola con tus posts nuevos.',
+      },
+      {
+        icon: 'whatsapp',
+        title: 'Click-to-call y mapa',
+        description:
+          'Botón de llamada visible en móvil y mapa con un clic para "Cómo llegar". Los dos elementos que más se pulsan en webs de restaurantes.',
       },
     ],
-    relatedCase: undefined,
+    relatedProjects: {
+      eyebrow: 'Mi trabajo en negocios locales',
+      title: 'La ingeniería detrás de tu web,',
+      titleEm: 'aplicada y probada.',
+      intro:
+        'Webs donde el SEO local, la velocidad y las integraciones con sistemas externos eran críticas — las mismas piezas que sostienen una web de restaurante que funciona de verdad.',
+      slugs: ['lucia-nails-art', 'rock-zone-camp'],
+    },
+    offer: {
+      eyebrow: 'Plan completo · Hostelería',
+      title: 'Todo lo que tu restaurante',
+      titleEm: 'necesita online.',
+      lede:
+        'Una web a medida con carta digital, reservas directas y SEO local incluido. Plazo cerrado, precio cerrado y formación para que la gestiones tú después. Sin permanencia, sin comisiones por mesa reservada.',
+      features: [
+        'Diseño 100% a medida con dos direcciones a elegir',
+        'Carta digital editable por temporada en 2 minutos',
+        'Sistema de reservas integrado sin comisiones por mesa',
+        'SEO local + Google Business Profile configurados',
+        'Formación + 30 días de soporte tras la entrega',
+      ],
+      price: '600€',
+      priceNote: 'desde · pago único, sin permanencia',
+      priceDetail:
+        'El precio final depende del número de páginas y de si integramos sistema de reservas externo (Covermanager, TheFork, Google Reserve). Te paso presupuesto cerrado antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'restaurantes y bares.',
     faqs: [
       {
-        question: '¿Puedo actualizar la carta yo mismo?',
-        answer: 'Sí. Al entregar te explico exactamente cómo hacerlo sin conocimientos técnicos.',
-      },
-      {
-        question: '¿Integras sistemas de reservas como TheFork o Cover Manager?',
-        answer: 'Sí. Si ya usas una plataforma, la integramos. Si no tienes ninguna, te asesoro.',
-      },
-      {
-        question: '¿Qué pasa con mi ficha de Google?',
+        question: '¿Cuánto tarda en lanzarse una web de restaurante?',
         answer:
-          'La web y tu Google Business Profile se trabajan de forma coordinada para aparecer en búsquedas locales.',
+          'Entre 3 y 5 semanas desde que tengo el contenido base: textos, fotos, carta y datos del local. El cuello de botella suele ser tu disponibilidad para revisar avances y elegir entre las dos direcciones de diseño que te propongo al inicio. Si vas con prisa por una apertura o un cambio de temporada, podemos comprimir plazos hablándolo de antemano.',
       },
       {
-        question: '¿Cuánto cuesta?',
-        answer: 'Desde 600€. Siempre presupuesto cerrado antes de empezar.',
+        question: '¿Cómo funcionan las reservas sin pagar comisiones como en TheFork?',
+        answer:
+          'El sistema integrado en la web envía las reservas directas a tu email o a un panel de gestión. No hay un intermediario que cobre 2€ por cada cliente que reserva. Si prefieres usar Covermanager o un sistema externo (porque ya lo tienes), también lo conecto — siempre eligiendo el más barato para ti.',
+      },
+      {
+        question: '¿Puedo cambiar la carta yo misma cada temporada?',
+        answer:
+          'Sí, es uno de los puntos clave. La carta digital es editable con un panel que sirve igual a quien sabe de tecnología que a quien no. Cambias precios, añades platos del día o marcas un plato como "no disponible" en menos de 1 minuto.',
+      },
+      {
+        question: '¿Y si tengo varias sedes (un bar y un restaurante, dos locales)?',
+        answer:
+          'Lo gestionamos como una sola web con páginas separadas por sede, cada una con su SEO local, sus horarios y su sistema de reservas. Más eficiente que mantener dos webs por separado, y mejor para Google.',
+      },
+      {
+        question: '¿Os encargáis también de las fotos del local y los platos?',
+        answer:
+          'Yo no soy fotógrafa, pero te recomiendo profesionales serios de food photography si los necesitas. Sin buenas fotos, la web no convierte — es el componente más importante después del SEO. Coordino la sesión si lo prefieres.',
       },
     ],
     ctaFinal: {
       title: '¿Hablamos de',
-      titleEm: 'tu restaurante?',
-      text: 'Cuéntame cómo es tu negocio y qué necesitas. En menos de 24 horas te respondo con una propuesta concreta.',
+      titleEm: 'tu local?',
+      text: 'Cuéntame qué tipo de restaurante o bar tienes y qué necesitas resolver. Te respondo personalmente con una propuesta concreta, plazos cerrados y precio cerrado antes de empezar.',
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web para restaurantes y hostelería · RimoByte',
+      title: 'Diseño web para restaurantes y bares · RimoByte',
       description:
-        'Webs para restaurantes, bares y hostelería que quieren llenar mesas y aparecer en Google. Carta online, reservas y Google Maps integrados.',
+        'Webs WordPress a medida para restaurantes y bares. Carta digital, reservas integradas, SEO geolocalizado. Desde 600€, sin permanencia ni comisiones por reserva.',
     },
   },
   {

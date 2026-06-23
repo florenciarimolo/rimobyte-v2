@@ -1,0 +1,76 @@
+---
+interface MenuItem {
+  name: string;
+  detail?: string;
+  price: string;
+}
+
+interface MenuSection {
+  label: string;
+  items: MenuItem[];
+}
+
+interface Props {
+  title?: string;
+  titleEm?: string;
+  season?: string;
+  sections?: MenuSection[];
+  cta?: string;
+  class?: string;
+}
+
+const {
+  title = 'Carta de',
+  titleEm = 'temporada',
+  season = 'Otoño · 2026',
+  sections = [
+    {
+      label: 'Para empezar',
+      items: [
+        { name: 'Croquetas de jamón', detail: '10 unidades', price: '9,50€' },
+        { name: 'Ensaladilla rusa', detail: 'de la casa', price: '7€' },
+      ],
+    },
+    {
+      label: 'Principales',
+      items: [
+        { name: 'Solomillo al pimiento', detail: 'con patatas', price: '18€' },
+        { name: 'Lubina a la sal', detail: '2 personas', price: '24€' },
+      ],
+    },
+  ],
+  cta = 'Reservar mesa →',
+  class: cls = '',
+} = Astro.props;
+---
+
+<div class:list={['sector-menu-mockup', cls]}>
+  <div class="sector-menu-mockup__paper">
+    <div class="sector-menu-mockup__header">
+      <h4>
+        {title} <em>{titleEm}</em>
+      </h4>
+      <p>{season}</p>
+    </div>
+
+    {
+      sections.map((section) => (
+        <div class="sector-menu-mockup__section">
+          <div class="sector-menu-mockup__section-label">{section.label}</div>
+          {section.items.map((item) => (
+            <div class="sector-menu-mockup__item">
+              <div class="sector-menu-mockup__item-name">
+                {item.name}
+                {item.detail && <small>{item.detail}</small>}
+              </div>
+              <div class="sector-menu-mockup__item-dots" aria-hidden="true" />
+              <div class="sector-menu-mockup__item-price">{item.price}</div>
+            </div>
+          ))}
+        </div>
+      ))
+    }
+
+    <div class="sector-menu-mockup__cta">{cta}</div>
+  </div>
+</div>

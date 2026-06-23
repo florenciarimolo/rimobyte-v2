@@ -1,6 +1,7 @@
 ---
 import SiteWrap from '../../ui/SiteWrap.astro';
 import Button from '../../ui/Button.astro';
+import Pill from '../../ui/Pill.astro';
 import ProjectCardArrow from '../../ui/ProjectCardArrow.astro';
 import { projects } from '../../../data/projects';
 
@@ -8,9 +9,11 @@ interface Props {
   title: string;
   titleEm: string;
   slugs: string[];
+  eyebrow?: string;
+  intro?: string;
 }
 
-const { title, titleEm, slugs } = Astro.props;
+const { title, titleEm, slugs, eyebrow, intro } = Astro.props;
 
 const related = slugs
   .map((slug) => projects.find((p) => p.slug === slug))
@@ -26,13 +29,17 @@ const gradients = [
 <section class="service-v6-related">
   <SiteWrap>
     <div class="service-v6-related__head reveal">
-      <h2>
-        {title}
-        <span class="gradient-text">{titleEm}</span>
-      </h2>
+      <div class="service-v6-related__intro">
+        {eyebrow && <Pill text={eyebrow} class="service-v6-related__pill" />}
+        <h2>
+          {title}
+          <span class="gradient-text">{titleEm}</span>
+        </h2>
+        {intro && <p class="service-v6-related__lede">{intro}</p>}
+      </div>
       <Button href="/proyectos/" variant="ghost">Ver todos los proyectos</Button>
     </div>
-    <div class="service-v6-related__grid">
+    <div class:list={['service-v6-related__grid', slugs.length === 2 && 'service-v6-related__grid--duo']}>
       {
         related.map((project, i) => (
           <div class="project-card-v6-shell reveal">

@@ -1,11 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
-import HeroSector from '../components/sections/sector/HeroSector.astro';
-import PorQueSector from '../components/sections/sector/PorQueSector.astro';
-import QueNecesitaSector from '../components/sections/sector/QueNecesitaSector.astro';
-import CasoSector from '../components/sections/sector/CasoSector.astro';
-import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
+import SectorBreadcrumb from '../components/sections/sector/SectorBreadcrumb.astro';
+import HeroSectorV6 from '../components/sections/sector/HeroSectorV6.astro';
+import SectorHonestV6 from '../components/sections/sector/SectorHonestV6.astro';
+import SectorConceptV6 from '../components/sections/sector/SectorConceptV6.astro';
+import SectorFeaturesV6 from '../components/sections/sector/SectorFeaturesV6.astro';
+import ProyectosRelacionadosServicio from '../components/sections/servicios/ProyectosRelacionadosServicio.astro';
+import OfertaSector from '../components/sections/sector/OfertaSector.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
 import { sectors } from '../data/sectors';
@@ -26,7 +28,7 @@ const sectorLdGraph = {
     },
     {
       '@type': 'Service',
-      name: 'Web para restaurantes y hostelería',
+      name: 'Diseño web para restaurantes y bares',
       provider: { '@type': 'Person', name: 'Flor Rímolo', url: 'https://rimobyte.com/' },
       areaServed: { '@type': 'Country', name: 'España' },
       description: sector.seo.description,
@@ -50,6 +52,12 @@ const sectorLdGraph = {
         {
           '@type': 'ListItem',
           position: 2,
+          name: 'Servicios',
+          item: new URL('/servicios/', Astro.site).href,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
           name: 'Web para restaurantes',
           item: sectorUrl,
         },
@@ -64,33 +72,34 @@ const sectorLdGraph = {
 
   <Navbar />
   <main id="main">
-    <HeroSector sector={sector} />
+    <SectorBreadcrumb label="Servicios / Restaurantes y bares" />
+    <HeroSectorV6 sector={sector} />
+    {sector.painPoints?.credentials && <SectorHonestV6 painPoints={sector.painPoints} />}
+    {sector.concept && <SectorConceptV6 concept={sector.concept} />}
+    <SectorFeaturesV6
+      eyebrow={sector.featuresEyebrow}
+      title={sector.featuresTitle}
+      titleEm={sector.featuresTitleEm}
+      intro={sector.featuresIntro}
+      features={sector.features}
+    />
     {
-      sector.painPoints && (
-        <PorQueSector
-          eyebrow={sector.painPoints.eyebrow}
-          title={sector.painPoints.title}
-          titleEm={sector.painPoints.titleEm}
-          points={sector.painPoints.points ?? []}
+      sector.relatedProjects && (
+        <ProyectosRelacionadosServicio
+          eyebrow={sector.relatedProjects.eyebrow}
+          title={sector.relatedProjects.title}
+          titleEm={sector.relatedProjects.titleEm}
+          intro={sector.relatedProjects.intro}
+          slugs={sector.relatedProjects.slugs}
         />
       )
     }
-    <QueNecesitaSector
-      features={sector.features}
-      sectorName={sector.sectorNameShort}
-      intro={sector.featuresIntro}
-      title={sector.featuresTitle}
-      titleEm={sector.featuresTitleEm}
-    />
-    {sector.relatedCase && <CasoSector caseData={sector.relatedCase} />}
-    <FAQ faqs={sector.faqs} />
-    <ContactFormIsland
-      origin="web-para-restaurantes"
-      heading={sector.ctaFinal.title}
-      headingEm={sector.ctaFinal.titleEm}
-      intro={sector.ctaFinal.text}
-      priceNote="Desde 600€ · Presupuesto cerrado"
-      serviceLink={sector.serviceLink}
+    {sector.offer && <OfertaSector offer={sector.offer} />}
+    <FAQ
+      faqs={sector.faqs}
+      title={sector.faqTitle ?? 'Dudas habituales antes de'}
+      titleGradient={sector.faqTitleEm ?? 'empezar.'}
+      subtitle=""
     />
   </main>
   <Footer />
