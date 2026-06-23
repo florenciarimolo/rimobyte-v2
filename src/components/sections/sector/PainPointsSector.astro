@@ -1,0 +1,41 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import GlassIcon from '../../ui/GlassIcon.astro';
+import type { Sector } from '../../../data/sectors';
+
+interface Props {
+  painPoints: NonNullable<Sector['painPoints']>;
+}
+
+const { painPoints } = Astro.props;
+---
+
+<section class="sector-v6-pain">
+  <SiteWrap>
+    <div class="sector-v6-pain__head reveal">
+      <Pill text={painPoints.eyebrow} class="sector-v6-pain__pill" />
+      <h2>
+        {painPoints.title}
+        <span class="gradient-text">{painPoints.titleEm}</span>
+      </h2>
+      {painPoints.description && <p>{painPoints.description}</p>}
+    </div>
+
+    {
+      painPoints.cards && painPoints.cards.length > 0 && (
+        <div class="sector-v6-pain__grid">
+          {
+            painPoints.cards.map((card) => (
+              <article class="sector-v6-pain__card glass-card reveal">
+                <GlassIcon name={card.icon} />
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      )
+    }
+  </SiteWrap>
+</section>

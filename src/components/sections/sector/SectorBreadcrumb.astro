@@ -1,0 +1,21 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+
+interface Props {
+  href?: string;
+  label?: string;
+}
+
+const { href = '/servicios/', label = 'Servicios' } = Astro.props;
+---
+
+<div class="sector-v6-breadcrumb">
+  <SiteWrap>
+    <a href={href} class="sector-v6-breadcrumb__link reveal">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M19 12H5M13 5l-7 7 7 7" />
+      </svg>
+      {label}
+    </a>
+  </SiteWrap>
+</div>

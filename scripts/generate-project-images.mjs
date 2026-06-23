@@ -1,5 +1,5 @@
 /**
- * Genera variantes WebP 400w y 800w para tarjetas de la home (strip + featured).
+ * Genera variantes WebP para tarjetas de la home (strip + featured) y capturas móviles.
  * Ejecutar tras añadir o cambiar imágenes en public/assets/projects/*.webp
  *
  *   pnpm run images:projects
@@ -12,7 +12,6 @@ import sharp from 'sharp';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '../public/assets/projects');
 const outDir = path.join(root, 'generated');
-const widths = [400, 800];
 
 /** Mismos valores que src/data/projectImages.ts */
 const bases = [
@@ -27,19 +26,17 @@ const bases = [
   'fenix',
 ];
 
-await fs.mkdir(outDir, { recursive: true });
-
-for (const base of bases) {
-  const input = path.join(root, `${base}.webp`);
+async function generateVariants(name, widths) {
+  const input = path.join(root, `${name}.webp`);
   try {
     await fs.access(input);
   } catch {
     console.warn(`[skip] no existe: ${input}`);
-    continue;
+    return;
   }
 
   for (const w of widths) {
-    const dest = path.join(outDir, `${base}-w${w}.webp`);
+    const dest = path.join(outDir, `${name}-w${w}.webp`);
     await sharp(input)
       .resize({
         width: w,
@@ -49,6 +46,21 @@ for (const base of bases) {
       .webp({ quality: 82, effort: 4 })
       .toFile(dest);
     console.log('OK', path.relative(process.cwd(), dest));
+  }
+}
+
+await fs.mkdir(outDir, { recursive: true });
+
+for (const base of bases) {
+  await generateVariants(base, [400, 800]);
+
+  const mobileName = `${base}-mobile`;
+  const mobileInput = path.join(root, `${mobileName}.webp`);
+  try {
+    await fs.access(mobileInput);
+    await generateVariants(mobileName, [320, 640]);
+  } catch {
+    // Sin captura móvil para este proyecto
   }
 }
 

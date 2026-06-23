@@ -1,0 +1,42 @@
+---
+interface Props {
+  url: string;
+  image: string;
+  alt: string;
+  thumbGradient?: number;
+  class?: string;
+}
+
+const { url, image, alt, thumbGradient = 1, class: cls = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'project-hero-shot',
+    `project-card-v6__thumb--${thumbGradient}`,
+    cls,
+  ]}
+>
+  <div class="project-hero-shot__frame">
+    <div class="project-hero-shot__bar" aria-hidden="true">
+      <div class="project-hero-shot__dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="project-hero-shot__url">
+        🔒 <strong>{url}</strong>
+      </div>
+    </div>
+    <div class="project-hero-shot__screen">
+      <img
+        src={image}
+        alt={alt}
+        loading="eager"
+        fetchpriority="high"
+        width="1600"
+        height="1000"
+      />
+    </div>
+  </div>
+</div>

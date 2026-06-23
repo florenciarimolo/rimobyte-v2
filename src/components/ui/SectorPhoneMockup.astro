@@ -1,0 +1,35 @@
+---
+interface Props {
+  image: string;
+  srcset?: string;
+  alt: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  class?: string;
+}
+
+const {
+  image,
+  srcset,
+  alt,
+  imageWidth = 662,
+  imageHeight = 1014,
+  class: cls = '',
+} = Astro.props;
+---
+
+<div class:list={['sector-phone-mockup', cls]}>
+  <div class="sector-phone-mockup__notch" aria-hidden="true"></div>
+  <div class="sector-phone-mockup__screen">
+    <img
+      src={image}
+      srcset={srcset}
+      sizes="(max-width: 980px) 100vw, 292px"
+      alt={alt}
+      loading="eager"
+      fetchpriority="high"
+      width={imageWidth}
+      height={imageHeight}
+    />
+  </div>
+</div>

@@ -71,7 +71,7 @@ const sectorLdGraph = {
           eyebrow={sector.painPoints.eyebrow}
           title={sector.painPoints.title}
           titleEm={sector.painPoints.titleEm}
-          points={sector.painPoints.points}
+          points={sector.painPoints.points ?? []}
         />
       )
     }

@@ -1,4 +1,5 @@
 import { projects, type Project } from './projects';
+import type { IconName } from '../components/ui/icons/registry';
 
 export interface SectorFeature {
   title: string;
@@ -7,6 +8,42 @@ export interface SectorFeature {
   tag?: string;
   /** Variante del grid asimétrico */
   span?: 'tall' | 'wide';
+  icon?: IconName;
+}
+
+export interface SectorPainCard {
+  icon: IconName;
+  title: string;
+  description: string;
+}
+
+export interface SectorStat {
+  value: string;
+  label: string;
+  gradient?: boolean;
+}
+
+export interface SectorOffer {
+  eyebrow: string;
+  title: string;
+  titleEm: string;
+  lede: string;
+  features: string[];
+  price: string;
+  priceNote: string;
+  priceDetail: string;
+  cta: string;
+}
+
+export interface SectorCaseHighlight {
+  eyebrow: string;
+  title: string;
+  titleEm: string;
+  description: string;
+  stats: SectorStat[];
+  quote: string;
+  quoteAuthor: string;
+  ctaLabel: string;
 }
 
 export interface SectorFAQ {
@@ -35,18 +72,33 @@ export interface Sector {
   description: string;
   ctaPrimary: string;
   checks: string[];
+  heroPills?: string[];
+  heroStats?: SectorStat[];
+  heroSecondaryCta?: { label: string; href: string };
+  /** Proyecto para el mockup del hero (project-hero-shot) */
+  heroProjectSlug?: string;
+  /** Captura móvil del mockup de teléfono en el hero sectorial */
+  heroMockupImage?: string;
   heroStrip?: { label: string; tags: string[] };
   painPoints?: {
     eyebrow: string;
     title: string;
     titleEm: string;
-    points: string[];
+    description?: string;
+    points?: string[];
+    cards?: SectorPainCard[];
   };
   featuresIntro?: string;
+  featuresEyebrow?: string;
   featuresTitle?: string;
   featuresTitleEm?: string;
   features: SectorFeature[];
   relatedCase?: SectorCase;
+  caseHighlight?: SectorCaseHighlight;
+  offer?: SectorOffer;
+  faqEyebrow?: string;
+  faqTitle?: string;
+  faqTitleEm?: string;
   faqs: SectorFAQ[];
   ctaFinal: {
     title: string;
@@ -165,39 +217,95 @@ export const sectors: Sector[] = [
     name: 'Web para peluquerías',
     sectorNameShort: 'peluquerías',
     eyebrow: 'WEB PARA PELUQUERÍAS Y ESTÉTICA',
-    headline: 'Que tus clientes pidan cita online y te encuentren',
-    headlineEm: 'antes que a la competencia.',
+    headline: 'De invisible en Google a',
+    headlineEm: 'agenda llena.',
     description:
-      'Diseño webs para peluquerías, salones de belleza y centros de estética que quieren captar clientes nuevos en Google y facilitar las reservas online.',
-    ctaPrimary: 'Quiero mi web para peluquería',
+      'Webs WordPress para peluquerías, centros de manicura y estética que quieren que sus clientas las encuentren en Google y reserven directamente — sin depender de Instagram, TheBookerCompany ni del boca a boca.',
+    ctaPrimary: 'Quiero una web así',
     checks: ['Reservas online', 'Apareces en Google local', 'Tuya desde el primer día'],
-    featuresTitle: 'Lo que convierte visitas en citas',
-    featuresTitleEm: 'en una web para peluquerías.',
+    heroPills: ['Web para peluquerías y centros de estética', 'SEO local · Reservas'],
+    heroStats: [
+      { value: '#1', label: 'Google local conseguido', gradient: true },
+      { value: '100%', label: 'Agenda al completo', gradient: true },
+      { value: '24/7', label: 'Reservas sin tu intervención', gradient: true },
+    ],
+    heroSecondaryCta: { label: 'Ver caso real', href: '#caso-lucia' },
+    heroProjectSlug: 'lucia-nails-art',
+    heroMockupImage: '/assets/projects/lucia-nails-art-mobile.webp',
+    painPoints: {
+      eyebrow: 'Lo que más me cuentan',
+      title: 'Si tu peluquería',
+      titleEm: 'está en alguno de estos cuatro casos…',
+      description:
+        '… probablemente estás dejando ingresos sobre la mesa cada semana. Estos son los problemas que más veo en peluquerías, centros de manicura y estética sin web — o con una web que no funciona.',
+      cards: [
+        {
+          icon: 'globe',
+          title: 'No apareces en Google',
+          description:
+            'Cuando alguien busca "manicura + tu zona" sale tu competencia, no tú. Si no estás en los tres primeros resultados, no existes.',
+        },
+        {
+          icon: 'result-chat',
+          title: 'Pierdes horas en DMs',
+          description:
+            'Cada clienta que reserva por WhatsApp o Instagram te roba 5 minutos. Diez clientas al día son casi una hora menos de manicuras.',
+        },
+        {
+          icon: 'result-clock',
+          title: 'Olvidos y huecos',
+          description:
+            'Sin recordatorios automáticos hay no-shows. Sin sistema de reservas en tiempo real, hay huecos que podrían estar vendidos.',
+        },
+        {
+          icon: 'result-trend',
+          title: 'Dependes del boca a boca',
+          description:
+            'Cuando una clienta se muda o cambia de ciudad, pierdes el ingreso. Sin tráfico de descubrimiento, no creces.',
+        },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una web para peluquerías',
+    featuresIntro:
+      'Cada elemento de la web está afinado para el sector: lo que buscan tus clientas, cómo deciden y cómo reservan. Sin funciones genéricas que no usarías nunca.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo trabajas tú.',
     features: [
       {
-        title: 'Reservas online',
+        icon: 'globe',
+        title: 'SEO local hiperafinado',
         description:
-          'Para que tus clientes puedan pedir cita directamente desde la web, a cualquier hora, sin tener que llamar.',
+          'Estructura optimizada para "manicura/peluquería + tu ciudad o barrio". Schema LocalBusiness, Google Business Profile y reseñas integradas.',
       },
       {
-        title: 'Catálogo de servicios y precios',
+        icon: 'result-clock',
+        title: 'Reservas integradas',
         description:
-          'Claro, visual y fácil de actualizar. Que el cliente sepa exactamente qué ofreces antes de reservar.',
+          'Formulario o sistema de reservas con calendario en tiempo real. Confirmación automática por email y opción de recordatorio.',
       },
       {
+        icon: 'result-layers',
         title: 'Galería de trabajos',
         description:
-          'Tus mejores trabajos como carta de presentación. Las fotos convencen más que cualquier descripción.',
+          'Showcase visual con tus mejores manicuras, tratamientos o cortes. Conectada a Instagram para que se actualice sola.',
       },
       {
-        title: 'Presencia en Google local',
+        icon: 'shopping-bag',
+        title: 'Lista de precios clara',
         description:
-          'Optimizada para aparecer cuando alguien busca "peluquería cerca de mí" o en tu ciudad.',
+          'Servicios con duración y precio destacados. Tus clientas saben qué van a pagar antes de reservar — menos dudas, más conversión.',
       },
       {
-        title: 'Información de contacto y ubicación',
+        icon: 'whatsapp',
+        title: 'Click-to-call y WhatsApp',
         description:
-          'Horarios, dirección y cómo llegar. Lo básico que cualquier cliente nuevo busca.',
+          'Botones de llamada y WhatsApp visibles. Tu clienta llama o escribe sin buscar el teléfono — el camino corto convierte.',
+      },
+      {
+        icon: 'result-grid',
+        title: 'Mapa y "cómo llegar"',
+        description:
+          'Tu ubicación integrada con Google Maps. Crítico para SEO local y para que las clientas que vienen desde fuera te encuentren físicamente.',
       },
     ],
     relatedCase: {
@@ -208,38 +316,90 @@ export const sectors: Sector[] = [
       result: 'Hoy aparece la primera en Google en su área y tiene',
       resultEm: 'toda la agenda llena.',
       testimonialQuote:
-        'Gracias a eso he captado muchísimas clientas y tengo toda la agenda llena.',
+        'Gracias a la web he captado muchísimas clientas nuevas y tengo toda la agenda llena.',
       author: 'Lucía Martínez Reinoso',
     },
+    caseHighlight: {
+      eyebrow: 'Caso real · Peluquerías',
+      title: 'Lucía Nails Art: la web que',
+      titleEm: 'llenó su agenda.',
+      description:
+        'Centro de manicura en Esparreguera. Negocio consolidado pero sin presencia online. Tres meses después del lanzamiento aparecía la primera en Google para sus búsquedas clave y la agenda estaba al 100%.',
+      stats: [
+        { value: '#1', label: 'Posición Google local', gradient: true },
+        { value: '100%', label: 'Ocupación de agenda', gradient: true },
+        { value: '0 → 1', label: 'De invisible a referencia', gradient: true },
+      ],
+      quote:
+        'Gracias a la web he captado muchísimas clientas nuevas y tengo toda la agenda llena.',
+      quoteAuthor: 'Lucía Martínez · lucianailsart.com',
+      ctaLabel: 'Leer el caso completo',
+    },
+    offer: {
+      eyebrow: 'Plan completo · Peluquerías',
+      title: 'Todo lo que tu peluquería',
+      titleEm: 'necesita online.',
+      lede:
+        'Una web a medida con SEO local incluido, sistema de reservas y formación para que la manejes tú. Sin permanencia, sin sorpresas.',
+      features: [
+        'Diseño 100% a medida (sin plantillas)',
+        'SEO local optimizado para tu zona',
+        'Sistema de reservas integrado',
+        'Google Business Profile configurado',
+        'Galería conectada a Instagram',
+        'Sesión de formación + soporte 30 días',
+      ],
+      price: '600€',
+      priceNote: 'desde · pago único',
+      priceDetail:
+        'El precio final depende de las páginas que necesites y si integramos sistema de reservas externo (Treatwell, Booksy, etc.). Te paso presupuesto cerrado antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'peluquerías y estética.',
     faqs: [
+      {
+        question: '¿Cuánto tarda en aparecer mi peluquería la primera en Google?',
+        answer:
+          'Depende de la competencia local. En zonas con poca competencia (pueblo, barrio pequeño) puedes estar en top 3 en 4–8 semanas. En grandes ciudades el SEO local tarda 3–6 meses en consolidarse, aunque desde el día uno empiezas a recibir visitas. Lucía llegó al #1 en su área en menos de 3 meses.',
+      },
+      {
+        question: '¿Necesito un sistema de reservas tipo Treatwell o Booksy?',
+        answer:
+          'Depende del volumen. Si haces menos de 5 reservas al día, un formulario sencillo en la web es suficiente. Si tienes equipo, calendario complejo o quieres bloqueo de huecos en tiempo real, integro el sistema externo que prefieras — sin que te cobren extra los enlaces a tu web.',
+      },
       {
         question: '¿Integras sistemas de reservas como Booksy o Planfy?',
         answer:
           'Sí. Si ya usas una plataforma, la integramos. Si no, te asesoro sobre cuál se adapta mejor a tu negocio.',
       },
       {
-        question: '¿Puedo actualizar los precios y servicios yo misma?',
-        answer: 'Sí. Sin llamarme cada vez que cambias una tarifa.',
-      },
-      {
-        question: '¿Para qué necesito una web si ya tengo Instagram?',
+        question: '¿Y si ya uso Instagram para conseguir clientas?',
         answer:
-          'Instagram es para quienes ya te siguen. Google es para quienes todavía no te conocen y buscan una peluquería en tu zona.',
+          'Instagram es complemento, no sustituto. Te seguirá funcionando para fidelizar a las que ya te conocen, pero Google es donde te descubren las nuevas. La web conecta los dos canales: tus posts de Instagram se muestran en la web, y desde la web ofrezco la reserva directa que Instagram no te permite hacer bien.',
       },
       {
-        question: '¿Cuánto cuesta?',
-        answer: 'Desde 600€. Siempre presupuesto cerrado antes de empezar.',
+        question: '¿Puedo cambiar precios y fotos yo misma después?',
+        answer:
+          'Sí, y de hecho insisto en que lo hagas. Te dejo una sesión de formación + manual escrito. Los precios, las fotos y los textos los actualizas tú sin tocar código y sin pedirme permiso.',
+      },
+      {
+        question: '¿Trabajáis solo en España o también para peluquerías de otros países?',
+        answer:
+          'Atiendo todo el territorio español. Para fuera (Latam, otros países europeos) lo valoro caso a caso. La diferencia horaria y el conocimiento del SEO local marcan la diferencia, así que prefiero hablarlo antes.',
       },
     ],
     ctaFinal: {
-      title: '¿Hablamos de tu negocio?',
-      text: 'Cuéntame cómo es tu peluquería o centro de estética y qué necesitas. En menos de 24 horas te respondo.',
+      title: '¿Llenamos tu agenda',
+      titleEm: 'también?',
+      text: 'Cuéntame brevemente cómo es tu peluquería o centro de estética. Te respondo personalmente con una propuesta concreta — no una plantilla.',
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web para peluquerías y centros de estética · RimoByte',
+      title: 'Diseño web para peluquerías y centros de estética · RimoByte',
       description:
-        'Webs para peluquerías y salones de belleza con reservas online y SEO local. Aparece en Google antes que tu competencia. Desde 600€.',
+        'Webs WordPress a medida para peluquerías, centros de manicura y estética. SEO local para aparecer #1 en Google y formulario de reservas integrado. Desde 600€.',
     },
   },
 ];

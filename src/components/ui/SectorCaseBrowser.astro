@@ -1,0 +1,25 @@
+---
+interface Props {
+  url: string;
+  image: string;
+  alt: string;
+}
+
+const { url, image, alt } = Astro.props;
+---
+
+<div class="sector-case-browser">
+  <div class="sector-case-browser__bar" aria-hidden="true">
+    <div class="sector-case-browser__dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="sector-case-browser__url">
+      🔒 <strong>{url}</strong>
+    </div>
+  </div>
+  <div class="sector-case-browser__screen">
+    <img src={image} alt={alt} loading="lazy" width="1600" height="1000" />
+  </div>
+</div>

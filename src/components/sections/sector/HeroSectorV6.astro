@@ -1,0 +1,76 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import Button from '../../ui/Button.astro';
+import HeroStats from '../../ui/HeroStats.astro';
+import SectorPhoneMockup from '../../ui/SectorPhoneMockup.astro';
+import { projectImageBase } from '../../../data/projectImages';
+import { getSectorProject, type Sector } from '../../../data/sectors';
+
+interface Props {
+  sector: Sector;
+}
+
+const { sector } = Astro.props;
+const project = sector.heroProjectSlug ? getSectorProject(sector.heroProjectSlug) : undefined;
+const imageBase = project ? projectImageBase(project.slug) : undefined;
+const mockupImage =
+  sector.heroMockupImage ??
+  (imageBase ? `/assets/projects/${imageBase}-mobile.webp` : undefined);
+const mockupSrcset = imageBase
+  ? `/assets/projects/generated/${imageBase}-mobile-w320.webp 320w, /assets/projects/generated/${imageBase}-mobile-w640.webp 640w`
+  : undefined;
+---
+
+<header class="sector-v6-hero">
+  <SiteWrap>
+    <div class="sector-v6-hero__grid">
+      <div class="sector-v6-hero__main reveal">
+        {
+          sector.heroPills && sector.heroPills.length > 0 && (
+            <div class="sector-v6-hero__pills">
+              {sector.heroPills.map((pill) => <Pill text={pill} />)}
+            </div>
+          )
+        }
+        <h1>
+          {sector.headline}
+          <span class="gradient-text">{sector.headlineEm}</span>
+        </h1>
+        <p class="sector-v6-hero__lede">{sector.description}</p>
+        <div class="sector-v6-hero__cta-row">
+          <Button href="/contacto/" variant="primary">
+            {sector.ctaPrimary}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Button>
+          {
+            sector.heroSecondaryCta && (
+              <Button href={sector.heroSecondaryCta.href} variant="ghost">
+                {sector.heroSecondaryCta.label}
+              </Button>
+            )
+          }
+        </div>
+        {
+          sector.heroStats && sector.heroStats.length > 0 && (
+            <HeroStats stats={sector.heroStats} variant="simple" class="sector-v6-hero__stats" />
+          )
+        }
+      </div>
+
+      {
+        project && mockupImage && (
+          <div class="sector-v6-hero__mockup reveal">
+            <SectorPhoneMockup
+              image={mockupImage}
+              srcset={mockupSrcset}
+              alt={`Captura móvil de la web ${project.name}`}
+            />
+          </div>
+        )
+      }
+    </div>
+  </SiteWrap>
+</header>

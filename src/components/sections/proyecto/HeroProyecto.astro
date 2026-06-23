@@ -2,6 +2,7 @@
 import Button from '../../ui/Button.astro';
 import Icon from '../../ui/Icon.astro';
 import Pill from '../../ui/Pill.astro';
+import ProjectHeroShot from '../../ui/ProjectHeroShot.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
 import {
   projectYear,
@@ -55,34 +56,12 @@ const lede =
       <Button href="#story" variant="ghost">Leer el caso completo</Button>
     </div>
 
-    <div
-      class:list={[
-        'project-hero-shot reveal',
-        `project-card-v6__thumb--${project.thumbGradient}`,
-      ]}
-    >
-      <div class="project-hero-shot__frame">
-        <div class="project-hero-shot__bar" aria-hidden="true">
-          <div class="project-hero-shot__dots">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="project-hero-shot__url">
-            🔒 <strong>{project.url}</strong>
-          </div>
-        </div>
-        <div class="project-hero-shot__screen">
-          <img
-            src={heroImg}
-            alt={`Captura de la web ${project.name}`}
-            loading="eager"
-            fetchpriority="high"
-            width="1600"
-            height="1000"
-          />
-        </div>
-      </div>
-    </div>
+    <ProjectHeroShot
+      class="reveal"
+      url={project.url}
+      image={heroImg}
+      alt={`Captura de la web ${project.name}`}
+      thumbGradient={project.thumbGradient}
+    />
   </SiteWrap>
 </header>

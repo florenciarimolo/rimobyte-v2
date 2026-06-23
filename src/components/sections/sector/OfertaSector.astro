@@ -1,0 +1,54 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import Button from '../../ui/Button.astro';
+import type { SectorOffer } from '../../../data/sectors';
+
+interface Props {
+  offer: SectorOffer;
+}
+
+const { offer } = Astro.props;
+---
+
+<section class="sector-v6-offer">
+  <SiteWrap>
+    <div class="sector-v6-offer__card glass-card reveal">
+      <div class="sector-v6-offer__grid">
+        <div class="sector-v6-offer__main">
+          <Pill text={offer.eyebrow} class="sector-v6-offer__pill" />
+          <h2>
+            {offer.title}
+            <span class="gradient-text">{offer.titleEm}</span>
+          </h2>
+          <p class="sector-v6-offer__lede">{offer.lede}</p>
+          <ul class="sector-v6-offer__features">
+            {
+              offer.features.map((feature) => (
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  {feature}
+                </li>
+              ))
+            }
+          </ul>
+          <Button href="/contacto/" variant="primary">
+            {offer.cta}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Button>
+        </div>
+
+        <div class="sector-v6-offer__price">
+          <p class="sector-v6-offer__price-label">Inversión</p>
+          <p class="sector-v6-offer__price-num gradient-text">{offer.price}</p>
+          <p class="sector-v6-offer__price-note">{offer.priceNote}</p>
+          <p class="sector-v6-offer__price-detail">{offer.priceDetail}</p>
+        </div>
+      </div>
+    </div>
+  </SiteWrap>
+</section>

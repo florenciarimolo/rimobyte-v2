@@ -1,0 +1,46 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import GlassIcon from '../../ui/GlassIcon.astro';
+import type { SectorFeature } from '../../../data/sectors';
+import type { IconName } from '../../ui/icons/registry';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  titleEm?: string;
+  intro?: string;
+  features: SectorFeature[];
+}
+
+const { eyebrow, title, titleEm, intro, features } = Astro.props;
+---
+
+<section class="sector-v6-features">
+  <SiteWrap>
+    <div class="sector-v6-features__head reveal">
+      {eyebrow && <Pill text={eyebrow} class="sector-v6-features__pill" />}
+      {
+        title && titleEm && (
+          <h2>
+            {title}
+            <span class="gradient-text">{titleEm}</span>
+          </h2>
+        )
+      }
+      {intro && <p>{intro}</p>}
+    </div>
+
+    <div class="sector-v6-features__grid">
+      {
+        features.map((feature) => (
+          <article class="sector-v6-features__card glass-card reveal">
+            {feature.icon && <GlassIcon name={feature.icon as IconName} />}
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </SiteWrap>
+</section>

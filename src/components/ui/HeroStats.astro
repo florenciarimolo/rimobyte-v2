@@ -2,25 +2,33 @@
 interface Stat {
   value: string;
   label: string;
+  gradient?: boolean;
 }
 
 interface Props {
   stats: Stat[];
+  variant?: 'grid' | 'simple';
   class?: string;
 }
 
-const { stats, class: cls = '' } = Astro.props;
+const { stats, variant = 'grid', class: cls = '' } = Astro.props;
 const columns = stats.length;
 ---
 
 <div
-  class:list={['hero-stats reveal', columns === 3 && 'hero-stats--3', cls]}
+  class:list={[
+    'hero-stats',
+    'reveal',
+    variant === 'simple' && 'hero-stats--simple',
+    columns === 3 && 'hero-stats--3',
+    cls,
+  ]}
   style={columns !== 3 && columns !== 4 ? `--hero-stats-cols: ${columns}` : undefined}
 >
   {
     stats.map((stat) => (
       <div class="hero-stat">
-        <div class="hero-stat__num">{stat.value}</div>
+        <div class:list={['hero-stat__num', stat.gradient && 'gradient-text']}>{stat.value}</div>
         <div class="hero-stat__label">{stat.label}</div>
       </div>
     ))

@@ -49,6 +49,9 @@
   --color-text-secondary: #3A3A48;
   --color-text-muted:     #6B6B7B;
 
+  /* Iconos en cards glass (stroke del mockup v6) */
+  --icon-card-stroke-width: 1.8;
+
   /* Brand */
   --color-blue:        #196BEE;
   --color-blue-hover:  #1458C8;

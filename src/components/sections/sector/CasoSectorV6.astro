@@ -1,0 +1,65 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import Button from '../../ui/Button.astro';
+import SectorCaseBrowser from '../../ui/SectorCaseBrowser.astro';
+import { getSectorProject, type SectorCaseHighlight } from '../../../data/sectors';
+
+interface Props {
+  caseSlug: string;
+  highlight: SectorCaseHighlight;
+}
+
+const { caseSlug, highlight } = Astro.props;
+const project = getSectorProject(caseSlug)!;
+---
+
+<section class="sector-v6-case" id="caso-lucia">
+  <SiteWrap>
+    <div class="sector-v6-case__card reveal">
+      <div class="sector-v6-case__inner">
+        <div class="sector-v6-case__content">
+          <Pill text={highlight.eyebrow} class="sector-v6-case__pill" />
+          <h2>
+            {highlight.title}
+            <span class="gradient-text">{highlight.titleEm}</span>
+          </h2>
+          <p>{highlight.description}</p>
+
+          <div class="sector-v6-case__stats">
+            {
+              highlight.stats.map((stat) => (
+                <div class="sector-v6-case__stat">
+                  <div class:list={['sector-v6-case__stat-num', stat.gradient && 'gradient-text']}>
+                    {stat.value}
+                  </div>
+                  <div class="sector-v6-case__stat-label">{stat.label}</div>
+                </div>
+              ))
+            }
+          </div>
+
+          <blockquote class="sector-v6-case__quote">
+            <p>"{highlight.quote}"</p>
+            <cite>{highlight.quoteAuthor}</cite>
+          </blockquote>
+
+          <Button href={`/proyectos/${caseSlug}/`} variant="ghost">
+            {highlight.ctaLabel}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Button>
+        </div>
+
+        <div class="sector-v6-case__visual">
+          <SectorCaseBrowser
+            url={project.url}
+            image={project.heroImage ?? project.image}
+            alt={`Captura de la web ${project.name}`}
+          />
+        </div>
+      </div>
+    </div>
+  </SiteWrap>
+</section>
