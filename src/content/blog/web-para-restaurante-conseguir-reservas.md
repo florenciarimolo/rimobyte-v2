@@ -2,7 +2,7 @@
 title: "Qué debe tener la web de un restaurante para conseguir reservas"
 description: "Una web de restaurante no es un folleto online. Es tu mejor comercial. Qué necesita para que un cliente que no te conoce acabe reservando mesa."
 date: 2026-06-02
-type: "nicho"
+type: sector
 keywords: ["web para restaurante", "página web restaurante España", "web restaurante reservas"]
 readingTime: "5 min"
 ctaText: "¿Quieres una web que llene mesas?"
