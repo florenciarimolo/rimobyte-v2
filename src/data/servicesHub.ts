@@ -90,7 +90,7 @@ export const hubVerticals: HubVertical[] = [
   {
     title: 'Cursos y formaciones',
     description: 'Plataforma con membresías y email automatizado.',
-    href: '/proyectos/supercapaces/',
+    href: '/web-para-cursos/',
     icon: 'book',
   },
   {

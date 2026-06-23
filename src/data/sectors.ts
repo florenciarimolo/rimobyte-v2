@@ -916,4 +916,192 @@ export const sectors: Sector[] = [
         'Webs y landings para entrenadores personales con pasarela de pago integrada. Vende tus programas online 24/7 con Stripe. Desde 600€, sin permanencia.',
     },
   },
+  {
+    slug: 'web-para-cursos',
+    name: 'Web para cursos',
+    sectorNameShort: 'cursos y formaciones',
+    eyebrow: 'WEB PARA CURSOS Y FORMACIONES',
+    headline: 'Tu curso, tu marca,',
+    headlineEm: 'tu plataforma.',
+    description:
+      'Plataformas WordPress + LearnDash para creadores de cursos, formadores y expertos que quieren vender su conocimiento bajo su propio dominio — con pasarela doble PayPal y Stripe, newsletter conectada y sin pagar comisiones a Hotmart, Teachable ni Kajabi.',
+    ctaPrimary: 'Quiero una plataforma así',
+    checks: ['LearnDash integrado', 'PayPal + Stripe', 'Tuya desde el primer día'],
+    heroPills: ['Web para cursos y formaciones', 'LearnDash · Stripe · MailerLite'],
+    heroStats: [
+      { value: 'LMS', label: 'Plataforma profesional', gradient: true },
+      { value: '2', label: 'Pasarelas integradas', gradient: true },
+      { value: '0%', label: 'Comisión a terceros', gradient: true },
+    ],
+    heroSecondaryCta: { label: 'Ver caso real', href: '#caso-supercapaces' },
+    heroProjectSlug: 'supercapaces',
+    heroMockupImage: '/assets/projects/supercapaces-mobile.webp',
+    painPoints: {
+      eyebrow: 'Lo que más me cuentan',
+      title: 'Si tu curso',
+      titleEm: 'está en alguno de estos cuatro casos…',
+      description:
+        '… probablemente estás dejando dinero, alumnos y autoridad en manos de terceros. Estos son los problemas que más veo en creadores de cursos que aún no tienen una plataforma propia — o que tienen una que les frena en lugar de ayudarles a crecer.',
+      cards: [
+        {
+          icon: 'shopping-bag',
+          title: 'Comisiones que te ahogan',
+          description:
+            'Hotmart, Kajabi o Teachable se quedan entre el 5% y el 10% de cada venta. En un año con cien alumnos a 200€, son miles de euros que regalas.',
+        },
+        {
+          icon: 'result-grid',
+          title: 'La audiencia no es tuya',
+          description:
+            'En plataformas externas, los emails de tus alumnos los tienen ellos. Si mañana cambian condiciones o te cierran cuenta, te quedas sin tu negocio.',
+        },
+        {
+          icon: 'mail',
+          title: 'Sin lead magnet, sin embudo',
+          description:
+            'El visitante que aún no compra se va sin dejar email. Sin un "regalo" gratuito conectado a tu newsletter, tiras al cubo el 95% del tráfico.',
+        },
+        {
+          icon: 'result-activity',
+          title: 'Cero datos del alumno',
+          description:
+            'No sabes quién acaba el curso, quién abandona en el módulo 2 ni qué lecciones se ven más. Sin métricas, no mejoras tu producto ni recuperas a quien se queda a medias.',
+        },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una plataforma de cursos',
+    featuresIntro:
+      'Cada elemento está afinado para creadores de formación: el visitante que descubre tu curso desde Google, el alumno potencial que necesita un "primer bocado" antes de pagar, y el alumno ya inscrito al que tienes que llevar de la mano hasta el final del programa.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo vendes y entregas tu curso.',
+    features: [
+      {
+        icon: 'result-layers',
+        title: 'LMS profesional (LearnDash)',
+        description:
+          'Estructura por cursos, módulos y lecciones. Vídeo, PDF, audio, quizzes y certificados. Lo mismo que usan Tony Robbins o Stanford, montado bajo tu dominio.',
+      },
+      {
+        icon: 'shopping-bag',
+        title: 'Doble pasarela: Stripe + PayPal',
+        description:
+          'El alumno paga con la que prefiera. Stripe para tarjeta, Apple/Google Pay y Bizum; PayPal para quienes desconfían de meter la tarjeta. Más opciones, más ventas.',
+      },
+      {
+        icon: 'mail',
+        title: 'Lead magnet + newsletter',
+        description:
+          'Página de regalo con taller, ebook o serie de vídeos gratuitos. Captura email y lo conecta automáticamente con MailerLite, ActiveCampaign o tu plataforma de email.',
+      },
+      {
+        icon: 'result-clock',
+        title: 'Drip content y progreso',
+        description:
+          'Contenido liberado por días o semanas para evitar abandono. Cada alumno tiene su barra de progreso, módulos completados y certificado al terminar.',
+      },
+      {
+        icon: 'result-grid',
+        title: 'Área cliente con login',
+        description:
+          'Cada alumno entra a su panel privado con sus cursos comprados, su progreso, sus descargas y soporte. Acceso de por vida o por suscripción, tú decides.',
+      },
+      {
+        icon: 'globe',
+        title: 'SEO de búsqueda formativa',
+        description:
+          'Optimizado para búsquedas tipo "curso de [tu temática] online", "formación para [perfil]" o "[problema] aprender". Te descubren quienes aún no te conocen — el motor del crecimiento orgánico.',
+      },
+    ],
+    relatedCase: {
+      slug: 'supercapaces',
+      challenge:
+        'Carlos tenía una web a medias y no sabía gestionar membresías ni automatizaciones de email para sus alumnos.',
+      solution:
+        'Plataforma SuperCapaces con LearnDash, doble pasarela y MailerLite conectado al lead magnet.',
+      result: 'Una plataforma con identidad propia que el cliente gestiona solo y donde',
+      resultEm: 'el alumno paga y empieza sin intermediarios.',
+      testimonialQuote:
+        'Necesitaba un sitio donde Proyecto Lucía viviera con su propia identidad y donde el alumno entrara, pagara y empezara el curso sin que ninguna plataforma intermediaria se quedara con mi audiencia ni con mi margen.',
+      author: 'Carlos Pons',
+    },
+    caseHighlight: {
+      sectionId: 'caso-supercapaces',
+      eyebrow: 'Caso real · Cursos',
+      title: 'SuperCapaces: la plataforma de',
+      titleEm: 'Proyecto Lucía.',
+      description:
+        'Carlos Pons, creador del curso para padres de hijos con discapacidad intelectual o autismo, necesitaba una plataforma propia con identidad, no una landing colgada de Hotmart. Montamos SuperCapaces con LearnDash como LMS, doble pasarela PayPal + Stripe para que el alumno pague como prefiera, y MailerLite conectado para el lead magnet (taller gratuito de 5 vídeos) y la newsletter.',
+      stats: [
+        { value: '5', label: 'Módulos del curso en LMS', gradient: true },
+        { value: '2', label: 'Pasarelas (PayPal + Stripe)', gradient: true },
+        { value: '15d', label: 'Garantía de devolución', gradient: true },
+      ],
+      quote:
+        'Necesitaba un sitio donde Proyecto Lucía viviera con su propia identidad y donde el alumno entrara, pagara y empezara el curso sin que ninguna plataforma intermediaria se quedara con mi audiencia ni con mi margen.',
+      quoteAuthor: 'Carlos Pons · supercapaces.com',
+      ctaLabel: 'Leer el caso completo',
+    },
+    offer: {
+      eyebrow: 'Plan completo · Cursos',
+      title: 'Todo lo que tu plataforma',
+      titleEm: 'de formación necesita.',
+      lede:
+        'Una plataforma a medida con LMS profesional, pasarela doble PayPal + Stripe, lead magnet conectado y embudo de email automatizado. Diseñada para que vendas, entregues y midas tu curso sin depender de plataformas externas.',
+      features: [
+        'Diseño 100% a medida (sin plantillas)',
+        'LMS configurado (LearnDash, LifterLMS o Tutor)',
+        'Doble pasarela de pago (PayPal + Stripe)',
+        'Lead magnet con automatización de email',
+        'Integración con MailerLite, ActiveCampaign, Mailchimp…',
+        'Área cliente con progreso y certificados',
+        'Sesión de formación + soporte 30 días',
+      ],
+      price: '600€',
+      priceNote: 'desde · pago único',
+      priceDetail:
+        'El precio final depende del LMS elegido, el número de cursos, si añadimos modelo de suscripción o área comunidad, y la complejidad del embudo de email. Te paso presupuesto cerrado antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'cursos y formaciones.',
+    faqs: [
+      {
+        question: '¿Qué LMS me recomiendas: LearnDash, LifterLMS, Tutor…?',
+        answer:
+          'Depende del tipo de curso. LearnDash es el más completo y el que usé en SuperCapaces — ideal para cursos con varios módulos, certificados, drip content y comunidad. LifterLMS funciona muy bien para suscripciones mensuales. Tutor LMS es más barato y suficiente para cursos simples. Lo decidimos en la primera llamada según lo que vendas y cómo quieras entregarlo.',
+      },
+      {
+        question: '¿Cuánto cobran Stripe y PayPal por venta?',
+        answer:
+          'Stripe: 1,4% + 0,25€ por transacción europea. PayPal: en torno al 2,9% + 0,35€. Sin cuotas mensuales ni permanencia. Para un curso de 200€ esto son 3-6€ por venta — comparado con el 10% que se queda Hotmart (20€ por la misma venta), te ahorras 70-80% en comisiones desde el día uno.',
+      },
+      {
+        question: '¿Se puede vender por suscripción mensual además de pago único?',
+        answer:
+          'Sí, y suele convivir bien. Pago único para el curso principal, suscripción mensual para acceso a comunidad, masterclasses en directo o nuevos módulos. Configuramos los dos modelos en la misma plataforma — y Stripe se encarga del cobro recurrente automáticamente.',
+      },
+      {
+        question: '¿Cómo conecto mi plataforma de email (MailerLite, ActiveCampaign…)?',
+        answer:
+          'Vía API o webhooks. Cuando alguien se descarga tu lead magnet, entra automáticamente en una lista de MailerLite y arranca tu secuencia de bienvenida. Cuando compra el curso, pasa a una lista de clientes y sale de las campañas de venta. Todo automático, sin que tú tengas que exportar emails ni copiar listas.',
+      },
+      {
+        question: '¿Puedo migrar mi curso desde Hotmart, Teachable o Kajabi?',
+        answer:
+          'Sí. Llevo el contenido (vídeos, PDFs, quizzes) a tu nuevo LMS, mantengo la estructura de módulos y configuro la migración de alumnos existentes para que conserven su progreso. Lo más delicado son los emails de notificación y los pagos recurrentes — los planifico antes para evitar duplicados o cobros perdidos.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Hablamos de',
+      titleEm: 'tu curso?',
+      text: 'Cuéntame brevemente qué cursos vendes (o quieres vender), cómo entregas hoy el contenido y qué plataforma de email usas. Te respondo personalmente con una propuesta concreta — no una plantilla.',
+    },
+    serviceLink: '/servicios/web-corporativa/',
+    seo: {
+      title: 'Diseño web para cursos y formaciones online · RimoByte',
+      description:
+        'Plataformas WordPress + LearnDash para creadores de cursos y formaciones online. Pasarela doble (PayPal + Stripe) y newsletter conectada. Desde 600€, sin permanencia.',
+    },
+  },
 ];
