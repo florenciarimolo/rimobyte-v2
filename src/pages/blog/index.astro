@@ -7,18 +7,13 @@ import BlogFeatured from '../../components/sections/blog/BlogFeatured.astro';
 import BlogGrid from '../../components/sections/blog/BlogGrid.astro';
 import Footer from '../../components/sections/Footer.astro';
 import { getCollection } from 'astro:content';
+import { blogIndexSeo } from '../../data/staticPageSeo';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
 const [featured, ...rest] = posts;
-
-const SEO = {
-  title: 'Blog · Diseño web para negocios · RimoByte',
-  description:
-    'Guías sobre cuánto cuesta una web para tu negocio, por qué debe ser tuya (dominio y hosting a tu nombre) y cómo combinar web e Instagram.',
-};
 
 const blogUrl = new URL('/blog/', Astro.site).href;
 
@@ -30,7 +25,7 @@ const blogIndexLd = {
       '@id': `${blogUrl}#blog`,
       name: 'Blog RimoByte',
       url: blogUrl,
-      description: SEO.description,
+      description: blogIndexSeo.description,
       inLanguage: 'es-ES',
       publisher: {
         '@type': 'Organization',
@@ -65,7 +60,7 @@ const blogIndexLd = {
 };
 ---
 
-<Base title={SEO.title} description={SEO.description}>
+<Base title={blogIndexSeo.title} description={blogIndexSeo.description}>
   <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(blogIndexLd)} />
 
   <Navbar />

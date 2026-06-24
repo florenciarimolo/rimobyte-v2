@@ -7,8 +7,10 @@ import { fetchGoogleReviews } from '../../lib/google-reviews';
 
 const place = await fetchGoogleReviews(1);
 const totalReviews = place?.totalReviews ?? 10;
+const gbpUrl = import.meta.env.PUBLIC_GBP_URL?.trim();
 const googleMapsUrl =
-  place?.googleMapsUrl ?? 'https://www.google.com/maps/place/Desarrolladora+WordPress+Barcelona+-+RimoByte';
+  place?.googleMapsUrl ??
+  (gbpUrl || 'https://www.google.com/maps/search/?api=1&query=RimoByte');
 
 function renderFeaturedQuote() {
   const { quote, quoteHighlight } = featuredTestimonial;

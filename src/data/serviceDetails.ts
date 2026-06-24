@@ -210,7 +210,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
     heroLede:
       'Vende tus productos con una tienda propia, sin comisiones de marketplace ni depender de plataformas que cambian las reglas cuando quieren.',
     metaAside: [
-      { label: 'Precio', value: 'desde 1.500€', gradient: true },
+      { label: 'Precio', value: 'desde 1.200€', gradient: true },
       { label: 'Plazo', value: '4–8 semanas' },
       { label: 'CMS', value: 'WooCommerce' },
       { label: 'Productos', value: 'Hasta 50 incluidos' },
@@ -281,7 +281,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
           'Tienes menos de 10 productos y un Instagram bien gestionado te basta',
           'Buscas dropshipping automatizado sin tocar nada',
           'Necesitas marketplace multi-vendedor (tipo Amazon)',
-          'El presupuesto no llega a 1.500€ — mejor empezar por web corporativa',
+          'El presupuesto no llega a 1.200€ — mejor empezar por web corporativa',
         ],
       },
     },
@@ -296,7 +296,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
     relatedSlugs: ['de-cos'],
     pricingDetail: {
       label: 'Tienda online',
-      amount: '1.500€',
+      amount: '1.200€',
       amountSub: 'Precio cerrado · hasta 50 productos',
       features: [
         'Diseño de tienda a medida',

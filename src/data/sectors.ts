@@ -1056,7 +1056,7 @@ export const sectors: Sector[] = [
         'Área cliente con progreso y certificados',
         'Sesión de formación + soporte 30 días',
       ],
-      price: '600€',
+      price: '1000€',
       priceNote: 'desde · pago único',
       priceDetail:
         'El precio final depende del LMS elegido, el número de cursos, si añadimos modelo de suscripción o área comunidad, y la complejidad del embudo de email. Te paso presupuesto cerrado antes de empezar.',
@@ -1101,7 +1101,7 @@ export const sectors: Sector[] = [
     seo: {
       title: 'Diseño web para cursos y formaciones online · RimoByte',
       description:
-        'Plataformas WordPress + LearnDash para creadores de cursos y formaciones online. Pasarela doble (PayPal + Stripe) y newsletter conectada. Desde 600€, sin permanencia.',
+        'Plataformas WordPress + LearnDash para creadores de cursos y formaciones online. Pasarela doble (PayPal + Stripe) y newsletter conectada. Desde 1.000€, sin permanencia.',
     },
   },
   {

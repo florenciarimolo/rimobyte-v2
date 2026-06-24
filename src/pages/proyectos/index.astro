@@ -8,20 +8,12 @@ import ProjectsGrid from '../../components/sections/proyectos/ProjectsGrid.astro
 import CTAFinalProyectos from '../../components/sections/proyectos/CTAFinalProyectos.astro';
 import Footer from '../../components/sections/Footer.astro';
 import { projectCount } from '../../data/projects';
+import { proyectosIndexSeo } from '../../data/staticPageSeo';
 
-const proyectosPhrase =
-  projectCount === 1
-    ? '1 proyecto real'
-    : `${projectCount} proyectos reales`;
-
-const SEO = {
-  title: 'Proyectos web para negocios reales · RimoByte',
-  description: `${proyectosPhrase}: webs corporativas, tiendas online, landings y plataformas. Casos documentados con desafío, solución y resultado para cada cliente.`,
-  image: '/assets/projects/og-proyectos.webp',
-};
+const seo = proyectosIndexSeo(projectCount);
 ---
 
-<Base title={SEO.title} description={SEO.description} image={SEO.image}>
+<Base title={seo.title} description={seo.description} image={seo.image}>
   <Navbar />
   <main id="main">
     <HeroProyectos />

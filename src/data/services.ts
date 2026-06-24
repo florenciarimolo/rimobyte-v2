@@ -197,7 +197,7 @@ export const services: Service[] = [
     targetAudience: [
       'Tienes productos físicos o digitales y quieres venderlos online',
       'Usas Instagram o el boca a boca pero quieres un canal de ventas propio que no dependa de algoritmos',
-      'Tienes una tienda en Shopify o Wix y estás pagando más comisiones de las que quieres',
+      'Tienes una tienda en Wix, marketplace o plantilla genérica y estás pagando más comisiones de las que quieres',
       'Ya tuviste una tienda con una agencia pero no funcionaba o no podías gestionarla tú mismo',
     ],
     features: [
@@ -234,7 +234,7 @@ export const services: Service[] = [
           'Al entregar te explico cómo añadir productos, gestionar pedidos y hacer cambios básicos.',
       },
     ],
-    price: 'Desde 1.500€',
+    price: 'Desde 1.200€',
     priceNote: 'Hosting, dominio y comisiones de pasarela de pago no incluidos.',
     relatedCases: [
       {
@@ -255,7 +255,7 @@ export const services: Service[] = [
       {
         question: '¿Qué plataforma usas para la tienda?',
         answer:
-          'Desarrollo con WooCommerce y con Shopify. Te asesoro sobre cuál se adapta mejor a tu negocio sin ningún interés comercial en ninguna de las dos.',
+          'WooCommerce sobre WordPress. Es tu tienda, sin comisiones de plataforma y sin ataduras — el dominio, el hosting y el catálogo son tuyos.',
       },
       {
         question: '¿Puedo gestionar los productos yo mismo después?',
@@ -263,9 +263,9 @@ export const services: Service[] = [
           'Sí. Al entregar te explico cómo añadir productos, gestionar stock y procesar pedidos.',
       },
       {
-        question: '¿Shopify o WooCommerce, qué es mejor para mí?',
+        question: '¿Por qué WooCommerce y no un marketplace?',
         answer:
-          'Depende de tu negocio. Shopify es más sencillo pero pagas suscripción mensual y comisiones. WooCommerce es tuyo, sin comisiones y sin ataduras.',
+          'En un marketplace (Amazon, Etsy, etc.) no eres dueño del canal: pagas comisiones, compites con miles de vendedores y dependes de sus reglas. Con WooCommerce la tienda es tuya, sin comisiones por venta y con control total del diseño y los datos.',
       },
       {
         question: '¿Puedo empezar con pocos productos y añadir más después?',
@@ -297,7 +297,7 @@ export const services: Service[] = [
     seo: {
       title: 'Tienda online para pequeño negocio · RimoByte',
       description:
-        'Tienda WooCommerce o Shopify para pequeños negocios desde 1.500€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
+        'Tienda WooCommerce para pequeños negocios desde 1.200€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
     },
   },
   {

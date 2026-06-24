@@ -5,6 +5,7 @@ import PageLoader from '../components/ui/PageLoader.astro';
 import { resolveOgImage } from '../lib/og/url';
 import { publicProfileUrls } from '../lib/site';
 import { canonicalPath } from '../lib/url';
+import { defaultBaseSeo } from '../data/staticPageSeo';
 
 interface Props {
   title?: string;
@@ -21,9 +22,9 @@ interface Props {
 }
 
 const {
-  title = 'Diseñadora web freelance para negocios locales · RimoByte',
-  description = 'Soy Flor, ingeniera informática especializada en desarrollo web. Creo webs para negocios locales con acompañamiento real y sin letra pequeña — tuya desde el primer día.',
-  image = '/assets/brand/flor-rimobyte.webp',
+  title = defaultBaseSeo.title,
+  description = defaultBaseSeo.description,
+  image = defaultBaseSeo.image ?? '/assets/brand/flor-rimobyte.webp',
   noindex = false,
   ogType = 'website',
   articlePublishedTime,
@@ -49,7 +50,7 @@ const personBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['Person', 'LocalBusiness'],
   name: 'Flor Rímolo',
-  jobTitle: 'Diseñadora web freelance — Ingeniera informática',
+  jobTitle: 'Desarrolladora web WordPress freelance — Ingeniera informática',
   url: 'https://rimobyte.com',
   email: 'info@rimobyte.com',
   telephone: '+34684713743',
@@ -85,7 +86,8 @@ const websiteSchema = {
   name: 'RimoByte',
   url: 'https://rimobyte.com',
   inLanguage: 'es-ES',
-  description: 'Diseño web freelance para negocios locales. Webs profesionales tuyas desde el primer día.',
+  description:
+    'Desarrollo web WordPress para negocios locales. Webs profesionales tuyas desde el primer día.',
   author: {
     '@type': 'Person',
     name: 'Flor Rímolo',

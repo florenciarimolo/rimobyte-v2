@@ -7,7 +7,7 @@ export interface FaqEntry {
 export const faqEntries: FaqEntry[] = [
   {
     q: '¿Cuánto cuesta una web?',
-    a: 'Web corporativa desde 600€, tienda online desde 1.500€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
+    a: 'Web corporativa desde 600€, tienda online desde 1.200€, plataforma de cursos desde 1.000€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
   },
   {
     q: '¿Cuánto tarda en estar lista?',
@@ -28,15 +28,23 @@ export const faqEntries: FaqEntry[] = [
 ];
 
 export function buildFaqPageJsonLd(): Record<string, unknown> {
+  return buildFaqPageJsonLdFromPairs(
+    faqEntries.map(({ q, a }) => ({ name: q, text: a })),
+  );
+}
+
+export function buildFaqPageJsonLdFromPairs(
+  pairs: { name: string; text: string }[],
+): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqEntries.map(({ q, a }) => ({
+    mainEntity: pairs.map(({ name, text }) => ({
       '@type': 'Question',
-      name: q,
+      name,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: a,
+        text,
       },
     })),
   };

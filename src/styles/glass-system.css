@@ -5713,14 +5713,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: var(--gradient-logo);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: -0.01em;
+  object-fit: cover;
   flex-shrink: 0;
 }
 

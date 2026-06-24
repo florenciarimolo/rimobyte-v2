@@ -8,34 +8,36 @@ import FAQ from '../components/sections/FAQ.astro';
 import ContactoCTA from '../components/sections/contacto/ContactoCTA.astro';
 import Footer from '../components/sections/Footer.astro';
 import { contactFaqEntries } from '../data/contacto';
-
-const SEO = {
-  title: 'Contacto · Flor Rímolo · RimoByte',
-  description:
-    'Cuéntame tu proyecto. Te respondo personalmente en menos de 24 horas con ideas concretas, no una plantilla de presupuesto.',
-  image: '/assets/brand/flor-rimobyte.webp',
-};
+import { buildFaqPageJsonLdFromPairs } from '../data/faq';
+import { contactoSeo } from '../data/staticPageSeo';
 
 const contactUrl = new URL('/contacto/', Astro.site).href;
 
 const contactLd = {
   '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  name: SEO.title,
-  url: contactUrl,
-  description: SEO.description,
-  inLanguage: 'es-ES',
-  mainEntity: {
-    '@type': 'Person',
-    name: 'Flor Rímolo',
-    url: 'https://rimobyte.com/',
-    email: 'info@rimobyte.com',
-    telephone: '+34684713743',
-  },
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      name: contactoSeo.title,
+      url: contactUrl,
+      description: contactoSeo.description,
+      inLanguage: 'es-ES',
+      mainEntity: {
+        '@type': 'Person',
+        name: 'Flor Rímolo',
+        url: 'https://rimobyte.com/',
+        email: 'info@rimobyte.com',
+        telephone: '+34684713743',
+      },
+    },
+    buildFaqPageJsonLdFromPairs(
+      contactFaqEntries.map(({ q, a }) => ({ name: q, text: a })),
+    ),
+  ],
 };
 ---
 
-<Base title={SEO.title} description={SEO.description} image={SEO.image}>
+<Base title={contactoSeo.title} description={contactoSeo.description} image={contactoSeo.image}>
   <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(contactLd)} />
 
   <Navbar />

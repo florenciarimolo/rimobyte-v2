@@ -12,20 +12,14 @@ import HomeCTA from '../components/sections/HomeCTA.astro';
 import Footer from '../components/sections/Footer.astro';
 import { buildFaqPageJsonLd } from '../data/faq';
 import { fetchPlaceAggregate } from '../lib/google-reviews';
-
-const SEO = {
-  title: 'Desarrollo web WordPress a medida · RimoByte',
-  description:
-    'Flor Rímolo, ingeniera informática. Diseño y desarrollo de webs WordPress y tiendas WooCommerce para negocios locales en España. Tu web, tu propiedad, sin letra pequeña.',
-  image: '/assets/brand/flor-rimobyte.webp',
-};
+import { homeSeo } from '../data/staticPageSeo';
 
 const placeAgg = await fetchPlaceAggregate();
 ---
 <Base
-  title={SEO.title}
-  description={SEO.description}
-  image={SEO.image}
+  title={homeSeo.title}
+  description={homeSeo.description}
+  image={homeSeo.image}
   faqPageSchema={buildFaqPageJsonLd()}
   aggregateRating={placeAgg}
 >

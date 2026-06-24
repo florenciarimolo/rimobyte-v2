@@ -10,27 +10,32 @@ import ProcesoServicio from '../../components/sections/servicios/ProcesoServicio
 import FAQ from '../../components/sections/FAQ.astro';
 import HomeCTA from '../../components/sections/HomeCTA.astro';
 import { hubFaqs, serviceProcessSteps } from '../../data/servicesHub';
-
-const SEO = {
-  title: 'Servicios de diseño web para negocios locales · RimoByte',
-  description:
-    'Web corporativa, tienda online y mantenimiento web para autónomos y negocios locales. Presupuesto cerrado, tuya desde el primer día.',
-};
+import { buildFaqPageJsonLdFromPairs } from '../../data/faq';
+import { serviciosHubSeo } from '../../data/staticPageSeo';
 
 const servicesUrl = new URL('/servicios/', Astro.site).href;
 
-const breadcrumbLd = {
+const hubFaqLd = buildFaqPageJsonLdFromPairs(
+  hubFaqs.map(({ question, answer }) => ({ name: question, text: answer })),
+);
+
+const servicesHubLd = {
   '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: 'Servicios', item: servicesUrl },
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: 'Servicios', item: servicesUrl },
+      ],
+    },
+    { '@type': 'FAQPage', mainEntity: hubFaqLd.mainEntity },
   ],
 };
 ---
 
-<Base title={SEO.title} description={SEO.description}>
-  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+<Base title={serviciosHubSeo.title} description={serviciosHubSeo.description}>
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(servicesHubLd)} />
 
   <Navbar />
   <main id="main" class="services-hub-v6">

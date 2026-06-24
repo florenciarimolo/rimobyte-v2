@@ -1,9 +1,32 @@
 # Auditoría SEO — rimobyte.com (RimoByte v2)
 
-**Fecha:** 19 de junio de 2026  
+**Fecha:** 23 de junio de 2026 (actualización post-corrección integral)  
+**Auditoría inicial:** 19 de junio de 2026  
 **Alcance:** Código fuente del repositorio `rimobyte-v2` (Astro 6, despliegue Vercel)  
 **Dominio de producción:** `https://rimobyte.com`  
 **Método:** Revisión estática de implementación técnica, metadatos, datos estructurados, arquitectura de URLs y contenido indexable. No incluye mediciones en vivo (Core Web Vitals, Search Console, backlinks).
+
+---
+
+## Actualización — corrección SEO integral (junio 2026)
+
+Intervención aplicada en código para unificar posicionamiento, metadatos y schema:
+
+| Hallazgo resuelto | Acción |
+|-------------------|--------|
+| OG desincronizadas respecto al HTML | Fuente única `src/data/staticPageSeo.ts` + `scripts/generate-og-images.ts` refactorizado |
+| Posicionamiento mixto diseño vs desarrollo | Defaults en `Base.astro`, home/servicios/sobre-mi alineados a «desarrollo web WordPress» |
+| Precios inconsistentes (tienda 1.500€, cursos sin schema) | Tienda desde 1.200€, cursos desde 1.000€ en FAQ, copy y `sector.offer` |
+| Schema sectorial con precios hardcodeados | Helper `src/lib/seo/sector-ld.ts` (`buildSectorLdGraph`) en las 7 landings |
+| Shopify en copy de tienda online | Eliminado de `services.ts`; solo WooCommerce |
+| FAQPage ausente en `/servicios/` y `/contacto/` | JSON-LD añadido desde `hubFaqs` y `contactFaqEntries` |
+| Title sobre-mi demasiado largo | Acortado en `staticPageSeo` (~60 caracteres) |
+| Alt vacío en avatar de artículos | `HeroArticulo.astro`: alt descriptivo |
+| Fallback Maps genérico en testimonios | `PUBLIC_GBP_URL` o búsqueda de marca |
+
+**Inventario actualizado:** 5 artículos de blog, 7 landings sectoriales (`web-para-*`), 3 fichas de servicio, hub `/servicios/`.
+
+**Pendiente operativo (no código):** regenerar OG en CI (`pnpm images:og`), configurar `PUBLIC_LINKEDIN_URL` / `PUBLIC_GBP_URL` en Vercel, Search Console y medición CWV en producción.
 
 ---
 
@@ -63,9 +86,9 @@ Tras `pnpm build`, el sitemap (`sitemap-index.xml` → `sitemap-0.xml`) incluye 
 |------|------|
 | Home | `/` |
 | Servicios | `/servicios/web-corporativa/`, `/servicios/tienda-online/`, `/servicios/mantenimiento-web/` |
-| Sector | `/web-para-restaurantes/` |
+| Sector | 7 landings: restaurantes, peluquerías, asesorías, entrenadores, cursos, psicólogos, inmobiliarias |
 | Proyectos | `/proyectos/` + 9 casos |
-| Blog | `/blog/` + 4 artículos |
+| Blog | `/blog/` + 5 artículos |
 | Institucional | `/sobre-mi/`, `/contacto/` |
 | Legal | `/politica-privacidad/`, `/politica-cookies/` |
 
@@ -247,15 +270,15 @@ Los tres servicios existen como páginas independientes; el breadcrumb schema us
 
 ### 8.1 Estado actual
 
-- **4 artículos** con frontmatter SEO (`keywords`, `type`, `description`, CTAs a servicios).
-- Temas alineados con funnel: precio, propiedad de la web, Instagram vs web, restaurantes.
+- **5 artículos** con frontmatter SEO (`keywords`, `type`, `description`, CTAs a servicios).
+- Temas alineados con funnel: precio, propiedad de la web, Instagram vs web, restaurantes, asesorías.
 - Copy en español, tono conversacional, E-E-A-T reforzado en `/sobre-mi/`.
 
 ### 8.2 Oportunidades (fuera de código)
 
 | Área | Recomendación |
 |------|---------------|
-| Profundidad | Ampliar blog con guías long-tail (mantenimiento, WooCommerce vs Shopify, sectores) |
+| Profundidad | Ampliar blog con guías long-tail (mantenimiento, WooCommerce, sectores adicionales) |
 | Intención local | Reforzar “Barcelona / España” donde sea natural sin keyword stuffing |
 | Frescura | Usar `updatedDate` en posts revisados y reflejarlo en sitemap `lastmod` |
 | Conversión SEO | Mantener CTAs internos hacia `/contacto/` y páginas de servicio |

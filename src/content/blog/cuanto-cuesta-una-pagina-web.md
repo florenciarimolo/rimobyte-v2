@@ -76,6 +76,7 @@ Para un negocio local en España, estos son los rangos reales:
 
 - **Web corporativa profesional:** desde 600€
 - **Tienda online:** desde 1.200€
+- **Plataforma de cursos (WordPress + LMS):** desde 1.000€
 - **Dominio + hosting (anual):** entre 50€ y 100€
 - **Mantenimiento (opcional):** desde 50€/mes sin permanencia
 

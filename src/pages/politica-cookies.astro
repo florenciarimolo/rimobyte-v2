@@ -3,16 +3,10 @@ import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import Footer from '../components/sections/Footer.astro';
 import LegalDocument from '../components/ui/LegalDocument.astro';
-
-const SEO = {
-  title: 'Política de cookies · RimoByte',
-  description:
-    'Qué cookies y tecnologías similares se usan en rimobyte.com, incluido reCAPTCHA v3 de Google, y cómo gestionarlas. RimoByte.',
-  image: '/assets/brand/flor-rimobyte.webp',
-};
+import { politicaCookiesSeo } from '../data/staticPageSeo';
 ---
 
-<Base title={SEO.title} description={SEO.description} image={SEO.image}>
+<Base title={politicaCookiesSeo.title} description={politicaCookiesSeo.description} image={politicaCookiesSeo.image}>
   <Navbar />
   <main id="main">
     <LegalDocument

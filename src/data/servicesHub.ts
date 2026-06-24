@@ -111,7 +111,7 @@ export const hubFaqs: ServiceFAQ[] = [
   {
     question: '¿Los precios son cerrados o sufren ampliaciones a mitad de proyecto?',
     answer:
-      'Cerrados. Antes de empezar te paso un presupuesto por escrito con todo desglosado. Si durante el proyecto pides algo que no estaba en el alcance inicial, te aviso y decidimos juntos antes de tocarlo.',
+      'Cerrados. Antes de empezar te paso un presupuesto por escrito con todo desglosado. Como referencia: web corporativa desde 600€, tienda online desde 1.200€, plataformas de cursos desde 1.000€. Si durante el proyecto pides algo que no estaba en el alcance inicial, te aviso y decidimos juntos antes de tocarlo.',
   },
   {
     question: '¿El dominio y el hosting están incluidos?',

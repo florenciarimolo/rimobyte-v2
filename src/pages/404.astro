@@ -4,14 +4,10 @@ import Navbar from '../components/sections/Navbar.astro';
 import Footer from '../components/sections/Footer.astro';
 import Button from '../components/ui/Button.astro';
 import SiteWrap from '../components/ui/SiteWrap.astro';
-
-const SEO = {
-  title: 'Página no encontrada · RimoByte',
-  description: 'Esta URL no existe o se ha movido. Vuelve al inicio o explora el blog y los proyectos.',
-};
+import { notFoundSeo } from '../data/staticPageSeo';
 ---
 
-<Base title={SEO.title} description={SEO.description} noindex>
+<Base title={notFoundSeo.title} description={notFoundSeo.description} noindex>
   <Navbar />
   <main id="main" class="bg-bg-elevated">
     <SiteWrap class="py-[clamp(6rem,12vw,9rem)] text-center">
