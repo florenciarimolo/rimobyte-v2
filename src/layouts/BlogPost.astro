@@ -4,13 +4,13 @@ import path from 'node:path';
 import Base from './Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import HeroArticulo from '../components/sections/blog/HeroArticulo.astro';
+import BlogArticleCover from '../components/sections/blog/BlogArticleCover.astro';
 import ArticuloContent from '../components/sections/blog/ArticuloContent.astro';
+import BlogArticleCta from '../components/sections/blog/BlogArticleCta.astro';
+import BlogArticleTags from '../components/sections/blog/BlogArticleTags.astro';
+import BlogArticleShare from '../components/sections/blog/BlogArticleShare.astro';
 import ArticuloRelacionados from '../components/sections/blog/ArticuloRelacionados.astro';
-import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import Footer from '../components/sections/Footer.astro';
-import Button from '../components/ui/Button.astro';
-import SectionShell from '../components/ui/SectionShell.astro';
-import SiteWrap from '../components/ui/SiteWrap.astro';
 import { blogOgPath } from '../data/blogImages';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection, render } from 'astro:content';
@@ -111,28 +111,44 @@ const modifiedIso = (post.data.updatedDate ?? post.data.date).toISOString();
     set:html={JSON.stringify(articleLdGraph)}
   />
 
+  <div class="blog-reading-progress" id="blogReadingProgress" aria-hidden="true"></div>
+
   <Navbar />
   <main id="main">
     <HeroArticulo post={post} />
+    <BlogArticleCover slug={post.id} title={post.data.title} />
     <ArticuloContent>
       <Content />
     </ArticuloContent>
 
-    <SectionShell elevated padding="none" class="py-[clamp(4rem,7vw,5rem)]">
-      <SiteWrap class="text-center">
-        <div class="reveal">
-          <h2
-            class="headline-gradient font-display font-medium text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] mb-4"
-          >
-            {post.data.ctaText}
-          </h2>
-          <Button href={post.data.ctaLink}>Hablemos →</Button>
-        </div>
-      </SiteWrap>
-    </SectionShell>
+    <BlogArticleCta title={post.data.ctaText} href={post.data.ctaLink} />
+    <BlogArticleTags keywords={post.data.keywords} />
+    <BlogArticleShare url={articleUrl} title={post.data.title} />
 
     {related.length > 0 && <ArticuloRelacionados posts={related} />}
-    <ContactFormIsland />
   </main>
   <Footer />
 </Base>
+
+<script>
+  function initReadingProgress() {
+    const bar = document.getElementById('blogReadingProgress');
+    if (!bar) return;
+
+    const update = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight =
+        (document.documentElement.scrollHeight || document.body.scrollHeight) -
+        document.documentElement.clientHeight;
+      const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      bar.style.width = `${pct}%`;
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  }
+
+  initReadingProgress();
+  document.addEventListener('astro:page-load', initReadingProgress);
+</script>

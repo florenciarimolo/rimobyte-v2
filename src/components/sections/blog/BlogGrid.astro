@@ -1,8 +1,8 @@
 ---
 import BlogCard from '../../ui/BlogCard.astro';
-import SectionShell from '../../ui/SectionShell.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
 import type { CollectionEntry } from 'astro:content';
+import type { BlogType } from '../../../data/blogMeta';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -11,21 +11,25 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<SectionShell padding="none" class="py-[clamp(2rem,4vw,3rem)] pb-[clamp(5rem,10vw,8rem)]">
+<section class="blog-articles">
   <SiteWrap>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="blog-articles-head reveal">
+      <h2>Más artículos</h2>
+    </div>
+    <div class="blog-articles-grid">
       {
         posts.map((post) => (
           <BlogCard
             slug={post.id}
+            coverImage={post.data.coverImage}
             title={post.data.title}
             description={post.data.description}
             date={post.data.date}
-            type={post.data.type}
+            type={post.data.type as BlogType}
             readingTime={post.data.readingTime}
           />
         ))
       }
     </div>
   </SiteWrap>
-</SectionShell>
+</section>

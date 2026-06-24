@@ -1,0 +1,30 @@
+---
+import Button from '../../ui/Button.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Icon from '../../ui/Icon.astro';
+
+interface Props {
+  title: string;
+  text?: string;
+  href: string;
+  buttonLabel?: string;
+}
+
+const {
+  title,
+  text = 'Te paso presupuesto cerrado en menos de 24 horas, sin tecnicismos y sin compromiso. Solo me cuentas qué necesitas y yo te digo qué tiene sentido hacer.',
+  href,
+  buttonLabel = 'Pedir presupuesto',
+} = Astro.props;
+---
+
+<SiteWrap>
+  <div class="blog-article-cta reveal">
+    <h3>{title}</h3>
+    <p>{text}</p>
+    <Button href={href} class="inline-flex items-center gap-2">
+      {buttonLabel}
+      <Icon name="arrow-right" class="inline-flex size-3.5 [&_svg]:size-full" />
+    </Button>
+  </div>
+</SiteWrap>

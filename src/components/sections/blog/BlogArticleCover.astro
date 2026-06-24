@@ -1,0 +1,27 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import { blogHeroPath } from '../../../data/blogImages';
+
+interface Props {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+const alt = `Portada: ${title}`;
+---
+
+<div class="blog-article-cover-band">
+  <SiteWrap>
+    <div class="blog-article-cover-visual reveal">
+      <img
+        src={blogHeroPath(slug)}
+        alt={alt}
+        width={1600}
+        height={900}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </SiteWrap>
+</div>

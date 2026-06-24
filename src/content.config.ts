@@ -9,7 +9,7 @@ const blog = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    type: z.enum(['seo', 'conversion', 'nicho']),
+    type: z.enum(['guia', 'opinion', 'sector', 'herramientas']),
     keywords: z.array(z.string()),
     readingTime: z.string(),
     ctaText: z.string(),

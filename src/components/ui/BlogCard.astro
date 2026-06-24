@@ -1,98 +1,45 @@
 ---
-import { blogCardSrc, blogCardSrcset } from '../../data/blogImages';
+import BlogCoverVisual from './BlogCoverVisual.astro';
+import Icon from './Icon.astro';
+import { formatBlogDate, type BlogType } from '../../data/blogMeta';
 
 interface Props {
   slug: string;
+  coverImage: string;
   title: string;
   description: string;
   date: Date;
-  type: 'seo' | 'conversion' | 'nicho';
+  type: BlogType;
   readingTime: string;
 }
 
-const { slug, title, description, date, type, readingTime } = Astro.props;
-
-const typeLabels: Record<string, string> = {
-  seo: 'GUÍA',
-  conversion: 'OPINIÓN',
-  nicho: 'SECTOR',
-};
-
-const formattedDate = date.toLocaleDateString('es-ES', {
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric',
-});
-
-const cardAlt = `Portada: ${title}`;
+const { slug, coverImage, title, description, date, type, readingTime } = Astro.props;
+const formattedDate = formatBlogDate(date);
 ---
 
 <a
   href={`/blog/${slug}/`}
-  class="blog-card reveal group flex flex-col no-underline text-inherit"
+  class="blog-article-card reveal"
+  data-blog-type={type}
 >
-  <div class="aspect-16/10 overflow-hidden">
-    <img
-      src={blogCardSrc(slug, 400)}
-      srcset={blogCardSrcset(slug)}
-      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
-      alt={cardAlt}
-      width={800}
-      height={500}
-      loading="lazy"
-      decoding="async"
-      class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-    />
-  </div>
-
-  <div class="blog-card__body flex flex-col gap-4">
-    <div
-      class="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.625rem] tracking-[0.14em] uppercase text-text-muted"
-    >
-      <span class="text-blue">{typeLabels[type]}</span>
-      <span class="opacity-40" aria-hidden="true">·</span>
+  <BlogCoverVisual
+    slug={slug}
+    coverImage={coverImage}
+    title={title}
+    type={type}
+    variant="card"
+  />
+  <div class="blog-article-info">
+    <div class="blog-meta-row">
       <span>{formattedDate}</span>
-      <span class="opacity-40" aria-hidden="true">·</span>
+      <span class="dot-sep" aria-hidden="true"></span>
       <span>{readingTime} de lectura</span>
     </div>
-
-    <h3
-      class="blog-card__title font-display font-medium text-[clamp(1.25rem,1.9vw,1.4375rem)] leading-[1.2] tracking-[-0.02em] m-0 text-text-primary"
-    >
-      {title}
-    </h3>
-
-    <p class="font-body text-[0.9375rem] leading-[1.7] text-text-secondary m-0">
-      {description}
-    </p>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="blog-read-link">
+      Leer artículo
+      <Icon name="arrow-right" class="inline-flex size-3 [&_svg]:size-full" />
+    </span>
   </div>
 </a>
-
-<style>
-  .blog-card {
-    border-radius: var(--radius-card);
-    border: 1px solid var(--color-border-default);
-    background: var(--color-surface-card);
-    overflow: hidden;
-    transition: border-color 0.2s ease, background 0.2s ease;
-  }
-
-  .blog-card:hover {
-    border-color: var(--color-border-blue);
-    background: var(--color-surface-card-hover);
-  }
-
-  .blog-card__body {
-    padding: 1.75rem;
-  }
-
-  /* Anular degradado global en h3 dentro de la card */
-  .blog-card__title {
-    background: none;
-    background-image: none;
-    -webkit-background-clip: border-box;
-    background-clip: border-box;
-    -webkit-text-fill-color: currentColor;
-    color: var(--color-text-primary);
-  }
-</style>

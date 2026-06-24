@@ -1,0 +1,47 @@
+---
+import BlogCoverVisual from '../../ui/BlogCoverVisual.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Icon from '../../ui/Icon.astro';
+import { formatBlogDate, type BlogType } from '../../../data/blogMeta';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const type = post.data.type as BlogType;
+---
+
+<section class="blog-featured">
+  <SiteWrap>
+    <a
+      href={`/blog/${post.id}/`}
+      class="blog-featured-card reveal"
+      data-blog-type={type}
+    >
+      <BlogCoverVisual
+        slug={post.id}
+        coverImage={post.data.coverImage}
+        title={post.data.title}
+        type={type}
+        variant="featured"
+      />
+      <div class="blog-featured-info">
+        <div class="blog-meta-row">
+          <span class="meta-accent">Destacado</span>
+          <span class="dot-sep" aria-hidden="true"></span>
+          <span>{formatBlogDate(post.data.date, 'long')}</span>
+          <span class="dot-sep" aria-hidden="true"></span>
+          <span>{post.data.readingTime} de lectura</span>
+        </div>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.description}</p>
+        <span class="blog-read-link">
+          Leer artículo
+          <Icon name="arrow-right" class="inline-flex size-3.5 [&_svg]:size-full" />
+        </span>
+      </div>
+    </a>
+  </SiteWrap>
+</section>

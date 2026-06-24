@@ -1,8 +1,7 @@
 ---
-import BlogCard from '../../ui/BlogCard.astro';
-import Eyebrow from '../../ui/Eyebrow.astro';
-import SectionShell from '../../ui/SectionShell.astro';
+import BlogCoverVisual from '../../ui/BlogCoverVisual.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
+import { blogTypeLabels, formatBlogDate, type BlogType } from '../../../data/blogMeta';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -12,25 +11,40 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<SectionShell padding="none" class="py-[clamp(5rem,9vw,7rem)]">
+<section class="blog-related">
   <SiteWrap>
-    <div class="reveal mb-8">
-      <Eyebrow text="SIGUE LEYENDO" class="mb-4" />
+    <div class="blog-related-head reveal">
+      <h2>Sigue leyendo</h2>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="blog-related-grid">
       {
-        posts.map((post) => (
-          <BlogCard
-            slug={post.id}
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            type={post.data.type}
-            readingTime={post.data.readingTime}
-          />
-        ))
+        posts.map((post) => {
+          const type = post.data.type as BlogType;
+          return (
+            <a href={`/blog/${post.id}/`} class="blog-related-card reveal">
+              <BlogCoverVisual
+                slug={post.id}
+                coverImage={post.data.coverImage}
+                title={post.data.title}
+                type={type}
+                variant="related"
+                showTag={false}
+              />
+              <div class="blog-related-info">
+                <div class="blog-meta-row">
+                  <span class="cat">{blogTypeLabels[type]}</span>
+                  <span class="dot-sep" aria-hidden="true"></span>
+                  <span>{formatBlogDate(post.data.date)}</span>
+                  <span class="dot-sep" aria-hidden="true"></span>
+                  <span>{post.data.readingTime}</span>
+                </div>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </div>
+            </a>
+          );
+        })
       }
     </div>
   </SiteWrap>
-</SectionShell>
+</section>

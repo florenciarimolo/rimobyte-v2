@@ -1,0 +1,49 @@
+---
+import { blogFilterTypes } from '../../../data/blogMeta';
+import SiteWrap from '../../ui/SiteWrap.astro';
+---
+
+<SiteWrap>
+  <div class="blog-cat-filter" role="group" aria-label="Filtrar artículos por categoría">
+    {
+      blogFilterTypes.map(({ id, label }) => (
+        <button
+          type="button"
+          class:list={['reveal', id === 'all' && 'is-active']}
+          data-filter={id}
+        >
+          {label}
+        </button>
+      ))
+    }
+  </div>
+</SiteWrap>
+
+<script>
+  function initBlogFilter() {
+    const filter = document.querySelector('.blog-cat-filter');
+    if (!filter) return;
+
+    const items = document.querySelectorAll<HTMLElement>('[data-blog-type]');
+
+    filter.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest('button');
+      if (!button || !filter.contains(button)) return;
+
+      const type = button.dataset.filter ?? 'all';
+
+      filter.querySelectorAll('button').forEach((btn) => {
+        btn.classList.toggle('is-active', btn === button);
+      });
+
+      items.forEach((item) => {
+        const itemType = item.dataset.blogType;
+        const show = type === 'all' || itemType === type;
+        item.hidden = !show;
+      });
+    });
+  }
+
+  initBlogFilter();
+  document.addEventListener('astro:page-load', initBlogFilter);
+</script>

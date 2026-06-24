@@ -1,0 +1,46 @@
+---
+import { blogCardSrc, blogCardSrcset, blogHeroPath } from '../../data/blogImages';
+import { blogTypeLabels, type BlogType } from '../../data/blogMeta';
+
+interface Props {
+  slug: string;
+  coverImage: string;
+  title: string;
+  type: BlogType;
+  variant?: 'card' | 'featured' | 'related';
+  showTag?: boolean;
+}
+
+const { slug, coverImage, title, type, variant = 'card', showTag = true } = Astro.props;
+void coverImage;
+const tagLabel = blogTypeLabels[type];
+const alt = `Portada: ${title}`;
+
+const isFeatured = variant === 'featured';
+const src = isFeatured ? blogHeroPath(slug) : blogCardSrc(slug, 400);
+const srcset = isFeatured
+  ? `${blogCardSrc(slug, 800)} 800w, ${blogHeroPath(slug)} 1600w`
+  : blogCardSrcset(slug);
+const sizes = isFeatured
+  ? '(max-width: 980px) 100vw, 50vw'
+  : variant === 'related'
+    ? '160px'
+    : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px';
+const loading = isFeatured ? 'eager' : 'lazy';
+const fetchpriority = isFeatured ? 'high' : undefined;
+---
+
+<div class:list={['blog-cover', 'blog-cover--image', isFeatured && 'blog-cover--featured']}>
+  {showTag && <span class="blog-cover-tag">{tagLabel}</span>}
+  <img
+    src={src}
+    srcset={srcset}
+    sizes={sizes}
+    alt={alt}
+    width={isFeatured ? 1600 : 800}
+    height={isFeatured ? 900 : 500}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+  />
+</div>

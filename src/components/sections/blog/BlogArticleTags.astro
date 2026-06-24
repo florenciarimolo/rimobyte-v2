@@ -1,0 +1,22 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+
+interface Props {
+  keywords: string[];
+}
+
+const { keywords } = Astro.props;
+---
+
+{
+  keywords.length > 0 && (
+    <SiteWrap>
+      <div class="blog-article-tags reveal">
+        <span class="blog-article-tags-label">Etiquetas</span>
+        {keywords.map((keyword) => (
+          <span class="blog-article-tag">{keyword}</span>
+        ))}
+      </div>
+    </SiteWrap>
+  )
+}
