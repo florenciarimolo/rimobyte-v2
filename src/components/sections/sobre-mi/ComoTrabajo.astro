@@ -1,56 +1,12 @@
 ---
-import SectionShell from '../../ui/SectionShell.astro';
-import SiteWrap from '../../ui/SiteWrap.astro';
-import SectionHead from '../../ui/SectionHead.astro';
-import Eyebrow from '../../ui/Eyebrow.astro';
-
-const steps = [
-  {
-    title: 'Hablamos',
-    body: 'Me cuentas qué necesitas. Si ya lo tienes claro, te doy una estimación de plazos desde el principio. Si todavía tienes dudas, te hago las preguntas necesarias para entender bien tu negocio y lo que quieres conseguir con tu web. Sin prisas.',
-  },
-  {
-    title: 'Te explico los costes reales antes de empezar',
-    body: 'Tener una web requiere un dominio y un alojamiento — son tuyos, van a tu nombre y los pagas tú directamente. Antes de nada te explico exactamente cuánto cuestan y dónde contratarlos, para que no haya sorpresas después. Te acompaño en el proceso si lo necesitas.',
-  },
-  {
-    title: 'Diseñamos juntos',
-    body: 'Una vez claro el contenido, te presento un par de propuestas de diseño para que elijas la dirección que más te representa. No empiezo a construir nada hasta que estés convencida de lo que vas a tener.',
-  },
-  {
-    title: 'Lo construyo y lo revisamos',
-    body: 'Implemento el diseño aprobado y te lo muestro antes de publicar. Tienes margen para pedir ajustes — el objetivo es que cuando salga, sea exactamente lo que esperabas.',
-  },
-  {
-    title: 'Tu web sale al mundo — y yo sigo aquí',
-    body: 'Cuando la web está lista, te explico cómo funciona para que no dependas de mí para lo básico. Si quieres que me encargue del mantenimiento técnico, puedo hacerlo — pero no es obligatorio. La web es tuya y siempre lo será.',
-  },
-];
+import ProcessTimeline from '../ProcessTimeline.astro';
+import { sobreMiProcessSteps } from '../../../data/sobreMi';
 ---
 
-<SectionShell elevated class="relative">
-  <SiteWrap>
-    <Eyebrow text="CÓMO TRABAJO" class="reveal mb-6" />
-    <SectionHead
-      title="Cada proyecto sigue el mismo proceso. No porque sea una norma — porque"
-      titleEm="funciona."
-      subtitle="En cada paso sabes qué pasa y qué toca después."
-      class="reveal"
-      narrow={false}
-    />
-
-    <ol class="landing-manifest">
-      {
-        steps.map((step, i) => (
-          <li class="landing-manifest__item reveal">
-            <span class="landing-manifest__n">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-  </SiteWrap>
-</SectionShell>
+<ProcessTimeline
+  pill="Cómo trabajo"
+  title="Cada proyecto sigue el mismo proceso. No porque sea una norma — porque"
+  titleGradient="funciona."
+  description="Cinco pasos pensados para que en cada momento sepas qué pasa, qué falta y qué va a costar. Sin sustos al final del proyecto."
+  steps={sobreMiProcessSteps}
+/>

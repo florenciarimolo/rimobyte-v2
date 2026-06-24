@@ -1,9 +1,24 @@
 ---
-import CTAFinalServicio from '../servicios/CTAFinalServicio.astro';
+import Button from '../../ui/Button.astro';
+import DarkCTA from '../../ui/DarkCTA.astro';
+import Icon from '../../ui/Icon.astro';
 ---
 
-<CTAFinalServicio
-  title="¿Tu proyecto es el"
-  titleEm="siguiente?"
-  text="Si tienes un negocio que necesita presencia online o una web que no te representa como mereces, hablemos. Sin compromiso, sin tecnicismos."
-/>
+<DarkCTA pill="Respondo en menos de 24 horas" live>
+  <span slot="title">
+    ¿Tu proyecto es el <span class="gradient-text">siguiente?</span>
+  </span>
+  <span slot="description">
+    Si tienes un negocio que necesita presencia online o una web que no te representa como mereces,
+    hablemos. Sin compromiso, sin tecnicismos.
+  </span>
+  <Fragment slot="actions">
+    <Button href="/contacto/" variant="primary" class="inline-flex items-center gap-2">
+      Quiero empezar mi web
+      <Icon name="arrow-right" class="inline-flex size-3.5 [&_svg]:size-full" />
+    </Button>
+    <Button href="https://wa.me/34684713743" variant="ghost" external>
+      WhatsApp · 684 713 743
+    </Button>
+  </Fragment>
+</DarkCTA>

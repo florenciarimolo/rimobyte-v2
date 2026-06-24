@@ -1,26 +1,26 @@
 ---
 const items = [
-  'WEB CORPORATIVA',
-  'TIENDA ONLINE',
-  'SEO LOCAL',
-  'MANTENIMIENTO REAL',
-  'NEGOCIOS LOCALES',
-  'DISEÑO WEB',
-  'DESARROLLO WEB',
-  'TU WEB ES TUYA',
-  'SIN SORPRESAS',
-  'SOPORTE CONTINUO',
-  'PRESUPUESTO CLARO',
-  'GOOGLE LOCAL',
+  'Web corporativa',
+  'Tienda online',
+  'SEO local',
+  'Mantenimiento real',
+  'Negocios locales',
+  'Diseño web',
+  'Desarrollo web',
+  'Tu web es tuya',
+  'Sin sorpresas',
+  'Soporte continuo',
+  'Presupuesto claro',
+  'Google local',
 ];
 ---
-<div class="hero-screen__marquee w-full bg-bg-elevated overflow-hidden border-t border-border-default py-3">
-  <div class="flex w-max" style="animation: marquee 22s linear infinite;">
-    {[...items, ...items].map((item) => (
-      <span class="flex items-center gap-5 px-6 font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-text-muted whitespace-nowrap">
-        {item}
-        <span class="text-blue text-base opacity-40">·</span>
-      </span>
-    ))}
+
+<div class="marquee-v6" aria-hidden="true">
+  <div class="marquee-v6__track">
+    {
+      [...items, ...items].map((item) => (
+        <span>{item}</span>
+      ))
+    }
   </div>
 </div>

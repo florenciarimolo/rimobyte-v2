@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
 import HeroSobreMi from '../components/sections/sobre-mi/HeroSobreMi.astro';
+import Marquee from '../components/sections/Marquee.astro';
 import EnQueCreo from '../components/sections/sobre-mi/EnQueCreo.astro';
 import MiHistoria from '../components/sections/sobre-mi/MiHistoria.astro';
 import ComoTrabajo from '../components/sections/sobre-mi/ComoTrabajo.astro';
@@ -12,8 +13,9 @@ import Footer from '../components/sections/Footer.astro';
 import { fetchPlaceAggregate } from '../lib/google-reviews';
 
 const SEO = {
-  title: 'Flor Rímolo — Diseñadora web freelance · RimoByte',
-  description: 'Graduada en 2019, especializada en desarrollo web para negocios locales. Trabajo directamente con el cliente sin intermediarios. Tu web es tuya desde el primer día.',
+  title: 'Flor Rímolo — Ingeniera informática y diseñadora web freelance · RimoByte',
+  description:
+    'Graduada en 2019, especializada en desarrollo web para negocios locales. Trabajo directamente con el cliente sin intermediarios. Tu web es tuya desde el primer día.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 
@@ -28,6 +30,7 @@ const placeAgg = await fetchPlaceAggregate();
   <Navbar />
   <main id="main">
     <HeroSobreMi />
+    <Marquee />
     <EnQueCreo />
     <MiHistoria />
     <ComoTrabajo />

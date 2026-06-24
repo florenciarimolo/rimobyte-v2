@@ -1,64 +1,58 @@
 ---
-import SectionShell from '../../ui/SectionShell.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
-import Eyebrow from '../../ui/Eyebrow.astro';
+import Pill from '../../ui/Pill.astro';
 import Button from '../../ui/Button.astro';
-
-const checks = ['Graduada en 2019', 'Trabajo directo contigo', 'Tu web es tuya'];
+import Icon from '../../ui/Icon.astro';
 ---
 
-<SectionShell padding="hero" class="overflow-hidden">
-  <SiteWrap class="grid gap-12 min-[900px]:grid-cols-[1.15fr_0.85fr] min-[900px]:items-center min-[900px]:gap-16">
-    <div class="relative z-10 max-w-[640px]">
-      <Eyebrow text="INGENIERA INFORMÁTICA · FREELANCE" class="mb-6" />
+<header class="sobre-mi-hero">
+  <SiteWrap class="sobre-mi-hero__grid">
+    <div class="sobre-mi-hero__content">
+      <Pill class="reveal">Ingeniera informática · Freelance</Pill>
 
-      <h1
-        class="reveal mb-6 font-display text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[1.02] tracking-[-0.03em] text-text-primary bg-none"
-      >
-        Construyo webs que funcionan de{' '}
-        <em class="font-normal italic text-gradient-logo">verdad.</em>
+      <h1 class="reveal">
+        Construyo webs que funcionan de <em>verdad.</em>
       </h1>
 
-      <p
-        class="reveal mb-4 max-w-[520px] font-body text-[clamp(1.0625rem,1.4vw,1.25rem)] font-medium leading-snug tracking-[-0.01em] text-text-primary"
-      >
-        Y me aseguro de que sean siempre tuyas.
+      <p class="sobre-mi-hero__sub reveal">Y me aseguro de que sean siempre tuyas.</p>
+
+      <p class="sobre-mi-hero__lede reveal">
+        Soy Flor Rímolo. Trabajo directamente con negocios locales y autónomos que quieren una presencia
+        online profesional, sin depender de nadie para mantenerla.
       </p>
 
-      <p
-        class="reveal mb-8 max-w-[520px] font-body text-[clamp(1rem,1.4vw,1.125rem)] leading-[1.7] text-text-secondary"
-      >
-        Soy Flor Rímolo. Trabajo directamente con negocios locales y autónomos que quieren una
-        presencia online profesional, sin depender de nadie para mantenerla.
-      </p>
-
-      <div class="reveal mb-10 flex flex-wrap gap-3">
-        <Button href="#contacto" variant="primary">Quiero empezar mi web</Button>
-        <Button href="/proyectos/" variant="outline">Ver mis proyectos →</Button>
+      <div class="sobre-mi-hero__cta reveal">
+        <Button href="#contacto" variant="primary" class="inline-flex items-center gap-2">
+          Hablemos de tu proyecto
+          <Icon name="arrow-right" class="inline-flex size-3.5 [&_svg]:size-full" />
+        </Button>
+        <Button href="/proyectos/" variant="outline">Ver mis proyectos</Button>
       </div>
-
-      <ul class="reveal m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
-        {
-          checks.map((check) => (
-            <li class="flex items-center gap-2 font-body text-sm text-text-secondary">
-              <span class="size-1.5 shrink-0 rounded-full bg-blue" aria-hidden="true" />
-              {check}
-            </li>
-          ))
-        }
-      </ul>
     </div>
 
-    <figure class="sobre-mi-hero__photo reveal">
-      <img
-        src="/assets/brand/flor-rimobyte.webp"
-        alt="Flor Rímolo — Ingeniera informática y diseñadora web freelance"
-        width="360"
-        height="450"
-        loading="eager"
-        decoding="async"
-      />
-      <figcaption class="sobre-mi-hero__frame" aria-hidden="true"></figcaption>
-    </figure>
+    <div class="sobre-mi-portrait reveal">
+      <div class="sobre-mi-portrait__inner">
+        <img
+          src="/assets/brand/flor-rimobyte.webp"
+          alt="Flor Rímolo, ingeniera informática y diseñadora web freelance"
+          width="440"
+          height="550"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="sobre-mi-portrait__badge sobre-mi-portrait__badge--1">
+        <span class="sobre-mi-portrait__badge-label">Desde</span>
+        <span class="sobre-mi-portrait__badge-value"><strong>2019</strong></span>
+      </div>
+      <div class="sobre-mi-portrait__badge sobre-mi-portrait__badge--2">
+        <span class="sobre-mi-portrait__badge-label">Grado</span>
+        <span class="sobre-mi-portrait__badge-value">Ingeniería <strong>Informática</strong></span>
+      </div>
+      <div class="sobre-mi-portrait__badge sobre-mi-portrait__badge--3">
+        <span class="sobre-mi-portrait__badge-label">Modelo</span>
+        <span class="sobre-mi-portrait__badge-value">100% <strong>directo</strong></span>
+      </div>
+    </div>
   </SiteWrap>
-</SectionShell>
+</header>

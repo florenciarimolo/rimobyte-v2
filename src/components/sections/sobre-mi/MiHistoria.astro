@@ -1,33 +1,54 @@
 ---
-import SectionShell from '../../ui/SectionShell.astro';
 import SiteWrap from '../../ui/SiteWrap.astro';
-import SectionHead from '../../ui/SectionHead.astro';
+import Pill from '../../ui/Pill.astro';
+import { sobreMiTimeline } from '../../../data/sobreMi';
 ---
 
-<SectionShell elevated>
-  <SiteWrap class="max-w-[40rem]">
-    <SectionHead
-      title="De la ingeniería a trabajar contigo,"
-      titleEm="directamente."
-      class="reveal mx-auto text-center [&_p]:mx-auto"
-    />
+<section class="about-dark-wrap">
+  <SiteWrap>
+    <div class="about-dark reveal">
+      <div class="about-dark__aurora about-dark__aurora--1" aria-hidden="true"></div>
+      <div class="about-dark__aurora about-dark__aurora--2" aria-hidden="true"></div>
 
-    <div class="sobre-mi-historia__body reveal space-y-6">
-      <p class="font-body text-base leading-[1.75] text-text-secondary">
-        Estudié ingeniería informática porque siempre me había gustado entender cómo funcionan las
-        cosas por dentro. Cuando acabé la carrera en 2019, empecé a trabajar en proyectos de
-        desarrollo — y con el tiempo me fui especializando en web.
-      </p>
-      <p class="font-body text-base leading-[1.75] text-text-secondary">
-        Decidí hacerme autónoma porque quería algo que no encontraba trabajando para otros: tiempo
-        real para cada cliente, implicación de verdad en cada proyecto y la satisfacción de ver cómo
-        un negocio crece gracias a una web bien hecha.
-      </p>
-      <p class="sobre-mi-historia__highlight font-body text-base leading-[1.75] text-text-primary">
-        No soy una agencia. Soy una persona que se sienta contigo, entiende tu negocio y construye
-        algo que funciona. Hablas conmigo desde el primer mensaje hasta la entrega — y después
-        también.
-      </p>
+      <div class="sobre-mi-story__inner">
+        <div class="sobre-mi-story__content">
+          <Pill text="Mi historia" />
+          <h2>
+            De la ingeniería a trabajar contigo, <span class="gradient-text">directamente.</span>
+          </h2>
+          <p>
+            Estudié ingeniería informática porque siempre me había gustado entender cómo funcionan las
+            cosas por dentro. Cuando acabé la carrera en 2019, empecé a trabajar en proyectos de
+            desarrollo — y con el tiempo me fui especializando en web.
+          </p>
+          <p>
+            Decidí hacerme autónoma porque quería algo que no encontraba trabajando para otros:{' '}
+            <strong>tiempo real para cada cliente, implicación de verdad en cada proyecto</strong> y la
+            satisfacción de ver cómo un negocio crece gracias a una web bien hecha.
+          </p>
+          <p>
+            No soy una agencia. Soy una persona que se sienta contigo, entiende tu negocio y construye
+            algo que funciona. Hablas conmigo desde el primer mensaje hasta la entrega — y después también.
+          </p>
+        </div>
+
+        <aside class="sobre-mi-story__timeline" aria-label="Línea de tiempo profesional">
+          <h3>El camino hasta aquí</h3>
+          <ol>
+            {
+              sobreMiTimeline.map((item) => (
+                <li>
+                  <span class="sobre-mi-story__dot" aria-hidden="true"></span>
+                  <div>
+                    <span class="sobre-mi-story__year">{item.year}</span>
+                    <span class="sobre-mi-story__label">{item.label}</span>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </aside>
+      </div>
     </div>
   </SiteWrap>
-</SectionShell>
+</section>

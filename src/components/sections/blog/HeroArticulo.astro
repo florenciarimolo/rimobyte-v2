@@ -1,6 +1,5 @@
 ---
 import SiteWrap from '../../ui/SiteWrap.astro';
-import Icon from '../../ui/Icon.astro';
 import { blogTypeLabels, formatBlogDate, type BlogType } from '../../../data/blogMeta';
 import type { CollectionEntry } from 'astro:content';
 
@@ -10,18 +9,7 @@ interface Props {
 
 const { post } = Astro.props;
 const type = post.data.type as BlogType;
-const breadcrumbLabel =
-  post.data.title.length > 48 ? `${post.data.title.slice(0, 45)}…` : post.data.title;
 ---
-
-<div class="blog-breadcrumb">
-  <SiteWrap>
-    <a href="/blog/" class="reveal">
-      <Icon name="arrow-right" class="inline-flex size-3.5 rotate-180 [&_svg]:size-full" />
-      Blog / {breadcrumbLabel}
-    </a>
-  </SiteWrap>
-</div>
 
 <header class="blog-article-header">
   <SiteWrap>

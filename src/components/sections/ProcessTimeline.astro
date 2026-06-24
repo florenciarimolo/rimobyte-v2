@@ -1,0 +1,56 @@
+---
+import SiteWrap from '../ui/SiteWrap.astro';
+import SectionHead from '../ui/SectionHead.astro';
+
+export interface ProcessTimelineStep {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  pill?: string;
+  title: string;
+  titleGradient: string;
+  description: string;
+  steps: ProcessTimelineStep[];
+  class?: string;
+}
+
+const {
+  pill = 'Cómo trabajo',
+  title,
+  titleGradient,
+  description,
+  steps,
+  class: cls = '',
+} = Astro.props;
+---
+
+<section class:list={['process-timeline-v6', cls]}>
+  <SiteWrap>
+    <SectionHead
+      pill={pill}
+      {title}
+      titleGradient={titleGradient}
+      subtitle={description}
+      narrow={false}
+      class="reveal process-timeline-v6__head"
+    />
+
+    <div class="process-timeline-v6__steps">
+      {
+        steps.map((step, index) => (
+          <article class="process-timeline-v6__step glass-card reveal">
+            <div class="process-timeline-v6__num" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </div>
+            <div class="process-timeline-v6__content">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </SiteWrap>
+</section>
