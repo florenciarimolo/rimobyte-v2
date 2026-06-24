@@ -36,6 +36,10 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'R',
     gradient: 'linear-gradient(135deg, #196BEE, #6535E5 50%, #E715D1)',
   },
+  'web-para-asesoria-captar-clientes': {
+    icon: 'A',
+    gradient: 'linear-gradient(135deg, #6535E5, #196BEE)',
+  },
 };
 
 export function getBlogVisual(slug: string): BlogVisual {
