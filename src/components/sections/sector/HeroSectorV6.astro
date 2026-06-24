@@ -6,6 +6,7 @@ import HeroStats from '../../ui/HeroStats.astro';
 import SectorPhoneMockup from '../../ui/SectorPhoneMockup.astro';
 import SectorMenuMockup from '../../ui/SectorMenuMockup.astro';
 import SectorPracticeMockup from '../../ui/SectorPracticeMockup.astro';
+import SectorListingsMockup from '../../ui/SectorListingsMockup.astro';
 import { projectImageBase } from '../../../data/projectImages';
 import { getSectorProject, type Sector } from '../../../data/sectors';
 
@@ -78,6 +79,10 @@ const mockupSrcset = mockupAssetBase
         ) : sector.heroMockupType === 'practice' ? (
           <div class="sector-v6-hero__mockup reveal">
             <SectorPracticeMockup />
+          </div>
+        ) : sector.heroMockupType === 'listings' ? (
+          <div class="sector-v6-hero__mockup reveal">
+            <SectorListingsMockup />
           </div>
         ) : (
           project &&

@@ -120,7 +120,7 @@ export interface Sector {
   /** Captura móvil del mockup de teléfono en el hero sectorial */
   heroMockupImage?: string;
   /** Mockup del hero: teléfono (por defecto), carta de menú o especialidades (psicología) */
-  heroMockupType?: 'phone' | 'menu' | 'practice';
+  heroMockupType?: 'phone' | 'menu' | 'practice' | 'listings';
   heroStrip?: { label: string; tags: string[] };
   painPoints?: {
     eyebrow: string;
@@ -1294,6 +1294,202 @@ export const sectors: Sector[] = [
       title: 'Diseño web para psicólogos y terapeutas · RimoByte',
       description:
         'Webs WordPress a medida para psicólogos en consulta privada. Una página por especialidad, SEO local, formularios RGPD y reserva de primera cita. Desde 600€, sin permanencia.',
+    },
+  },
+  {
+    slug: 'web-para-inmobiliarias',
+    name: 'Web para inmobiliarias',
+    sectorNameShort: 'inmobiliarias',
+    eyebrow: 'WEB PARA INMOBILIARIAS',
+    headline: 'Tu CRM al día, tu web',
+    headlineEm: 'con cara propia.',
+    description:
+      'Webs WordPress a medida para agencias inmobiliarias que quieren un catálogo sincronizado con su CRM (Inmovilla, Inmoweb, Witei, Inmobalia, Apimo…), un buscador que filtra de verdad y una imagen de marca que no parezca la plantilla genérica que viene con el software.',
+    ctaPrimary: 'Cuéntame tu agencia',
+    checks: ['Sincronización CRM', 'Buscador de inmuebles', 'Diseño a medida'],
+    heroPills: ['Web para inmobiliarias', 'CRM conectado · Catálogo'],
+    heroMockupType: 'listings',
+    heroStats: [
+      { value: 'CRM', label: 'Inmuebles sincronizados', gradient: true },
+      { value: 'SEO', label: 'Por zona y tipo de inmueble', gradient: true },
+      { value: '24/7', label: 'Solicitudes de visita', gradient: true },
+    ],
+    heroSecondaryCta: { label: 'Ver concepto visual', href: '#concepto' },
+    painPoints: {
+      eyebrow: 'Lo que más veo en inmobiliaria',
+      title: 'Tu web tiene que resolver',
+      titleEm: 'tres problemas a la vez.',
+      paragraphs: [
+        {
+          text: 'Hacer una web de inmobiliaria no es pegar un iframe del portal ni repetir la misma plantilla que ofrece tu CRM. El comprador o inquilino compara en segundos: fotos, precio, zona y sensación de confianza. Si la web parece genérica o el catálogo va desfasado, vuelve a Idealista.',
+        },
+        {
+          emphasis: 'El primer problema es el catálogo:',
+          text: ' que los inmuebles que gestionas en el CRM aparezcan en tu web sin duplicar trabajo — con fotos, precios y estados actualizados. El segundo es la búsqueda: filtros por operación, zona, precio y habitaciones que funcionen en móvil. El tercero es la captación: que pidan visita, valoración o contacto contigo, no solo con el portal.',
+        },
+        {
+          emphasis: 'Muchos CRM incluyen web propia,',
+          text: ' pero las plantillas son limitadas y todas las agencias del mismo software se parecen. Yo conecto tu CRM con WordPress para que el catálogo se alimente solo y el diseño, la estructura y el SEO sean tuyos — personalizados para tu mercado y tu marca.',
+        },
+      ],
+      credentialsTitle: 'Lo que tu web tendrá',
+      credentials: [
+        {
+          label: 'Conexión con tu CRM.',
+          text: 'Sincronización vía API o XML con Inmovilla, Inmoweb, Witei, Inmobalia, Apimo, Getrix, eGO Real Estate y otros feeds compatibles. Publicas una vez en el CRM y la web se actualiza.',
+        },
+        {
+          label: 'Buscador y fichas de inmueble.',
+          text: 'Filtros por venta/alquiler, zona, precio y m². Galería, mapa, características y CTA de solicitud de visita en cada ficha.',
+        },
+        {
+          label: 'Diseño que no parece plantilla.',
+          text: 'WordPress a medida: tu logo, tus colores, tu copy y páginas por zona o tipo de inmueble — no el tema genérico del marketplace del CRM.',
+        },
+        {
+          label: 'SEO local por barrio y operación.',
+          text: 'Páginas para "pisos en venta en [zona]" o "alquiler en [barrio]" además del listado general.',
+        },
+        {
+          label: 'Soporte humano.',
+          text: 'Hablas conmigo, no con un ticket. Diez reseñas de Google con 5/5 lo respaldan.',
+        },
+      ],
+    },
+    concept: {
+      id: 'concepto',
+      eyebrow: 'Cómo se vería tu web',
+      title: 'Concepto visual para',
+      titleEm: 'tu inmobiliaria.',
+      intro:
+        'Mockup de cómo construiría la home: buscador visible en el primer pantallazo, inmuebles destacados alimentados por el CRM y los tres elementos críticos (operación, zona y solicitud de visita) siempre a mano.',
+      url: 'tuinmobiliaria.es',
+      browserHeadline: 'Encuentra tu',
+      browserHeadlineEm: 'próximo hogar',
+      browserDescription:
+        'Venta y alquiler en tu ciudad. Catálogo actualizado cada día desde nuestra gestión. Solicita visita sin compromiso.',
+      browserPrimaryCta: 'Ver inmuebles',
+      browserSecondaryCta: 'Valoración gratuita',
+      miniCards: [
+        { icon: 'clock', title: '12 inmuebles nuevos', subtitle: 'Esta semana' },
+        { icon: 'map', title: 'Tu zona', subtitle: 'Barrios y municipios' },
+        { icon: 'phone', title: 'Contacto directo', subtitle: 'Sin intermediarios' },
+      ],
+    },
+    featuresEyebrow: 'Qué incluye una web para inmobiliarias',
+    featuresIntro:
+      'Cada pieza está pensada para agencias que ya trabajan con CRM: el catálogo no se duplica, la web convierte visitas en leads y la marca no se diluye en una plantilla estándar.',
+    featuresTitle: 'Pensado para',
+    featuresTitleEm: 'cómo vendes inmuebles.',
+    features: [
+      {
+        icon: 'result-layers',
+        title: 'Sincronización CRM → WordPress',
+        description:
+          'Conexión con Inmovilla, Inmoweb, Witei, Inmobalia, Apimo, Getrix, eGO Real Estate, Kyero, InfoCasa, thinkSPAIN y ReSales Online vía API o feed XML. Inmuebles, fotos, precios y estados sin copiar y pegar.',
+        tag: 'CRM · API / XML',
+        span: 'wide',
+      },
+      {
+        icon: 'result-grid',
+        title: 'Buscador con filtros reales',
+        description:
+          'Venta o alquiler, rango de precio, habitaciones, m² y zona. Resultados rápidos en móvil — donde se decide el 70% de las búsquedas inmobiliarias.',
+      },
+      {
+        icon: 'result-star',
+        title: 'Fichas de inmueble que venden',
+        description:
+          'Galería optimizada, plano, mapa, características, eficiencia energética y botones de WhatsApp, llamada y solicitud de visita.',
+      },
+      {
+        icon: 'globe',
+        title: 'SEO por zona y operación',
+        description:
+          'Landing pages para barrios, municipios y tipos de inmueble. Schema RealEstateAgent + LocalBusiness para Google local.',
+      },
+      {
+        icon: 'result-trend',
+        title: 'Captación de leads',
+        description:
+          'Formularios de valoración, alertas de búsqueda, solicitud de visita y contacto con RGPD. Los leads llegan a tu email o al CRM.',
+      },
+      {
+        icon: 'result-clock',
+        title: 'Diseño a medida, no plantilla del CRM',
+        description:
+          'La web que ofrece Inmoweb o Inmovilla funciona, pero se ve como la del vecino. Aquí el diseño es WordPress propio: solo tu marca, con el catálogo conectado.',
+        span: 'tall',
+      },
+    ],
+    relatedProjects: {
+      eyebrow: 'Mi trabajo en webs profesionales',
+      title: 'La ingeniería detrás de tu web,',
+      titleEm: 'aplicada y probada.',
+      intro:
+        'Proyectos donde el SEO, la velocidad y las integraciones con sistemas externos eran críticas — la misma base técnica que necesita una inmobiliaria con catálogo vivo.',
+      slugs: ['vila-i-lancis', 'lucia-nails-art'],
+    },
+    offer: {
+      eyebrow: 'Plan completo · Inmobiliaria',
+      title: 'Todo lo que tu agencia',
+      titleEm: 'necesita online.',
+      lede:
+        'Web WordPress a medida con buscador de inmuebles, conexión a tu CRM y SEO local. Plazo cerrado, precio cerrado y formación para que gestiones contenidos tú después. Sin permanencia.',
+      features: [
+        'Diseño 100% a medida con dos direcciones a elegir',
+        'Home + listado de inmuebles + ficha individual',
+        'Integración CRM acordada (API, XML o plugin según tu software)',
+        'Formularios de visita y valoración con RGPD',
+        'SEO local + Google Business Profile configurados',
+        'Formación + 30 días de soporte tras la entrega',
+      ],
+      price: '1200€',
+      priceNote: 'desde · pago único, sin permanencia',
+      priceDetail:
+        'El precio final depende del CRM que uses, del volumen de inmuebles, de páginas por zona y de si migramos catálogo o web actual. La integración CRM se presupuesta aparte si requiere desarrollo a medida. Te paso cifra cerrada antes de empezar.',
+      cta: 'Pedir presupuesto',
+    },
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Sobre webs para',
+    faqTitleEm: 'inmobiliarias.',
+    faqs: [
+      {
+        question: '¿Por qué no usar la web que ya incluye mi CRM?',
+        answer:
+          'Inmoweb, Inmovilla y otros ofrecen web conectada al catálogo — y para empezar puede valer. El problema es el diseño: plantillas genéricas, poca flexibilidad de marca y SEO limitado. Mi propuesta es mantener tu CRM como fuente de verdad y mostrar los inmuebles en una web WordPress tuya, con diseño personalizado y estructura pensada para tu mercado.',
+      },
+      {
+        question: '¿Con qué CRMs inmobiliarios puedes conectar la web?',
+        answer:
+          'Trabajo con los CRM más usados en España que ya tienen integración estándar con WordPress: Inmovilla, Inmoweb, Witei, Inmobalia, Apimo, Getrix, eGO Real Estate, Kyero, InfoCasa, thinkSPAIN y ReSales Online. Si el tuyo exporta XML o CSV en una URL pública (OpenImmo, XML genérico…), también suele encajar. Antes de presupuestar reviso qué opciones ofrece tu licencia y te digo la vía más fiable.',
+      },
+      {
+        question: '¿Los inmuebles se actualizan solos cuando cambio algo en el CRM?',
+        answer:
+          'Sí, esa es la idea. Configuramos sincronización automática (cada X minutos o vía cron) o importación programada según lo que permita tu CRM. Cuando das de baja un inmueble, cambias precio o subes fotos nuevas, la web refleja el cambio sin que tengas que tocar WordPress.',
+      },
+      {
+        question: '¿Puedo tener páginas por barrio o por tipo de inmueble?',
+        answer:
+          'Sí, y suele ser clave para SEO. Además del buscador general, preparo landings para zonas donde más operas ("pisos de lujo en Sarrià", "alquiler en el Eixample") con copy y estructura orientados a búsqueda, no solo un listado filtrado.',
+      },
+      {
+        question: '¿Cuánto tarda y qué necesito tener listo?',
+        answer:
+          'Entre 4 y 8 semanas según complejidad de la integración CRM y número de plantillas (ficha, listado, zonas). Necesito acceso de prueba al CRM, logo, textos de empresa, fotos de equipo y definir qué portales o software ya usáis. La integración se prueba con inmuebles reales antes de publicar.',
+      },
+    ],
+    ctaFinal: {
+      title: '¿Hablamos de',
+      titleEm: 'tu inmobiliaria?',
+      text: 'Cuéntame qué CRM usas, cuántos inmuebles gestionas y si hoy tienes web propia o solo la del software. Te respondo personalmente con una propuesta concreta, plazos cerrados y precio cerrado antes de empezar.',
+    },
+    serviceLink: '/servicios/web-corporativa/',
+    seo: {
+      title: 'Diseño web para inmobiliarias · RimoByte',
+      description:
+        'Webs WordPress a medida para inmobiliarias. Catálogo sincronizado con Inmovilla, Inmoweb, Witei, Inmobalia, Apimo y otros CRM. Buscador, fichas de inmueble y diseño personalizado — no plantilla genérica del CRM. Desde 1200€.',
     },
   },
 ];

@@ -18,7 +18,7 @@ export interface HubVertical {
   title: string;
   description: string;
   href: string;
-  icon: 'scissors' | 'utensils' | 'briefcase' | 'heart' | 'dumbbell' | 'book' | 'package' | 'chat';
+  icon: 'scissors' | 'utensils' | 'briefcase' | 'heart' | 'dumbbell' | 'book' | 'building' | 'chat';
 }
 
 export const serviceProcessSteps: ServiceProcessStep[] = [
@@ -94,10 +94,10 @@ export const hubVerticals: HubVertical[] = [
     icon: 'book',
   },
   {
-    title: 'Tiendas de artesanía',
-    description: 'Catálogo cuidado y narrativa de producto.',
-    href: '/proyectos/de-cos/',
-    icon: 'package',
+    title: 'Inmobiliarias',
+    description: 'Catálogo sincronizado con tu CRM y diseño a medida.',
+    href: '/web-para-inmobiliarias/',
+    icon: 'building',
   },
   {
     title: 'Otro sector',
