@@ -151,6 +151,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
+  min-height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -163,6 +166,10 @@ body {
   background: var(--color-bg-base);
   overflow-x: hidden;
   position: relative;
+  min-height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 body.is-loading { overflow: hidden; }
 
@@ -1025,6 +1032,13 @@ h1 em, h2 em,
   margin-top: 16px;
   background: transparent;
   border: none;
+}
+
+@media (max-width: 767px) {
+  .site-nav.site-nav--float {
+    margin-top: 0.5rem;
+    top: 0.5rem;
+  }
 }
 
 .site-nav.site-nav--float .site-nav__bar,

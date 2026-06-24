@@ -79,7 +79,7 @@ const serviceLdGraph = {
       title={detail.processIntro.title}
       titleEm={detail.processIntro.titleEm}
       description={detail.processIntro.description}
-      steps={serviceProcessSteps}
+      steps={detail.processSteps ?? serviceProcessSteps}
     />
     <ProyectosRelacionadosServicio
       title={detail.relatedTitle}

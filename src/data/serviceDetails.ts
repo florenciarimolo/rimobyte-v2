@@ -1,3 +1,5 @@
+import type { ServiceProcessStep } from './servicesHub';
+
 export type ServiceIncludeIcon =
   | 'design'
   | 'search'
@@ -60,6 +62,8 @@ export interface ServiceDetailContent {
     titleEm: string;
     description: string;
   };
+  /** Pasos del proceso; si no se define, se usan los de proyecto web nuevo. */
+  processSteps?: ServiceProcessStep[];
   relatedTitle: string;
   relatedTitleEm: string;
   relatedSlugs: string[];
@@ -213,7 +217,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
       { label: 'Precio', value: 'desde 1.200€', gradient: true },
       { label: 'Plazo', value: '4–8 semanas' },
       { label: 'CMS', value: 'WooCommerce' },
-      { label: 'Productos', value: 'Hasta 50 incluidos' },
+      { label: 'Productos', value: 'Hasta 30 incluidos' },
       { label: 'Pagos', value: 'Stripe / Redsys' },
       { label: 'Formación', value: '2 sesiones incluidas' },
     ],
@@ -233,8 +237,8 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
       {
         icon: 'cart',
         title: 'Catálogo WooCommerce',
-        description: 'Hasta 50 productos cargados con variantes, categorías y filtros.',
-        extra: 'Productos extra: 3€/ud',
+        description: 'Hasta 30 productos cargados con variantes, categorías y filtros.',
+        extra: 'Productos extra: 10€/ud',
       },
       {
         icon: 'payment',
@@ -297,11 +301,11 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
     pricingDetail: {
       label: 'Tienda online',
       amount: '1.200€',
-      amountSub: 'Precio cerrado · hasta 50 productos',
+      amountSub: 'Precio cerrado · hasta 30 productos',
       features: [
         'Diseño de tienda a medida',
         'WooCommerce configurado y optimizado',
-        'Hasta 50 productos cargados',
+        'Hasta 30 productos cargados',
         'Pasarela de pago (Stripe / Redsys)',
         'Configuración de envíos',
         'SEO de producto + schema',
@@ -309,7 +313,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
         '30 días de soporte post-lanzamiento',
       ],
       extras: [
-        { name: 'Producto adicional', detail: 'Carga con fotos y variantes', price: '3€/ud' },
+        { name: 'Producto adicional', detail: 'Carga con fotos y variantes', price: '10€/ud' },
         { name: 'Integración ERP', detail: 'Sincronización de stock', price: 'A consultar' },
         { name: 'Suscripciones', detail: 'WooCommerce Subscriptions', price: 'A consultar' },
         { name: 'Mantenimiento mensual', detail: 'Actualizaciones + soporte', price: 'desde 80€/mes' },
@@ -415,6 +419,33 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
       description:
         'Auditoría inicial, acceso seguro y en una semana tu web ya está bajo mantenimiento sin interrumpir nada.',
     },
+    processSteps: [
+      {
+        title: 'Hablamos',
+        description:
+          'Me cuentas el estado de tu web y qué te preocupa: actualizaciones, seguridad, velocidad o soporte puntual.',
+      },
+      {
+        title: 'Auditoría',
+        description:
+          'Reviso WordPress, plugins, copias y rendimiento. Te digo qué hay y qué conviene hacer, sin tocar nada aún.',
+      },
+      {
+        title: 'Propuesta',
+        description:
+          'Te paso plan y precio mensual por escrito. Sin permanencia: si encaja, seguimos.',
+      },
+      {
+        title: 'Activación',
+        description:
+          'Configuro copias, actualizaciones y monitorización. Tu web sigue online mientras lo dejo listo.',
+      },
+      {
+        title: 'Mantenimiento',
+        description:
+          'Cada mes: updates seguros, soporte directo, cambios menores incluidos e informe de estado.',
+      },
+    ],
     relatedTitle: 'Webs que',
     relatedTitleEm: 'mantengo.',
     relatedSlugs: ['vila-i-lancis', 'de-cos', 'ariadna-vilalta'],
