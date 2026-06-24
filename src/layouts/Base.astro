@@ -182,6 +182,9 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.addEventListener('astro:hydrate', () => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+    });
   </script>
 
   <div id="recaptcha-root" aria-hidden="true"></div>

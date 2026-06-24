@@ -8,7 +8,6 @@ import MiHistoria from '../components/sections/sobre-mi/MiHistoria.astro';
 import ComoTrabajo from '../components/sections/sobre-mi/ComoTrabajo.astro';
 import TestimoniosSobreMi from '../components/sections/sobre-mi/TestimoniosSobreMi.astro';
 import CTAFinal from '../components/sections/sobre-mi/CTAFinal.astro';
-import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
 import Footer from '../components/sections/Footer.astro';
 import { fetchPlaceAggregate } from '../lib/google-reviews';
 
@@ -36,7 +35,6 @@ const placeAgg = await fetchPlaceAggregate();
     <ComoTrabajo />
     <TestimoniosSobreMi />
     <CTAFinal />
-    <ContactFormIsland origin="sobre-mi" omitAnchor />
   </main>
   <Footer />
 </Base>

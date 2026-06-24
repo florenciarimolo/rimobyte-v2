@@ -1,0 +1,31 @@
+---
+import SectionShell from '../../ui/SectionShell.astro';
+import SiteWrap from '../../ui/SiteWrap.astro';
+import SectionHead from '../../ui/SectionHead.astro';
+import { contactProcessSteps } from '../../../data/contacto';
+---
+
+<SectionShell id="proceso" transparent padding="home">
+  <SiteWrap>
+    <SectionHead
+      pill="Qué pasa después"
+      title="Tres pasos hasta tener"
+      titleGradient="presupuesto cerrado."
+      subtitle="Para que sepas exactamente qué va a pasar entre que pulsas «Enviar mensaje» y tienes una propuesta concreta en tu correo."
+      narrow={false}
+      class="reveal"
+    />
+
+    <div class="principles principles--process">
+      {
+        contactProcessSteps.map((step) => (
+          <article class="principle glass-card glass-card--hover reveal">
+            <div class="principle__num">{step.num}</div>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </SiteWrap>
+</SectionShell>

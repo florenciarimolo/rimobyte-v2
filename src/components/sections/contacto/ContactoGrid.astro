@@ -1,0 +1,27 @@
+---
+import SiteWrap from '../../ui/SiteWrap.astro';
+import Pill from '../../ui/Pill.astro';
+import ContactForm from '../ContactForm.astro';
+import ContactoAside from './ContactoAside.astro';
+
+const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY ?? '';
+---
+
+<section class="contact-v6" id="formulario">
+  <SiteWrap>
+    <div class="contact-v6__grid">
+      <div class="contact-v6__form-col">
+        <div class="contact-v6__form-card">
+          <Pill text="Formulario" />
+          <h2>Cuéntame tu proyecto.</h2>
+          <p class="contact-v6__form-lede">
+            Cuanto más concreta seas, mejor te respondo. Y si no tienes claro qué necesitas, también — para eso
+            está la primera llamada.
+          </p>
+          <ContactForm recaptchaSiteKey={recaptchaSiteKey} origin="contacto" />
+        </div>
+      </div>
+      <ContactoAside />
+    </div>
+  </SiteWrap>
+</section>

@@ -116,9 +116,10 @@
       }, wait);
     }
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
       finish();
     } else {
+      document.addEventListener('DOMContentLoaded', finish, { once: true });
       window.addEventListener('load', finish, { once: true });
     }
     setTimeout(finish, MAX_MS);

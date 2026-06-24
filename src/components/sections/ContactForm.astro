@@ -1,0 +1,141 @@
+---
+interface Props {
+  recaptchaSiteKey?: string;
+  origin?: string;
+}
+
+const { recaptchaSiteKey = '', origin = '' } = Astro.props;
+const recaptchaEnabled = Boolean(recaptchaSiteKey.trim());
+
+const textFields = [
+  { id: 'contact-nombre', name: 'nombre', label: 'Nombre', type: 'text', placeholder: 'Tu nombre' },
+  { id: 'contact-email', name: 'email', label: 'Email', type: 'email', placeholder: 'tu@correo.com' },
+] as const;
+
+const selectFields = [
+  {
+    id: 'contact-negocio',
+    name: 'negocio',
+    label: '¿Qué tipo de negocio tienes?',
+    opts: [
+      'Restaurante / Hostelería',
+      'Peluquería / Estética',
+      'Asesoría / Gestoría',
+      'Entrenador personal',
+      'Tienda / Comercio local',
+      'Clínica / Salud',
+      'Psicólogo / Terapeuta',
+      'Cursos y formaciones',
+      'Otro',
+    ],
+  },
+  {
+    id: 'contact-servicio',
+    name: 'servicio',
+    label: '¿Qué necesitas?',
+    opts: [
+      'Web nueva desde cero',
+      'Renovar web existente',
+      'Tienda online',
+      'Mantenimiento',
+      'No lo sé aún',
+    ],
+  },
+] as const;
+---
+
+<form
+  class="contact-v6__form"
+  data-contact-form
+  data-recaptcha-key={recaptchaSiteKey}
+  data-origin={origin}
+  aria-busy="false"
+>
+  <input type="hidden" name="origin" value={origin} />
+
+  <div class="contact-v6__form-row">
+    {
+      textFields.map((f) => (
+        <div class="contact-v6__field">
+          <label for={f.id}>{f.label}</label>
+          <input
+            id={f.id}
+            name={f.name}
+            type={f.type}
+            required
+            placeholder={f.placeholder}
+            autocomplete={f.name === 'nombre' ? 'name' : 'email'}
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="contact-v6__form-row">
+    {
+      selectFields.map((f) => (
+        <div class="contact-v6__field">
+          <label for={f.id}>{f.label}</label>
+          <select id={f.id} name={f.name} required>
+            <option value="" disabled selected>
+              Selecciona…
+            </option>
+            {f.opts.map((o) => (
+              <option value={o}>{o}</option>
+            ))}
+          </select>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="contact-v6__field">
+    <label for="contact-mensaje">
+      Cuéntame más <span class="contact-v6__opt">(opcional)</span>
+    </label>
+    <textarea
+      id="contact-mensaje"
+      name="mensaje"
+      placeholder="Tu web actual, lo que te gustaría conseguir, plazo aproximado, presupuesto en mente… lo que quieras compartir."
+    />
+  </div>
+
+  <p class="contact-v6__error" data-contact-error role="alert" aria-live="assertive" hidden>
+    Hubo un error al enviar. Inténtalo de nuevo o escríbeme a info@rimobyte.com.
+  </p>
+
+  <div class="contact-v6__submit">
+    <button type="submit" class="btn btn-primary">
+      <span data-contact-submit-label>Enviar mensaje</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M5 12h14M13 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    <p class="contact-v6__legal">
+      Al enviar, aceptas la <a href="/politica-privacidad/">política de privacidad</a>. Tus datos solo se
+      usan para responderte — nada de listas ni newsletter sin permiso.
+      {
+        recaptchaEnabled && (
+          <>
+            {' '}
+            Protegido por reCAPTCHA (
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+              Google
+            </a>
+            ).
+          </>
+        )
+      }
+    </p>
+  </div>
+</form>
+
+<div class="contact-v6__success" data-contact-success role="status" aria-live="polite" hidden>
+  <p class="contact-v6__success-title">Mensaje enviado — te respondo pronto</p>
+  <p>Te escribo en menos de 24 horas con los siguientes pasos.</p>
+</div>
+
+<script>
+  import { initContactForms } from '../../scripts/contact-form.ts';
+  initContactForms();
+</script>

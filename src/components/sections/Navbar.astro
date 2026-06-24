@@ -108,11 +108,18 @@ const navChevronClass =
         >
           Sobre mí
         </a>
+        <a
+          href="/contacto/"
+          class:list={[navLinkClass, isContactoActive && navLinkActiveClass]}
+          aria-current={isContactoActive ? 'page' : undefined}
+        >
+          Contacto
+        </a>
       </nav>
 
       <div class="site-nav__actions">
         <div class="hidden md:block">
-          <Button href="/contacto/" variant="primary">Empezar mi web</Button>
+          <Button href="/contacto/#formulario" variant="primary">Empezar mi web</Button>
         </div>
         <button
           type="button"

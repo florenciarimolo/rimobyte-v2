@@ -1,0 +1,24 @@
+---
+import Button from '../../ui/Button.astro';
+import DarkCTA from '../../ui/DarkCTA.astro';
+import Icon from '../../ui/Icon.astro';
+---
+
+<DarkCTA pill="¿Prefieres saltarte el formulario?" live>
+  <span slot="title">
+    Escríbeme <span class="gradient-text">directamente.</span>
+  </span>
+  <span slot="description">
+    Si quieres mandarme un email o un WhatsApp sin pasar por el formulario, también funciona. Te respondo igual
+    de rápido.
+  </span>
+  <Fragment slot="actions">
+    <Button href="mailto:info@rimobyte.com" variant="primary" class="inline-flex items-center gap-2">
+      Escríbeme un email
+      <Icon name="arrow-right" class="inline-flex size-3.5 [&_svg]:size-full" />
+    </Button>
+    <Button href="https://wa.me/34684713743" variant="ghost" external>
+      WhatsApp · 684 713 743
+    </Button>
+  </Fragment>
+</DarkCTA>

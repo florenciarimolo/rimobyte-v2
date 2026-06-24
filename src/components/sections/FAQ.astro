@@ -16,18 +16,22 @@ interface FAQItem {
 interface Props {
   faqs?: FAQItem[];
   id?: string;
+  pill?: string;
   title?: string;
   titleGradient?: string;
   subtitle?: string;
+  openFirst?: boolean;
 }
 
 const {
   faqs: faqsProp,
   id = 'faq',
+  pill = 'Preguntas frecuentes',
   title = 'Dudas habituales antes de',
   titleGradient = 'empezar.',
   subtitle =
     'Estas son las preguntas que más recibo al primer correo. Si la tuya no está aquí, escríbeme — sin compromiso.',
+  openFirst = false,
 } = Astro.props;
 
 function toFaqEntry(f: FAQItem) {
@@ -44,7 +48,7 @@ const entries = (faqsProp ?? faqEntries).map(toFaqEntry);
 <SectionShell id={id} transparent padding="home" class="home-section--spacious">
   <SiteWrap>
     <SectionHead
-      pill="Preguntas frecuentes"
+      pill={pill}
       title={title}
       titleGradient={titleGradient}
       subtitle={subtitle}
@@ -52,8 +56,8 @@ const entries = (faqsProp ?? faqEntries).map(toFaqEntry);
     />
     <div class="faq-list reveal">
       {
-        entries.map((f) => (
-          <details class="faq-item">
+        entries.map((f, index) => (
+          <details class="faq-item" open={openFirst && index === 0 ? true : undefined}>
             <summary>{f.q}</summary>
             {f.aHtml ? <p set:html={f.aHtml} /> : <p>{f.a}</p>}
           </details>

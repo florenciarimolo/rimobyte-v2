@@ -1,13 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import Navbar from '../components/sections/Navbar.astro';
-import ContactFormIsland from '../components/sections/ContactFormIsland.astro';
+import HeroContacto from '../components/sections/contacto/HeroContacto.astro';
+import ContactoGrid from '../components/sections/contacto/ContactoGrid.astro';
+import ContactoProceso from '../components/sections/contacto/ContactoProceso.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import ContactoCTA from '../components/sections/contacto/ContactoCTA.astro';
 import Footer from '../components/sections/Footer.astro';
+import { contactFaqEntries } from '../data/contacto';
 
 const SEO = {
-  title: 'Contacto — Presupuesto web para negocios locales · RimoByte',
+  title: 'Contacto · Flor Rímolo · RimoByte',
   description:
-    'Cuéntame tu proyecto y te respondo sin tecnicismos. Diseño y desarrollo web para negocios locales — Flor Rímolo.',
+    'Cuéntame tu proyecto. Te respondo personalmente en menos de 24 horas con ideas concretas, no una plantilla de presupuesto.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 
@@ -35,7 +40,19 @@ const contactLd = {
 
   <Navbar />
   <main id="main">
-    <ContactFormIsland headingLevel={1} heading="Contacto · Cuéntame tu proyecto" />
+    <HeroContacto />
+    <ContactoGrid />
+    <ContactoProceso />
+    <FAQ
+      id="faq"
+      pill="Antes de escribirme"
+      title="Las dudas más habituales"
+      titleGradient="en este punto."
+      subtitle="Si la tuya no está aquí, escríbeme — sin compromiso."
+      faqs={contactFaqEntries}
+      openFirst
+    />
+    <ContactoCTA />
   </main>
   <Footer />
 </Base>
