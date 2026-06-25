@@ -219,6 +219,7 @@ const navChevronClass =
   }
 
   function setMenu(open: boolean) {
+    if (open) updateDrawerPadding();
     menuOpen = open;
     drawer.hidden = !open;
     drawer.inert = !open;
@@ -228,22 +229,27 @@ const navChevronClass =
     menuBtn?.setAttribute('aria-expanded', String(open));
     menuBtn?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     document.body.style.overflow = open ? 'hidden' : '';
-    if (open) requestAnimationFrame(updateDrawerPadding);
   }
 
   window.addEventListener('resize', () => {
     if (menuOpen) updateDrawerPadding();
   });
 
-  menuBtn?.addEventListener('click', () => setMenu(!menuOpen));
+  menuBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setMenu(!menuOpen);
+  });
+
   drawer?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => setMenu(false));
   });
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && menuOpen) setMenu(false);
   });
 
   document.addEventListener('click', (e) => {
+    if (menuOpen) return;
     if (!desktopServices?.open) return;
     const t = e.target as Node;
     if (!desktopServices.contains(t)) desktopServices.open = false;
