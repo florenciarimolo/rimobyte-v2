@@ -9,15 +9,18 @@
   color: transparent;
 }
 
-/* Aurora background */
+/* Aurora background — bleed into iOS safe areas (Dynamic Island, home indicator) */
 .aurora-bg {
   position: fixed;
-  inset: 0;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100lvh;
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
+  top: calc(-1 * env(safe-area-inset-top, 0px));
+  right: calc(-1 * env(safe-area-inset-right, 0px));
+  bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+  left: calc(-1 * env(safe-area-inset-left, 0px));
+  width: auto;
+  height: auto;
+  min-height: calc(
+    100lvh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px)
+  );
   pointer-events: none;
   z-index: 0;
   overflow: hidden;

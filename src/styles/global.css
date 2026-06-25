@@ -141,7 +141,7 @@
 /* ─── Base ─── */
 *, *::before, *::after { box-sizing: border-box; }
 html {
-  background: var(--color-bg-base);
+  background-color: var(--color-bg-base);
   color: var(--color-text-primary);
   font-family: var(--font-body);
   font-size: 16px;
@@ -152,8 +152,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
   min-height: 100%;
-  min-height: 100dvh;
+  min-height: 100lvh;
   min-height: -webkit-fill-available;
+  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -163,11 +164,11 @@ html {
 }
 body {
   margin: 0;
-  background: var(--color-bg-base);
+  background-color: var(--color-bg-base);
   overflow-x: hidden;
   position: relative;
   min-height: 100%;
-  min-height: 100dvh;
+  min-height: 100lvh;
   min-height: -webkit-fill-available;
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -1141,9 +1142,16 @@ h1 em, h2 em,
 
 .site-nav__drawer {
   position: fixed;
-  inset: 0;
+  top: calc(-1 * env(safe-area-inset-top, 0px));
+  right: calc(-1 * env(safe-area-inset-right, 0px));
+  bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+  left: calc(-1 * env(safe-area-inset-left, 0px));
+  width: auto;
+  height: auto;
   z-index: 90;
-  min-height: 100dvh;
+  min-height: calc(
+    100lvh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px)
+  );
   background: var(--color-bg-base);
   padding-top: var(
     --site-nav-drawer-top,
