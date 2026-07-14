@@ -142,6 +142,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 html {
   background-color: var(--color-bg-base);
+  background-image:
+    radial-gradient(ellipse 130% 90% at 8% -15%, rgba(25, 107, 238, 0.2), transparent 58%),
+    radial-gradient(ellipse 120% 85% at 92% 108%, rgba(231, 21, 209, 0.16), transparent 55%);
   color: var(--color-text-primary);
   font-family: var(--font-body);
   font-size: 16px;
@@ -152,9 +155,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
   min-height: 100%;
+  min-height: 100dvh;
   min-height: 100lvh;
   min-height: -webkit-fill-available;
   color-scheme: light;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -164,10 +169,11 @@ html {
 }
 body {
   margin: 0;
-  background-color: var(--color-bg-base);
-  overflow-x: hidden;
+  background-color: transparent;
+  overflow-x: clip;
   position: relative;
   min-height: 100%;
+  min-height: 100dvh;
   min-height: 100lvh;
   min-height: -webkit-fill-available;
   padding-bottom: env(safe-area-inset-bottom, 0px);

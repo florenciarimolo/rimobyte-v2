@@ -9,22 +9,24 @@
   color: transparent;
 }
 
-/* Aurora background — bleed into iOS safe areas (Dynamic Island, home indicator) */
+/* Aurora background — full viewport + iOS safe areas (Dynamic Island, home indicator) */
 .aurora-bg {
   position: fixed;
-  top: calc(-1 * env(safe-area-inset-top, 0px));
-  right: calc(-1 * env(safe-area-inset-right, 0px));
-  bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
-  left: calc(-1 * env(safe-area-inset-left, 0px));
-  width: auto;
-  height: auto;
-  min-height: calc(
-    100lvh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px)
-  );
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100lvh;
+  min-height: -webkit-fill-available;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
   background-color: var(--color-bg-base);
+  /* Base wash — visible even in safe areas where blur blobs don't reach */
+  background-image:
+    radial-gradient(ellipse 130% 90% at 8% -15%, rgba(25, 107, 238, 0.2), transparent 58%),
+    radial-gradient(ellipse 120% 85% at 92% 108%, rgba(231, 21, 209, 0.16), transparent 55%);
 }
 
 .aurora-bg::before,
@@ -54,18 +56,18 @@
 
 @media (max-width: 767px) {
   .aurora-bg::before {
-    width: min(140vw, 560px);
-    height: min(140vw, 560px);
-    top: max(-32vw, -220px);
-    left: -28vw;
+    width: min(120vw, 520px);
+    height: min(120vw, 520px);
+    top: max(-14vw, -100px);
+    left: -24vw;
   }
 
   .aurora-bg::after {
-    width: min(130vw, 520px);
-    height: min(130vw, 520px);
+    width: min(115vw, 500px);
+    height: min(115vw, 500px);
     top: auto;
-    bottom: max(-28vw, -200px);
-    right: -24vw;
+    bottom: max(-12vw, -88px);
+    right: -22vw;
   }
 }
 
@@ -389,6 +391,8 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   overflow: hidden;
+  max-width: 100%;
+  contain: paint;
   position: relative;
   z-index: 2;
 }
@@ -1674,18 +1678,6 @@
     font-size: 1.125rem;
   }
 
-  .contact-v6__grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .contact-v6__form-card {
-    padding: 36px 28px;
-  }
-
-  .principles--process {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 560px) {
@@ -1698,21 +1690,6 @@
     grid-template-columns: 1fr;
   }
 
-  .contact-v6__form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-v6-meta {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-v6__form-card {
-    padding: 28px 22px;
-  }
-
-  .contact-v6-hero h1 {
-    font-size: 2.75rem;
-  }
 }
 
 /* Contacto v6 */
@@ -2089,6 +2066,64 @@
 
 .principles--process {
   grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 980px) {
+  .contact-v6__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .contact-v6__form-card {
+    padding: 36px 28px;
+  }
+
+  .principles--process {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-v6__form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-v6-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-v6__form-card {
+    padding: 28px 22px;
+  }
+
+  .contact-v6-hero h1 {
+    font-size: 2.75rem;
+  }
+
+  .contact-v6__submit {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-v6__submit .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .contact-v6__legal {
+    max-width: none;
+    text-align: center;
+  }
+
+  .faq-item {
+    padding: 20px 18px;
+  }
+
+  .faq-item summary {
+    font-size: 16px;
+  }
 }
 
 /* ─── Proyectos v6 ─── */
