@@ -40,6 +40,10 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'A',
     gradient: 'linear-gradient(135deg, #6535E5, #196BEE)',
   },
+  'wordpress-vs-shopify-tienda-online': {
+    icon: 'W',
+    gradient: 'linear-gradient(135deg, #196BEE, #E715D1)',
+  },
 };
 
 export function getBlogVisual(slug: string): BlogVisual {
