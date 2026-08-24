@@ -7,7 +7,7 @@ keywords: ["wordpress vs shopify", "mejor plataforma tienda online", "woocommerc
 readingTime: "7 min"
 ctaText: "¿Quieres una tienda online que sea tuya de verdad?"
 ctaLink: "/servicios/tienda-online/"
-relatedSlugs: ["cuanto-cuesta-una-pagina-web", "tu-web-debe-ser-tuya"]
+relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "wordpress-vs-wix", "tu-web-debe-ser-tuya"]
 coverImage: "/assets/blog/wordpress-vs-shopify-tienda-online.webp"
 ---
 
@@ -48,7 +48,7 @@ En un negocio pequeño que factura poco, puedes estar en **400–700 € al año
 
 El primer año WordPress suele salir más caro porque pagas el desarrollo. A partir del segundo, **mantienes la tienda por una fracción** de lo que cuesta Shopify mes a mes — y sin comisiones de plataforma.
 
-Si quieres ver el desglose completo de costes de una web o tienda, lo tengo en [cuánto cuesta una página web](/blog/cuanto-cuesta-una-pagina-web/).
+Si quieres ver el desglose de una web o tienda WordPress, está en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/). El precio genérico de «una página web» sigue en [cuánto cuesta una página web](/blog/cuanto-cuesta-una-pagina-web/).
 
 ## Control y propiedad: ¿de quién es la tienda?
 
@@ -116,7 +116,7 @@ Es el enfoque con el que trabajo en [tiendas online](/servicios/tienda-online/):
 No hay un ganador absoluto. Hay un ganador para **tu** situación.
 
 Si priorizas velocidad y comodidad a cambio de alquiler mensual y menos control → Shopify.
-Si priorizas propiedad, margen a medio plazo y SEO → WordPress + WooCommerce.
+Si priorizas propiedad, margen a medio plazo y SEO → WordPress + WooCommerce. La comparativa con constructores está en [WordPress vs Wix](/blog/wordpress-vs-wix/).
 
 Para la mayoría de negocios locales y marcas pequeñas en España que quieren vender online de verdad — no solo "probar un mes" — suelo recomendar WordPress. No porque sea mi herramienta favorita, sino porque a los dos años sueles agradecer no estar atado a una cuota ni a las reglas de otra empresa.
 

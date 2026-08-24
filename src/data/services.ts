@@ -64,7 +64,7 @@ export const services: Service[] = [
     slug: 'web-corporativa',
     name: 'Web corporativa',
     eyebrow: 'SERVICIO · WEB CORPORATIVA',
-    headline: 'Una web que representa tu negocio y trabaja por ti',
+    headline: 'Una web WordPress que representa tu negocio y trabaja',
     headlineEm: 'las 24 horas.',
     description:
       'Para autónomos y negocios locales que quieren existir profesionalmente en internet, captar clientes y transmitir confianza desde el primer clic.',
@@ -104,7 +104,7 @@ export const services: Service[] = [
           'Se ve bien en móvil, tablet y escritorio. El 70% de las visitas llegan desde el móvil.',
       },
       {
-        title: 'Dominio y hosting a tu nombre',
+        title: 'Dominio y servidor a tu nombre',
         description:
           'Te guío para que lo contrates tú directamente. Sin intermediarios, sin rehenes.',
       },
@@ -115,7 +115,7 @@ export const services: Service[] = [
       },
     ],
     price: 'Desde 600€',
-    priceNote: 'El hosting y el dominio los pagas tú directamente. Son tuyos, no míos.',
+    priceNote: 'El servidor y el dominio los pagas tú directamente. Son tuyos, no míos.',
     relatedCases: [
       {
         slug: 'vila-i-lancis',
@@ -177,9 +177,9 @@ export const services: Service[] = [
       cta: 'Pide tu presupuesto gratuito',
     },
     seo: {
-      title: 'Web corporativa para negocios locales · RimoByte',
+      title: 'Web WordPress para negocios locales desde 600€ · RimoByte',
       description:
-        'Web profesional para autónomos y negocios locales desde 600€. SEO incluido, tuya desde el primer día, sin dependencias. Presupuesto cerrado antes de empezar.',
+        'Web WordPress para autónomos y negocios locales desde 600€. SEO incluido, tuya desde el primer día, sin dependencias. Presupuesto cerrado antes de empezar.',
     },
   },
   {
@@ -225,7 +225,7 @@ export const services: Service[] = [
         description: 'El 70% de las compras online se hacen desde el móvil.',
       },
       {
-        title: 'Dominio y hosting a tu nombre',
+        title: 'Dominio y servidor a tu nombre',
         description: 'Tuyos, en tu cuenta, bajo tu control.',
       },
       {
@@ -295,9 +295,9 @@ export const services: Service[] = [
       cta: 'Pide tu presupuesto gratuito',
     },
     seo: {
-      title: 'Tienda online para pequeño negocio · RimoByte',
+      title: 'Tienda online WordPress WooCommerce · RimoByte',
       description:
-        'Tienda WooCommerce para pequeños negocios desde 1.200€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
+        'Tienda WooCommerce sobre WordPress para pequeños negocios desde 1.200€. Sin comisiones por venta, tuya desde el primer día. Stripe y PayPal integrados.',
     },
   },
   {
@@ -408,9 +408,9 @@ export const services: Service[] = [
       cta: 'Consulta gratuita',
     },
     seo: {
-      title: 'Mantenimiento web para negocios · RimoByte',
+      title: 'Mantenimiento WordPress para empresas · RimoByte',
       description:
-        'Mantenimiento web desde 50€/mes sin permanencia. Actualizaciones, seguridad, copias de seguridad y soporte directo. Sin letra pequeña, sin ataduras.',
+        'Mantenimiento WordPress desde 50€/mes sin permanencia. Actualizaciones, seguridad, copias de seguridad y soporte directo. Sin letra pequeña, sin ataduras.',
     },
   },
 ];

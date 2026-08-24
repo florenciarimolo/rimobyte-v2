@@ -6,17 +6,16 @@
  * En dev/preview: `src/middleware.ts`. En Vercel: `vercel.json` (pnpm vercel:redirects).
  */
 export const legacySitemapRedirects = {
-  '/desarrolladora-wordpress-freelance': '/',
+  '/desarrolladora-wordpress-freelance': '/desarrollo-web-wordpress/',
   '/migrar-web-agencia-freelance': '/blog/tu-web-debe-ser-tuya/',
   '/rescate-wordpress-urgente': '/servicios/mantenimiento-web/',
   '/precios-desarrollo-web': '/blog/cuanto-cuesta-una-pagina-web/',
-  '/rediseno-web-wordpress': '/servicios/web-corporativa/',
+  '/rediseno-web-wordpress': '/desarrollo-web-wordpress/',
   '/desarrollo-tienda-online': '/servicios/tienda-online/',
   '/optimizacion-velocidad-wordpress': '/servicios/mantenimiento-web/',
   '/desarrollo-vue-nuxt-astro': '/',
   '/blog/cuando-redisenar-web': '/blog/tu-web-debe-ser-tuya/',
-  '/blog/cuanto-cuesta-mantener-wordpress': '/blog/cuanto-cuesta-una-pagina-web/',
+  '/blog/cuanto-cuesta-mantener-wordpress': '/blog/cuanto-cuesta-una-web-wordpress/',
   '/blog/vue-vs-react': '/blog/',
   '/blog/wordpress-hackeado': '/servicios/mantenimiento-web/',
-  '/blog/wordpress-vs-wix': '/blog/cuanto-cuesta-una-pagina-web/',
 } as const satisfies Record<string, string>;

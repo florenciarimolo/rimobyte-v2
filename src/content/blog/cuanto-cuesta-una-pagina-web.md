@@ -6,12 +6,12 @@ type: "guia"
 keywords: ["cuánto cuesta una página web", "precio web negocio", "presupuesto web"]
 readingTime: "5 min"
 ctaText: "¿Quieres saber cuánto costaría tu web?"
-ctaLink: "/servicios/web-corporativa/"
-relatedSlugs: ["tu-web-debe-ser-tuya", "web-o-instagram"]
+ctaLink: "/desarrollo-web-wordpress/"
+relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "web-o-instagram"]
 coverImage: "/assets/blog/cuanto-cuesta-una-pagina-web.webp"
 ---
 
-Si estás leyendo esto es porque probablemente has buscado en Google algo como "cuánto cuesta una página web" y te has encontrado con respuestas que van desde 200€ hasta 10.000€. Cada una con su propia letra pequeña. Normal que no te aclares.
+Si quieres el desglose **solo de WordPress** (queries de precio de una web WordPress), está en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/). Este artículo cubre el precio de una web profesional en general.
 
 Voy a intentar darte una respuesta clara, basada en lo que cobro yo y en lo que cuesta realmente tener una web profesional para un negocio local en España. Sin rodeos ni "depende" sin contexto.
 

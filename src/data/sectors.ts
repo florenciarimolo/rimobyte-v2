@@ -346,7 +346,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para restaurantes y bares · RimoByte',
+      title: 'Web WordPress para restaurantes y bares · RimoByte',
       description:
         'Webs WordPress a medida para restaurantes y bares. Carta digital, reservas integradas, SEO geolocalizado. Desde 600€, sin permanencia ni comisiones por reserva.',
     },
@@ -536,7 +536,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para peluquerías y centros de estética · RimoByte',
+      title: 'Web WordPress para peluquerías y centros de estética · RimoByte',
       description:
         'Webs WordPress a medida para peluquerías, centros de manicura y estética. SEO local para aparecer #1 en Google y formulario de reservas integrado. Desde 600€.',
     },
@@ -723,7 +723,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para asesorías y gestorías · RimoByte',
+      title: 'Web WordPress para asesorías y gestorías · RimoByte',
       description:
         'Webs WordPress a medida para asesorías y gestorías. SEO local, multiidioma y diseño profesional que transmite confianza. Desde 600€, sin permanencia.',
     },
@@ -911,7 +911,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para entrenadores personales · RimoByte',
+      title: 'Web WordPress para entrenadores personales · RimoByte',
       description:
         'Webs y landings para entrenadores personales con pasarela de pago integrada. Vende tus programas online 24/7 con Stripe. Desde 600€, sin permanencia.',
     },
@@ -1099,7 +1099,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para cursos y formaciones online · RimoByte',
+      title: 'Web WordPress para cursos y formaciones online · RimoByte',
       description:
         'Plataformas WordPress + LearnDash para creadores de cursos y formaciones online. Pasarela doble (PayPal + Stripe) y newsletter conectada. Desde 1.000€, sin permanencia.',
     },
@@ -1291,7 +1291,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para psicólogos y terapeutas · RimoByte',
+      title: 'Web WordPress para psicólogos y terapeutas · RimoByte',
       description:
         'Webs WordPress a medida para psicólogos en consulta privada. Una página por especialidad, SEO local, formularios RGPD y reserva de primera cita. Desde 600€, sin permanencia.',
     },
@@ -1487,7 +1487,7 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Diseño web para inmobiliarias · RimoByte',
+      title: 'Web WordPress para inmobiliarias · RimoByte',
       description:
         'Webs WordPress a medida para inmobiliarias. Catálogo sincronizado con Inmovilla, Inmoweb, Witei, Inmobalia, Apimo y otros CRM. Buscador, fichas de inmueble y diseño personalizado — no plantilla genérica del CRM. Desde 1200€.',
     },

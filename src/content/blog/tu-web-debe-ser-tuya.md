@@ -6,8 +6,8 @@ type: opinion
 keywords: ["web propia hosting dominio", "dependencia agencia web", "web a mi nombre"]
 readingTime: "4 min"
 ctaText: "¿Tu web no es tuya? Hablemos"
-ctaLink: "/contacto/"
-relatedSlugs: ["cuanto-cuesta-una-pagina-web", "web-o-instagram"]
+ctaLink: "/desarrollo-web-wordpress/"
+relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "wordpress-vs-wix"]
 coverImage: "/assets/blog/tu-web-debe-ser-tuya.webp"
 ---
 
@@ -66,6 +66,6 @@ Si un día quiere trabajar con otra persona, puede hacerlo sin pedirme permiso. 
 
 Lo primero: averigua dónde están contratados tu dominio y tu hosting. Pide los accesos. Si tu agencia se niega o te pone excusas, eso confirma el problema.
 
-Lo segundo: si necesitas ayuda para recuperar el control de tu web o para empezar una nueva con las cosas bien hechas desde el principio, [escríbeme](/contacto/). Sin compromiso y sin tecnicismos. Te digo honestamente cuál es tu situación y qué opciones tienes.
+Lo segundo: si necesitas ayuda para recuperar el control de tu web o para empezar una nueva en [WordPress a tu nombre](/desarrollo-web-wordpress/), [escríbeme](/contacto/). Sin compromiso y sin tecnicismos. Te digo honestamente cuál es tu situación y qué opciones tienes.
 
 Tu web es una herramienta de tu negocio. Y las herramientas de tu negocio deberían ser tuyas.

@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/desarrolladora-wordpress-freelance",
-      "destination": "/",
+      "destination": "/desarrollo-web-wordpress/",
       "statusCode": 301
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "source": "/rediseno-web-wordpress",
-      "destination": "/servicios/web-corporativa/",
+      "destination": "/desarrollo-web-wordpress/",
       "statusCode": 301
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "source": "/blog/cuanto-cuesta-mantener-wordpress",
-      "destination": "/blog/cuanto-cuesta-una-pagina-web/",
+      "destination": "/blog/cuanto-cuesta-una-web-wordpress/",
       "statusCode": 301
     },
     {
@@ -61,8 +61,13 @@
       "statusCode": 301
     },
     {
-      "source": "/blog/wordpress-vs-wix",
-      "destination": "/blog/cuanto-cuesta-una-pagina-web/",
+      "source": "/en",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/",
       "statusCode": 301
     }
   ]

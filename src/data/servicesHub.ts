@@ -32,11 +32,11 @@ export const serviceProcessSteps: ServiceProcessStep[] = [
 export const hubDecisionQuestions: DecisionQuestion[] = [
   {
     letter: 'A',
-    text: '¿Quieres que te ',
-    emphasis: 'encuentren en Google',
-    textAfter: ' y reciban contacto o reservas?',
-    answer: 'Web corp. →',
-    href: '/servicios/web-corporativa/',
+    text: '¿Quieres una ',
+    emphasis: 'web WordPress',
+    textAfter: ' para que te encuentren en Google?',
+    answer: 'WordPress →',
+    href: '/desarrollo-web-wordpress/',
   },
   {
     letter: 'B',
@@ -114,9 +114,9 @@ export const hubFaqs: ServiceFAQ[] = [
       'Cerrados. Antes de empezar te paso un presupuesto por escrito con todo desglosado. Como referencia: web corporativa desde 600€, tienda online desde 1.200€, plataformas de cursos desde 1.000€. Si durante el proyecto pides algo que no estaba en el alcance inicial, te aviso y decidimos juntos antes de tocarlo.',
   },
   {
-    question: '¿El dominio y el hosting están incluidos?',
+    question: '¿El dominio y el servidor están incluidos?',
     answer:
-      'No, y es intencional. Dominio y hosting los pagas tú directamente al proveedor — así son 100% tuyos. Te recomiendo dónde contratarlos (proveedores serios, sin sorpresas) y te acompaño en el proceso.',
+      'No, y es intencional: yo no vendo alojamiento. Dominio y servidor los contratas tú con el proveedor — así son 100% tuyos. Te recomiendo dónde y te acompaño en el proceso.',
   },
   {
     question: '¿Cuánto tarda una web corporativa o una tienda online?',

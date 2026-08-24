@@ -44,6 +44,18 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'W',
     gradient: 'linear-gradient(135deg, #196BEE, #E715D1)',
   },
+  'cuanto-cuesta-una-web-wordpress': {
+    icon: '€',
+    gradient: 'linear-gradient(135deg, #196BEE, #6535E5)',
+  },
+  'wordpress-vs-wix': {
+    icon: 'W',
+    gradient: 'linear-gradient(135deg, #6535E5, #196BEE)',
+  },
+  'wordpress-a-medida-vs-plantilla': {
+    icon: 'P',
+    gradient: 'linear-gradient(135deg, #E715D1, #196BEE)',
+  },
 };
 
 export function getBlogVisual(slug: string): BlogVisual {

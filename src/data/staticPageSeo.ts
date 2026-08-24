@@ -1,4 +1,5 @@
 import { projectCount } from './projects';
+import { wordpressLandingSeo } from './wordpressLanding';
 
 export interface PageSeo {
   title: string;
@@ -15,7 +16,7 @@ export const defaultBaseSeo: PageSeo = {
 };
 
 export const homeSeo: PageSeo = {
-  title: 'Desarrollo web WordPress a medida · RimoByte',
+  title: 'Desarrollo web WordPress a medida en España · RimoByte',
   description: defaultBaseSeo.description,
   image: '/assets/brand/flor-rimobyte.webp',
 };
@@ -35,9 +36,9 @@ export const contactoSeo: PageSeo = {
 };
 
 export const blogIndexSeo: PageSeo = {
-  title: 'Blog · Diseño web para negocios · RimoByte',
+  title: 'Blog · WordPress y webs para negocios · RimoByte',
   description:
-    'Guías sobre cuánto cuesta una web, por qué debe ser tuya, web e Instagram, y consejos sectoriales para restaurantes y asesorías. Precios reales y sin letra pequeña.',
+    'Guías sobre cuánto cuesta una web WordPress, por qué debe ser tuya, web e Instagram, y consejos sectoriales. Precios reales y sin letra pequeña.',
 };
 
 export const serviciosHubSeo: PageSeo = {
@@ -78,6 +79,7 @@ export const notFoundSeo: PageSeo = {
 export function staticOgPageEntries(): { routePath: string; seo: PageSeo }[] {
   return [
     { routePath: '/', seo: homeSeo },
+    { routePath: '/desarrollo-web-wordpress/', seo: wordpressLandingSeo },
     { routePath: '/sobre-mi/', seo: sobreMiSeo },
     { routePath: '/contacto/', seo: contactoSeo },
     { routePath: '/blog/', seo: blogIndexSeo },

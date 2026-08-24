@@ -224,6 +224,16 @@
   line-height: 1.5;
 }
 
+.hero-v6__lede a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.hero-v6__lede a:hover {
+  color: var(--color-blue);
+}
+
 .hero-v6__cta {
   display: flex;
   gap: 12px;
@@ -3763,6 +3773,12 @@
   font-weight: 500;
 }
 
+.service-v6-pricing__extra-name a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .service-v6-pricing__extra-name small {
   display: block;
   font-size: 0.75rem;
@@ -3799,6 +3815,12 @@
   letter-spacing: -0.012em;
   margin-bottom: 2rem;
   max-width: 42.5rem;
+}
+
+.services-hub-v6__lede a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .services-hub-v6__quick {
@@ -4689,6 +4711,19 @@
   height: 1rem;
   margin-top: 3px;
   stroke: var(--color-purple);
+}
+
+.sector-v6-offer__wp {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.sector-v6-offer__wp a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .sector-v6-offer__price {

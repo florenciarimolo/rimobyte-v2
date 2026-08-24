@@ -46,7 +46,11 @@ const { pricing } = Astro.props;
             pricing.extras.map((extra) => (
               <div class="service-v6-pricing__extra-row">
                 <div class="service-v6-pricing__extra-name">
-                  {extra.name}
+                  {extra.href ? (
+                    <a href={extra.href}>{extra.name}</a>
+                  ) : (
+                    extra.name
+                  )}
                   {extra.detail && <small>{extra.detail}</small>}
                 </div>
                 <div class="service-v6-pricing__extra-price">{extra.price}</div>

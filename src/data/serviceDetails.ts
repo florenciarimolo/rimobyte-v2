@@ -41,6 +41,8 @@ export interface PricingExtra {
   name: string;
   detail?: string;
   price: string;
+  /** Enlace opcional al servicio relacionado (landing WordPress → fichas de producto). */
+  href?: string;
 }
 
 export interface ServiceDetailContent {

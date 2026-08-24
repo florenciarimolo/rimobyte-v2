@@ -5,6 +5,11 @@ import { needsTrailingSlashRedirect } from './lib/trailing-slash';
 export const onRequest = defineMiddleware((context, next) => {
   const { pathname, search } = context.url;
   const pathKey = pathname.replace(/\/$/, '') || '/';
+
+  if (pathKey === '/en' || pathKey.startsWith('/en/')) {
+    return context.redirect('/', 301);
+  }
+
   const destination =
     legacySitemapRedirects[pathKey as keyof typeof legacySitemapRedirects];
 

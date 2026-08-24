@@ -6,6 +6,10 @@ export interface FaqEntry {
 
 export const faqEntries: FaqEntry[] = [
   {
+    q: '¿Haces las webs en WordPress?',
+    a: 'Sí. Desarrollo webs WordPress a medida para negocios en España: corporativa desde 600€, tienda WooCommerce desde 1.200€. La web queda a tu nombre. No vendo alojamiento: te indico cómo contratar el servidor y el dominio tú.',
+  },
+  {
     q: '¿Cuánto cuesta una web?',
     a: 'Web corporativa desde 600€, tienda online desde 1.200€, plataforma de cursos desde 1.000€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
   },
