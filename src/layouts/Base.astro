@@ -101,7 +101,7 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" id="apple-status-bar-meta" content="default" />
   <meta name="description" content={description} />
   {noindex ? (
     <meta name="robots" content="noindex, nofollow" />
@@ -148,13 +148,34 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#EEF2FC" />
-  <meta name="theme-color" id="theme-color-meta" content="#EEF2FC" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#EEEDF4" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0A0A12" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" id="theme-color-meta" content="#EEEDF4" />
 
   <script is:inline>
     (function () {
-      document.documentElement.dataset.theme = 'light';
-      document.documentElement.style.colorScheme = 'light';
+      var KEY = 'rimobyte-theme';
+      var COLORS = { dark: '#0A0A12', light: '#EEEDF4' };
+      var stored = null;
+      try {
+        var v = localStorage.getItem(KEY);
+        if (v === 'light' || v === 'dark') stored = v;
+      } catch (e) {}
+      var theme = stored;
+      if (!theme) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+        else theme = 'light';
+      }
+      var root = document.documentElement;
+      root.dataset.theme = theme;
+      root.style.colorScheme = theme;
+      var statusMeta = document.getElementById('apple-status-bar-meta');
+      if (statusMeta) {
+        statusMeta.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
+      }
+      var meta = document.getElementById('theme-color-meta');
+      if (meta) meta.setAttribute('content', COLORS[theme]);
     })();
   </script>
 </head>

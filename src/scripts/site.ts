@@ -1,5 +1,9 @@
 /** Interacciones globales del sitio */
+import { applyTheme, initThemeListeners, resolveTheme } from '../lib/theme';
+
 export function initSite() {
+  applyTheme(resolveTheme());
+  initThemeListeners();
   initNavProgress();
   initCursorGlow();
   initHeroShowcase();

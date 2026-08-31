@@ -2,6 +2,7 @@
 import Button from '../ui/Button.astro';
 import LogoMark from '../ui/LogoMark.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
+import ThemeSwitcher from '../ui/ThemeSwitcher.astro';
 import chevronDownSvg from '../ui/icons/chevron-down.svg?raw';
 import { SERVICE_NAV_LINKS } from '../../data/navigation';
 import { canonicalPath } from '../../lib/url';
@@ -118,6 +119,7 @@ const navChevronClass =
       </nav>
 
       <div class="site-nav__actions">
+        <ThemeSwitcher />
         <div class="hidden md:block">
           <Button href="/contacto/#formulario" variant="primary">Empezar mi web</Button>
         </div>

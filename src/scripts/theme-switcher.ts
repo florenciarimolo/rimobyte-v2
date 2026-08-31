@@ -28,4 +28,8 @@ export function initThemeSwitchers() {
     const detail = (e as CustomEvent<{ theme: Theme }>).detail;
     if (detail?.theme) syncSwitchers(detail.theme);
   });
+
+  document.addEventListener('astro:page-load', () => {
+    syncSwitchers(resolveTheme());
+  });
 }

@@ -8,7 +8,9 @@ export const THEME_COLORS: Record<Theme, string> = {
 };
 
 export function getSystemTheme(): Theme {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+  return 'light';
 }
 
 export function getStoredTheme(): Theme | null {
@@ -34,6 +36,11 @@ export function applyTheme(theme: Theme): void {
     document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', THEME_COLORS[theme]);
 
+  const statusBar = document.getElementById('apple-status-bar-meta');
+  if (statusBar) {
+    statusBar.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
+  }
+
   document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
 }
 
@@ -54,10 +61,29 @@ export function toggleTheme(): Theme {
   return next;
 }
 
+function onSystemThemeChange(): void {
+  if (!getStoredTheme()) applyTheme(getSystemTheme());
+}
+
+let listenersInitialized = false;
+
 export function initThemeListeners(): void {
-  window
-    .matchMedia('(prefers-color-scheme: light)')
-    .addEventListener('change', () => {
-      if (!getStoredTheme()) applyTheme(getSystemTheme());
-    });
+  if (listenersInitialized) return;
+  listenersInitialized = true;
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', onSystemThemeChange);
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', onSystemThemeChange);
+
+  window.addEventListener('storage', (e) => {
+    if (e.key !== THEME_STORAGE_KEY) return;
+    if (e.newValue === 'light' || e.newValue === 'dark') {
+      applyTheme(e.newValue);
+    } else if (e.newValue === null) {
+      applyTheme(resolveTheme());
+    }
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    applyTheme(resolveTheme());
+  });
 }
