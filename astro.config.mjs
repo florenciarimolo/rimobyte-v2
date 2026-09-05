@@ -16,6 +16,8 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) =>
+        !page.includes('/politica-privacidad') && !page.includes('/politica-cookies'),
       serialize(item) {
         const pathname = new URL(item.url).pathname;
         item.lastmod = lastmodForUrl(pathname);
