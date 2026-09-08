@@ -12,6 +12,8 @@ Los scripts Node personalizados viven en [`scripts/`](../scripts/).
 - [Imágenes del blog](#imágenes-del-blog)
 - [Favicons](#favicons)
 - [Open Graph estáticas](#open-graph-estáticas)
+- [Calendario editorial y borradores (PR)](#calendario-editorial-y-borradores-pr)
+- [Informe SEO semanal](#informe-seo-semanal)
 - [Resumen rápido](#resumen-rápido)
 
 ---
@@ -203,6 +205,64 @@ Para añadir posts futuros, edita `content/blog-calendar.json` (campos `intro`, 
 
 ---
 
+## Informe SEO semanal
+
+**Comando:** `pnpm seo:report`  
+**Script:** [`scripts/seo-weekly-report.mjs`](../scripts/seo-weekly-report.mjs)  
+**Workflow:** [`.github/workflows/seo-weekly.yml`](../.github/workflows/seo-weekly.yml)  
+**Salida:** [`docs/reports/seo-YYYY-MM-DD.md`](reports/) + email vía Resend
+
+### Objetivo
+
+Detectar oportunidades de **captación de clientes** (visibilidad comercial, CTR en money pages, picos de GSC, rendimiento en páginas de conversión) y proponer acciones concretas en archivos del repo.
+
+### Cuándo ejecutarlo
+
+- Automático: lunes 09:00 UTC (GitHub Actions).
+- Manual: tras configurar secrets, o en local para probar.
+
+### Flags
+
+| Comando | Efecto |
+|---------|--------|
+| `pnpm seo:report` | Escribe informe, envía email |
+| `pnpm seo:report -- --dry-run` | Solo imprime Markdown en stdout |
+| `pnpm seo:report -- --no-email` | Escribe archivo, no envía email |
+| `pnpm seo:report -- --email-only` | Envía el informe ya escrito (CI: tras el commit) |
+| `pnpm seo:report -- --no-commit` | No-op local (el commit lo hace el workflow en CI) |
+
+### Variables de entorno / secrets
+
+| Variable | Local | GitHub Actions secret |
+|----------|-------|------------------------|
+| Credenciales GSC | `GOOGLE_APPLICATION_CREDENTIALS` (ruta al JSON) | `GSC_SERVICE_ACCOUNT_JSON` (contenido JSON) |
+| Propiedad | `GSC_SITE_URL` | `GSC_SITE_URL` |
+| PageSpeed | `PSI_API_KEY` | `PSI_API_KEY` |
+| Email | `RESEND_API_KEY` | `RESEND_API_KEY` |
+| Destinatario | `SEO_REPORT_TO` (default: `florenciarimolo.dev@gmail.com`) | `SEO_REPORT_TO` |
+
+**No** configurar estas variables en Vercel: el informe no corre en el sitio desplegado.
+
+### Flujo CI
+
+1. Escribe el JSON de GSC en `/tmp/gsc.json`.
+2. Ejecuta `node scripts/seo-weekly-report.mjs --no-email` (GSC + PSI dinámico → `docs/reports/`).
+3. Commit y push de `docs/reports/` a `main`.
+4. Ejecuta `node scripts/seo-weekly-report.mjs --email-only` (enlace GitHub ya válido).
+
+### Cursor Automation (fase 2)
+
+Cuando el primer informe esté en `main`, puedes crear una automation en Cursor (cron martes ~10:00 UTC o manual) con instrucciones como:
+
+1. Lee el archivo más reciente `docs/reports/seo-YYYY-MM-DD.md` (ordenar por fecha en el nombre).
+2. Ejecuta solo recomendaciones **Alta** y **Media** orientadas a captación de clientes.
+3. Edita metadatos/copy en español (title ≤ 60 caracteres, description ≤ 155, tono RimoByte, CTA hacia contacto/presupuesto donde aplique).
+4. Abre un PR `seo-automation/YYYY-MM-DD` con label `seo-automation` — **nunca merges automático**.
+
+Archivos habituales a tocar: `src/data/wordpressLanding.ts`, `src/data/staticPageSeo.ts`, `src/data/sectors.ts`, `src/content/blog/*.md`, `content/blog-calendar.json`.
+
+---
+
 ## Resumen rápido
 
 | Necesitas… | Ejecuta |
@@ -214,6 +274,7 @@ Para añadir posts futuros, edita `content/blog-calendar.json` (campos `intro`, 
 | Nueva o cambiada portada de blog | `pnpm images:blog` (opcional `--slug=…`) |
 | Borrador automático del siguiente post (PR) | `pnpm blog:draft` |
 | Marcar post publicado en calendario | `pnpm blog:mark-published -- --slug=…` |
+| Informe SEO semanal (GSC + PSI + email) | `pnpm seo:report` |
 | Regenerar favicons desde `favicon.svg` | `pnpm images:favicons` |
 | Regenerar carteles OG (páginas con retrato por defecto) | `pnpm images:og` |
 | Probar build de producción completo | `pnpm build` → `pnpm preview` |

@@ -22,6 +22,7 @@ pnpm images:favicons  # PNG + ICO desde public/favicon.svg
 pnpm images:og        # carteles OG estáticos (páginas con retrato por defecto)
 pnpm images:projects  # variantes WebP del portfolio
 pnpm images:blog      # variantes WebP del blog
+pnpm seo:report       # informe SEO semanal (GSC + PSI → docs/reports/ + email)
 ```
 
 Detalle de cuándo y cómo ejecutar cada script: [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
@@ -84,7 +85,7 @@ En estilos inline de React (`style={{ color: 'var(--color-blue)' }}`) sí usa `v
 
 | Variable | Uso |
 |----------|-----|
-| `RESEND_API_KEY` | Envío de emails en `src/pages/api/contact.ts` |
+| `RESEND_API_KEY` | Envío de emails en `src/pages/api/contact.ts` y en `pnpm seo:report` |
 | `RECAPTCHA_SITE_KEY` | Clave pública reCAPTCHA v3 (formulario de contacto) |
 | `RECAPTCHA_SECRET_KEY` | Verificación servidor en `/api/contact` |
 | `GOOGLE_PLACES_API_KEY` | Reseñas en la home + **aggregateRating** JSON-LD en `/` y `/sobre-mi/` (`src/lib/google-reviews.ts`) |
@@ -92,6 +93,20 @@ En estilos inline de React (`style={{ color: 'var(--color-blue)' }}`) sí usa `v
 | `PUBLIC_INSTAGRAM_URL` | (Opcional) Perfil Instagram para `sameAs` en JSON-LD Person/LocalBusiness |
 | `PUBLIC_LINKEDIN_URL` | (Opcional) LinkedIn para `sameAs` |
 | `PUBLIC_GBP_URL` | (Opcional) Google Business Profile para `sameAs` |
+
+### Informe SEO semanal (`pnpm seo:report`) — no van en Vercel
+
+Estas variables son para CI (GitHub Actions) y pruebas locales. **No** configurarlas en el proyecto Vercel.
+
+| Variable | Uso |
+|----------|-----|
+| `GOOGLE_APPLICATION_CREDENTIALS` | Ruta local al JSON de la cuenta de servicio GSC |
+| `GSC_SERVICE_ACCOUNT_JSON` | (CI) Contenido completo del JSON de la cuenta de servicio |
+| `GSC_SITE_URL` | Propiedad GSC, p. ej. `sc-domain:rimobyte.com` |
+| `PSI_API_KEY` | API key de PageSpeed Insights |
+| `SEO_REPORT_TO` | Destinatario del informe (p. ej. `florenciarimolo.dev@gmail.com`) |
+
+Secrets equivalentes en GitHub → Settings → Secrets and variables → Actions. Detalle: [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
 
 ## Cuándo leer cada skill
 

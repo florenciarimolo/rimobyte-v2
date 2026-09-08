@@ -19,7 +19,8 @@
     "images:blog": "node scripts/generate-blog-images.mjs",
     "vercel:redirects": "tsx scripts/generate-vercel-redirects.ts",
     "blog:draft": "node scripts/draft-next-blog-post.mjs",
-    "blog:mark-published": "node scripts/mark-blog-published.mjs"
+    "blog:mark-published": "node scripts/mark-blog-published.mjs",
+    "seo:report": "node scripts/seo-weekly-report.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
@@ -41,6 +42,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "googleapis": "^178.0.0",
     "png-to-ico": "^3.0.1",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.14.0",

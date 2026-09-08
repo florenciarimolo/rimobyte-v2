@@ -1,0 +1,73 @@
+name: SEO weekly report
+
+on:
+  schedule:
+    # Lunes 09:00 UTC — 1 h después del blog draft
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Escribir credenciales GSC
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const raw = process.env.GSC_SERVICE_ACCOUNT_JSON;
+            if (!raw) { console.error('Falta secret GSC_SERVICE_ACCOUNT_JSON'); process.exit(1); }
+            JSON.parse(raw);
+            fs.writeFileSync('/tmp/gsc.json', raw, { mode: 0o600 });
+            console.log('Credenciales GSC escritas en /tmp/gsc.json');
+          "
+
+      - name: Generar informe SEO
+        id: seo
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gsc.json
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
+        run: node scripts/seo-weekly-report.mjs --no-email
+
+      - name: Commit informe
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/reports/
+          if git diff --staged --quiet; then
+            echo "Sin cambios en docs/reports/"
+          else
+            git commit -m "Informe SEO semanal automático
+
+          Generado con pnpm seo:report (GSC + PSI)."
+            git push
+          fi
+
+      - name: Enviar email (tras push, enlace GitHub válido)
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SEO_REPORT_TO: ${{ secrets.SEO_REPORT_TO }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/seo-weekly-report.mjs --email-only
+
+      - name: Limpiar credenciales
+        if: always()
+        run: rm -f /tmp/gsc.json
