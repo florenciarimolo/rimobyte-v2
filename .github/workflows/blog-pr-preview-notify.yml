@@ -15,8 +15,6 @@ on:
 permissions:
   contents: read
   pull-requests: read
-  checks: read
-  statuses: read
 
 jobs:
   notify:
@@ -25,6 +23,10 @@ jobs:
       startsWith(github.head_ref, 'blog/')
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
       - name: Metadatos del PR
         id: pr
         env:
@@ -40,48 +42,44 @@ jobs:
           HEAD=$(echo "$DATA" | jq -r '.head.ref')
           URL=$(echo "$DATA" | jq -r '.html_url')
           TITLE=$(echo "$DATA" | jq -r '.title')
-          SHA=$(echo "$DATA" | jq -r '.head.sha')
           SLUG="${HEAD#blog/}"
           echo "number=$PR" >> "$GITHUB_OUTPUT"
           echo "head=$HEAD" >> "$GITHUB_OUTPUT"
-          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
           echo "pr_title=$TITLE" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/head', inputs.pr_number) || github.event.pull_request.head.sha }}
-
-      - name: Título y fecha desde calendario
+      - name: Título y fecha desde calendario (rama del PR)
         id: calendar
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLUG: ${{ steps.pr.outputs.slug }}
+          HEAD: ${{ steps.pr.outputs.head }}
         run: |
+          REPO="${{ github.repository }}"
+          B64=$(gh api "repos/$REPO/contents/content/blog-calendar.json?ref=$HEAD" --jq -r '.content' 2>/dev/null || echo "")
+          if [ -z "$B64" ] || [ "$B64" = "null" ]; then
+            echo "title=" >> "$GITHUB_OUTPUT"
+            echo "scheduled=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "$B64" | base64 -d > /tmp/calendar.json
           node -e "
           const fs = require('fs');
           const slug = process.env.SLUG;
-          let title = '';
-          let scheduled = '';
-          try {
-            const cal = JSON.parse(fs.readFileSync('content/blog-calendar.json', 'utf8'));
-            const post = cal.posts.find((p) => p.slug === slug);
-            if (post) {
-              title = post.title || '';
-              scheduled = post.scheduledDate || '';
-            }
-          } catch {}
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'title=' + title + '\n');
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'scheduled=' + scheduled + '\n');
+          const cal = JSON.parse(fs.readFileSync('/tmp/calendar.json', 'utf8'));
+          const post = cal.posts.find((p) => p.slug === slug) || {};
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'title=' + (post.title || '') + '\n');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'scheduled=' + (post.scheduledDate || '') + '\n');
           "
 
-      - name: Esperar preview de Vercel
+      - name: Obtener preview de Vercel
         id: vercel
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 600
-        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          MAX_TIMEOUT_MS: 600000
+        run: node scripts/get-vercel-preview-url.mjs
 
       - uses: pnpm/action-setup@v4
         with:
