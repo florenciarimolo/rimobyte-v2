@@ -59,7 +59,11 @@ const blogVisuals: Record<string, BlogVisual> = {
   'programador-wordpress-freelance-espana': {
     icon: 'WP',
     gradient: 'linear-gradient(135deg, #196BEE, #6535E5 50%, #E715D1)',
+  },  'mantenimiento-wordpress-empresas': {
+    icon: 'M',
+    gradient: 'linear-gradient(135deg, #6535E5, #196BEE)',
   },
+
 };
 
 export function getBlogVisual(slug: string): BlogVisual {
