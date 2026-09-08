@@ -1,0 +1,56 @@
+name: Blog draft PR
+
+on:
+  schedule:
+    # Lunes 08:00 UTC — revisa si hay post pendiente con fecha <= hoy
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Adelantar el siguiente post aunque no haya llegado su fecha'
+        required: false
+        default: 'false'
+        type: boolean
+      slug:
+        description: 'Slug concreto del calendario (opcional)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Configurar git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Crear borrador y PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          if [ -n "${{ inputs.slug }}" ]; then
+            ARGS="$ARGS --slug=${{ inputs.slug }}"
+          fi
+          node scripts/draft-next-blog-post.mjs $ARGS

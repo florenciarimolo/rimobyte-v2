@@ -17,7 +17,9 @@
     "images:og": "tsx scripts/generate-og-images.ts",
     "images:projects": "node scripts/generate-project-images.mjs",
     "images:blog": "node scripts/generate-blog-images.mjs",
-    "vercel:redirects": "tsx scripts/generate-vercel-redirects.ts"
+    "vercel:redirects": "tsx scripts/generate-vercel-redirects.ts",
+    "blog:draft": "node scripts/draft-next-blog-post.mjs",
+    "blog:mark-published": "node scripts/mark-blog-published.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",

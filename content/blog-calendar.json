@@ -1,0 +1,227 @@
+{
+  "posts": [
+    {
+      "slug": "programador-wordpress-freelance-espana",
+      "status": "published",
+      "scheduledDate": "2026-09-08",
+      "publishedDate": "2026-09-08",
+      "targetQuery": "programadores wordpress"
+    },
+    {
+      "slug": "mantenimiento-wordpress-empresas",
+      "status": "pending",
+      "scheduledDate": "2026-09-22",
+      "targetQuery": "mantenimiento wordpress empresas",
+      "title": "Mantenimiento WordPress para empresas: qué incluye y cuánto cuesta",
+      "description": "Qué debe incluir el mantenimiento WordPress de una empresa: actualizaciones, copias, seguridad y soporte. Precio desde 50€/mes sin permanencia.",
+      "type": "guia",
+      "keywords": [
+        "mantenimiento wordpress empresas",
+        "mantenimiento web wordpress",
+        "soporte wordpress pymes"
+      ],
+      "readingTime": "5 min",
+      "ctaText": "¿Quieres mantenimiento WordPress sin permanencia?",
+      "ctaLink": "/servicios/mantenimiento-web/",
+      "relatedSlugs": [
+        "cuanto-cuesta-una-web-wordpress",
+        "tu-web-debe-ser-tuya",
+        "programador-wordpress-freelance-espana"
+      ],
+      "coverSourceSlug": "cuanto-cuesta-una-web-wordpress",
+      "visual": {
+        "icon": "M",
+        "gradient": "linear-gradient(135deg, #6535E5, #196BEE)"
+      },
+      "intro": "Una web WordPress no es «publicar y olvidar». WordPress, los plugins y el servidor reciben actualizaciones constantes. Si nadie las mira, tarde o temprano aparece un aviso rojo, una web lenta o algo peor.\n\nEl mantenimiento WordPress para empresas no es un extra de lujo: es lo que evita que tu web — que ya te costó dinero — se convierta en un problema.",
+      "sections": [
+        {
+          "heading": "## Qué es el mantenimiento WordPress (y qué no es)",
+          "body": "No es «hosting». El servidor lo contratas tú; yo no vendo alojamiento.\n\nSí es: vigilar que WordPress, el tema y los plugins estén actualizados, que haya copias de seguridad recientes, que la web cargue bien y que alguien responda cuando algo falla.\n\nTampoco es reescribir tu web cada mes. Es cuidado técnico preventivo."
+        },
+        {
+          "heading": "## Qué debería incluir un plan serio",
+          "body": "Como mínimo:\n\n- **Actualizaciones** de WordPress, tema y plugins (con prueba antes en copia si hace falta)\n- **Copias de seguridad automáticas** y comprobar que se restauran\n- **Monitorización básica** — caídas, errores graves\n- **Seguridad** — revisiones, limpieza si hay intentos de acceso raro\n- **Soporte por email** para incidencias técnicas\n- **Comunicación directa** — sin ticket eterno ni call center\n\nEn [mantenimiento web](/servicios/mantenimiento-web/) lo hago desde **50€/mes**, sin permanencia. Si un mes no lo necesitas, no hay penalización."
+        },
+        {
+          "heading": "## ¿Lo puedes hacer tú?",
+          "body": "Sí, si tienes tiempo y no te importa entrar al panel cada semana. Muchos autónomos lo hacen al principio.\n\nEl problema llega cuando:\n\n- Una actualización rompe el formulario y no te enteras hasta que un cliente dice que no puede escribirte\n- No tienes copia reciente y algo se corrompe\n- Un plugin desactualizado abre una puerta de seguridad\n\nContratar mantenimiento es pagar por no pensar en eso — y por tener a alguien que ya conoce tu web."
+        },
+        {
+          "heading": "## Cuánto cuesta en España",
+          "body": "He visto de todo: 20€/mes sin hacer nada útil, y 200€/mes en agencias con informes que nadie lee.\n\nPara una web corporativa o tienda pequeña en WordPress, un rango razonable es **50–120€/mes** según complejidad (plugins, tienda, tráfico).\n\nYo parto de **50€/mes** para webs que he hecho yo o conozco bien. Si la web viene hecha por otro y está hecha un lío, primero la reviso — a veces hace falta una puesta a punto antes del mantenimiento."
+        },
+        {
+          "heading": "## Mantenimiento vs «me llamas cuando pase algo»",
+          "body": "Lo segundo suele salir más caro. Llegas con urgencia, sin contexto, y hay que investigar desde cero.\n\nEl mantenimiento preventivo detecta cosas antes de que el cliente vea un error. Además, quien mantiene la web sabe qué plugins tocar y cuáles no.\n\nSi tu web es la principal forma de captar clientes, **50€/mes** suele ser menos que una hora de consultoría de urgencia."
+        },
+        {
+          "heading": "## Señales de que te hace falta",
+          "body": "- Llevas meses sin actualizar nada\n- No sabes dónde están las copias de seguridad\n- Tu web tarda más de 4–5 segundos en móvil\n- Te da miedo pulsar «actualizar» por si se rompe\n- Depende de una agencia que tarda semanas en responder\n\nSi te reconoces en dos o más, merece la pena hablarlo."
+        }
+      ],
+      "closing": "El mantenimiento no sustituye una buena web inicial — la protege. Si quieres olvidarte de actualizaciones y copias, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría en tu caso y si tiene sentido empezar ya o después de una puesta a punto."
+    },
+    {
+      "slug": "web-wordpress-peluquerias",
+      "status": "pending",
+      "scheduledDate": "2026-10-06",
+      "targetQuery": "web wordpress peluquería",
+      "title": "Web WordPress para peluquerías y centros de estética",
+      "description": "Qué debe tener la web WordPress de una peluquería o centro de estética: servicios, reservas, SEO local y móvil. Ejemplos y precio orientativo.",
+      "type": "sector",
+      "keywords": [
+        "web wordpress peluquería",
+        "página web peluquería",
+        "web centro estética wordpress"
+      ],
+      "readingTime": "5 min",
+      "ctaText": "¿Quieres web WordPress para tu peluquería?",
+      "ctaLink": "/web-para-peluquerias/",
+      "relatedSlugs": [
+        "web-o-instagram",
+        "cuanto-cuesta-una-web-wordpress",
+        "programador-wordpress-freelance-espana"
+      ],
+      "coverSourceSlug": "web-para-restaurante-conseguir-reservas",
+      "visual": {
+        "icon": "B",
+        "gradient": "linear-gradient(135deg, #E715D1, #6535E5)"
+      },
+      "intro": "Muchas peluquerías y centros de estética viven de Instagram. Funciona — hasta que alguien busca «peluquería en [tu barrio]» en Google y no te encuentra.\n\nUna web WordPress bien hecha no sustituye Instagram: la complementa. Instagram enseña el estilo; la web te posiciona, explica servicios y convierte búsquedas en citas.",
+      "sections": [
+        {
+          "heading": "## Por qué WordPress y no solo Instagram",
+          "body": "Instagram no aparece cuando buscan «mechas balayage + tu ciudad» o «centro estética cerca de mí». Google sí — si tienes web.\n\nAdemás, en Instagram no controlas la estructura: precios, servicios detallados, horarios, política de cancelación. En tu web sí.\n\nLo explico más a fondo en [web o Instagram](/blog/web-o-instagram/). La respuesta corta: necesitas los dos, pero la web es tuya."
+        },
+        {
+          "heading": "## Qué páginas necesita tu web",
+          "body": "- **Inicio** — foto real del local, propuesta clara, botón de reserva o WhatsApp\n- **Servicios** — corte, color, tratamientos, packs (cada uno con precio orientativo o «desde»)\n- **Sobre nosotros** — quién está detrás, experiencia, ambiente del local\n- **Contacto / reservas** — formulario, mapa, horarios, enlace a Booksy o similar si ya lo usas\n- **Opcional: blog** — consejos de cuidado capilar; ayuda al SEO local si lo actualizas\n\nNo hace falta una web de 30 páginas. Hace falta que diga qué haces, dónde estás y cómo reservar."
+        },
+        {
+          "heading": "## Reservas online: integrar, no complicar",
+          "body": "Puedes enlazar a Booksy, Treatwell o WhatsApp Business. No siempre hace falta un sistema de reservas dentro de WordPress.\n\nLo importante es que el cliente **no se pierda**: un botón visible en móvil, horarios claros y respuesta rápida.\n\nSi quieres reservas nativas en WordPress, se puede — pero sube complejidad y precio. Para muchos locales, enlace + formulario basta."
+        },
+        {
+          "heading": "## SEO local para peluquerías",
+          "body": "Tu cliente busca por **servicio + zona**: «peluquería Eixample», «uñas gel Sants».\n\nLa web debe mencionar tu barrio o ciudad en títulos y textos (sin spam). Schema LocalBusiness, Google Business Profile conectado y reseñas visibles.\n\nEn [webs para peluquerías](/web-para-peluquerias/) trabajo con ese enfoque: WordPress a medida, pensado para móvil y para Google local."
+        },
+        {
+          "heading": "## Cuánto cuesta",
+          "body": "Una web WordPress corporativa para peluquería encaja en el rango **desde 600€** (presupuesto cerrado, diseño a medida, a tu nombre).\n\nSi quieres tienda de productos (champús, tratamientos), entramos en WooCommerce — desde 1.200€.\n\nEl desglose general está en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
+        }
+      ],
+      "closing": "Si tu peluquería o centro de estética depende solo de Instagram y del boca a boca, estás dejando citas sobre la mesa. [Cuéntame tu proyecto](/web-para-peluquerias/) y te digo qué tendría sentido en tu caso — sin venderte una web enorme que no vas a usar."
+    },
+    {
+      "slug": "rediseno-web-wordpress-cuando-merece",
+      "status": "pending",
+      "scheduledDate": "2026-10-20",
+      "targetQuery": "rediseño web wordpress",
+      "title": "Rediseño web WordPress: cuándo merece la pena y cuánto cuesta",
+      "description": "Señales de que tu web WordPress necesita rediseño, qué incluye un rediseño serio, migración desde Wix o agencia y precios orientativos en España.",
+      "type": "guia",
+      "keywords": [
+        "rediseño web wordpress",
+        "renovar web wordpress",
+        "migrar web a wordpress"
+      ],
+      "readingTime": "6 min",
+      "ctaText": "¿Tu web WordPress necesita rediseño?",
+      "ctaLink": "/desarrollo-web-wordpress/",
+      "relatedSlugs": [
+        "tu-web-debe-ser-tuya",
+        "wordpress-vs-wix",
+        "cuanto-cuesta-una-web-wordpress"
+      ],
+      "coverSourceSlug": "wordpress-a-medida-vs-plantilla",
+      "visual": {
+        "icon": "R",
+        "gradient": "linear-gradient(135deg, #196BEE, #E715D1)"
+      },
+      "intro": "No toda web vieja necesita tirarse y empezar de cero. A veces basta actualizar textos y fotos. Otras, la web es un freno: lenta, fea en móvil, hecha con una plantilla que ya no representa tu negocio, o peor — **no es tuya** porque la agencia tiene los accesos.\n\nUn rediseño web WordPress bien planteado recupera posicionamiento, confianza y control. Mal planteado, es pagar dos veces por lo mismo.",
+      "sections": [
+        {
+          "heading": "## Cuándo sí merece rediseñar",
+          "body": "- La web tiene **más de 4–5 años** y se ve anticuada\n- En móvil cuesta usarla (menú roto, textos ilegibles, botones minúsculos)\n- **No apareces en Google** para búsquedas obvias de tu negocio\n- Está hecha con Wix, WordPress.com o un constructor que te limita\n- **No tienes accesos** al panel, dominio o servidor\n- Has cambiado de servicios, zona o marca y la web no lo refleja\n- Te da vergüenza pasar el enlace a un cliente\n\nSi encajas en tres o más, no es capricho. Es negocio."
+        },
+        {
+          "heading": "## Cuándo no hace falta (todavía)",
+          "body": "- Solo quieres cambiar el logotipo\n- El problema es contenido, no diseño (textos vacíos, sin fotos)\n- La web funciona, carga bien y te trae contactos\n- Puedes editar tú lo que necesitas\n\nEn esos casos, una sesión de mejoras puntuales puede bastar. Te lo digo en la primera conversación si pides presupuesto de rediseño."
+        },
+        {
+          "heading": "## Rediseño vs migración",
+          "body": "**Rediseño:** la web sigue en WordPress (o similar) pero cambia diseño, estructura y a veces plugins.\n\n**Migración:** vienes de Wix, WordPress.com, HTML antiguo o una plataforma rara. Hay que exportar contenido, montar WordPress en tu servidor y redirigir URLs para no perder SEO.\n\nLa migración suele costar más tiempo porque hay que limpiar lo que dejó la plataforma anterior. Si vienes de [Wix](/blog/wordpress-vs-wix/), el salto suele compensar a medio plazo."
+        },
+        {
+          "heading": "## Qué incluye un rediseño WordPress serio",
+          "body": "- Auditoría de lo que hay (URLs indexadas, contenido reutilizable)\n- Diseño nuevo a medida, no otro tema de catálogo\n- WordPress limpio, sin acumular plugins viejos\n- **Redirects 301** de páginas que cambian de URL\n- SEO básico revisado (títulos, estructura, velocidad)\n- Formación para que edites después\n- **Accesos a tu nombre** — siempre\n\nSi alguien te propone «instalar un tema nuevo» sin hablar de URLs ni contenido, pregunta más."
+        },
+        {
+          "heading": "## Cuánto cuesta en España",
+          "body": "Depende del punto de partida:\n\n- **Rediseño WordPress** (ya es tuya, contenido reutilizable): suele partir de **600–900€**, similar a una web nueva\n- **Migración desde Wix u otra plataforma:** **700–1.200€** según páginas y basura acumulada\n- **Rescate** (sin accesos, web hecha un desastre): primero auditoría; a veces sale más barato empezar limpio\n\nRangos detallados en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
+        },
+        {
+          "heading": "## Caso real: cuando la web no era suya",
+          "body": "En [Vila i Lancis](/proyectos/vila-i-lancis/) la asesoría no podía entrar a su propia web. Rediseño completo, WordPress a su nombre, estructura clara. Mismo patrón en otros rescates: el problema no era solo el diseño — era la propiedad.\n\nAntes de rediseñar, comprueba dominio y hosting. Lo explico en [por qué tu web debe ser tuya](/blog/tu-web-debe-ser-tuya/)."
+        }
+      ],
+      "closing": "Si tu web WordPress (o la que debería ser WordPress) te frena en lugar de ayudarte, [cuéntame qué tienes ahora](/desarrollo-web-wordpress/). Te digo si merece rediseño, migración o solo un retoque — sin venderte un proyecto grande por defecto."
+    },
+    {
+      "slug": "web-wordpress-psicologos",
+      "status": "pending",
+      "scheduledDate": "2026-11-03",
+      "targetQuery": "web wordpress psicólogo",
+      "title": "Web WordPress para psicólogos: qué incluir y errores a evitar",
+      "description": "Cómo debe ser la web WordPress de un psicólogo o psicóloga: confianza, SEO local, RGPD, reserva de citas y contenido ético.",
+      "type": "sector",
+      "keywords": [
+        "web wordpress psicólogo",
+        "página web psicóloga",
+        "web psicología wordpress"
+      ],
+      "readingTime": "6 min",
+      "ctaText": "¿Quieres web WordPress para tu consulta?",
+      "ctaLink": "/web-para-psicologos/",
+      "relatedSlugs": [
+        "web-para-asesoria-captar-clientes",
+        "cuanto-cuesta-una-web-wordpress",
+        "tu-web-debe-ser-tuya"
+      ],
+      "coverSourceSlug": "web-para-asesoria-captar-clientes",
+      "visual": {
+        "icon": "Ψ",
+        "gradient": "linear-gradient(135deg, #6535E5, #196BEE 50%, #E715D1)"
+      },
+      "intro": "Una web de psicología no vende sesiones a gritos. Transmite calma, confianza y claridad sobre cómo trabajas. Eso no es lo mismo que una web de restaurante o una tienda.\n\nWordPress encaja bien: puedes tener páginas por enfoque (ansiedad, pareja, infantil), un blog si escribes, y control total sobre textos legales y formularios — sin depender de una plataforma cerrada.",
+      "sections": [
+        {
+          "heading": "## Lo primero: confianza, no impacto visual",
+          "body": "Tu potencial paciente llega nervioso. No busca animaciones llamativas ni pop-ups agresivos.\n\nBusca: quién eres, cómo trabajas, dónde estás, cómo reservar primera sesión, y señales de que eres profesional (colegiación, formación, enfoque terapéutico).\n\nDiseño limpio, tipografía legible, fotos reales o ilustración sobria. En móvil, que se lea sin esfuerzo."
+        },
+        {
+          "heading": "## Páginas que suele necesitar una consulta",
+          "body": "- **Inicio** — propuesta clara en una frase, CTA a contacto o reserva\n- **Sobre mí** — formación, enfoque, colegiación\n- **Servicios / áreas** — ansiedad, depresión, pareja, infantil… cada uno con su página si trabajas varios enfoques\n- **Modalidad** — presencial, online o híbrido; duración de sesión; idiomas\n- **Contacto / reserva** — formulario, teléfono, enlace a Doctoralia o similar\n- **Aviso legal y privacidad** — imprescindible con formularios y cookies\n\nNo hace falta publicar tarifas si no quieres, pero sí explicar el proceso de primera consulta."
+        },
+        {
+          "heading": "## SEO local sin sonar a marketing agresivo",
+          "body": "La gente busca «psicólogo en [ciudad]», «terapia ansiedad [barrio]», «psicóloga online español».\n\nLa web debe responder en textos naturales — no listas de ciudades spam. Schema Person o LocalBusiness, Google Business Profile coherente con la web, y páginas que nombren tu zona de forma honesta.\n\nEn [webs para psicólogos](/web-para-psicologos/) trabajo con ese equilibrio: visible en Google, ético en el tono."
+        },
+        {
+          "heading": "## RGPD y formularios",
+          "body": "Si recoges datos por formulario (nombre, email, motivo de consulta), necesitas política de privacidad clara, base legal, y cookies bien configuradas.\n\nWordPress permite controlar qué plugins de analítica usas. No instalar veinte trackers «por si acaso».\n\nNo soy abogada; la web incluye estructura para enlazar textos legales. Si necesitas revisión legal, conviene un profesional aparte."
+        },
+        {
+          "heading": "## Blog: sí o no",
+          "body": "Un blog ayuda al SEO si escribes con regularidad sobre temas que dominas. Si no vas a publicar nunca, mejor no crear sección vacía.\n\nArtículos útiles (cómo es la primera sesión, diferencia entre psicólogo y psiquiatra…) pueden atraer búsquedas informativas. El tono debe ser informativo, no sensacionalista."
+        },
+        {
+          "heading": "## Cuánto cuesta una web WordPress para psicólogos",
+          "body": "Similar a otras webs corporativas de profesionales: **desde 600€** con diseño a medida, formularios, SEO base y web a tu nombre.\n\nSi quieres reservas integradas, blog con varias plantillas o multiidioma, sube según complejidad.\n\nDetalle en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
+        }
+      ],
+      "closing": "Tu web no sustituye la relación terapéutica, pero sí abre la puerta a quien aún no se atreve a llamar. Si quieres una web WordPress pensada para una consulta de psicología — clara, cuidada y tuya — [escríbeme](/web-para-psicologos/). Te propongo algo acorde a cómo trabajas, no un template genérico de clínica."
+    }
+  ]
+}

@@ -172,6 +172,37 @@ La ruta dinámica [`src/pages/og.png.ts`](../src/pages/og.png.ts) sigue disponib
 
 ---
 
+## Calendario editorial y borradores (PR)
+
+Calendario en [`content/blog-calendar.json`](../content/blog-calendar.json). Scripts en [`scripts/draft-next-blog-post.mjs`](../scripts/draft-next-blog-post.mjs) y [`scripts/mark-blog-published.mjs`](../scripts/mark-blog-published.mjs).
+
+### Cuándo usarlos
+
+- **Automático:** GitHub Actions [`blog-draft-pr.yml`](../.github/workflows/blog-draft-pr.yml) — cada lunes comprueba si hay un post `pending` con `scheduledDate` ≤ hoy y abre un PR en rama `blog/{slug}`.
+- **Manual:** `pnpm blog:draft` (misma lógica; requiere `gh` para crear el PR).
+- **Tras merge del PR:** `pnpm blog:mark-published -- --slug=nombre-del-post` en `main`.
+
+### Comandos
+
+| Comando | Qué hace |
+|---------|----------|
+| `pnpm blog:draft` | Siguiente post pendiente cuya fecha ya llegó → rama + commit + PR |
+| `pnpm blog:draft -- --force` | Adelanta el siguiente post aunque no haya llegado su fecha |
+| `pnpm blog:draft -- --slug=…` | Borrador de un slug concreto del calendario |
+| `pnpm blog:draft -- --no-pr` | Solo rama y commit local (sin push) |
+| `pnpm blog:mark-published -- --slug=…` | Marca el post como `published` en el calendario |
+
+### Flujo
+
+1. El borrador incluye `.md`, portada (copiada de `coverSourceSlug`), entrada en `blogMeta.ts` y variantes WebP.
+2. Revisas el PR (tono, precios, enlaces).
+3. Merge → Vercel despliega.
+4. Ejecutas `blog:mark-published` y commiteas el calendario actualizado.
+
+Para añadir posts futuros, edita `content/blog-calendar.json` (campos `intro`, `sections`, `closing`, SEO y `visual`).
+
+---
+
 ## Resumen rápido
 
 | Necesitas… | Ejecuta |
@@ -181,6 +212,8 @@ La ruta dinámica [`src/pages/og.png.ts`](../src/pages/og.png.ts) sigue disponib
 | Revisar clases Tailwind vs tokens del tema | `pnpm lint:classes` |
 | Nueva o cambiada captura de proyecto | `pnpm images:projects` |
 | Nueva o cambiada portada de blog | `pnpm images:blog` (opcional `--slug=…`) |
+| Borrador automático del siguiente post (PR) | `pnpm blog:draft` |
+| Marcar post publicado en calendario | `pnpm blog:mark-published -- --slug=…` |
 | Regenerar favicons desde `favicon.svg` | `pnpm images:favicons` |
 | Regenerar carteles OG (páginas con retrato por defecto) | `pnpm images:og` |
 | Probar build de producción completo | `pnpm build` → `pnpm preview` |
