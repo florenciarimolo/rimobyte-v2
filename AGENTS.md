@@ -104,7 +104,8 @@ Estas variables son para CI (GitHub Actions) y pruebas locales. **No** configura
 | `GSC_SERVICE_ACCOUNT_JSON` | (CI) Contenido completo del JSON de la cuenta de servicio |
 | `GSC_SITE_URL` | Propiedad GSC, p. ej. `sc-domain:rimobyte.com` |
 | `PSI_API_KEY` | API key de PageSpeed Insights |
-| `SEO_REPORT_TO` | Destinatario del informe (p. ej. `florenciarimolo.dev@gmail.com`) |
+| `SEO_REPORT_TO` | Destinatario del informe SEO semanal y avisos de PR de blog (GitHub Actions) |
+| `BLOG_NOTIFY_TO` | (Opcional) Email solo para avisos de blog; si falta, usa `SEO_REPORT_TO` |
 
 Secrets equivalentes en GitHub → Settings → Secrets and variables → Actions. Detalle: [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
 

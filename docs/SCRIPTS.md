@@ -203,6 +203,29 @@ Calendario en [`content/blog-calendar.json`](../content/blog-calendar.json). Scr
 
 Para añadir posts futuros, edita `content/blog-calendar.json` (campos `intro`, `sections`, `closing`, SEO y `visual`).
 
+### Aviso por email + preview Vercel
+
+Cuando se **abre** un PR cuya rama empieza por `blog/`, el workflow [`blog-pr-preview-notify.yml`](../.github/workflows/blog-pr-preview-notify.yml):
+
+1. Espera a que Vercel termine el deployment de preview (hasta 10 min).
+2. Te envía un email vía **Resend** (mismo sistema que el informe SEO semanal).
+
+El email incluye:
+
+- Título del artículo y fecha programada
+- **URL directa al artículo** en el preview (`{preview}/blog/{slug}/`)
+- Enlace al PR en GitHub
+
+**Secrets en GitHub** (Settings → Secrets → Actions):
+
+| Secret | Uso |
+|--------|-----|
+| `RESEND_API_KEY` | Ya lo usas para SEO semanal |
+| `SEO_REPORT_TO` | Destinatario (p. ej. tu Gmail) |
+| `BLOG_NOTIFY_TO` | (Opcional) Si quieres otro email solo para blog |
+
+Para **reenviar** el aviso de un PR ya abierto: Actions → *Blog PR preview notify* → Run workflow → número de PR (p. ej. `1`).
+
 ---
 
 ## Informe SEO semanal

@@ -1,0 +1,104 @@
+name: Blog PR preview notify
+
+# Aviso por email cuando hay un PR de blog con preview de Vercel listo.
+on:
+  pull_request:
+    types: [opened]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Número de PR (p. ej. 1) para reenviar aviso'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+  checks: read
+  statuses: read
+
+jobs:
+  notify:
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      startsWith(github.head_ref, 'blog/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Metadatos del PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            PR="${{ inputs.pr_number }}"
+          else
+            PR="${{ github.event.pull_request.number }}"
+          fi
+          echo "number=$PR" >> "$GITHUB_OUTPUT"
+          DATA=$(gh pr view "$PR" --json headRefName,title,url)
+          HEAD=$(echo "$DATA" | jq -r '.headRefName')
+          URL=$(echo "$DATA" | jq -r '.url')
+          TITLE=$(echo "$DATA" | jq -r '.title')
+          SLUG="${HEAD#blog/}"
+          echo "head=$HEAD" >> "$GITHUB_OUTPUT"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
+          echo "pr_title=$TITLE" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/head', inputs.pr_number) || github.event.pull_request.head.sha }}
+
+      - name: Título y fecha desde calendario
+        id: calendar
+        env:
+          SLUG: ${{ steps.pr.outputs.slug }}
+        run: |
+          node -e "
+          const fs = require('fs');
+          const slug = process.env.SLUG;
+          let title = '';
+          let scheduled = '';
+          try {
+            const cal = JSON.parse(fs.readFileSync('content/blog-calendar.json', 'utf8'));
+            const post = cal.posts.find((p) => p.slug === slug);
+            if (post) {
+              title = post.title || '';
+              scheduled = post.scheduledDate || '';
+            }
+          } catch {}
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'title=' + title + '\n');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'scheduled=' + scheduled + '\n');
+          "
+
+      - name: Esperar preview de Vercel
+        id: vercel
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 600
+        continue-on-error: true
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.17.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Enviar email de revisión
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          BLOG_NOTIFY_TO: ${{ secrets.BLOG_NOTIFY_TO }}
+          SEO_REPORT_TO: ${{ secrets.SEO_REPORT_TO }}
+          PR_URL: ${{ steps.pr.outputs.url }}
+          POST_SLUG: ${{ steps.pr.outputs.slug }}
+          POST_TITLE: ${{ steps.calendar.outputs.title || steps.pr.outputs.pr_title }}
+          SCHEDULED_DATE: ${{ steps.calendar.outputs.scheduled }}
+          PREVIEW_URL: ${{ steps.vercel.outputs.url }}
+        run: node scripts/notify-blog-pr-email.mjs
