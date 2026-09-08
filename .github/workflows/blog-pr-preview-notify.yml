@@ -35,13 +35,16 @@ jobs:
           else
             PR="${{ github.event.pull_request.number }}"
           fi
-          echo "number=$PR" >> "$GITHUB_OUTPUT"
-          DATA=$(gh pr view "$PR" --json headRefName,title,url)
-          HEAD=$(echo "$DATA" | jq -r '.headRefName')
-          URL=$(echo "$DATA" | jq -r '.url')
+          REPO="${{ github.repository }}"
+          DATA=$(gh api "repos/$REPO/pulls/$PR")
+          HEAD=$(echo "$DATA" | jq -r '.head.ref')
+          URL=$(echo "$DATA" | jq -r '.html_url')
           TITLE=$(echo "$DATA" | jq -r '.title')
+          SHA=$(echo "$DATA" | jq -r '.head.sha')
           SLUG="${HEAD#blog/}"
+          echo "number=$PR" >> "$GITHUB_OUTPUT"
           echo "head=$HEAD" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
           echo "pr_title=$TITLE" >> "$GITHUB_OUTPUT"
