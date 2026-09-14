@@ -7,6 +7,7 @@
  *   BLOG_NOTIFY_TO | SEO_REPORT_TO (destinatario)
  *   PR_URL, POST_SLUG, POST_TITLE (opcional), SCHEDULED_DATE (opcional)
  *   PREVIEW_URL (base del deployment Vercel, sin path)
+ *   BLOG_EMAIL_KIND=review|reminder (default review)
  */
 import { Resend } from 'resend';
 
@@ -34,6 +35,8 @@ async function main() {
   const title = env('POST_TITLE') || slug;
   const scheduled = env('SCHEDULED_DATE');
   const previewBase = env('PREVIEW_URL');
+  const kind = env('BLOG_EMAIL_KIND', 'review');
+  const isReminder = kind === 'reminder';
 
   if (!prUrl || !slug) {
     throw new Error('Faltan PR_URL o POST_SLUG');
@@ -44,7 +47,9 @@ async function main() {
     : null;
 
   const resend = new Resend(apiKey);
-  const subject = `Revisar artículo de blog: ${title}`;
+  const subject = isReminder
+    ? `Recordatorio: revisar artículo de blog — ${title}`
+    : `Revisar artículo de blog: ${title}`;
 
   const previewBlock = articleUrl
     ? `<p style="font-family:sans-serif;margin:1.25rem 0">
@@ -57,13 +62,22 @@ async function main() {
     ? `<p style="font-family:sans-serif"><strong>Fecha programada:</strong> ${escapeHtml(scheduled)}</p>`
     : '';
 
+  const heading = isReminder
+    ? 'Recordatorio: tienes un artículo pendiente de revisar'
+    : 'Tienes un artículo de blog para revisar';
+
+  const intro = isReminder
+    ? `<p style="font-family:sans-serif;color:#444">La fecha de publicación programada ya llegó (o pasó). El PR sigue abierto — cuando puedas, revísalo y haz merge.</p>`
+    : `<p style="font-family:sans-serif;color:#444">${escapeHtml(title)}</p>`;
+
   const result = await resend.emails.send({
     from: 'RimoByte <no-reply@rimobyte.com>',
     to,
     subject,
     html: `
-      <h2 style="font-family:sans-serif;color:#111">Tienes un artículo de blog para revisar</h2>
-      <p style="font-family:sans-serif;color:#444">${escapeHtml(title)}</p>
+      <h2 style="font-family:sans-serif;color:#111">${heading}</h2>
+      ${intro}
+      ${isReminder ? `<p style="font-family:sans-serif;color:#444"><strong>${escapeHtml(title)}</strong></p>` : ''}
       ${scheduledBlock}
       <p style="font-family:sans-serif"><strong>Slug:</strong> /blog/${escapeHtml(slug)}/</p>
       ${previewBlock}

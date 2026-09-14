@@ -6,6 +6,8 @@
  *   pnpm blog:draft -- --force
  *   pnpm blog:draft -- --slug=mantenimiento-wordpress-empresas
  *   pnpm blog:draft -- --no-pr
+ *
+ * Exit 0 si no toca publicar aún o si envía recordatorio de PR abierto.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -20,8 +22,8 @@ function run(cmd, opts = {}) {
   execSync(cmd, { cwd: root, stdio: 'inherit', ...opts });
 }
 
-function runCapture(cmd) {
-  return execSync(cmd, { cwd: root, encoding: 'utf8' }).trim();
+function runCapture(cmd, opts = {}) {
+  return execSync(cmd, { cwd: root, encoding: 'utf8', ...opts }).trim();
 }
 
 function parseArgs() {
@@ -42,36 +44,46 @@ async function writeCalendar(calendar) {
   await fs.writeFile(calendarPath, `${JSON.stringify(calendar, null, 2)}\n`, 'utf8');
 }
 
+function todayIso() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+/**
+ * @returns {{ action: 'skip', message: string } | { action: 'draft', post: object }}
+ */
 function pickPost(calendar, { force, slug }) {
   const posts = calendar.posts;
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayIso();
 
   if (slug) {
     const post = posts.find((p) => p.slug === slug);
     if (!post) throw new Error(`No hay entrada en el calendario para slug: ${slug}`);
     if (post.status === 'published') throw new Error(`El post ${slug} ya está publicado.`);
-    if (post.status === 'pr') throw new Error(`El post ${slug} ya tiene PR abierto (status: pr).`);
-    return post;
+    return { action: 'draft', post };
   }
 
-  const pending = posts.filter((p) => p.status === 'pending');
+  const pending = posts.filter((p) => p.status === 'pending' || p.status === 'pr');
   if (pending.length === 0) {
-    return null;
+    return { action: 'skip', message: 'No hay posts pendientes en el calendario.' };
   }
 
   if (force) {
-    return pending[0];
+    return { action: 'draft', post: pending[0] };
   }
 
   const due = pending.filter((p) => p.scheduledDate <= today);
   if (due.length === 0) {
-    const next = pending[0];
-    throw new Error(
-      `El siguiente post (${next.slug}) está programado para ${next.scheduledDate}. Usa --force para adelantarlo.`,
-    );
+    const next = pending.sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate))[0];
+    return {
+      action: 'skip',
+      message: `Aún no toca: ${next.slug} está programado para ${next.scheduledDate}.`,
+    };
   }
 
-  return due.sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate))[0];
+  return {
+    action: 'draft',
+    post: due.sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate))[0],
+  };
 }
 
 function buildMarkdown(post) {
@@ -131,25 +143,139 @@ function branchName(slug) {
   return `blog/${slug}`;
 }
 
+function ghAvailable() {
+  try {
+    runCapture('gh --version');
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function findOpenPr(branch) {
+  if (!ghAvailable()) return null;
+  try {
+    const json = runCapture(
+      `gh pr list --head "${branch}" --state open --json number,url,title --limit 1`,
+    );
+    const list = JSON.parse(json || '[]');
+    return list[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function getPreviewUrl(prNumber) {
+  try {
+    const out = runCapture(`node scripts/get-vercel-preview-url.mjs`, {
+      env: {
+        ...process.env,
+        PR_NUMBER: String(prNumber),
+        MAX_TIMEOUT_MS: '60000',
+        POLL_INTERVAL_MS: '5000',
+      },
+      stdio: ['inherit', 'pipe', 'inherit'],
+    });
+    const lines = out.split('\n').filter(Boolean);
+    const last = lines[lines.length - 1] ?? '';
+    return last.startsWith('http') ? last : '';
+  } catch {
+    return '';
+  }
+}
+
+function sendBlogEmail({ post, pr, previewUrl, reminder }) {
+  if (!process.env.RESEND_API_KEY?.trim()) {
+    console.warn('RESEND_API_KEY no configurada; no se envía email.');
+    return;
+  }
+
+  const env = {
+    ...process.env,
+    PR_URL: pr.url,
+    POST_SLUG: post.slug,
+    POST_TITLE: post.title ?? pr.title ?? post.slug,
+    SCHEDULED_DATE: post.scheduledDate ?? '',
+    PREVIEW_URL: previewUrl,
+    BLOG_EMAIL_KIND: reminder ? 'reminder' : 'review',
+  };
+
+  runCapture('node scripts/notify-blog-pr-email.mjs', {
+    env,
+    stdio: ['inherit', 'pipe', 'inherit'],
+  });
+}
+
+async function handleOpenPrReminder(post, openPr, calendar) {
+  const today = todayIso();
+  const branch = branchName(post.slug);
+
+  if (post.lastReminderAt === today) {
+    console.log(`Recordatorio ya enviado hoy para ${post.slug}.`);
+    return;
+  }
+
+  console.log(`\n→ PR abierto existente: #${openPr.number} (${post.slug})`);
+  console.log('→ Enviando recordatorio por email…\n');
+
+  post.status = 'pr';
+  post.branch = branch;
+  post.prNumber = openPr.number;
+  post.lastReminderAt = today;
+  await writeCalendar(calendar);
+
+  const previewUrl = getPreviewUrl(openPr.number);
+  sendBlogEmail({ post, pr: openPr, previewUrl, reminder: true });
+
+  try {
+    run('git diff --quiet && git diff --cached --quiet');
+  } catch {
+    throw new Error('Hay cambios sin commitear antes de sincronizar el calendario.');
+  }
+
+  run('git add content/blog-calendar.json');
+  const msgFile = path.join(root, '.git-commit-msg.txt');
+  await fs.writeFile(
+    msgFile,
+    `Calendario: recordatorio PR blog ${post.slug}\n\nPR #${openPr.number} sigue abierto.`,
+    'utf8',
+  );
+  run(`git commit -F ${msgFile}`);
+  await fs.unlink(msgFile);
+  run('git push origin main');
+}
+
 async function main() {
   const opts = parseArgs();
   const calendar = await readCalendar();
-  const post = pickPost(calendar, opts);
+  const picked = pickPost(calendar, opts);
 
-  if (!post) {
-    console.log('No hay posts pendientes en el calendario.');
+  if (picked.action === 'skip') {
+    console.log(picked.message);
+    return;
+  }
+
+  const post = picked.post;
+  const branch = branchName(post.slug);
+  const openPr = findOpenPr(branch);
+
+  if (openPr && !opts.force) {
+    await handleOpenPrReminder(post, openPr, calendar);
     return;
   }
 
   const mdPath = path.join(root, `src/content/blog/${post.slug}.md`);
   try {
     await fs.access(mdPath);
+    if (openPr) {
+      await handleOpenPrReminder(post, openPr, calendar);
+      return;
+    }
     throw new Error(`Ya existe ${mdPath}. Revisa el calendario o el repo.`);
   } catch (e) {
     if (e.code !== 'ENOENT') throw e;
   }
 
-  const branch = branchName(post.slug);
   console.log(`\n→ Borrador: ${post.slug} (${post.scheduledDate})`);
   console.log(`→ Rama: ${branch}\n`);
 
@@ -179,8 +305,9 @@ async function main() {
   run('pnpm check');
 
   post.status = 'pr';
-  post.draftedAt = new Date().toISOString().slice(0, 10);
+  post.draftedAt = todayIso();
   post.branch = branch;
+  delete post.lastReminderAt;
   await writeCalendar(calendar);
 
   const commitMsg = `Borrador blog: ${post.title}
@@ -229,14 +356,13 @@ Revisar copy antes de merge.`;
   await fs.writeFile(prBodyFile, prBody, 'utf8');
   run(`git push -u origin ${branch}`);
 
-  try {
-    runCapture('gh --version');
+  if (ghAvailable()) {
     run(
       `gh pr create --base main --head ${branch} --title ${JSON.stringify(`Blog: ${post.title}`)} --body-file ${prBodyFile}`,
     );
     await fs.unlink(prBodyFile);
     console.log('\nPR creado. Revísalo en GitHub antes de merge.');
-  } catch {
+  } else {
     await fs.unlink(prBodyFile).catch(() => {});
     console.warn('\ngh CLI no disponible. Push hecho; crea el PR manualmente en GitHub.');
   }

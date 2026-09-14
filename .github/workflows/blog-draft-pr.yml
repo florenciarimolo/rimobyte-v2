@@ -2,8 +2,8 @@ name: Blog draft PR
 
 on:
   schedule:
-    # Lunes 08:00 UTC — revisa si hay post pendiente con fecha <= hoy
-    - cron: '0 8 * * 1'
+    # Todos los días 08:00 UTC — crea borrador si scheduledDate <= hoy
+    - cron: '0 8 * * *'
   workflow_dispatch:
     inputs:
       force:
@@ -44,9 +44,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Crear borrador y PR
+      - name: Crear borrador, recordatorio o skip
         env:
           GH_TOKEN: ${{ github.token }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          BLOG_NOTIFY_TO: ${{ secrets.BLOG_NOTIFY_TO }}
+          SEO_REPORT_TO: ${{ secrets.SEO_REPORT_TO }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           ARGS=""
           if [ "${{ inputs.force }}" = "true" ]; then

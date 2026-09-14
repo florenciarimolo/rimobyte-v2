@@ -180,7 +180,7 @@ Calendario en [`content/blog-calendar.json`](../content/blog-calendar.json). Scr
 
 ### Cuándo usarlos
 
-- **Automático:** GitHub Actions [`blog-draft-pr.yml`](../.github/workflows/blog-draft-pr.yml) — cada lunes comprueba si hay un post `pending` con `scheduledDate` ≤ hoy y abre un PR en rama `blog/{slug}`.
+- **Automático:** GitHub Actions [`blog-draft-pr.yml`](../.github/workflows/blog-draft-pr.yml) — **cada día** a las 08:00 UTC comprueba si hay un post con `scheduledDate` ≤ hoy. Si ya existe un PR abierto para ese slug, envía **recordatorio por email** (máx. uno al día) en lugar de duplicar el borrador.
 - **Manual:** `pnpm blog:draft` (misma lógica; requiere `gh` para crear el PR).
 - **Tras merge del PR:** `pnpm blog:mark-published -- --slug=nombre-del-post` en `main`.
 

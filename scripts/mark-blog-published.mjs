@@ -29,6 +29,8 @@ async function main() {
   post.publishedDate = date;
   delete post.branch;
   delete post.draftedAt;
+  delete post.lastReminderAt;
+  delete post.prNumber;
 
   await fs.writeFile(calendarPath, `${JSON.stringify(calendar, null, 2)}\n`, 'utf8');
   console.log(`Calendario actualizado: ${slug} → published (${date})`);
