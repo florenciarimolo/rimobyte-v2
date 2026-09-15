@@ -16,8 +16,9 @@ export const defaultBaseSeo: PageSeo = {
 };
 
 export const homeSeo: PageSeo = {
-  title: 'Desarrollo web WordPress a medida en España · RimoByte',
-  description: defaultBaseSeo.description,
+  title: 'Programador WordPress freelance en España · RimoByte',
+  description:
+    'Flor Rímolo, desarrolladora WordPress freelance en España. Webs desde 600€, presupuesto cerrado, web a tu nombre. Pide presupuesto sin compromiso.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 

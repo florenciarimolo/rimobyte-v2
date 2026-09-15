@@ -723,9 +723,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress para asesorías y gestorías · RimoByte',
+      title: 'Páginas web WordPress para asesorías · RimoByte',
       description:
-        'Webs WordPress a medida para asesorías y gestorías. SEO local, multiidioma y diseño profesional que transmite confianza. Desde 600€, sin permanencia.',
+        'Páginas web WordPress para asesorías y gestorías. SEO local, multiidioma y formularios RGPD. Presupuesto cerrado desde 600€. Pide presupuesto.',
     },
   },
   {
@@ -1487,9 +1487,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress para inmobiliarias · RimoByte',
+      title: 'Web WordPress + Inmovilla para inmobiliarias · RimoByte',
       description:
-        'Webs WordPress a medida para inmobiliarias. Catálogo sincronizado con Inmovilla, Inmoweb, Witei, Inmobalia, Apimo y otros CRM. Buscador, fichas de inmueble y diseño personalizado — no plantilla genérica del CRM. Desde 1200€.',
+        'Web WordPress para inmobiliarias con Inmovilla, Inmoweb y Witei conectados. Diseño a medida, buscador y fichas. Desde 1200€. Pide presupuesto.',
     },
   },
 ];
