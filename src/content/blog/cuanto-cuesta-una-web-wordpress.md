@@ -1,6 +1,6 @@
 ---
 title: "¿Cuánto cuesta una web WordPress en España?"
-description: "Precio real de una página web WordPress para negocios: corporativa desde 600€, tienda WooCommerce y costes de dominio y servidor. Sin letra pequeña."
+description: "Precio real de una web WordPress en España: corporativa desde 600€, tienda WooCommerce y costes extra. Presupuesto cerrado antes de empezar. Pide el tuyo."
 date: 2026-08-17
 type: guia
 keywords: ["precio pagina web wordpress", "cuanto cuesta web wordpress", "web wordpress precio españa"]

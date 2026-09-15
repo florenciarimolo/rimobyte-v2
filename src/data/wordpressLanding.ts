@@ -2,9 +2,9 @@ import type { Service } from './services';
 import type { ServiceDetailContent } from './serviceDetails';
 
 export const wordpressLandingSeo = {
-  title: 'Desarrollo web WordPress para negocios en España · RimoByte',
+  title: 'Desarrollo WordPress a medida en España · RimoByte',
   description:
-    'Desarrollo web WordPress a medida para negocios en España, desde 600€. Freelance, presupuesto cerrado, tu web a tu nombre. Sin agencia, sin plantillas, sin letra pequeña.',
+    'Desarrollo WordPress a medida para autónomos y pymes en España. Freelance, presupuesto cerrado desde 600€, web a tu nombre. Pide presupuesto en 24 horas.',
 } as const;
 
 export const wordpressLandingService: Service = {

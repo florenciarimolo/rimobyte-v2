@@ -1,6 +1,6 @@
 ---
 title: "WordPress a medida vs plantilla: qué te están vendiendo"
-description: "Diferencia entre una web WordPress a medida y un tema de catálogo (Elementor, plantillas premium). Coste real, SEO y cuándo basta una plantilla."
+description: "¿Plantilla o WordPress a medida? Coste real, SEO y señales de alerta. Si buscas desarrollo serio en España, pide presupuesto cerrado desde 600€."
 date: 2026-08-24
 type: guia
 keywords: ["wordpress a medida", "wordpress vs plantilla", "elementor o a medida"]
