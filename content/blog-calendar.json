@@ -9,7 +9,7 @@
     },
     {
       "slug": "mantenimiento-wordpress-empresas",
-      "status": "pending",
+      "status": "pr",
       "scheduledDate": "2026-09-22",
       "targetQuery": "mantenimiento wordpress empresas",
       "title": "Mantenimiento WordPress para empresas: qué incluye y cuánto cuesta",
@@ -60,7 +60,9 @@
           "body": "- Llevas meses sin actualizar nada\n- No sabes dónde están las copias de seguridad\n- Tu web tarda más de 4–5 segundos en móvil\n- Te da miedo pulsar «actualizar» por si se rompe\n- Depende de una agencia que tarda semanas en responder\n\nSi te reconoces en dos o más, merece la pena hablarlo."
         }
       ],
-      "closing": "El mantenimiento no sustituye una buena web inicial — la protege. Si quieres olvidarte de actualizaciones y copias, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría en tu caso y si tiene sentido empezar ya o después de una puesta a punto."
+      "closing": "El mantenimiento no sustituye una buena web inicial — la protege. Si quieres olvidarte de actualizaciones y copias, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría en tu caso y si tiene sentido empezar ya o después de una puesta a punto.",
+      "draftedAt": "2026-09-08",
+      "branch": "blog/mantenimiento-wordpress-empresas"
     },
     {
       "slug": "web-wordpress-peluquerias",
