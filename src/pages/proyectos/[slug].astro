@@ -38,8 +38,10 @@ const articleIsoDate = /^\d{4}-\d{2}$/.test(project.date)
   : project.date;
 
 const SEO = {
-  title: `${project.name} — Caso de éxito · RimoByte`,
-  description: `${project.challenge.split('.')[0]?.trim() ?? project.challenge}. ${project.result.split('.')[0]?.trim() ?? project.result}.`,
+  title: project.seo?.title ?? `${project.name} — Caso de éxito · RimoByte`,
+  description:
+    project.seo?.description ??
+    `${project.challenge.split('.')[0]?.trim() ?? project.challenge}. ${project.result.split('.')[0]?.trim() ?? project.result}.`,
   image: seoImagePath,
 };
 

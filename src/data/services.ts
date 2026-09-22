@@ -408,9 +408,9 @@ export const services: Service[] = [
       cta: 'Consulta gratuita',
     },
     seo: {
-      title: 'Mantenimiento WordPress desde 50€/mes · RimoByte',
+      title: 'Mantenimiento web WordPress · desde 50€/mes',
       description:
-        'Mantenimiento WordPress sin permanencia: actualizaciones, copias, seguridad y soporte directo conmigo. Desde 50€/mes. Solicita auditoría gratuita.',
+        'Mantenimiento WordPress para empresas y pymes: actualizaciones, copias, seguridad y soporte directo. Sin permanencia. Pide auditoría gratis.',
     },
   },
 ];

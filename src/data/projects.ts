@@ -86,6 +86,11 @@ export interface Project {
   resultIcon: ProjectResultIconName;
   /** Caso «El caso, paso a paso» — 4 bloques con copy del mockup */
   narrative?: ProjectNarrative;
+  /** Title/description para `<head>`; si falta, se generan desde challenge/result */
+  seo?: {
+    title: string;
+    description: string;
+  };
 }
 
 export const projectFilters = [
@@ -164,6 +169,11 @@ export const projects: Project[] = [
       'Ciberpsicóloga y speaker internacional. Una web que la representa como experta y abre puertas en su sector.',
     resultHighlight: 'Branding de autoridad',
     resultIcon: 'star',
+    seo: {
+      title: 'Ariadna Vilalta · web WordPress · caso RimoByte',
+      description:
+        'Web WordPress para psicóloga y speaker internacional. ¿Buscas web para tu consulta? Pide presupuesto desde 600€.',
+    },
   },
   {
     slug: 'supercapaces',
@@ -584,6 +594,11 @@ export const projects: Project[] = [
       'Lucía tenía un negocio consolidado pero invisible en internet. Diseñé y desarrollé su web desde cero, con un SEO local optimizado para que apareciera en las búsquedas de su zona. Hoy es la primera en Google en su área y su agenda está llena.',
     resultHighlight: '#1 en Google local · Agenda llena',
     resultIcon: 'pulse',
+    seo: {
+      title: 'Lucía Nails Art · web WordPress · caso RimoByte',
+      description:
+        'Caso real: web WordPress con SEO local para centro de estética. ¿Quieres resultados así? Pide presupuesto desde 600€.',
+    },
     narrative: {
       subtitle:
         'Cómo pasamos de un negocio invisible en internet a un referente local con la agenda llena, sin grandes campañas ni anuncios pagados.',
