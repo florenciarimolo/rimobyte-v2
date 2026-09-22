@@ -723,9 +723,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Páginas web WordPress para asesorías · RimoByte',
+      title: 'Páginas web para asesorías y gestorías · RimoByte',
       description:
-        'Páginas web WordPress para asesorías y gestorías. SEO local, multiidioma y formularios RGPD. Presupuesto cerrado desde 600€. Pide presupuesto.',
+        'Páginas web para asesorías y gestorías con WordPress. SEO local, multiidioma y RGPD. Presupuesto cerrado desde 600€. Pide el tuyo hoy.',
     },
   },
   {
@@ -1099,9 +1099,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress para cursos y formaciones online · RimoByte',
+      title: 'Web WordPress para cursos online · RimoByte',
       description:
-        'Plataformas WordPress + LearnDash para creadores de cursos y formaciones online. Pasarela doble (PayPal + Stripe) y newsletter conectada. Desde 1.000€, sin permanencia.',
+        'Plataforma WordPress + LearnDash para vender cursos sin comisiones Hotmart. PayPal + Stripe integrados. Desde 1000€ cerrado. Pide presupuesto.',
     },
   },
   {
@@ -1291,9 +1291,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress para psicólogos y terapeutas · RimoByte',
+      title: 'Web WordPress para psicólogos · desde 600€',
       description:
-        'Webs WordPress a medida para psicólogos en consulta privada. Una página por especialidad, SEO local, formularios RGPD y reserva de primera cita. Desde 600€, sin permanencia.',
+        'Web WordPress para psicólogos: SEO por especialidad, RGPD y reserva de cita. Presupuesto cerrado desde 600€. Pide presupuesto sin compromiso.',
     },
   },
   {
@@ -1487,9 +1487,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress + Inmovilla para inmobiliarias · RimoByte',
+      title: 'Integrar WordPress con Inmovilla · RimoByte',
       description:
-        'Web WordPress para inmobiliarias con Inmovilla, Inmoweb y Witei conectados. Diseño a medida, buscador y fichas. Desde 1200€. Pide presupuesto.',
+        'Conecta e integra WordPress con Inmovilla: catálogo sincronizado, buscador y diseño a medida. Desde 1200€. Pide presupuesto sin compromiso.',
     },
   },
 ];
