@@ -9,7 +9,7 @@
     },
     {
       "slug": "mantenimiento-wordpress-empresas",
-      "status": "pr",
+      "status": "published",
       "scheduledDate": "2026-09-22",
       "targetQuery": "mantenimiento wordpress empresas",
       "title": "Mantenimiento WordPress para empresas: qué incluye y cuánto cuesta",
@@ -61,8 +61,7 @@
         }
       ],
       "closing": "El mantenimiento no sustituye una buena web inicial — la protege. Si quieres olvidarte de actualizaciones y copias, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría en tu caso y si tiene sentido empezar ya o después de una puesta a punto.",
-      "draftedAt": "2026-09-08",
-      "branch": "blog/mantenimiento-wordpress-empresas"
+      "publishedDate": "2026-09-22"
     },
     {
       "slug": "web-wordpress-peluquerias",
