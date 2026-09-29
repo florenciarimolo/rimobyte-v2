@@ -172,7 +172,7 @@ export const projects: Project[] = [
     seo: {
       title: 'Ariadna Vilalta · web WordPress · caso RimoByte',
       description:
-        'Web WordPress para psicóloga y speaker internacional. ¿Buscas web para tu consulta? Pide presupuesto desde 600€.',
+        'Caso web WordPress para psicólogos y speakers. ¿Quieres web para tu consulta? Presupuesto cerrado desde 600€ — pide el tuyo.',
     },
   },
   {
@@ -597,7 +597,7 @@ export const projects: Project[] = [
     seo: {
       title: 'Lucía Nails Art · web WordPress · caso RimoByte',
       description:
-        'Caso real: web WordPress con SEO local para centro de estética. ¿Quieres resultados así? Pide presupuesto desde 600€.',
+        'Caso web WordPress para peluquería: #1 Google local, agenda llena. ¿Quieres lo mismo? Presupuesto desde 600€ — pide el tuyo hoy.',
     },
     narrative: {
       subtitle:
