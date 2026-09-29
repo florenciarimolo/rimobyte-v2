@@ -723,9 +723,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Páginas web para asesorías y gestorías · RimoByte',
+      title: 'Webs WordPress para asesorías y gestorías · RimoByte',
       description:
-        'Páginas web para asesorías y gestorías con WordPress. SEO local, multiidioma y RGPD. Presupuesto cerrado desde 600€. Pide el tuyo hoy.',
+        'Web WordPress para asesorías y gestorías: SEO local, multiidioma y RGPD. Freelance, presupuesto cerrado desde 600€. Pide el tuyo hoy.',
     },
   },
   {
@@ -1099,9 +1099,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress para cursos online · RimoByte',
+      title: 'Web WordPress para vender cursos online · RimoByte',
       description:
-        'Plataforma WordPress + LearnDash para vender cursos sin comisiones Hotmart. PayPal + Stripe integrados. Desde 1000€ cerrado. Pide presupuesto.',
+        'Plataforma WordPress + LearnDash sin comisiones Hotmart. PayPal y Stripe integrados. Freelance, desde 1000€ cerrado. Pide presupuesto hoy.',
     },
   },
   {
@@ -1291,9 +1291,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Web WordPress para psicólogos · desde 600€',
+      title: 'Web WordPress para psicólogos · presupuesto cerrado',
       description:
-        'Web WordPress para psicólogos: SEO por especialidad, RGPD y reserva de cita. Presupuesto cerrado desde 600€. Pide presupuesto sin compromiso.',
+        'Web WordPress para psicólogos: SEO por especialidad, RGPD y reserva de cita. Freelance, desde 600€. Pide presupuesto sin compromiso.',
     },
   },
   {
@@ -1487,9 +1487,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Integrar WordPress con Inmovilla · RimoByte',
+      title: 'Web para inmobiliarias WordPress · Inmovilla · RimoByte',
       description:
-        'Conecta e integra WordPress con Inmovilla: catálogo sincronizado, buscador y diseño a medida. Desde 1200€. Pide presupuesto sin compromiso.',
+        'Web WordPress para inmobiliarias: integra Inmovilla, buscador de inmuebles y diseño a medida. Freelance, desde 1200€. Pide presupuesto hoy.',
     },
   },
 ];
