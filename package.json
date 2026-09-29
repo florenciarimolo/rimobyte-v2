@@ -21,7 +21,8 @@
     "vercel:redirects": "tsx scripts/generate-vercel-redirects.ts",
     "blog:draft": "node scripts/draft-next-blog-post.mjs",
     "blog:mark-published": "node scripts/mark-blog-published.mjs",
-    "seo:report": "node scripts/seo-weekly-report.mjs"
+    "seo:report": "node scripts/seo-weekly-report.mjs",
+    "instagram:daily": "node scripts/instagram-daily.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",

@@ -228,6 +228,26 @@ Para **reenviar** el aviso de un PR ya abierto: Actions → *Blog PR preview not
 
 ---
 
+## Aviso diario de Instagram
+
+**Comando:** `pnpm instagram:daily`  
+**Script:** [`scripts/instagram-daily.mjs`](../scripts/instagram-daily.mjs)  
+**Workflow:** [`.github/workflows/instagram-daily.yml`](../.github/workflows/instagram-daily.yml)  
+**Calendario:** [`content/instagram-queue.json`](../content/instagram-queue.json)
+
+Cada día a las 07:00 UTC (09:00 en España con horario de verano) mira si hoy toca publicar (lunes, miércoles o viernes). Si el diseño ya tiene enlace de Canva, envía ese enlace y el caption. Si no lo tiene, lo crea y después envía el email. Los días sin publicación no escriben.
+
+| Comando | Efecto |
+|---------|--------|
+| `pnpm instagram:daily` | Hoy, en hora de España |
+| `pnpm instagram:daily -- --dry-run` | Imprime enlace y caption, no envía |
+| `pnpm instagram:daily -- --date=2026-09-30` | Fuerza una fecha del calendario |
+| `pnpm instagram:daily -- --force` | Reenvía aunque ese día ya se haya avisado |
+
+El email usa `RESEND_API_KEY` y `INSTAGRAM_NOTIFY_TO` (si no está, `SEO_REPORT_TO`). Crear un diseño nuevo usa `CANVA_ACCESS_TOKEN`. Los posts que ya traen `canvaUrl` no lo necesitan.
+
+Para alargar el calendario, añade un objeto en `posts` con `date`, `slot`, `title`, `caption` y `brief`. Deja `canvaUrl` vacío si el workflow debe crear el diseño ese día.
+
 ## Informe SEO semanal
 
 **Comando:** `pnpm seo:report`  
@@ -298,6 +318,7 @@ Archivos habituales a tocar: `src/data/wordpressLanding.ts`, `src/data/staticPag
 | Borrador automático del siguiente post (PR) | `pnpm blog:draft` |
 | Marcar post publicado en calendario | `pnpm blog:mark-published -- --slug=…` |
 | Informe SEO semanal (GSC + PSI + email) | `pnpm seo:report` |
+| Aviso diario de Instagram (enlace Canva + caption) | `pnpm instagram:daily` |
 | Regenerar favicons desde `favicon.svg` | `pnpm images:favicons` |
 | Regenerar carteles OG (páginas con retrato por defecto) | `pnpm images:og` |
 | Probar build de producción completo | `pnpm build` → `pnpm preview` |

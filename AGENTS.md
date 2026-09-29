@@ -23,6 +23,7 @@ pnpm images:og        # carteles OG estáticos (páginas con retrato por defecto
 pnpm images:projects  # variantes WebP del portfolio
 pnpm images:blog      # variantes WebP del blog
 pnpm seo:report       # informe SEO semanal (GSC + PSI → docs/reports/ + email)
+pnpm instagram:daily  # aviso del post de Instagram del día (enlace Canva + caption)
 ```
 
 Detalle de cuándo y cómo ejecutar cada script: [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
@@ -106,6 +107,8 @@ Estas variables son para CI (GitHub Actions) y pruebas locales. **No** configura
 | `PSI_API_KEY` | API key de PageSpeed Insights |
 | `SEO_REPORT_TO` | Destinatario del informe SEO semanal y avisos de PR de blog (GitHub Actions) |
 | `BLOG_NOTIFY_TO` | (Opcional) Email solo para avisos de blog; si falta, usa `SEO_REPORT_TO` |
+| `INSTAGRAM_NOTIFY_TO` | (Opcional) Email del aviso diario de Instagram; si falta, usa `SEO_REPORT_TO` |
+| `CANVA_ACCESS_TOKEN` | (Opcional) Bearer de Canva para crear el diseño del día si el calendario aún no tiene enlace |
 
 Secrets equivalentes en GitHub → Settings → Secrets and variables → Actions. Detalle: [`docs/SCRIPTS.md`](docs/SCRIPTS.md).
 

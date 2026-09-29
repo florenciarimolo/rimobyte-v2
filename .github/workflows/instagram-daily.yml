@@ -1,0 +1,67 @@
+name: Instagram daily
+
+on:
+  schedule:
+    # 07:00 UTC = 09:00 en España (CEST) / 08:00 (CET)
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Fecha YYYY-MM-DD (vacío = hoy en España)'
+        required: false
+        type: string
+      force:
+        description: 'Reenviar aunque el aviso de ese día ya se haya mandado'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.17.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Crear diseño si falta y enviar el caption
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SEO_REPORT_TO: ${{ secrets.SEO_REPORT_TO }}
+          INSTAGRAM_NOTIFY_TO: ${{ secrets.INSTAGRAM_NOTIFY_TO }}
+          CANVA_ACCESS_TOKEN: ${{ secrets.CANVA_ACCESS_TOKEN }}
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.date }}" ]; then
+            ARGS="$ARGS --date=${{ inputs.date }}"
+          fi
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          node scripts/instagram-daily.mjs $ARGS
+
+      - name: Guardar el enlace nuevo en el calendario
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/instagram-queue.json
+          if git diff --staged --quiet; then
+            echo "Calendario sin cambios"
+          else
+            git commit -m "Instagram: diseño y aviso del día"
+            git push
+          fi
