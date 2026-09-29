@@ -293,12 +293,16 @@ Detectar oportunidades de **captación de clientes** (visibilidad comercial, CTR
 3. Commit y push de `docs/reports/` a `main`.
 4. Ejecuta `node scripts/seo-weekly-report.mjs --email-only` (enlace GitHub ya válido).
 
+### Pausa de snippets (28 días)
+
+Si `title`, `description` o `ctaLink` de una URL se mergeó hace menos de 28 días, el informe baja esa recomendación a **Observación** y no pide otro rewrite. La automatización solo debe ejecutar prioridad Alta y Media. Así Search Console tiene tiempo de recrawlear antes de volver a tocar el mismo snippet. Las recomendaciones de otra URL, un post nuevo o rendimiento siguen accionables.
+
 ### Cursor Automation (fase 2)
 
 Cuando el primer informe esté en `main`, puedes crear una automation en Cursor (cron martes ~10:00 UTC o manual) con instrucciones como:
 
 1. Lee el archivo más reciente `docs/reports/seo-YYYY-MM-DD.md` (ordenar por fecha en el nombre).
-2. Ejecuta solo recomendaciones **Alta** y **Media** orientadas a captación de clientes.
+2. Ejecuta solo recomendaciones **Alta** y **Media**. Ignora la sección **En observación** (snippet tocado hace menos de 28 días).
 3. Edita metadatos/copy en español (title ≤ 60 caracteres, description ≤ 155, tono RimoByte, CTA hacia contacto/presupuesto donde aplique).
 4. Abre un PR `seo-automation/YYYY-MM-DD` con label `seo-automation` — **nunca merges automático**.
 

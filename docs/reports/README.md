@@ -32,5 +32,6 @@ Ejemplo: `seo-2026-09-08.md`.
 - Caídas de clics: requieren ≥ 3 clics en el periodo anterior.
 - Email en CI se envía **después** del push para que el enlace a GitHub funcione.
 - Consultas con `-site:` / `site:` o > 80 caracteres se filtran como ruido.
+- Si el snippet de una URL cambió en git hace menos de 28 días, la recomendación pasa a **Observación** y no se vuelve a proponer un rewrite.
 
 Ver detalle del comando y secrets en [`docs/SCRIPTS.md`](../SCRIPTS.md).

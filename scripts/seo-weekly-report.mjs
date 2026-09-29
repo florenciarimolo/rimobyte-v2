@@ -11,6 +11,8 @@
  * Env: GOOGLE_APPLICATION_CREDENTIALS | GSC_SERVICE_ACCOUNT_JSON,
  *      GSC_SITE_URL, PSI_API_KEY, RESEND_API_KEY, SEO_REPORT_TO
  */
+import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -55,6 +57,18 @@ const CLICK_DROP_MIN_PREV_CLICKS = 3;
 const LOW_CTR_THRESHOLD = 0.03;
 const WEB_PARA_LOW_CTR = 0.02;
 const WEB_PARA_MIN_IMPRESSIONS = 10;
+/** Días sin reescribir title/description tras un cambio ya mergeado. */
+const META_COOLDOWN_DAYS = 28;
+const META_FIELD_RE = /^[+-](?![+-]).*\b(title|description|ctaLink)\b/;
+
+const STATIC_SEO_ANCHOR = {
+  '/': 'export const homeSeo',
+  '/servicios/': 'export const serviciosHubSeo',
+  '/contacto/': 'export const contactoSeo',
+  '/sobre-mi/': 'export const sobreMiSeo',
+  '/blog/': 'export const blogIndexSeo',
+  '/proyectos/': 'export function proyectosIndexSeo',
+};
 
 function parseArgs() {
   const args = process.argv.slice(2).filter((a) => a !== '--');
@@ -459,7 +473,7 @@ function buildRecommendations(ctx) {
       priority: 'Alta',
       path: `query:${q.query}`,
       title: `Oportunidad comercial: «${q.query}» (pos. ${formatPos(q.position)})`,
-      detail: `${q.impressions} impresiones, ${q.clicks} clics. Posición 4–15: nuevo post en content/blog-calendar.json o reforzar landing/CTA.`,
+      detail: `${q.impressions} impresiones, ${q.clicks} clics. Posición 4–15: nuevo post en content/blog-calendar.json si no existe. No reescribas title/description de URLs en «En observación».`,
       file: 'content/blog-calendar.json o landing relacionada',
     });
   }
@@ -501,7 +515,7 @@ function buildRecommendations(ctx) {
 
   // Deduplicar: mismo path + misma prioridad → quedarse con el primero (más específico suele ir antes)
   const seen = new Set();
-  return recs.filter((r) => {
+  const filtered = recs.filter((r) => {
     const key = `${r.priority}|${r.path}|${r.title}`;
     if (seen.has(key)) return false;
     seen.add(key);
@@ -516,10 +530,148 @@ function buildRecommendations(ctx) {
     }
     return true;
   });
+  return applyMetaCooldown(filtered);
 }
 
 function priorityOrder(p) {
-  return { Alta: 0, Media: 1, Baja: 2 }[p] ?? 9;
+  return { Alta: 0, Media: 1, Baja: 2, Observación: 3 }[p] ?? 9;
+}
+
+function metaWatches(pageUrl) {
+  const p = pathFromPageUrl(pageUrl);
+  if (p === '/desarrollo-web-wordpress/') {
+    return [{ file: 'src/data/wordpressLanding.ts', anchor: 'export const wordpressLandingSeo' }];
+  }
+  if (STATIC_SEO_ANCHOR[p]) {
+    return [{ file: 'src/data/staticPageSeo.ts', anchor: STATIC_SEO_ANCHOR[p] }];
+  }
+  if (p.startsWith('/servicios/') && p !== '/servicios/') {
+    const slug = p.slice('/servicios/'.length).replace(/\/$/, '');
+    return [{ file: 'src/data/services.ts', anchor: `slug: '${slug}'` }];
+  }
+  const sector = p.match(/^\/(web-para-[^/]+)\/$/);
+  if (sector) {
+    return [{ file: 'src/data/sectors.ts', anchor: `slug: '${sector[1]}'` }];
+  }
+  const blog = p.match(/^\/blog\/([^/]+)\/$/);
+  if (blog) {
+    return [{ file: `src/content/blog/${blog[1]}.md`, anchor: 'frontmatter' }];
+  }
+  const project = p.match(/^\/proyectos\/([^/]+)\/$/);
+  if (project) {
+    return [{ file: 'src/data/projects.ts', anchor: `slug: '${project[1]}'` }];
+  }
+  return [];
+}
+
+function anchorLineRange(relFile, anchor) {
+  let raw;
+  try {
+    raw = readFileSync(path.join(root, relFile), 'utf8');
+  } catch {
+    return null;
+  }
+  const lines = raw.split('\n');
+  if (anchor === 'frontmatter') {
+    const end = lines.findIndex((line, i) => i > 0 && line.trim() === '---');
+    return { start: 1, end: end > 0 ? end : Math.min(20, lines.length) };
+  }
+  const startIdx = lines.findIndex((line) => line.includes(anchor));
+  if (startIdx < 0) return null;
+  const indent = (lines[startIdx].match(/^(\s*)/) ?? ['', ''])[1].length;
+  let endIdx = lines.length - 1;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (indent === 0 && line.startsWith('export ')) {
+      endIdx = i - 1;
+      break;
+    }
+    const slug = line.match(/^(\s*)slug:/);
+    if (slug && slug[1].length === indent) {
+      endIdx = i - 1;
+      break;
+    }
+  }
+  if (endIdx < startIdx) return null;
+  return { start: startIdx + 1, end: endIdx + 1 };
+}
+
+function lastMetaEditInRange(relFile, range) {
+  const since = new Date();
+  since.setUTCDate(since.getUTCDate() - META_COOLDOWN_DAYS);
+  let out = '';
+  try {
+    out = execFileSync(
+      'git',
+      [
+        'log',
+        `--since=${since.toISOString()}`,
+        '-n',
+        '8',
+        '--format=COMMIT %cI %s',
+        '-L',
+        `${range.start},${range.end}:${relFile}`,
+      ],
+      { cwd: root, encoding: 'utf8', maxBuffer: 4_000_000 },
+    );
+  } catch {
+    return null;
+  }
+  if (!out.trim()) return null;
+
+  for (const block of out.split(/^COMMIT /m).filter(Boolean)) {
+    const nl = block.indexOf('\n');
+    const header = (nl === -1 ? block : block.slice(0, nl)).trim();
+    const body = nl === -1 ? '' : block.slice(nl + 1);
+    if (!body.split('\n').some((line) => META_FIELD_RE.test(line))) continue;
+    const space = header.indexOf(' ');
+    const date = header.slice(0, space);
+    const subject = header.slice(space + 1);
+    const edited = new Date(date);
+    if (Number.isNaN(edited.getTime())) continue;
+    const until = new Date(edited);
+    until.setUTCDate(until.getUTCDate() + META_COOLDOWN_DAYS);
+    return {
+      date: date.slice(0, 10),
+      until: until.toISOString().slice(0, 10),
+      subject,
+      file: relFile,
+    };
+  }
+  return null;
+}
+
+function findLastMetaEdit(pageUrl) {
+  let latest = null;
+  for (const watch of metaWatches(pageUrl)) {
+    const range = anchorLineRange(watch.file, watch.anchor);
+    if (!range) continue;
+    const hit = lastMetaEditInRange(watch.file, range);
+    if (!hit) continue;
+    if (!latest || hit.date > latest.date) latest = hit;
+  }
+  return latest;
+}
+
+function isMetaRewrite(rec) {
+  if (!rec.path?.startsWith('/')) return false;
+  if (rec.title.startsWith('Rendimiento móvil')) return false;
+  return true;
+}
+
+function applyMetaCooldown(recs) {
+  const cache = new Map();
+  return recs.map((rec) => {
+    if (!isMetaRewrite(rec)) return rec;
+    if (!cache.has(rec.path)) cache.set(rec.path, findLastMetaEdit(rec.path));
+    const edit = cache.get(rec.path);
+    if (!edit) return rec;
+    return {
+      ...rec,
+      priority: 'Observación',
+      detail: `${rec.detail} En observación hasta el ${edit.until}: title/description (o CTA) ya cambiados el ${edit.date} («${edit.subject}»). No reescribir el snippet; Search Console aún no refleja ese cambio.`,
+    };
+  });
 }
 
 function buildMarkdown(report) {
@@ -563,6 +715,14 @@ function buildMarkdown(report) {
     lines.push('');
   } else {
     lines.push('No hay alertas de prioridad Alta esta semana.');
+    lines.push('');
+  }
+
+  const watching = recommendations.filter((r) => r.priority === 'Observación');
+  if (watching.length) {
+    lines.push(
+      `**En observación (${watching.length}):** snippet ya cambiado hace menos de ${META_COOLDOWN_DAYS} días. No reescribir title/description hasta que Search Console recoja el cambio. La automatización debe ignorar esta sección.`,
+    );
     lines.push('');
   }
 
@@ -681,16 +841,37 @@ function buildMarkdown(report) {
   }
   lines.push('');
 
-  lines.push('## Recomendaciones priorizadas');
-  lines.push('');
   const sorted = [...recommendations].sort(
     (a, b) => priorityOrder(a.priority) - priorityOrder(b.priority),
   );
-  if (!sorted.length) {
-    lines.push('_Sin recomendaciones automáticas esta semana._');
+  const actionable = sorted.filter((r) => r.priority !== 'Observación');
+  const onHold = sorted.filter((r) => r.priority === 'Observación');
+
+  lines.push('## Recomendaciones priorizadas');
+  lines.push('');
+  if (!actionable.length) {
+    lines.push('_Sin recomendaciones accionables esta semana._');
+    lines.push('');
   } else {
-    for (const r of sorted) {
+    for (const r of actionable) {
       lines.push(`### [${r.priority}] ${r.title}`);
+      lines.push('');
+      lines.push(r.detail);
+      lines.push('');
+      lines.push(`**Archivo:** \`${r.file}\``);
+      lines.push('');
+    }
+  }
+
+  if (onHold.length) {
+    lines.push('## En observación');
+    lines.push('');
+    lines.push(
+      `No cambiar title, description ni ctaLink de estas URLs. El snippet se editó hace menos de ${META_COOLDOWN_DAYS} días y el CTR del informe todavía mide el anterior.`,
+    );
+    lines.push('');
+    for (const r of onHold) {
+      lines.push(`### [Observación] ${r.title}`);
       lines.push('');
       lines.push(r.detail);
       lines.push('');
@@ -883,6 +1064,25 @@ function buildPsiUrls(topPages) {
 }
 
 async function main() {
+  if (process.argv.includes('--selftest-cooldown')) {
+    const samples = [
+      'https://rimobyte.com/desarrollo-web-wordpress/',
+      'https://rimobyte.com/',
+      'https://rimobyte.com/web-para-inmobiliarias/',
+      'https://rimobyte.com/servicios/mantenimiento-web/',
+      'https://rimobyte.com/blog/wordpress-a-medida-vs-plantilla/',
+      'https://rimobyte.com/contacto/',
+    ];
+    for (const url of samples) {
+      const hit = findLastMetaEdit(url);
+      console.log(
+        pathFromPageUrl(url),
+        hit ? `${hit.date} → ${hit.until} | ${hit.subject}` : 'sin pausa',
+      );
+    }
+    return;
+  }
+
   await loadDotEnv();
   const opts = parseArgs();
 
