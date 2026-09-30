@@ -7,7 +7,7 @@ keywords: ["mantenimiento wordpress empresas","mantenimiento web wordpress","sop
 readingTime: "5 min"
 ctaText: "¿Quieres mantenimiento WordPress sin permanencia?"
 ctaLink: "/servicios/mantenimiento-web/"
-relatedSlugs: ["cuanto-cuesta-una-web-wordpress","tu-web-debe-ser-tuya","programador-wordpress-freelance-espana"]
+relatedSlugs: ["cuanto-cuesta-una-web-wordpress","tu-web-debe-ser-tuya","que-hosting-contratar-wordpress","programador-wordpress-freelance-espana"]
 coverImage: "/assets/blog/mantenimiento-wordpress-empresas.webp"
 ---
 Una web WordPress no es «publicar y olvidar». WordPress, los plugins y el servidor reciben actualizaciones constantes. Si nadie las mira, tarde o temprano aparece un aviso rojo, una web lenta o algo peor.
@@ -16,7 +16,7 @@ El mantenimiento WordPress para empresas no es un extra de lujo: es lo que evita
 
 ## Qué es el mantenimiento WordPress (y qué no es)
 
-No es «hosting». El servidor lo contratas tú; yo no vendo alojamiento.
+No es «hosting». El servidor lo contratas tú; yo no vendo alojamiento. Si aún no lo tienes, mira [qué hosting contratar para una web WordPress](/blog/que-hosting-contratar-wordpress/).
 
 Sí es: vigilar que WordPress, el tema y los plugins estén actualizados, que haya copias de seguridad recientes, que la web cargue bien y que alguien responda cuando algo falla.
 

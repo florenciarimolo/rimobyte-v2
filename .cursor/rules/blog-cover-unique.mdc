@@ -1,0 +1,17 @@
+---
+description: Cada artículo del blog lleva una portada que no se repite
+globs: src/content/blog/**/*.md
+alwaysApply: false
+---
+
+# Portadas únicas del blog
+
+Cada post usa su propia foto en `public/assets/blog/{slug}.webp`. No copies ni reutilices la portada de otro artículo.
+
+Antes de dar el artículo por cerrado:
+
+1. Genera una foto nueva, encuadre y escena distintos de las portadas que ya existen (no el mismo escritorio, el mismo portátil ni el mismo recorte).
+2. Guárdala como `public/assets/blog/{slug}.jpg` y ejecuta `pnpm images:blog -- --slug={slug}`.
+3. Compara el SHA-256 de `{slug}.webp` con el resto de `public/assets/blog/*.webp`. Si coincide con alguno, descarta esa foto y genera otra.
+
+El campo `coverImage` del frontmatter apunta a `/assets/blog/{slug}.webp`.

@@ -7,7 +7,7 @@ keywords: ["precio pagina web wordpress", "cuanto cuesta web wordpress", "web wo
 readingTime: "6 min"
 ctaText: "¿Quieres presupuesto de tu web WordPress?"
 ctaLink: "/desarrollo-web-wordpress/"
-relatedSlugs: ["cuanto-cuesta-una-pagina-web", "wordpress-vs-wix", "wordpress-a-medida-vs-plantilla"]
+relatedSlugs: ["cuanto-cuesta-una-pagina-web", "que-hosting-contratar-wordpress", "wordpress-vs-wix", "wordpress-a-medida-vs-plantilla"]
 coverImage: "/assets/blog/cuanto-cuesta-una-web-wordpress.webp"
 ---
 
@@ -32,7 +32,7 @@ Una web WordPress necesita dos cosas que **no cobro yo** (y no las vendo):
 
 **Dominio** — 10–20€ al año, a tu nombre.
 
-**Servidor (alojamiento)** — para un negocio local, unos 40–80€ al año en un proveedor serio. Tú lo contratas; yo te digo dónde y cómo.
+**Servidor (alojamiento)** — para un negocio local, unos 40–80€ al año en un proveedor serio. Tú lo contratas; yo te digo dónde y cómo. El criterio y el plan que indico están en [qué hosting contratar para una web WordPress](/blog/que-hosting-contratar-wordpress/).
 
 En total, mantener la web **encendida** son unos 50–100€ al año. Eso no es una cuota de plataforma tipo Wix o Shopify: es el sitio donde vive tu WordPress.
 

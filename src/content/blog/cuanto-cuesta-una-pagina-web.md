@@ -7,7 +7,7 @@ keywords: ["cuánto cuesta una página web", "precio web negocio", "presupuesto 
 readingTime: "5 min"
 ctaText: "¿Quieres saber cuánto costaría tu web?"
 ctaLink: "/desarrollo-web-wordpress/"
-relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "web-o-instagram"]
+relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "que-hosting-contratar-wordpress", "web-o-instagram"]
 coverImage: "/assets/blog/cuanto-cuesta-una-pagina-web.webp"
 ---
 
@@ -27,7 +27,7 @@ Además del diseño y desarrollo, una web necesita dos cosas para funcionar:
 
 **Un dominio** — es tu dirección en internet (tunegocio.es o tunegocio.com). Cuesta entre 10€ y 20€ al año. Lo contratas tú directamente y va a tu nombre.
 
-**Un hosting** — es donde "vive" tu web. Para un negocio local, un buen hosting cuesta entre 40€ y 80€ al año. También lo contratas tú y va a tu nombre.
+**Un hosting** — es donde "vive" tu web. Para un negocio local, un buen hosting cuesta entre 40€ y 80€ al año. También lo contratas tú y va a tu nombre. Si la web va a ser WordPress, el plan concreto está en [qué hosting contratar](/blog/que-hosting-contratar-wordpress/).
 
 En total, mantener tu web operativa te cuesta entre 50€ y 100€ al año. Eso es todo. Sin cuotas mensuales obligatorias, sin comisiones ocultas, sin sorpresas.
 

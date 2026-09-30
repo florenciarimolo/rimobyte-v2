@@ -7,7 +7,7 @@ keywords: ["web propia hosting dominio", "dependencia agencia web", "web a mi no
 readingTime: "4 min"
 ctaText: "¿Tu web no es tuya? Hablemos"
 ctaLink: "/desarrollo-web-wordpress/"
-relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "wordpress-vs-wix"]
+relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "que-hosting-contratar-wordpress", "wordpress-vs-wix"]
 coverImage: "/assets/blog/tu-web-debe-ser-tuya.webp"
 ---
 
@@ -29,7 +29,7 @@ Su web estaba cargada de plugins innecesarios que la ralentizaban, tenía un dis
 
 **El dominio.** Es tu dirección en internet. Lo contratas tú en un registrador (como Namecheap o Dondominio), pagas tú los 10-20€ al año y aparece a tu nombre. Si alguien más lo tiene, esa persona controla si tu negocio existe en internet o no.
 
-**El hosting.** Es el servidor donde vive tu web. Igual que el dominio, lo contratas tú directamente. Lo pagas tú. Va a tu nombre. Si tu agencia tiene el hosting, cuando quieras irte tendrás que pedirles amablemente que te "liberen" tu propia web.
+**El hosting.** Es el servidor donde vive tu web. Igual que el dominio, lo contratas tú directamente. Lo pagas tú. Va a tu nombre. Si tu agencia tiene el hosting, cuando quieras irte tendrás que pedirles amablemente que te "liberen" tu propia web. Si vas a contratarlo ahora, te cuento [qué hosting contratar para una web WordPress](/blog/que-hosting-contratar-wordpress/).
 
 **Los accesos al panel de administración.** En WordPress, eso significa tener un usuario administrador con control total. No un usuario "editor" que solo puede cambiar textos. Administrador. Con acceso a plugins, a la configuración, a todo.
 

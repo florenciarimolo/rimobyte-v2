@@ -12,6 +12,7 @@ export const blogFilterTypes: { id: 'all' | BlogType; label: string }[] = [
   { id: 'guia', label: 'Guías' },
   { id: 'sector', label: 'Sectores' },
   { id: 'opinion', label: 'Opinión' },
+  { id: 'herramientas', label: 'Herramientas' },
 ];
 
 export interface BlogVisual {
@@ -63,7 +64,10 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'M',
     gradient: 'linear-gradient(135deg, #6535E5, #196BEE)',
   },
-
+  'que-hosting-contratar-wordpress': {
+    icon: 'H',
+    gradient: 'linear-gradient(135deg, #196BEE, #6535E5)',
+  },
 };
 
 export function getBlogVisual(slug: string): BlogVisual {
