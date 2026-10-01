@@ -100,7 +100,8 @@ Destacadas (4): Cómo trabajo · Casos · Precios · Preguntas. Cada cubierta es
 
 - Primera línea del caption = el titular del diseño. Instagram corta ahí.
 - 80–140 palabras. Una idea. Un ejemplo concreto (sector o pueblo, no «muchos clientes»).
-- Cierra con una pregunta fácil de contestar en comentarios, o con el CTA.
+- Cierra con una pregunta fácil de contestar en comentarios. El único enlace clicable del perfil es el de la biografía (la web). En el caption no pegues URLs: Instagram las muestra como texto. Usa «La web está en la biografía.» Si el post habla de un caso, nómbralo para que lo encuentren al entrar. Para escribirte, «escríbeme por aquí».
+- Emojis solo para guiar la lectura, al inicio del bloque, nunca dentro de la frase ni en el titular. El mismo signo significa lo mismo en todo el feed: 📱 Instagram, 🔍 Google o la búsqueda, 🌐 qué hace la web, ✅ lo que sí, ❌ lo que no, 📌 el caso o la cifra, 💬 la pregunta o el mensaje, 👉 la biografía. De tres a cinco por caption. Sin corazones, fuegos ni cohetes. Los pasos de un proceso van con 1️⃣ 2️⃣ 3️⃣.
 - Hashtags: 5, al final, nunca en la primera línea. Mezcla uno de marca (`#rimobyte`) con búsqueda (`#webpara negocios` no: usar términos que la gente busca).
 - No prometer puestos en Google ni cifras que no estén en un caso publicado en rimobyte.com.
 
@@ -126,12 +127,12 @@ CTA: enlace en bio. Hashtags: `#paginaweb` `#negociolocal` `#seo` `#autonomos` `
 Titular: «Gracias a la web tengo la agenda llena.»  
 Subtítulo: Lucía · manicura en Esparreguera. Antes: invisible en Google. Después: primera en su zona.  
 Caption: caso [Lucía Nails Art](https://rimobyte.com/proyectos/lucia-nails-art/), sin inventar métricas que no estén en la ficha.  
-CTA: «Cuéntame tu caso» → `/contacto/`.
+CTA: «Cuéntame tu caso» por mensaje. La web, en la biografía.
 
 **Viernes — Transparencia.** Post único.  
 Titular: Una web WordPress desde 600 €.  
 Tres líneas: tuya desde el día uno · dominio y hosting a tu nombre · SEO básico incluido.  
-Caption: qué incluye la web corporativa y qué no (el hosting lo paga el cliente, directo). Enlace a [servicios](https://rimobyte.com/servicios/web-corporativa/).
+Caption: qué incluye la web corporativa y qué no (el hosting lo paga el cliente, directo). Cierre: la web está en la biografía.
 
 ### Semana 2
 
