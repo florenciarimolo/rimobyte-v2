@@ -4,7 +4,7 @@ import SectionShell from '../ui/SectionShell.astro';
 import SiteWrap from '../ui/SiteWrap.astro';
 import SectionHead from '../ui/SectionHead.astro';
 import { spotlightProjects } from '../../data/homeShowcase';
-import { projects } from '../../data/projects';
+import { projectCount, projects } from '../../data/projects';
 
 const portfolioProjects = spotlightProjects.slice(0, 4).map((showcase) => {
   const project = projects.find((p) => p.slug === showcase.slug)!;
@@ -21,10 +21,10 @@ const spans = ['portfolio-project--wide', 'portfolio-project--narrow', 'portfoli
 <SectionShell id="proyectos" transparent padding="home" class="portfolio-section">
   <SiteWrap>
     <SectionHead
-      pill="Portfolio · 9 negocios"
+      pill={`Portfolio · ${projectCount} negocios`}
       title="Detrás de cada web, un negocio que"
       titleGradient="quería crecer."
-      subtitle="Manicuras, sandalias artesanales, asesorías fiscales, campamentos de rock, ciberpsicología, cursos online. Cada proyecto cuenta una historia distinta."
+      subtitle="Cerámica, manicuras, sandalias artesanales, asesorías fiscales, campamentos de rock, ciberpsicología. Cada proyecto cuenta una historia distinta."
       class="reveal"
     />
 
@@ -57,7 +57,7 @@ const spans = ['portfolio-project--wide', 'portfolio-project--narrow', 'portfoli
     </div>
 
     <div class="portfolio-foot reveal">
-      <Button href="/proyectos/" variant="outline">Ver los 9 proyectos →</Button>
+      <Button href="/proyectos/" variant="outline">Ver los {projectCount} proyectos →</Button>
     </div>
   </SiteWrap>
 </SectionShell>

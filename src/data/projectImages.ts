@@ -3,6 +3,7 @@
  * Las variantes responsive se generan en /public/assets/projects/generated/{nombre}-w{400|800}.webp
  */
 export const projectImageBaseBySlug: Record<string, string> = {
+  'mm-ceramic': 'mm-ceramic',
   'vila-i-lancis': 'vila-i-lancis',
   'lucia-nails-art': 'lucia-nails-art',
   supercapaces: 'supercapaces',

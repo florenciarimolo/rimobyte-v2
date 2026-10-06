@@ -177,7 +177,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
     },
     relatedTitle: 'Proyectos de',
     relatedTitleEm: 'web corporativa.',
-    relatedSlugs: ['vila-i-lancis', 'ariadna-vilalta', 'juancar-garma-reset7'],
+    relatedSlugs: ['mm-ceramic', 'vila-i-lancis', 'ariadna-vilalta'],
     pricingDetail: {
       label: 'Web corporativa',
       amount: '600€',

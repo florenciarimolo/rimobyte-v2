@@ -105,11 +105,12 @@ export const projectFilters = [
 /** Orden y spans del grid en /proyectos/ (mockup v6) */
 export const projectsListingOrder: { slug: string; gridSpan: ProjectGridSpan }[] = [
   { slug: 'lucia-nails-art', gridSpan: 'featured' },
+  { slug: 'mm-ceramic', gridSpan: 'span-6' },
   { slug: 'de-cos', gridSpan: 'span-6' },
-  { slug: 'rock-zone-camp', gridSpan: 'span-6' },
+  { slug: 'rock-zone-camp', gridSpan: 'span-4' },
   { slug: 'ariadna-vilalta', gridSpan: 'span-4' },
   { slug: 'supercapaces', gridSpan: 'span-4' },
-  { slug: 'vila-i-lancis', gridSpan: 'span-4' },
+  { slug: 'vila-i-lancis', gridSpan: 'span-6' },
   { slug: 'juancar-garma-reset7', gridSpan: 'span-6' },
   { slug: 'fenix-internacional-360', gridSpan: 'span-6' },
   { slug: 'jlg-ki', gridSpan: 'span-6' },
@@ -117,6 +118,125 @@ export const projectsListingOrder: { slug: string; gridSpan: ProjectGridSpan }[]
 
 /** Orden cronológico inverso (más reciente primero) */
 export const projects: Project[] = [
+  {
+    slug: 'mm-ceramic',
+    name: 'MM Ceramic',
+    displayName: 'MM Ceramic · De Instagram a taller bilingüe en Esparreguera',
+    displayNameHighlight: 'taller bilingüe',
+    url: 'mmceramic.es',
+    eyebrow: 'Web para talleres',
+    sector: 'Taller de cerámica y alfarería',
+    location: 'Esparreguera, Barcelona',
+    date: '2026-10',
+    stackLabel: 'WordPress',
+    challenge:
+      'MM Ceramic abría taller en Esparreguera y solo existía en Instagram. Quien buscaba cerámica, torno o un taller para ir en persona no encontraba ni dirección, ni horario, ni una página que explicara el oficio.',
+    solution:
+      'Web en WordPress y Elementor, en español y catalán, con una página por intención: el oficio, los talleres, las piezas y el contacto. SEO local desde el título hasta los datos del negocio, para que Google entienda que es un taller real en Esparreguera.',
+    process:
+      'Arquitectura en cinco páginas espejadas en los dos idiomas, fotos reales del torno, el horno y las piezas, y ficha local con dirección, horario, teléfono y WhatsApp. Cada URL ataca una búsqueda distinta — taller, clases, piezas, cómo llegar — sin convertir el sitio en una tienda.',
+    result:
+      'La primera web del taller: bilingüe, con el negocio local explicado a Google y un camino claro para reservar un taller, encargar una pieza o pasarse por Carrer Sant Miquel.',
+    diagnosis:
+      'Sin web, sin ficha que Google pudiera leer y con toda la presencia en un perfil de Instagram. Quien no les seguía ya, no tenía forma de encontrar el taller.',
+    heroLede:
+      'Un taller de cerámica que solo tenía Instagram. Les hice la primera web, en español y catalán, para que quien busque cerámica en Esparreguera encuentre el oficio, los talleres y cómo llegar.',
+    image: '/assets/projects/mm-ceramic.webp',
+    heroImage: '/assets/projects/mm-ceramic.webp',
+    techStack: [
+      'WordPress',
+      'Elementor',
+      'Yoast SEO',
+      'Hreflang ES · CA',
+      'Schema LocalBusiness',
+      'Sitemap con imágenes',
+      'WebP',
+      'LiteSpeed Cache',
+    ],
+    stats: [
+      {
+        value: 'ES · CA',
+        label: 'Web en dos idiomas',
+        description:
+          'Cada página tiene su versión en catalán, con hreflang para que Google no las trate como duplicado.',
+      },
+      {
+        value: '5',
+        label: 'Búsquedas distintas',
+        description:
+          'Inicio, el taller, talleres, piezas y contacto: un título propio con Esparreguera en cada una.',
+      },
+      {
+        value: 'IG → web',
+        label: 'Primera presencia indexable',
+        description:
+          'De un perfil de Instagram a un sitio con dirección, horario, WhatsApp y ficha de negocio local.',
+      },
+    ],
+    categories: ['web-corporativa'],
+    gridSpan: 'span-6',
+    thumbLetter: 'M',
+    thumbGradient: 4,
+    cardSummary:
+      'Taller de cerámica que solo tenía Instagram. Primera web, en español y catalán, con SEO local para que Esparreguera les encuentre.',
+    resultHighlight: 'De Instagram a web local bilingüe',
+    resultIcon: 'layers',
+    seo: {
+      title: 'MM Ceramic · web WordPress · caso RimoByte',
+      description:
+        'Web WordPress bilingüe para un taller de cerámica en Esparreguera. SEO local desde cero. Pide presupuesto desde 600€.',
+    },
+    narrative: {
+      subtitle:
+        'Cómo un taller que solo existía en Instagram pasó a tener una web en español y catalán que Google puede situar en Esparreguera.',
+      blocks: [
+        {
+          id: 'reto',
+          num: '01',
+          navLabel: 'El reto',
+          title: 'Un oficio real, invisible fuera de Instagram.',
+          paragraphs: [
+            'MM Ceramic abre taller en Esparreguera, un pueblo con tradición alfarera. El trabajo — torno, esmalte, horno, piezas hechas a mano — ya estaba. La presencia online, no: solo un perfil de Instagram.',
+            'Quien buscaba «cerámica Esparreguera», un taller de torno o la dirección para pasarse no encontraba nada que pudiera reservar, encargar o visitar. Instagram enseña piezas a quien ya te sigue. No dice el horario ni cómo llegar.',
+          ],
+          figure: {
+            label: 'Diagnóstico inicial',
+            text: 'Sin web y sin una ficha que Google pudiera leer. Toda la captación dependía de Instagram. Dirección, horario y reservas no existían fuera de un mensaje directo.',
+          },
+        },
+        {
+          id: 'propuesta',
+          num: '02',
+          navLabel: 'La propuesta',
+          title: 'Una página por lo que la gente busca.',
+          paragraphs: [
+            'No hacía falta una tienda. Hacía falta que el taller se entendiera: el oficio, las clases y las piezas, más un contacto con WhatsApp, teléfono y mapa. Cada bloque responde a una intención distinta, en español y en catalán.',
+            'El SEO local va en la estructura, no en un plugin al final. El nombre del pueblo está en los títulos, la descripción dice qué se hace allí, y los datos del negocio — calle, horario, teléfono, coordenadas — viajan en el marcado para que Google sepa que es un taller de Esparreguera.',
+          ],
+        },
+        {
+          id: 'proceso',
+          num: '03',
+          navLabel: 'El proceso',
+          title: 'WordPress, dos idiomas y fotos del taller.',
+          paragraphs: [
+            'La web está en WordPress con Elementor, para que puedan cambiar fotos y textos sin rehacer el sitio. Cinco páginas en español — inicio, el taller, talleres, piezas y contacto — y su espejo en catalán, enlazadas con hreflang.',
+            'Las fotos son del propio taller: torno, modelado, esmaltes, horno y piezas. El contacto reúne dirección en Carrer Sant Miquel 29, horario, WhatsApp, formulario y mapa. El sitemap incluye las imágenes y cada página lleva la ficha LocalBusiness.',
+          ],
+        },
+        {
+          id: 'resultado',
+          num: '04',
+          navLabel: 'El resultado',
+          title: 'El taller ya se puede encontrar.',
+          paragraphs: [
+            'MM Ceramic tiene su primera web. Quien busca cerámica artesanal, un taller de torno o cómo llegar al local encuentra una página concreta, en el idioma de la búsqueda, con el pueblo en el título.',
+            'Instagram sigue siendo el escaparate. La web es el sitio donde el negocio existe para Google: oficio, clases, encargos y la puerta del taller.',
+          ],
+        },
+      ],
+    },
+  },
   {
     slug: 'ariadna-vilalta',
     name: 'Ariadna Vilalta',
@@ -466,7 +586,7 @@ export const projects: Project[] = [
       },
     ],
     categories: ['landing-page'],
-    gridSpan: 'span-6',
+    gridSpan: 'span-4',
     thumbLetter: 'R',
     thumbGradient: 2,
     cardSummary:
@@ -517,7 +637,7 @@ export const projects: Project[] = [
       },
     ],
     categories: ['web-corporativa'],
-    gridSpan: 'span-4',
+    gridSpan: 'span-6',
     thumbLetter: 'V',
     thumbGradient: 8,
     cardSummary:

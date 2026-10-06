@@ -161,7 +161,7 @@ export const wordpressLandingDetail: ServiceDetailContent = {
   },
   relatedTitle: 'Webs WordPress',
   relatedTitleEm: 'ya entregadas.',
-  relatedSlugs: ['vila-i-lancis', 'lucia-nails-art', 'ariadna-vilalta'],
+  relatedSlugs: ['mm-ceramic', 'lucia-nails-art', 'vila-i-lancis'],
   pricingDetail: {
     label: 'Desarrollo web WordPress',
     amount: '600€',

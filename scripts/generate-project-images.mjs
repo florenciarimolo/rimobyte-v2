@@ -15,6 +15,7 @@ const outDir = path.join(root, 'generated');
 
 /** Mismos valores que src/data/projectImages.ts */
 const bases = [
+  'mm-ceramic',
   'vila-i-lancis',
   'lucia-nails-art',
   'supercapaces',

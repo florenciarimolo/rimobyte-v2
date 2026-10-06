@@ -34,8 +34,8 @@ function pickShowcase(slugs: string[]): HomeShowcaseProject[] {
   });
 }
 
-const heroSlugs = ['lucia-nails-art', 'vila-i-lancis', 'de-cos', 'ariadna-vilalta', 'rock-zone-camp'];
-const spotlightSlugs = ['lucia-nails-art', 'rock-zone-camp', 'vila-i-lancis', 'ariadna-vilalta', 'de-cos'];
+const heroSlugs = ['mm-ceramic', 'lucia-nails-art', 'vila-i-lancis', 'de-cos', 'ariadna-vilalta'];
+const spotlightSlugs = ['mm-ceramic', 'lucia-nails-art', 'rock-zone-camp', 'vila-i-lancis', 'de-cos'];
 
 export const heroShowcaseProjects = pickShowcase(heroSlugs);
 export const spotlightProjects = pickShowcase(spotlightSlugs);
