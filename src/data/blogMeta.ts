@@ -67,7 +67,11 @@ const blogVisuals: Record<string, BlogVisual> = {
   'que-hosting-contratar-wordpress': {
     icon: 'H',
     gradient: 'linear-gradient(135deg, #196BEE, #6535E5)',
+  },  'web-wordpress-peluquerias': {
+    icon: 'B',
+    gradient: 'linear-gradient(135deg, #E715D1, #6535E5)',
   },
+
 };
 
 export function getBlogVisual(slug: string): BlogVisual {
