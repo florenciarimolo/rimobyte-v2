@@ -121,8 +121,8 @@ export const projects: Project[] = [
   {
     slug: 'mm-ceramic',
     name: 'MM Ceramic',
-    displayName: 'MM Ceramic · De Instagram a taller bilingüe en Esparreguera',
-    displayNameHighlight: 'taller bilingüe',
+    displayName: 'MM Ceramic · La primera web del taller en Esparreguera',
+    displayNameHighlight: 'primera web',
     url: 'mmceramic.es',
     eyebrow: 'Web para talleres',
     sector: 'Taller de cerámica y alfarería',
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     process:
       'Arquitectura en cinco páginas espejadas en los dos idiomas, fotos reales del torno, el horno y las piezas, y ficha local con dirección, horario, teléfono y WhatsApp. Cada URL ataca una búsqueda distinta — taller, clases, piezas, cómo llegar — sin convertir el sitio en una tienda.',
     result:
-      'La primera web del taller: bilingüe, con el negocio local explicado a Google y un camino claro para reservar un taller, encargar una pieza o pasarse por Carrer Sant Miquel.',
+      'La primera web del taller, en español y catalán, con el negocio local explicado a Google y un camino claro para reservar un taller, encargar una pieza o pasarse por Carrer Sant Miquel.',
     diagnosis:
       'Sin web, sin ficha que Google pudiera leer y con toda la presencia en un perfil de Instagram. Quien no les seguía ya, no tenía forma de encontrar el taller.',
     heroLede:
@@ -179,12 +179,12 @@ export const projects: Project[] = [
     thumbGradient: 4,
     cardSummary:
       'Taller de cerámica que solo tenía Instagram. Primera web, en español y catalán, con SEO local para que Esparreguera les encuentre.',
-    resultHighlight: 'De Instagram a web local bilingüe',
+    resultHighlight: 'Clases, piezas y cómo llegar',
     resultIcon: 'layers',
     seo: {
       title: 'MM Ceramic · web WordPress · caso RimoByte',
       description:
-        'Web WordPress bilingüe para un taller de cerámica en Esparreguera. SEO local desde cero. Pide presupuesto desde 600€.',
+        'Primera web de un taller de cerámica en Esparreguera, en español y catalán. SEO local desde cero. Pide presupuesto desde 600€.',
     },
     narrative: {
       subtitle:
