@@ -65,7 +65,7 @@
     },
     {
       "slug": "web-wordpress-peluquerias",
-      "status": "pending",
+      "status": "pr",
       "scheduledDate": "2026-10-06",
       "targetQuery": "web wordpress peluquería",
       "title": "Web WordPress para peluquerías y centros de estética",
@@ -112,7 +112,9 @@
           "body": "Una web WordPress corporativa para peluquería encaja en el rango **desde 600€** (presupuesto cerrado, diseño a medida, a tu nombre).\n\nSi quieres tienda de productos (champús, tratamientos), entramos en WooCommerce — desde 1.200€.\n\nEl desglose general está en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
         }
       ],
-      "closing": "Si tu peluquería o centro de estética depende solo de Instagram y del boca a boca, estás dejando citas sobre la mesa. [Cuéntame tu proyecto](/web-para-peluquerias/) y te digo qué tendría sentido en tu caso — sin venderte una web enorme que no vas a usar."
+      "closing": "Si tu peluquería o centro de estética depende solo de Instagram y del boca a boca, estás dejando citas sobre la mesa. [Cuéntame tu proyecto](/web-para-peluquerias/) y te digo qué tendría sentido en tu caso — sin venderte una web enorme que no vas a usar.",
+      "draftedAt": "2026-10-06",
+      "branch": "blog/web-wordpress-peluquerias"
     },
     {
       "slug": "rediseno-web-wordpress-cuando-merece",
