@@ -65,7 +65,7 @@
     },
     {
       "slug": "web-wordpress-peluquerias",
-      "status": "pr",
+      "status": "published",
       "scheduledDate": "2026-10-06",
       "targetQuery": "web wordpress peluquería",
       "title": "Web WordPress para peluquerías y centros de estética",
@@ -113,8 +113,7 @@
         }
       ],
       "closing": "Si tu peluquería o centro de estética depende solo de Instagram y del boca a boca, estás dejando citas sobre la mesa. [Cuéntame tu proyecto](/web-para-peluquerias/) y te digo qué tendría sentido en tu caso — sin venderte una web enorme que no vas a usar.",
-      "draftedAt": "2026-10-06",
-      "branch": "blog/web-wordpress-peluquerias"
+      "publishedDate": "2026-10-06"
     },
     {
       "slug": "rediseno-web-wordpress-cuando-merece",
