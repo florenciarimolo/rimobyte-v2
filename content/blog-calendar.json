@@ -12,10 +12,11 @@
       "status": "published",
       "scheduledDate": "2026-09-22",
       "targetQuery": "mantenimiento wordpress empresas",
-      "title": "Mantenimiento WordPress para empresas: qué incluye y cuánto cuesta",
-      "description": "Qué debe incluir el mantenimiento WordPress de una empresa: actualizaciones, copias, seguridad y soporte. Precio desde 50€/mes sin permanencia.",
+      "title": "Freelance mantenimiento WordPress desde 50€/mes · RimoByte",
+      "description": "Contrata freelance mantenimiento WordPress: actualizaciones, copias y soporte directo. Desde 50€/mes sin permanencia. Pide presupuesto.",
       "type": "guia",
       "keywords": [
+        "freelance mantenimiento wordpress",
         "mantenimiento wordpress empresas",
         "mantenimiento web wordpress",
         "soporte wordpress pymes"
@@ -224,6 +225,108 @@
         }
       ],
       "closing": "Tu web no sustituye la relación terapéutica, pero sí abre la puerta a quien aún no se atreve a llamar. Si quieres una web WordPress pensada para una consulta de psicología — clara, cuidada y tuya — [escríbeme](/web-para-psicologos/). Te propongo algo acorde a cómo trabajas, no un template genérico de clínica."
+    },
+    {
+      "slug": "freelance-seo-wordpress",
+      "status": "pending",
+      "scheduledDate": "2026-11-10",
+      "targetQuery": "freelance seo wordpress",
+      "title": "SEO WordPress freelance: qué incluye y cuánto cuesta",
+      "description": "Freelance SEO WordPress en España: estructura, velocidad, contenido y SEO local. Qué incluye una web desde 600€ y cuándo pedir presupuesto.",
+      "type": "guia",
+      "keywords": [
+        "freelance seo wordpress",
+        "seo wordpress freelance",
+        "posicionamiento web wordpress"
+      ],
+      "readingTime": "6 min",
+      "ctaText": "¿Quieres web WordPress con SEO incluido?",
+      "ctaLink": "/desarrollo-web-wordpress/",
+      "relatedSlugs": [
+        "programador-wordpress-freelance-espana",
+        "cuanto-cuesta-una-web-wordpress",
+        "wordpress-a-medida-vs-plantilla"
+      ],
+      "coverSourceSlug": "programador-wordpress-freelance-espana",
+      "visual": {
+        "icon": "S",
+        "gradient": "linear-gradient(135deg, #196BEE, #6535E5)"
+      },
+      "intro": "«Freelance SEO WordPress» suena a pack mágico de posicionamiento. En la práctica, la mayoría de pymes no necesitan una agencia con informes de 40 páginas: necesitan una web bien montada, rápida en móvil y con textos que respondan a lo que buscan sus clientes.\n\nYo trabajo como desarrolladora WordPress freelance en España. El SEO no va en un add-on aparte: va en cómo se estructura la web desde el primer día — y en lo que tú puedes editar después sin romper nada.",
+      "sections": [
+        {
+          "heading": "## Qué entiendo por SEO WordPress (sin humo)",
+          "body": "No prometo «salir el primero en Google en 30 días». Sí incluyo lo que una web de negocio necesita para ser indexable y competir en búsquedas locales:\n\n- Títulos y meta descriptions por página\n- URLs legibles y redirects si cambias slugs\n- Velocidad razonable en móvil (sin instalar veinte plugins)\n- Schema básico (LocalBusiness, servicios, FAQ cuando aplica)\n- Enlace coherente con Google Business Profile\n- Sitemap y robots correctos\n\nSi alguien te vende «SEO WordPress» solo como plugin de keywords, pregunta qué pasa con la velocidad y la estructura."
+        },
+        {
+          "heading": "## Freelance vs agencia SEO",
+          "body": "**Agencia:** equipos, informes mensuales, a veces contenido genérico y factura recurrente alta.\n\n**Freelance (mi modelo):** hablas con quien monta la web. El SEO técnico va en el desarrollo; el contenido lo escribes tú o lo revisamos juntos. Sin call center ni comercial intermedio.\n\nEncaja si quieres una web corporativa o sectorial ([desarrollo WordPress](/desarrollo-web-wordpress/)) con presupuesto cerrado, no un retainer de 800€/mes sin saber quién toca tu panel."
+        },
+        {
+          "heading": "## Qué incluye el SEO en una web nueva",
+          "body": "En un proyecto desde cero (desde **600€**):\n\n- Arquitectura de páginas según servicios y zona\n- Optimización on-page de las páginas que entrego\n- Imágenes en formatos modernos y textos alternativos\n- Core Web Vitals razonables en la plantilla que diseño\n- Formulario de contacto visible en móvil\n\nNo incluye redacción masiva de blog ni link building. Eso es otra conversación — y a menudo viene después de tener una base sólida."
+        },
+        {
+          "heading": "## ¿Y el SEO después de publicar?",
+          "body": "WordPress se actualiza; Google cambia criterios; tú añades servicios. Por eso existe [mantenimiento web](/servicios/mantenimiento-web/) desde **50€/mes**: actualizaciones, copias y revisión de incidencias técnicas que afectan al SEO (web caída, error 500, plugin roto).\n\nNo es «posicionamiento mensual», es no dejar morir la web técnicamente. El contenido y las reseñas siguen siendo tuyos."
+        },
+        {
+          "heading": "## Cuánto cuesta contratar freelance SEO WordPress",
+          "body": "Desarrollo con SEO base: **desde 600€** (web corporativa, presupuesto cerrado).\n\nProyectos sectoriales ([asesorías](/web-para-asesorias/), [inmobiliarias](/web-para-inmobiliarias/), etc.) en rangos similares según páginas e integraciones.\n\nMantenimiento opcional: **50€/mes** sin permanencia.\n\nDetalle de rangos en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
+        },
+        {
+          "heading": "## Señales de que te hace falta ayuda",
+          "body": "- Tienes web pero no apareces ni para tu nombre comercial\n- La home tarda eternidad en móvil\n- Copiaste textos de la competencia y suena genérico\n- Nadie te explicó qué título poner en cada página\n- Te vendieron una plantilla sin estructura para tu sector\n\nSi encajas en dos o más, merece una revisión honesta — a veces basta rediseño; a veces solo ajustes."
+        }
+      ],
+      "closing": "El SEO WordPress freelance no es un truco: es una web bien hecha, tuya, pensada para que te encuentren y te escriban. Si quieres presupuesto cerrado con SEO incluido en el desarrollo, [cuéntame tu negocio](/desarrollo-web-wordpress/). Te digo qué tendría sentido antes de prometer milagros."
+    },
+    {
+      "slug": "freelance-mantenimiento-wordpress-guia",
+      "status": "pending",
+      "scheduledDate": "2026-11-17",
+      "targetQuery": "freelance mantenimiento wordpress",
+      "title": "Contratar freelance mantenimiento WordPress en España",
+      "description": "Cómo elegir freelance mantenimiento WordPress: qué debe incluir, precios reales y diferencias con agencia. Desde 50€/mes sin permanencia.",
+      "type": "guia",
+      "keywords": [
+        "freelance mantenimiento wordpress",
+        "mantenimiento wordpress freelance",
+        "contratar mantenimiento wordpress"
+      ],
+      "readingTime": "5 min",
+      "ctaText": "¿Quieres mantenimiento WordPress freelance?",
+      "ctaLink": "/servicios/mantenimiento-web/",
+      "relatedSlugs": [
+        "mantenimiento-wordpress-empresas",
+        "programador-wordpress-freelance-espana",
+        "tu-web-debe-ser-tuya"
+      ],
+      "coverSourceSlug": "mantenimiento-wordpress-empresas",
+      "visual": {
+        "icon": "F",
+        "gradient": "linear-gradient(135deg, #6535E5, #196BEE 50%, #E715D1)"
+      },
+      "intro": "Buscar «freelance mantenimiento WordPress» no es lo mismo que contratar la cuota más barata del panel de hosting. Quieres a alguien que conozca tu web, actualice sin romper el formulario de contacto y responda cuando algo falla un martes por la mañana.\n\nTrabajo en España como freelance: mantenimiento directo, sin permanencia, desde **50€/mes** para webs que conozco o he revisado antes.",
+      "sections": [
+        {
+          "heading": "## Qué debe incluir un freelance de mantenimiento",
+          "body": "Mínimo serio:\n\n- Actualizaciones de WordPress, tema y plugins (con copia previa si hace falta)\n- Copias de seguridad comprobadas\n- Monitorización de caídas y errores graves\n- Soporte por email con respuesta humana\n- Comunicación clara si un plugin deja de ser compatible\n\nNo debería ser solo «te instalo un plugin de backup y listo». Si no entran al panel cada mes, no es mantenimiento."
+        },
+        {
+          "heading": "## Freelance vs agencia vs «el sobrino»",
+          "body": "**Agencia:** a veces ticket eterno y rotación de técnicos que no conocen tu historial.\n\n**El sobrino / interno:** barato hasta que una actualización tira la web en temporada alta.\n\n**Freelance:** un interlocutor, continuidad, precio acorde a una pyme. El equilibrio que buscan muchos autónomos cuando la web ya les trae clientes.\n\nMás detalle en [mantenimiento WordPress para empresas](/blog/mantenimiento-wordpress-empresas/)."
+        },
+        {
+          "heading": "## Precio habitual en España",
+          "body": "He visto desde 20€/mes (sin hacer nada útil) hasta 200€/mes con informes que nadie lee.\n\nPara una web corporativa o tienda pequeña, **50–120€/mes** es un rango realista según plugins, tráfico y urgencias.\n\nYo parto de **50€/mes** sin permanencia en [mantenimiento web](/servicios/mantenimiento-web/). Si la web viene de otro desarrollador y está hecha un lío, primero auditoría — a veces hace falta puesta a punto."
+        },
+        {
+          "heading": "## Cuándo tiene sentido contratar",
+          "body": "- La web es tu principal canal de captación\n- Llevas meses sin actualizar por miedo a romper algo\n- No sabes dónde están las copias\n- Dependes de quien hizo la web y ya no responde\n\nSi la web es un experimento que abandonaste, mejor hablar de rediseño ([desarrollo WordPress](/desarrollo-web-wordpress/)) antes de mantener algo que no convierte."
+        }
+      ],
+      "closing": "Contratar freelance mantenimiento WordPress es pagar por tranquilidad técnica, no por otro PDF mensual. Si quieres saber si tu web encaja en un plan desde 50€/mes, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría y si merece empezar ya."
     }
   ]
 }
