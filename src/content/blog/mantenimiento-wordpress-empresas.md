@@ -1,9 +1,9 @@
 ---
-title: "Mantenimiento WordPress para empresas: qué incluye y cuánto cuesta"
-description: "Qué debe incluir el mantenimiento WordPress de una empresa: actualizaciones, copias, seguridad y soporte. Precio desde 50€/mes sin permanencia."
+title: "Freelance mantenimiento WordPress desde 50€/mes · RimoByte"
+description: "Contrata freelance mantenimiento WordPress: actualizaciones, copias y soporte directo. Desde 50€/mes sin permanencia. Pide presupuesto."
 date: 2026-09-22
 type: guia
-keywords: ["mantenimiento wordpress empresas","mantenimiento web wordpress","soporte wordpress pymes"]
+keywords: ["freelance mantenimiento wordpress","mantenimiento wordpress empresas","mantenimiento web wordpress","soporte wordpress pymes"]
 readingTime: "5 min"
 ctaText: "¿Quieres mantenimiento WordPress sin permanencia?"
 ctaLink: "/servicios/mantenimiento-web/"

@@ -1,6 +1,6 @@
 ---
-title: "WordPress vs Wix: ¿cuál es mejor para tu negocio?"
-description: "Comparativa clara entre WordPress y Wix: precio a 3 años, propiedad, SEO y cuándo elegir cada uno si quieres una web en España."
+title: "WordPress vs Wix: qué elegir para captar clientes"
+description: "Comparativa WordPress vs Wix: precio a 3 años, propiedad y SEO. Web tuya desde 600€. Pide presupuesto cerrado sin compromiso."
 date: 2026-08-20
 type: guia
 keywords: ["wordpress vs wix", "wix o wordpress", "mejor wordpress o wix"]
