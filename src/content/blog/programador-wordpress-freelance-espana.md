@@ -56,7 +56,8 @@ Antes de firmar, comprueba que el presupuesto cubre esto:
 
 Los rangos que manejo y veo en el mercado para negocios locales:
 
-- **Web corporativa WordPress:** desde **600€**
+- **Landing de una página:** **400€**
+- **Web corporativa WordPress:** desde **600€** (inicio, servicios, sobre mí, contacto y legales; cada página de más, **150€**)
 - **Tienda WooCommerce:** desde **1.200€**
 - **Dominio + servidor:** unos **50–100€/año** (los contratas tú; no es cuota de plataforma)
 - **Mantenimiento (opcional):** desde **50€/mes**, sin permanencia

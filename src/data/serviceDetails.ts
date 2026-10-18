@@ -97,7 +97,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
       { label: 'Precio', value: 'desde 600€', gradient: true },
       { label: 'Plazo', value: '3–5 semanas' },
       { label: 'CMS', value: 'WordPress' },
-      { label: 'Páginas', value: 'Hasta 8 incluidas' },
+      { label: 'Páginas', value: '4 incluidas' },
       { label: 'SEO local', value: 'Incluido' },
       { label: 'Formación', value: '1 sesión incluida' },
     ],
@@ -128,9 +128,9 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
       },
       {
         icon: 'layout',
-        title: 'Hasta 8 páginas',
-        description: 'Inicio, servicios, sobre mí, contacto y las que necesites.',
-        extra: 'Páginas extra: 60€/ud',
+        title: '4 páginas incluidas',
+        description: 'Inicio, servicios, sobre mí y contacto. Las legales van en el mismo precio.',
+        extra: 'Página adicional: 150€',
       },
       {
         icon: 'form',
@@ -181,7 +181,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
     pricingDetail: {
       label: 'Web corporativa',
       amount: '600€',
-      amountSub: 'Precio cerrado · hasta 8 páginas',
+      amountSub: 'Precio cerrado · 4 páginas',
       features: [
         'Diseño a medida (2 propuestas)',
         'WordPress configurado y optimizado',
@@ -192,7 +192,7 @@ export const serviceDetailBySlug: Record<string, ServiceDetailContent> = {
         '30 días de soporte post-lanzamiento',
       ],
       extras: [
-        { name: 'Página adicional', detail: 'Misma calidad y SEO', price: '60€/ud' },
+        { name: 'Página adicional', detail: 'A partir de la quinta', price: '150€' },
         { name: 'Redacción de contenidos', detail: 'Por página, tono de marca', price: '60€/ud' },
         { name: 'Fotos de stock', detail: 'Selección y optimización para tu web', price: 'A consultar' },
         { name: 'Mantenimiento mensual', detail: 'Actualizaciones + soporte', price: 'desde 50€/mes' },

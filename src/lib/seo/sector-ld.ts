@@ -38,6 +38,9 @@ export function buildSectorLdGraph(sector: Sector, site?: URL) {
           '@type': 'Offer',
           priceCurrency: 'EUR',
           price: minPrice,
+          ...(sector.offer
+            ? { description: sector.offer.priceDetail }
+            : {}),
           priceSpecification: {
             '@type': 'PriceSpecification',
             minPrice,

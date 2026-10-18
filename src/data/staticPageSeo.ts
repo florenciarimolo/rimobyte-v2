@@ -45,7 +45,7 @@ export const blogIndexSeo: PageSeo = {
 export const serviciosHubSeo: PageSeo = {
   title: 'Servicios de desarrollo web WordPress · RimoByte',
   description:
-    'Web corporativa desde 600€, tienda WooCommerce desde 1.200€, plataformas de cursos desde 1.000€ y mantenimiento. Presupuesto cerrado, tuya desde el primer día.',
+    'Landing desde 400€, web corporativa desde 600€, tienda WooCommerce desde 1.200€, plataformas de cursos desde 1.000€ y mantenimiento. Presupuesto cerrado, tuya desde el primer día.',
 };
 
 export function proyectosIndexSeo(count: number = projectCount): PageSeo {

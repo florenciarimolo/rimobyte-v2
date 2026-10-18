@@ -11,7 +11,7 @@ export const faqEntries: FaqEntry[] = [
   },
   {
     q: '¿Cuánto cuesta una web?',
-    a: 'Web corporativa desde 600€, tienda online desde 1.200€, plataforma de cursos desde 1.000€. Siempre con presupuesto claro antes de empezar — sin sorpresas ni costes ocultos.',
+    a: 'Landing de una página desde 400€. Web corporativa desde 600€: inicio, servicios, sobre mí, contacto y legales. Cada página de más, 150€. Tienda online desde 1.200€ y plataforma de cursos desde 1.000€. Presupuesto cerrado antes de empezar.',
   },
   {
     q: '¿Cuánto tarda en estar lista?',

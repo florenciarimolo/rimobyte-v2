@@ -165,6 +165,16 @@ export const services: Service[] = [
         answer: 'Entre 3 y 4 semanas desde que tengo todo el contenido.',
       },
       {
+        question: '¿Y si solo necesito una página?',
+        answer:
+          'Una landing de una sola página, con un objetivo, son 400€. Los 150€ son otra cosa: una página más dentro de una web que ya incluye inicio, servicios, sobre mí y contacto.',
+      },
+      {
+        question: '¿Cuántas páginas incluyen los 600€?',
+        answer:
+          'Inicio, servicios, sobre mí, contacto y las páginas legales. Cada página de más son 150€. Si redactas tú, la redacción no se cobra; si la hago yo, son 60€ por página.',
+      },
+      {
         question: '¿Qué pasa si necesito algo que no está incluido?',
         answer:
           'Te lo digo antes de empezar, no al final. Si surge algo fuera del alcance inicial, lo hablamos y presupuestamos aparte.',
@@ -179,7 +189,7 @@ export const services: Service[] = [
     seo: {
       title: 'Web WordPress para negocios locales desde 600€ · RimoByte',
       description:
-        'Web WordPress para autónomos y negocios locales desde 600€. SEO incluido, tuya desde el primer día, sin dependencias. Presupuesto cerrado antes de empezar.',
+        'Web WordPress desde 600€: inicio, servicios, sobre mí, contacto y legales. Cada página de más, 150€. SEO incluido y tuya desde el primer día.',
     },
   },
   {

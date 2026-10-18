@@ -19,6 +19,7 @@ Si lo que quieres es el precio de **cualquier** web (no solo WordPress), está e
 
 En RimoByte:
 
+- **Landing de una página:** **400€**
 - **Web corporativa WordPress:** desde **600€**
 - **Tienda WooCommerce:** desde **1.200€**
 - **Plataforma de cursos (WordPress + LMS):** desde **1.000€**
@@ -40,7 +41,7 @@ El mantenimiento (actualizaciones, copias, seguridad) es aparte y **no es obliga
 
 ## De qué depende el precio de una web WordPress
 
-**Páginas y complejidad.** Inicio, servicios, sobre mí y contacto: rango 600–900€. Más landings, multiidioma o funcionalidades a medida suben el presupuesto.
+**Páginas y complejidad.** Una landing de una sola página: **400€**. Inicio, servicios, sobre mí, contacto y las legales: **600€**. Cada página de más, dentro de esa web: **150€**. Multiidioma o funcionalidades a medida se presupuestan aparte.
 
 **Tienda.** Catálogo, pagos, envíos y pedidos: parte de 1.200€. WooCommerce no es «activar un plugin y listo» si quieres que venda de verdad.
 
@@ -67,6 +68,7 @@ Si falta alguno de esos puntos, pregunta. Si no hay respuesta clara, ese presupu
 
 Para un negocio local en España que quiere **una web WordPress de verdad**, no un constructor:
 
+- Landing de una página: **400€**
 - Corporativa: **desde 600€**
 - Tienda: **desde 1.200€**
 - Dominio + servidor: **50–100€/año** (los pagas tú)

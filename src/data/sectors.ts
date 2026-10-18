@@ -306,7 +306,7 @@ export const sectors: Sector[] = [
       price: '600€',
       priceNote: 'desde · pago único, sin permanencia',
       priceDetail:
-        'El precio final depende del número de páginas y de si integramos sistema de reservas externo (Covermanager, TheFork, Google Reserve). Te paso presupuesto cerrado antes de empezar.',
+        'Los 600€ incluyen inicio, servicios, sobre mí, contacto y legales. Cada página de más son 150€. Integrar reservas externas (Covermanager, TheFork, Google Reserve) se presupuesta aparte.',
       cta: 'Pedir presupuesto',
     },
     faqEyebrow: 'Preguntas frecuentes',
@@ -491,7 +491,7 @@ export const sectors: Sector[] = [
       price: '600€',
       priceNote: 'desde · pago único',
       priceDetail:
-        'El precio final depende de las páginas que necesites y si integramos sistema de reservas externo (Treatwell, Booksy, etc.). Te paso presupuesto cerrado antes de empezar.',
+        'Los 600€ incluyen inicio, servicios, sobre mí, contacto y legales. Cada página de más son 150€. Integrar reservas externas (Treatwell, Booksy, etc.) se presupuesta aparte.',
       cta: 'Pedir presupuesto',
     },
     faqEyebrow: 'Preguntas frecuentes',
@@ -596,7 +596,7 @@ export const sectors: Sector[] = [
     },
     featuresEyebrow: 'Qué incluye una web para asesorías',
     featuresIntro:
-      'Cada elemento de la web está afinado para el sector: el autónomo o gerente que decide después de comparar tres asesorías en Google, la confianza que se transmite antes del primer correo y la estructura de servicios que filtra al cliente correcto.',
+      'Cada elemento está afinado para el sector: cómo compara un autónomo tres asesorías en Google y qué tiene que ver antes del primer correo. El precio de partida son 600€ (inicio, servicios, sobre mí, contacto y legales). Cada página de más son 150€; el multiidioma se presupuesta aparte.',
     featuresTitle: 'Pensado para',
     featuresTitleEm: 'cómo capta y trabaja una asesoría.',
     features: [
@@ -670,11 +670,10 @@ export const sectors: Sector[] = [
       title: 'Todo lo que tu asesoría',
       titleEm: 'necesita online.',
       lede:
-        'Una web a medida con SEO local, soporte multiidioma y formulario inteligente de captación. Diseño que transmite la solvencia que tus clientes esperan antes de firmar. Sin permanencia.',
+        'Una web a medida con SEO local y formulario de captación. Diseño que transmite la solvencia que tus clientes esperan antes de firmar. Sin permanencia.',
       features: [
         'Diseño 100% a medida (sin plantillas)',
-        'Landings por área de servicio (fiscal, laboral, contable…)',
-        'Multiidioma (ES + CAT y/o EN según necesites)',
+        'Servicios agrupados por área (fiscal, laboral, contable…)',
         'SEO local y Google Business Profile',
         'Formulario de consulta gratuita segmentado',
         'Avisos legales, RGPD y cookies configurados',
@@ -683,7 +682,7 @@ export const sectors: Sector[] = [
       price: '600€',
       priceNote: 'desde · pago único',
       priceDetail:
-        'El precio final depende del número de idiomas, landings por área y si añadimos área cliente privada. Te paso presupuesto cerrado antes de empezar.',
+        'Los 600€ incluyen inicio, servicios, sobre mí, contacto y legales. Cada landing de más son 150€. El multiidioma y un área de cliente se presupuestan aparte.',
       cta: 'Pedir presupuesto',
     },
     faqEyebrow: 'Preguntas frecuentes',
@@ -725,7 +724,7 @@ export const sectors: Sector[] = [
     seo: {
       title: 'Páginas web para asesorías y gestorías · RimoByte',
       description:
-        'Páginas web para asesorías y gestorías con WordPress. SEO local, multiidioma y RGPD. Presupuesto cerrado desde 600€. Pide el tuyo hoy.',
+        'Páginas web para asesorías y gestorías con WordPress. SEO local y RGPD. Desde 600€; cada página de más, 150€. Pide presupuesto.',
     },
   },
   {
@@ -871,7 +870,7 @@ export const sectors: Sector[] = [
       price: '600€',
       priceNote: 'desde · pago único',
       priceDetail:
-        'El precio final depende del número de programas/landings, si conectamos app de seguimiento externa y si añadimos área cliente. Te paso presupuesto cerrado antes de empezar.',
+        'Los 600€ incluyen inicio, servicios, sobre mí, contacto y legales. Cada landing de más son 150€. Conectar una app de seguimiento o un área de cliente se presupuesta aparte.',
       cta: 'Pedir presupuesto',
     },
     faqEyebrow: 'Preguntas frecuentes',
@@ -1186,7 +1185,7 @@ export const sectors: Sector[] = [
     },
     featuresEyebrow: 'Qué incluye una web para psicólogos',
     featuresIntro:
-      'Cada elemento está afinado para consulta privada: lo que el paciente necesita leer antes de confiar, cómo filtra si encajáis y cómo pide cita sin sentirse expuesto.',
+      'Cada elemento está afinado para consulta privada: lo que el paciente necesita leer antes de confiar, cómo filtra si encajáis y cómo pide cita sin sentirse expuesto. El precio de partida son 600€ (inicio, servicios, sobre mí, contacto y legales). Cada especialidad en su propia URL son 150€.',
     featuresTitle: 'Pensado para',
     featuresTitleEm: 'cómo trabaja tu consulta.',
     features: [
@@ -1240,10 +1239,10 @@ export const sectors: Sector[] = [
       title: 'Todo lo que tu consulta',
       titleEm: 'necesita online.',
       lede:
-        'Una web a medida con páginas por especialidad, perfil profesional, formulario o reserva integrada y SEO local incluido. Plazo cerrado, precio cerrado y formación para que la gestiones tú después. Sin permanencia.',
+        'Una web a medida con perfil profesional, formulario o reserva y SEO local. Cada especialidad en su propia URL se suma al presupuesto. Sin permanencia.',
       features: [
         'Diseño 100% a medida con dos direcciones a elegir',
-        'Home + sobre mí + una página por especialidad acordada',
+        'Inicio, servicios, sobre mí, contacto y legales',
         'Formulario RGPD o integración con tu sistema de citas',
         'SEO local + Google Business Profile configurados',
         'Formación + 30 días de soporte tras la entrega',
@@ -1251,7 +1250,7 @@ export const sectors: Sector[] = [
       price: '600€',
       priceNote: 'desde · pago único, sin permanencia',
       priceDetail:
-        'El precio final depende del número de especialidades/páginas, si integramos Calendly, Doctolib u otro sistema, y si añadimos blog o área de recursos. Te paso presupuesto cerrado antes de empezar.',
+        'Los 600€ incluyen inicio, servicios, sobre mí, contacto y legales. Cada especialidad en su propia URL son 150€. Integrar citas, un blog o un área de recursos se presupuesta aparte.',
       cta: 'Pedir presupuesto',
     },
     faqEyebrow: 'Preguntas frecuentes',
@@ -1447,7 +1446,7 @@ export const sectors: Sector[] = [
       price: '1200€',
       priceNote: 'desde · pago único, sin permanencia',
       priceDetail:
-        'El precio final depende del CRM que uses, del volumen de inmuebles, de páginas por zona y de si migramos catálogo o web actual. La integración CRM se presupuesta aparte si requiere desarrollo a medida. Te paso cifra cerrada antes de empezar.',
+        'Incluye inicio, listado y ficha de inmueble. Cada página de zona de más son 150€. El precio final depende del CRM, del volumen de inmuebles y de si migramos catálogo o web actual. La integración CRM se presupuesta aparte si requiere desarrollo a medida.',
       cta: 'Pedir presupuesto',
     },
     faqEyebrow: 'Preguntas frecuentes',

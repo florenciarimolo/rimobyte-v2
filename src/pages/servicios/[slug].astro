@@ -51,6 +51,12 @@ const serviceLdGraph = {
         priceCurrency: 'EUR',
         price: minPrice,
         priceSpecification: { '@type': 'PriceSpecification', minPrice, priceCurrency: 'EUR' },
+        ...(service.slug === 'web-corporativa'
+          ? {
+              description:
+                'Incluye inicio, servicios, sobre mí, contacto y páginas legales. Cada página adicional cuesta 150 euros.',
+            }
+          : {}),
       },
       url: serviceUrl,
     },

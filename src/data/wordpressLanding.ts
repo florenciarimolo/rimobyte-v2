@@ -41,6 +41,16 @@ export const wordpressLandingService: Service = {
         'Freelance. Hablas conmigo, diseño yo, programo yo y te respondo yo. Sin equipos que rotan ni intermediarios.',
     },
     {
+      question: '¿Y si solo necesito una página?',
+      answer:
+        'Una landing de una sola página, con un objetivo, son 400€. Los 150€ son otra cosa: una página más dentro de una web que ya incluye inicio, servicios, sobre mí y contacto.',
+    },
+    {
+      question: '¿Cuántas páginas incluyen los 600€?',
+      answer:
+        'Inicio, servicios, sobre mí, contacto y las páginas legales. Cada página de más son 150€. La redacción, si la hago yo, son 60€ por página.',
+    },
+    {
       question: '¿Cuánto tarda una web WordPress?',
       answer:
         'Una web corporativa, entre 3 y 4 semanas desde que tengo el contenido. Una tienda WooCommerce, entre 4 y 6 semanas.',
@@ -76,7 +86,7 @@ export const wordpressLandingDetail: ServiceDetailContent = {
   anchorId: 'desarrollo-web-wordpress',
   heroPills: ['WordPress a medida', 'Freelance · España'],
   heroLede:
-    'Webs WordPress para negocios locales que quieren captar clientes en Google — no una plantilla, no una agencia que se queda con los accesos. Presupuesto cerrado desde 600€.',
+    'Webs WordPress para negocios locales que quieren captar clientes en Google — no una plantilla, no una agencia que se queda con los accesos. Landing desde 400€. Web corporativa desde 600€.',
   metaAside: [
     { label: 'Precio', value: 'desde 600€', gradient: true },
     { label: 'Plazo', value: '3–5 semanas' },
@@ -169,13 +179,18 @@ export const wordpressLandingDetail: ServiceDetailContent = {
     features: [
       'Diseño a medida (2 propuestas)',
       'WordPress configurado y optimizado',
-      'Hasta 8 páginas',
+      'Inicio, servicios, sobre mí, contacto y legales',
       'SEO local de partida',
       'Formulario de contacto',
       'Formación en vivo',
       'Dominio y servidor a tu nombre',
     ],
     extras: [
+      {
+        name: 'Landing de una página',
+        detail: 'Un objetivo. No es una página añadida a otra web',
+        price: '400€',
+      },
       {
         name: 'Web corporativa (ficha)',
         detail: 'Qué incluye página a página',

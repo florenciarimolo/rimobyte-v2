@@ -17,7 +17,7 @@ Voy a intentar darte una respuesta clara, basada en lo que cobro yo y en lo que 
 
 ## La respuesta corta
 
-Una web corporativa profesional para un negocio local cuesta **desde 600€**. Una tienda online, **desde 1.200€**. Esos son mis precios, y siempre con presupuesto cerrado antes de empezar.
+Una landing de una sola página cuesta **400€**. Una web corporativa profesional para un negocio local, **desde 600€**. Una tienda online, **desde 1.200€**. Esos son mis precios, y siempre con presupuesto cerrado antes de empezar.
 
 Pero ojo — eso es lo que pagas por el diseño y el desarrollo. Tener una web tiene otros costes que mucha gente no te explica hasta que ya has firmado.
 
@@ -37,7 +37,7 @@ En total, mantener tu web operativa te cuesta entre 50€ y 100€ al año. Eso 
 
 No es lo mismo una web de 5 páginas para una asesoría que una tienda online con 200 productos. Estos son los factores principales:
 
-**Número de páginas y complejidad.** Una web corporativa con inicio, servicios, sobre mí y contacto está en el rango de 600€-900€. Si necesitas más secciones, funcionalidades específicas o un diseño más elaborado, el precio sube proporcionalmente.
+**Número de páginas y complejidad.** Una landing de una sola página cuesta **400€**. Una web corporativa con inicio, servicios, sobre mí, contacto y legales cuesta **600€**. Cada página adicional, dentro de esa web, son **150€**. Funcionalidades específicas o un diseño más elaborado se presupuestan aparte.
 
 **Si necesitas vender online.** Una tienda online requiere catálogo de productos, pasarela de pago, gestión de pedidos y envíos. Eso implica más desarrollo y más configuración — por eso parte de 1.200€.
 
@@ -74,6 +74,7 @@ Ahorrar en tu web puede salir caro si luego tienes que rehacer todo desde cero. 
 
 Para un negocio local en España, estos son los rangos reales:
 
+- **Landing de una página:** 400€
 - **Web corporativa profesional:** desde 600€
 - **Tienda online:** desde 1.200€
 - **Plataforma de cursos (WordPress + LMS):** desde 1.000€

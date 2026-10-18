@@ -111,7 +111,7 @@ export const hubFaqs: ServiceFAQ[] = [
   {
     question: '¿Los precios son cerrados o sufren ampliaciones a mitad de proyecto?',
     answer:
-      'Cerrados. Antes de empezar te paso un presupuesto por escrito con todo desglosado. Como referencia: web corporativa desde 600€, tienda online desde 1.200€, plataformas de cursos desde 1.000€. Si durante el proyecto pides algo que no estaba en el alcance inicial, te aviso y decidimos juntos antes de tocarlo.',
+      'Cerrados. Antes de empezar te paso un presupuesto por escrito con todo desglosado. Landing de una página, 400€. La web corporativa parte de 600€ e incluye inicio, servicios, sobre mí, contacto y legales; cada página de más son 150€. Tienda online desde 1.200€ y plataformas de cursos desde 1.000€. Si durante el proyecto pides algo que no estaba en el alcance inicial, te aviso y decidimos juntos antes de tocarlo.',
   },
   {
     question: '¿El dominio y el servidor están incluidos?',
