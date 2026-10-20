@@ -71,6 +71,10 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'B',
     gradient: 'linear-gradient(135deg, #E715D1, #6535E5)',
   },
+  'rediseno-web-wordpress-cuando-merece': {
+    icon: 'R',
+    gradient: 'linear-gradient(135deg, #196BEE, #E715D1)',
+  },
 
 };
 
