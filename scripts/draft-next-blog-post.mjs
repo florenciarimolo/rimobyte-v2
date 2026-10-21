@@ -215,6 +215,12 @@ async function handleOpenPrReminder(post, openPr, calendar) {
     return;
   }
 
+  try {
+    run('git diff --quiet && git diff --cached --quiet');
+  } catch {
+    throw new Error('Hay cambios sin commitear antes de sincronizar el calendario.');
+  }
+
   console.log(`\n→ PR abierto existente: #${openPr.number} (${post.slug})`);
   console.log('→ Enviando recordatorio por email…\n');
 
@@ -226,12 +232,6 @@ async function handleOpenPrReminder(post, openPr, calendar) {
 
   const previewUrl = getPreviewUrl(openPr.number);
   sendBlogEmail({ post, pr: openPr, previewUrl, reminder: true });
-
-  try {
-    run('git diff --quiet && git diff --cached --quiet');
-  } catch {
-    throw new Error('Hay cambios sin commitear antes de sincronizar el calendario.');
-  }
 
   run('git add content/blog-calendar.json');
   const msgFile = path.join(root, '.git-commit-msg.txt');
