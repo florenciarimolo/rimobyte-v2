@@ -118,7 +118,7 @@
     },
     {
       "slug": "rediseno-web-wordpress-cuando-merece",
-      "status": "pending",
+      "status": "pr",
       "scheduledDate": "2026-10-20",
       "targetQuery": "rediseño web wordpress",
       "title": "Rediseño web WordPress: cuándo merece la pena y cuánto cuesta",
@@ -169,7 +169,10 @@
           "body": "En [Vila i Lancis](/proyectos/vila-i-lancis/) la asesoría no podía entrar a su propia web. Rediseño completo, WordPress a su nombre, estructura clara. Mismo patrón en otros rescates: el problema no era solo el diseño — era la propiedad.\n\nAntes de rediseñar, comprueba dominio y hosting. Lo explico en [por qué tu web debe ser tuya](/blog/tu-web-debe-ser-tuya/)."
         }
       ],
-      "closing": "Si tu web WordPress (o la que debería ser WordPress) te frena en lugar de ayudarte, [cuéntame qué tienes ahora](/desarrollo-web-wordpress/). Te digo si merece rediseño, migración o solo un retoque — sin venderte un proyecto grande por defecto."
+      "closing": "Si tu web WordPress (o la que debería ser WordPress) te frena en lugar de ayudarte, [cuéntame qué tienes ahora](/desarrollo-web-wordpress/). Te digo si merece rediseño, migración o solo un retoque — sin venderte un proyecto grande por defecto.",
+      "branch": "blog/rediseno-web-wordpress-cuando-merece",
+      "prNumber": 8,
+      "lastReminderAt": "2026-10-22"
     },
     {
       "slug": "web-wordpress-psicologos",
