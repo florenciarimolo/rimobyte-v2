@@ -37,15 +37,15 @@ export const contactoSeo: PageSeo = {
 };
 
 export const blogIndexSeo: PageSeo = {
-  title: 'Blog · WordPress y webs para negocios · RimoByte',
+  title: 'Blog WordPress para negocios · RimoByte',
   description:
-    'Guías sobre cuánto cuesta una web WordPress, por qué debe ser tuya, web e Instagram, y consejos sectoriales. Precios reales y sin letra pequeña.',
+    'Precios reales, Wix vs WordPress y guías para pymes. ¿Quieres web a tu nombre? Pide presupuesto en desarrollo WordPress o escríbeme directo.',
 };
 
 export const serviciosHubSeo: PageSeo = {
-  title: 'Servicios de desarrollo web WordPress · RimoByte',
+  title: 'Servicios WordPress freelance · presupuesto cerrado',
   description:
-    'Landing desde 400€, web corporativa desde 600€, tienda WooCommerce desde 1.200€, plataformas de cursos desde 1.000€ y mantenimiento. Presupuesto cerrado, tuya desde el primer día.',
+    'Landing 400€, web corporativa 600€, WooCommerce y mantenimiento WordPress. Trabajo contigo sin agencia. Presupuesto cerrado: pide el tuyo hoy.',
 };
 
 export function proyectosIndexSeo(count: number = projectCount): PageSeo {
