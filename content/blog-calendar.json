@@ -119,7 +119,7 @@
     {
       "slug": "rediseno-web-wordpress-cuando-merece",
       "status": "pr",
-      "scheduledDate": "2026-10-20",
+      "scheduledDate": "2026-10-22",
       "targetQuery": "rediseño web wordpress",
       "title": "Rediseño web WordPress: cuándo merece la pena y cuánto cuesta",
       "description": "Señales de que tu web WordPress necesita rediseño, qué incluye un rediseño serio, migración desde Wix o agencia y precios orientativos en España.",
@@ -170,6 +170,7 @@
         }
       ],
       "closing": "Si tu web WordPress (o la que debería ser WordPress) te frena en lugar de ayudarte, [cuéntame qué tienes ahora](/desarrollo-web-wordpress/). Te digo si merece rediseño, migración o solo un retoque — sin venderte un proyecto grande por defecto.",
+      "draftedAt": "2026-10-20",
       "branch": "blog/rediseno-web-wordpress-cuando-merece",
       "prNumber": 8,
       "lastReminderAt": "2026-10-22"
