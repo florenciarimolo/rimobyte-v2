@@ -165,6 +165,28 @@ Caption: qué incluye la web corporativa y qué no (el hosting lo paga el client
 
 A partir de la semana 5 se repite el ciclo cambiando el sector del ejemplo (estética, entrenador, comercio) y el caso. No hace falta un concepto nuevo cada lunes: hace falta el mismo argumento con un negocio distinto.
 
+### Del 28 de octubre al 30 de noviembre
+
+El 26 de octubre ya publicó el carrusel de estética. Lo que sigue está en [`content/instagram-queue.json`](../content/instagram-queue.json). El diseño de Canva se hace el día de la publicación.
+
+| Fecha | Pieza |
+| --- | --- |
+| 28 oct | MM Ceramic: el taller solo existía en Instagram |
+| 30 oct | Tienda online desde 1.200 € |
+| 2 nov | Carrusel: tu web no es tuya si está en WordPress.com |
+| 4 nov | Cita de Ariadna Vilalta |
+| 6 nov | Soy ingeniera. No entrego solo el diseño |
+| 9 nov | Carrusel para psicólogos |
+| 11 nov | Cita de Josep Linde, JLG K&I |
+| 13 nov | Cómo trabajo, en cinco pasos |
+| 16 nov | Carrusel para entrenadores |
+| 18 nov | Fénix: más de 20 madres, desde el lanzamiento |
+| 20 nov | Mantenimiento desde 50 €/mes |
+| 23 nov | Carrusel: si solo tienes Instagram, el taller no se encuentra |
+| 25 nov | Cita de Carlos Pons, SuperCapaces |
+| 27 nov | Web WordPress desde 600 € |
+| 30 nov | El dominio a tu nombre, desde el primer día |
+
 ## Qué medir (una vez al mes)
 
 - Visitas al enlace de la bio y envíos del formulario (el formulario ya avisa por email).
