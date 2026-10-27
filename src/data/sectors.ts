@@ -1486,9 +1486,9 @@ export const sectors: Sector[] = [
     },
     serviceLink: '/servicios/web-corporativa/',
     seo: {
-      title: 'Integrar WordPress con Inmovilla · RimoByte',
+      title: 'Web para inmobiliarias · WordPress y CRM · RimoByte',
       description:
-        'Conecta e integra WordPress con Inmovilla: catálogo sincronizado, buscador y diseño a medida. Desde 1200€. Pide presupuesto sin compromiso.',
+        'Web para inmobiliarias con CRM conectado, buscador y diseño a medida. Freelance, precio cerrado desde 1200€. Pide presupuesto sin compromiso.',
     },
   },
 ];
