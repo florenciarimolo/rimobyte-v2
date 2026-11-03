@@ -1,11 +1,11 @@
 ---
-title: "Programadores WordPress en España: cómo elegir freelance"
-description: "Programadores WordPress en España: qué incluye, cuánto cuesta y señales de alerta. Freelance, presupuesto cerrado desde 600€. Pide presupuesto."
+title: "Contratar programador WordPress freelance · España"
+description: "Contrata desarrollo web WordPress con freelance en España. Presupuesto cerrado desde 600€, web tuya. Sin agencia. Pide presupuesto en 24 h."
 date: 2026-09-08
 type: guia
 keywords: ["programadores wordpress", "programador wordpress freelance", "desarrollador wordpress españa"]
 readingTime: "6 min"
-ctaText: "¿Buscas desarrollo WordPress freelance?"
+ctaText: "¿Quieres contratar desarrollo WordPress?"
 ctaLink: "/desarrollo-web-wordpress/"
 relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "wordpress-a-medida-vs-plantilla", "tu-web-debe-ser-tuya"]
 coverImage: "/assets/blog/programador-wordpress-freelance-espana.webp"
