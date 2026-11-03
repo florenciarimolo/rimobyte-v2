@@ -16,9 +16,9 @@ export const defaultBaseSeo: PageSeo = {
 };
 
 export const homeSeo: PageSeo = {
-  title: 'Programadores WordPress freelance en España · RimoByte',
+  title: 'Diseñadora WordPress en Barcelona · freelance · 600€',
   description:
-    'Programadores WordPress en España para autónomos y pymes. Presupuesto cerrado desde 600€, web a tu nombre. Pide presupuesto sin compromiso.',
+    'Diseñadora y desarrolladora WordPress en Barcelona para autónomos y pymes. Presupuesto cerrado desde 600€. Pide presupuesto en 24 h.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 

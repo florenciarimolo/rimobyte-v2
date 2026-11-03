@@ -284,11 +284,12 @@
     },
     {
       "slug": "freelance-mantenimiento-wordpress-guia",
-      "status": "pending",
-      "scheduledDate": "2026-11-17",
+      "status": "published",
+      "scheduledDate": "2026-11-03",
+      "publishedDate": "2026-11-03",
       "targetQuery": "freelance mantenimiento wordpress",
-      "title": "Freelance mantenimiento WordPress · guía España",
-      "description": "Contrata freelance mantenimiento WordPress: actualizaciones, copias y soporte directo. Desde 50€/mes sin permanencia. Pide presupuesto.",
+      "title": "Freelance mantenimiento WordPress · contrata desde 50€",
+      "description": "Contrata freelance mantenimiento WordPress en España: actualizaciones, copias y soporte directo. Desde 50€/mes sin permanencia. Pide presupuesto.",
       "type": "guia",
       "keywords": [
         "freelance mantenimiento wordpress",
