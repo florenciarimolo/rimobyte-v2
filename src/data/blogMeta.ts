@@ -74,7 +74,11 @@ const blogVisuals: Record<string, BlogVisual> = {
   'rediseno-web-wordpress-cuando-merece': {
     icon: 'R',
     gradient: 'linear-gradient(135deg, #196BEE, #E715D1)',
+  },  'web-wordpress-psicologos': {
+    icon: 'Ψ',
+    gradient: 'linear-gradient(135deg, #6535E5, #196BEE 50%, #E715D1)',
   },
+
 };
 
 export function getBlogVisual(slug: string): BlogVisual {

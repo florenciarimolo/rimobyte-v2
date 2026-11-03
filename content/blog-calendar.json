@@ -174,7 +174,7 @@
     },
     {
       "slug": "web-wordpress-psicologos",
-      "status": "pending",
+      "status": "pr",
       "scheduledDate": "2026-11-03",
       "targetQuery": "web wordpress psicólogo",
       "title": "Web WordPress para psicólogos: qué incluir y errores a evitar",
@@ -225,7 +225,9 @@
           "body": "Similar a otras webs corporativas de profesionales: **desde 600€** con diseño a medida, formularios, SEO base y web a tu nombre.\n\nSi quieres reservas integradas, blog con varias plantillas o multiidioma, sube según complejidad.\n\nDetalle en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
         }
       ],
-      "closing": "Tu web no sustituye la relación terapéutica, pero sí abre la puerta a quien aún no se atreve a llamar. Si quieres una web WordPress pensada para una consulta de psicología — clara, cuidada y tuya — [escríbeme](/web-para-psicologos/). Te propongo algo acorde a cómo trabajas, no un template genérico de clínica."
+      "closing": "Tu web no sustituye la relación terapéutica, pero sí abre la puerta a quien aún no se atreve a llamar. Si quieres una web WordPress pensada para una consulta de psicología — clara, cuidada y tuya — [escríbeme](/web-para-psicologos/). Te propongo algo acorde a cómo trabajas, no un template genérico de clínica.",
+      "draftedAt": "2026-11-03",
+      "branch": "blog/web-wordpress-psicologos"
     },
     {
       "slug": "freelance-seo-wordpress",
