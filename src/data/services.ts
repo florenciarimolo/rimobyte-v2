@@ -418,9 +418,9 @@ export const services: Service[] = [
       cta: 'Consulta gratuita',
     },
     seo: {
-      title: 'Mantenimiento WordPress · Mollet y Barcelona',
+      title: 'Freelance mantenimiento WordPress · desde 50€/mes',
       description:
-        'Mantenimiento WordPress en Mollet, Mataró y Barcelona: actualizaciones, copias y soporte freelance. Desde 50€/mes. Pide presupuesto.',
+        'Freelance mantenimiento WordPress en España: actualizaciones, copias, seguridad y soporte directo. Desde 50€/mes. Pide presupuesto cerrado.',
     },
   },
 ];
