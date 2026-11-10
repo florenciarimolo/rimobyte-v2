@@ -184,7 +184,7 @@ export const projects: Project[] = [
     seo: {
       title: 'MM Ceramic · web WordPress · caso RimoByte',
       description:
-        'Primera web de un taller de cerámica en Esparreguera, en español y catalán. SEO local desde cero. Pide presupuesto desde 600€.',
+        'Web WordPress con SEO local para un taller en Esparreguera. ¿Quieres lo mismo? Pide presupuesto cerrado desde 600€.',
     },
     narrative: {
       subtitle:
