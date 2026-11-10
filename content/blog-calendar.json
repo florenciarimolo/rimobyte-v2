@@ -329,6 +329,96 @@
         }
       ],
       "closing": "Contratar freelance mantenimiento WordPress es pagar por tranquilidad técnica, no por otro PDF mensual. Si quieres saber si tu web encaja en un plan desde 50€/mes, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría y si merece empezar ya."
+    },
+    {
+      "slug": "contratar-programador-wordpress",
+      "status": "pending",
+      "scheduledDate": "2026-11-24",
+      "targetQuery": "programador wordpress",
+      "title": "Contratar programador WordPress · guía freelance",
+      "description": "Programador WordPress freelance en España: qué pedir, precios desde 600€ y presupuesto cerrado. Sin agencia. Pide el tuyo hoy.",
+      "type": "guia",
+      "keywords": [
+        "programador wordpress",
+        "contratar programador wordpress",
+        "programador wordpress freelance"
+      ],
+      "readingTime": "6 min",
+      "ctaText": "¿Quieres contratar un programador WordPress?",
+      "ctaLink": "/desarrollo-web-wordpress/",
+      "relatedSlugs": [
+        "programador-wordpress-freelance-espana",
+        "cuanto-cuesta-una-web-wordpress",
+        "tu-web-debe-ser-tuya"
+      ],
+      "coverSourceSlug": "programador-wordpress-freelance-espana",
+      "visual": {
+        "icon": "P",
+        "gradient": "linear-gradient(135deg, #6535E5, #196BEE)"
+      },
+      "intro": "Buscar «programador WordPress» no es lo mismo que contratar el perfil más barato de un marketplace. Necesitas saber qué entregables pedir, qué precio es razonable en España y si hablas con quien programa o con un comercial.\n\nTrabajo como programadora y diseñadora WordPress freelance: presupuesto cerrado, web a tu nombre y un interlocutor directo.",
+      "sections": [
+        {
+          "heading": "## Qué debe hacer un programador WordPress",
+          "body": "Mínimo serio:\n\n- Diseño y maquetación coherentes con tu marca\n- WordPress limpio, sin veinte plugins «por si acaso»\n- Formulario de contacto y móvil usable\n- Velocidad razonable en PageSpeed\n- Accesos (dominio, hosting, panel) a **tu** nombre\n\nSi solo «instalan un tema», no estás contratando programación a medida."
+        },
+        {
+          "heading": "## Programador vs diseñador vs agencia",
+          "body": "**Diseñador** puede maquetar sin tocar arquitectura técnica.\n\n**Programador WordPress** monta estructura, plugins necesarios, SEO base y rendimiento.\n\n**Agencia:** a veces terceriza sin que lo sepas.\n\nComo freelance hago diseño y desarrollo: hablas conmigo de principio a fin. Detalle en [contratar programador freelance](/blog/programador-wordpress-freelance-espana/)."
+        },
+        {
+          "heading": "## Cuánto cuesta en España",
+          "body": "Landing desde **400€**, web corporativa **desde 600€** (presupuesto cerrado, sin sorpresas de «fase dos»).\n\nTienda WooCommerce desde 1.200€. Mantenimiento opcional desde 50€/mes.\n\nRangos reales en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
+        },
+        {
+          "heading": "## Qué preguntar antes de firmar",
+          "body": "- ¿La web queda a mi nombre (dominio + hosting)?\n- ¿Qué incluye el precio y qué es extra?\n- ¿Quién responde si algo se rompe tras publicar?\n- ¿Hay permanencia en mantenimiento?\n\nSi alguna respuesta es vaga, para."
+        }
+      ],
+      "closing": "Contratar programador WordPress es invertir en un activo tuyo, no en un alquiler con letra pequeña. Si quieres presupuesto cerrado y hablar directo con quien programa, [cuéntame tu proyecto](/desarrollo-web-wordpress/). Te respondo en menos de 24 horas."
+    },
+    {
+      "slug": "mantenimiento-wordpress-mataro",
+      "status": "pending",
+      "scheduledDate": "2026-12-01",
+      "targetQuery": "mantenimiento wordpress mataró",
+      "title": "Mantenimiento WordPress Mataró · freelance 50€",
+      "description": "Mantenimiento WordPress en Mataró y Maresme: actualizaciones, copias y soporte directo. Desde 50€/mes. Pide presupuesto cerrado.",
+      "type": "guia",
+      "keywords": [
+        "mantenimiento wordpress mataró",
+        "mantenimiento wordpress maresme",
+        "mantenimiento web wordpress barcelona"
+      ],
+      "readingTime": "5 min",
+      "ctaText": "¿Mantenimiento WordPress en Mataró o alrededor?",
+      "ctaLink": "/servicios/mantenimiento-web/",
+      "relatedSlugs": [
+        "mantenimiento-wordpress-empresas",
+        "freelance-mantenimiento-wordpress-guia",
+        "que-hosting-contratar-wordpress"
+      ],
+      "coverSourceSlug": "mantenimiento-wordpress-empresas",
+      "visual": {
+        "icon": "M",
+        "gradient": "linear-gradient(135deg, #196BEE, #6535E5)"
+      },
+      "intro": "Si buscas «mantenimiento WordPress Mataró» o en el Maresme, no necesitas una agencia con oficina en la Rambla: necesitas a alguien que entre al panel, actualice sin romper el formulario y responda cuando la web falla.\n\nTrabajo en remoto con negocios de Mataró, Barcelona y Vallès: mantenimiento directo, sin permanencia, desde **50€/mes**.",
+      "sections": [
+        {
+          "heading": "## Qué incluye el mantenimiento",
+          "body": "- Actualizaciones de WordPress, tema y plugins\n- Copias de seguridad y prueba de restauración\n- Monitorización de caídas\n- Soporte por email (respuesta en 24 h laborables)\n- Cambios menores de texto o imagen incluidos\n\nTodo el detalle en [mantenimiento web](/servicios/mantenimiento-web/)."
+        },
+        {
+          "heading": "## Mataró, Maresme y Barcelona: mismo servicio",
+          "body": "No hace falta que esté en tu calle para mantener la web. Lo importante es acceso seguro, conocer tu instalación y responder rápido.\n\nSi tu web ya la hice yo — o hago una auditoría previa — el plan arranca en una semana."
+        },
+        {
+          "heading": "## Cuánto cuesta",
+          "body": "Desde **50€/mes**, sin permanencia. Si la web viene de otro proveedor y está desordenada, primero revisión; a veces conviene una puesta a punto antes del plan mensual.\n\nComparativa más amplia en [mantenimiento WordPress para empresas](/blog/mantenimiento-wordpress-empresas/)."
+        }
+      ],
+      "closing": "El mantenimiento WordPress en Mataró no tiene que ser un contrato opaco ni un ticket sin dueño. Si quieres saber si tu web encaja en un plan desde 50€/mes, [pide presupuesto](/contacto/). Te digo qué incluiría en tu caso."
     }
   ]
 }

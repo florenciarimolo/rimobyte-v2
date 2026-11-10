@@ -1,6 +1,6 @@
 ---
 title: "Qué hosting contratar para una web WordPress"
-description: "Qué miro al elegir hosting para una web WordPress de un negocio local, qué plan de Hostinger encaja y qué precio mirar antes de pagar."
+description: "Elige hosting WordPress a tu nombre: planes, renovación y qué evitar. ¿Te hago la web? Pide presupuesto cerrado — respuesta en 24 h."
 date: 2026-09-30
 type: herramientas
 keywords: ["qué hosting contratar wordpress", "hosting para wordpress negocio", "hostinger wordpress"]

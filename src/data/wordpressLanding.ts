@@ -2,9 +2,9 @@ import type { Service } from './services';
 import type { ServiceDetailContent } from './serviceDetails';
 
 export const wordpressLandingSeo = {
-  title: 'Desarrollo web WordPress freelance · pide presupuesto',
+  title: 'Programador WordPress freelance · desde 600€',
   description:
-    'Desarrollo WordPress a medida en España. Freelance directo, presupuesto cerrado desde 600€. Sin agencia. Pide presupuesto — respuesta en 24 h.',
+    'Contrata programador o desarrollador WordPress freelance. Presupuesto cerrado, web tuya. Sin agencia. Pide presupuesto — respuesta en 24 h.',
 } as const;
 
 export const wordpressLandingService: Service = {
