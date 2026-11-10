@@ -302,9 +302,10 @@ Si `title`, `description` o `ctaLink` de una URL se mergeó hace menos de 28 dí
 Cuando el primer informe esté en `main`, puedes crear una automation en Cursor (cron martes ~10:00 UTC o manual) con instrucciones como:
 
 1. Lee el archivo más reciente `docs/reports/seo-YYYY-MM-DD.md` (ordenar por fecha en el nombre).
-2. Ejecuta solo recomendaciones **Alta** y **Media**. Ignora la sección **En observación** (snippet tocado hace menos de 28 días).
-3. Edita metadatos/copy en español (title ≤ 60 caracteres, description ≤ 155, tono RimoByte, CTA hacia contacto/presupuesto donde aplique).
-4. Abre un PR `seo-automation/YYYY-MM-DD` con label `seo-automation` — **nunca merges automático**.
+2. Ejecuta solo recomendaciones **Alta** y **Media**. Ignora la sección **En observación** (snippet tocado hace menos de 28 días, o consulta ya cubierta por el calendario).
+3. En `content/blog-calendar.json` no cambies `status`, `scheduledDate` ni `publishedDate` de entradas que ya existen. Un post nuevo solo si el informe no dice «ya cubierto», con fecha posterior a la última pendiente.
+4. Edita metadatos/copy en español (title ≤ 60 caracteres, description ≤ 155, tono RimoByte, CTA hacia contacto/presupuesto donde aplique).
+5. Abre un PR `seo-automation/YYYY-MM-DD` con label `seo-automation` — **nunca merges automático**.
 
 Archivos habituales a tocar: `src/data/wordpressLanding.ts`, `src/data/staticPageSeo.ts`, `src/data/sectors.ts`, `src/content/blog/*.md`, `content/blog-calendar.json`.
 

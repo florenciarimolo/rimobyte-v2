@@ -1,0 +1,15 @@
+---
+description: No descuadrar el calendario editorial al aplicar un informe SEO
+globs: content/blog-calendar.json,docs/reports/seo-*.md,scripts/seo-weekly-report.mjs
+alwaysApply: false
+---
+
+# Calendario editorial frente al informe SEO
+
+Al aplicar un informe `docs/reports/seo-*.md`:
+
+- Ejecuta solo prioridad Alta y Media. La sección **En observación** no se implementa.
+- No cambies `status`, `scheduledDate` ni `publishedDate` de un post que ya esté en `content/blog-calendar.json`.
+- No añadas un slug si el informe dice que la consulta ya está cubierta, ni si `targetQuery`, el título o el slug de una entrada existente hablan del mismo servicio (programador, mantenimiento, SEO, hosting), aunque la consulta añada una ciudad.
+- Un post nuevo, si hace falta, va después de la última `scheduledDate` pendiente. No adelantes ni agrupes fechas ya pasadas.
+- No reescribas `title` o `description` de una URL que el informe deja en observación, ni de un archivo cuyo snippet se cambió hace menos de 28 días.
