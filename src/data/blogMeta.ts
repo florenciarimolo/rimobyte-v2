@@ -78,6 +78,10 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'Ψ',
     gradient: 'linear-gradient(135deg, #6535E5, #196BEE 50%, #E715D1)',
   },
+  'freelance-seo-wordpress': {
+    icon: 'S',
+    gradient: 'linear-gradient(135deg, #196BEE, #6535E5)',
+  },
 
 };
 
