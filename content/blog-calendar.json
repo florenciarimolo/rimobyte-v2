@@ -230,7 +230,7 @@
     },
     {
       "slug": "freelance-seo-wordpress",
-      "status": "pr",
+      "status": "published",
       "scheduledDate": "2026-11-10",
       "targetQuery": "freelance seo wordpress",
       "title": "Freelance SEO WordPress · qué incluye y precios",
@@ -282,8 +282,7 @@
         }
       ],
       "closing": "El SEO WordPress freelance no es un truco: es una web bien hecha, tuya, pensada para que te encuentren y te escriban. Si quieres presupuesto cerrado con SEO incluido en el desarrollo, [cuéntame tu negocio](/desarrollo-web-wordpress/). Te digo qué tendría sentido antes de prometer milagros.",
-      "draftedAt": "2026-11-10",
-      "branch": "blog/freelance-seo-wordpress"
+      "publishedDate": "2026-11-10"
     },
     {
       "slug": "freelance-mantenimiento-wordpress-guia",
