@@ -286,7 +286,7 @@
     },
     {
       "slug": "freelance-mantenimiento-wordpress-guia",
-      "status": "pending",
+      "status": "pr",
       "scheduledDate": "2026-11-17",
       "targetQuery": "freelance mantenimiento wordpress",
       "title": "Freelance mantenimiento WordPress · guía España",
@@ -329,7 +329,9 @@
           "body": "- La web es tu principal canal de captación\n- Llevas meses sin actualizar por miedo a romper algo\n- No sabes dónde están las copias\n- Dependes de quien hizo la web y ya no responde\n\nSi la web es un experimento que abandonaste, mejor hablar de rediseño ([desarrollo WordPress](/desarrollo-web-wordpress/)) antes de mantener algo que no convierte."
         }
       ],
-      "closing": "Contratar freelance mantenimiento WordPress es pagar por tranquilidad técnica, no por otro PDF mensual. Si quieres saber si tu web encaja en un plan desde 50€/mes, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría y si merece empezar ya."
+      "closing": "Contratar freelance mantenimiento WordPress es pagar por tranquilidad técnica, no por otro PDF mensual. Si quieres saber si tu web encaja en un plan desde 50€/mes, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría y si merece empezar ya.",
+      "draftedAt": "2026-11-17",
+      "branch": "blog/freelance-mantenimiento-wordpress-guia"
     }
   ]
 }

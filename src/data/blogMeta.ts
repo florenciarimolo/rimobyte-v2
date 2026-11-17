@@ -82,6 +82,10 @@ const blogVisuals: Record<string, BlogVisual> = {
     icon: 'S',
     gradient: 'linear-gradient(135deg, #196BEE, #6535E5)',
   },
+  'freelance-mantenimiento-wordpress-guia': {
+    icon: 'F',
+    gradient: 'linear-gradient(135deg, #6535E5, #196BEE 50%, #E715D1)',
+  },
 
 };
 
