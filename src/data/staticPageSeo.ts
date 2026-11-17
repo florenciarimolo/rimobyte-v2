@@ -30,9 +30,9 @@ export const sobreMiSeo: PageSeo = {
 };
 
 export const contactoSeo: PageSeo = {
-  title: 'Contacto · Flor Rímolo · RimoByte',
+  title: 'Presupuesto web WordPress · contacto',
   description:
-    'Cuéntame tu proyecto. Te respondo personalmente en menos de 24 horas con ideas concretas, no una plantilla de presupuesto.',
+    'Pide presupuesto cerrado para tu web WordPress. Respondo en menos de 24 h, sin plantilla de agencia. Cuéntame tu proyecto.',
   image: '/assets/brand/flor-rimobyte.webp',
 };
 

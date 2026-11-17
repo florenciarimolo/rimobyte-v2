@@ -330,6 +330,96 @@
         }
       ],
       "closing": "Contratar freelance mantenimiento WordPress es pagar por tranquilidad técnica, no por otro PDF mensual. Si quieres saber si tu web encaja en un plan desde 50€/mes, [escríbeme](/servicios/mantenimiento-web/). Te digo qué incluiría y si merece empezar ya."
+    },
+    {
+      "slug": "desarrollador-wordpress-freelance",
+      "status": "pending",
+      "scheduledDate": "2026-11-24",
+      "targetQuery": "desarrollador wordpress freelance",
+      "title": "Desarrollador WordPress freelance · España 600€",
+      "description": "Desarrollador WordPress freelance: presupuesto cerrado desde 600€, web a tu nombre. Sin agencia. Pide presupuesto en 24 h.",
+      "type": "guia",
+      "keywords": [
+        "desarrollador wordpress freelance",
+        "desarrollador wordpress españa",
+        "contratar desarrollo web wordpress"
+      ],
+      "readingTime": "6 min",
+      "ctaText": "¿Quieres un desarrollador WordPress freelance?",
+      "ctaLink": "/desarrollo-web-wordpress/",
+      "relatedSlugs": [
+        "programador-wordpress-freelance-espana",
+        "cuanto-cuesta-una-web-wordpress",
+        "wordpress-a-medida-vs-plantilla"
+      ],
+      "coverSourceSlug": "programador-wordpress-freelance-espana",
+      "visual": {
+        "icon": "D",
+        "gradient": "linear-gradient(135deg, #6535E5, #196BEE 50%, #E715D1)"
+      },
+      "intro": "Buscar «desarrollador WordPress freelance» no es elegir el perfil más barato de un marketplace. Es encontrar a quien monte la web a tu medida, te deje los accesos y te responda cuando algo falla — sin capas de comercial.\n\nTrabajo como desarrolladora WordPress freelance en España: diseño, código y SEO base con presupuesto cerrado desde **600€**.",
+      "sections": [
+        {
+          "heading": "## Desarrollador vs plantilla barata",
+          "body": "Un «desarrollador» que solo instala un tema de catálogo no es desarrollo a medida. Pregunta:\n\n- ¿El diseño es para tu negocio o un demo repetido?\n- ¿Cuántos plugins arrastra?\n- ¿Dominio y hosting quedan a tu nombre?\n\nSi no hay respuestas claras, estás comprando un montaje. Más en [WordPress a medida vs plantilla](/blog/wordpress-a-medida-vs-plantilla/)."
+        },
+        {
+          "heading": "## Qué incluye un proyecto serio",
+          "body": "- Diseño a medida, no solo cambiar el logo\n- WordPress limpio y editable\n- Formulario y CTA visibles en móvil\n- Velocidad y SEO on-page razonables\n- Entrega de accesos y mini formación\n\nDetalle de precios en [cuánto cuesta una web WordPress](/blog/cuanto-cuesta-una-web-wordpress/)."
+        },
+        {
+          "heading": "## Freelance vs agencia",
+          "body": "Con agencia a veces hablas con comercial y quien programa es otro equipo. Como freelance, [desarrollo WordPress](/desarrollo-web-wordpress/) lo hago yo de principio a fin: una persona, un presupuesto cerrado, sin retainer obligatorio."
+        },
+        {
+          "heading": "## Cuándo tiene sentido contratar",
+          "body": "- Quieres web de negocio, no un experimento de un mes\n- Vienes de Wix o de una plantilla que ya no aguanta ([comparativa](/blog/wordpress-vs-wix/))\n- Necesitas tienda WooCommerce o estructura sectorial\n- Te importa aparecer en Google a medio plazo\n\nSi solo necesitas una landing mínima, te lo digo antes de venderte un proyecto grande."
+        }
+      ],
+      "closing": "Contratar un desarrollador WordPress freelance es pagar una vez por un activo tuyo, no una cuota eterna. Si quieres presupuesto cerrado y hablar directo con quien programa, [cuéntame tu proyecto](/desarrollo-web-wordpress/). Te respondo en menos de 24 horas."
+    },
+    {
+      "slug": "mantenimiento-wordpress-mollet",
+      "status": "pending",
+      "scheduledDate": "2026-12-01",
+      "targetQuery": "mantenimiento wordpress mollet",
+      "title": "Mantenimiento WordPress Mollet · desde 50€",
+      "description": "Mantenimiento WordPress en Mollet y Vallès: copias, actualizaciones y soporte directo. Desde 50€/mes sin permanencia. Pide presupuesto.",
+      "type": "guia",
+      "keywords": [
+        "mantenimiento wordpress mollet",
+        "mantenimiento wordpress vallès",
+        "mantenimiento web wordpress barcelona"
+      ],
+      "readingTime": "5 min",
+      "ctaText": "¿Mantenimiento WordPress en Mollet o alrededor?",
+      "ctaLink": "/servicios/mantenimiento-web/",
+      "relatedSlugs": [
+        "mantenimiento-wordpress-empresas",
+        "freelance-mantenimiento-wordpress-guia",
+        "que-hosting-contratar-wordpress"
+      ],
+      "coverSourceSlug": "mantenimiento-wordpress-empresas",
+      "visual": {
+        "icon": "M",
+        "gradient": "linear-gradient(135deg, #196BEE, #E715D1)"
+      },
+      "intro": "Si buscas «mantenimiento WordPress Mollet», no hace falta una agencia con etiqueta en la Avenida: necesitas a alguien que actualice sin romper el formulario, guarde copias útiles y responda cuando la web se cae un lunes.\n\nTrabajo en remoto con pymes de Mollet, Granollers, Barcelona y Vallès: mantenimiento directo desde **50€/mes**, sin permanencia.",
+      "sections": [
+        {
+          "heading": "## Qué incluye el plan",
+          "body": "- Actualizaciones de WordPress, tema y plugins (con copia previa si hace falta)\n- Copias de seguridad comprobadas\n- Monitorización de caídas\n- Soporte por email en horario laborable\n\nTodo el detalle en [mantenimiento web](/servicios/mantenimiento-web/)."
+        },
+        {
+          "heading": "## Mollet y Vallès: mismo servicio",
+          "body": "No necesito estar en tu calle para mantener el panel. Importa tener acceso seguro, conocer tu instalación y responder con prisa cuando hay urgencia.\n\nSi la web la hice yo — o paso una auditoría previa — el plan suele arrancar en una semana."
+        },
+        {
+          "heading": "## Precio y sin permanencia",
+          "body": "Desde **50€/mes**, sin penalización por bajar el plan. Si la web viene de otro proveedor y está desordenada, primero revisión: a veces conviene una puesta a punto.\n\nMás contexto en [mantenimiento WordPress para empresas](/blog/mantenimiento-wordpress-empresas/)."
+        }
+      ],
+      "closing": "El mantenimiento WordPress en Mollet no tiene que ser un contrato opaco. Si quieres saber si tu web encaja en un plan desde 50€/mes, [pide presupuesto](/contacto/). Te digo qué incluiría en tu caso."
     }
   ]
 }
