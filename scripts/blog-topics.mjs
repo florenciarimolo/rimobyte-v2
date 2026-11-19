@@ -15,17 +15,27 @@ export const TOPIC_FAMILIES = [
   { id: 'precio', stems: ['cuesta', 'precio', 'tarifa'] },
   { id: 'plantilla', stems: ['plantill', 'elementor'] },
   { id: 'wix', stems: ['wix'] },
-  { id: 'shopify', stems: ['shopify'] },
+  { id: 'shopify', stems: ['shopify', 'woocom'] },
   { id: 'peluqueria', stems: ['peluqu'], sector: true },
   { id: 'psicologo', stems: ['psicolog'], sector: true },
   { id: 'asesoria', stems: ['asesor'], sector: true },
-  { id: 'restaurante', stems: ['restaur'], sector: true },
+  { id: 'restaurante', stems: ['restauran'], sector: true },
   { id: 'inmobiliaria', stems: ['inmobil'], sector: true },
-  { id: 'entrenador', stems: ['entrenador'], sector: true },
+  { id: 'entrenador', stems: ['entren'], sector: true },
   { id: 'cursos', stems: ['curso'], sector: true },
 ];
 
-const SECTOR_IDS = new Set(TOPIC_FAMILIES.filter((family) => family.sector).map((family) => family.id));
+/** Palabras que no distinguen un artículo de otro. */
+const RESIDUAL_STOP = new Set([
+  'para', 'una', 'uno', 'con', 'sin', 'del', 'las', 'los', 'por', 'que', 'como', 'esta', 'este',
+  'esto', 'tus', 'sus', 'mas', 'sobre', 'desde', 'hasta', 'cuando', 'donde', 'todo', 'toda',
+  'todos', 'guia', 'incluye', 'incluyen', 'mejor', 'elegir', 'merece', 'pena', 'captar',
+  'conseguir', 'online', 'pagina', 'sitio', 'negocio', 'negocios', 'local', 'empresa',
+  'empresas', 'pyme', 'pymes', 'cliente', 'clientes', 'reserva', 'reservas', 'presupuesto',
+  'wordpress', 'web', 'freelance', 'barcelona', 'madrid', 'mollet', 'mataro', 'girona',
+  'sabadell', 'terrassa', 'badalona', 'granollers', 'hospitalet', 'catalunya', 'cataluna',
+  'espana', 'spain', 'valles', 'provincia', 'comarca',
+]);
 
 export function normalizeTopicText(value) {
   return String(value)
@@ -51,8 +61,16 @@ export function topicsFromText(value) {
       found.add(family.id);
     }
   }
-  if ([...found].some((id) => SECTOR_IDS.has(id))) found.delete('precio');
+  if ([...found].some((id) => id !== 'precio')) found.delete('precio');
   return found;
+}
+
+/** Palabras que identifican un servicio aunque no esté en TOPIC_FAMILIES. */
+export function residualTokens(value) {
+  if (!value) return [];
+  return normalizeTopicText(value)
+    .split(/\s+/)
+    .filter((token) => token.length >= 5 && !RESIDUAL_STOP.has(token));
 }
 
 function collectTexts(post, fields) {
@@ -81,11 +99,25 @@ export function classifyTopics(post) {
       if (!primary.has(id)) secondary.add(id);
     }
   }
-  if ([...primary, ...secondary].some((id) => SECTOR_IDS.has(id))) {
+  if ([...primary, ...secondary].some((id) => id !== 'precio')) {
     primary.delete('precio');
     secondary.delete('precio');
   }
   return { primary, secondary };
+}
+
+export function primaryResidualTokens(post) {
+  const tokens = new Set();
+  for (const chunk of collectTexts(post, ['targetQuery', 'title', 'slug'])) {
+    for (const token of residualTokens(chunk)) tokens.add(token);
+  }
+  return tokens;
+}
+
+/** Sin tema de la lista y sin una palabra propia (solo wordpress, web, freelance o una ciudad). */
+export function isGenericTopic(post) {
+  const { primary } = classifyTopics(post);
+  return primary.size === 0 && primaryResidualTokens(post).size === 0;
 }
 
 export function topicsOf(post) {
@@ -100,19 +132,33 @@ export function topicsOf(post) {
  */
 export function findTopicOverlap(candidate, posts) {
   const mine = classifyTopics(candidate);
-  const mineIds = new Set([...mine.primary, ...mine.secondary]);
-  if (mineIds.size === 0) return null;
+  const mineIds = mine.primary;
 
-  let best = null;
+  if (mineIds.size > 0) {
+    let best = null;
+    for (const post of posts) {
+      if (!post?.slug || post.slug === candidate.slug) continue;
+      const other = classifyTopics(post);
+      const shared = [...mineIds].filter((id) => other.primary.has(id));
+      if (shared.length === 0) continue;
+      const score = shared.length;
+      if (!best || score > best.score) best = { post, topics: shared, score };
+    }
+    return best;
+  }
+
+  const tokens = primaryResidualTokens(candidate);
+  if (tokens.size === 0) return null;
+  let residualBest = null;
   for (const post of posts) {
     if (!post?.slug || post.slug === candidate.slug) continue;
-    const other = classifyTopics(post);
-    const shared = [...mineIds].filter((id) => other.primary.has(id));
+    const shared = [...tokens].filter((token) => primaryResidualTokens(post).has(token));
     if (shared.length === 0) continue;
-    const score = shared.length;
-    if (!best || score > best.score) best = { post, topics: shared, score };
+    if (!residualBest || shared.length > residualBest.score) {
+      residualBest = { post, topics: shared, score: shared.length };
+    }
   }
-  return best;
+  return residualBest;
 }
 
 export function parseFrontmatter(raw) {

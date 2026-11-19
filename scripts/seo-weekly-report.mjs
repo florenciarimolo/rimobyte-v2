@@ -18,7 +18,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { google } from 'googleapis';
 import { Resend } from 'resend';
-import { findTopicOverlap, readCoverageFromDisk } from './blog-topics.mjs';
+import { findTopicOverlap, isGenericTopic, readCoverageFromDisk } from './blog-topics.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -401,10 +401,12 @@ async function fetchPsi(url, apiKey, { retries = 1 } = {}) {
 /** Post ya publicado o programado que cubre la misma consulta, aunque el sinónimo o la ciudad cambien. */
 function calendarCoverage(query) {
   try {
-    return findTopicOverlap(
-      { slug: '__query__', targetQuery: query, title: query },
-      readCoverageFromDisk(root),
-    );
+    const posts = readCoverageFromDisk(root);
+    const probe = { slug: '__query__', targetQuery: query, title: query };
+    const hit = findTopicOverlap(probe, posts);
+    if (hit) return hit;
+    if (isGenericTopic(probe)) return { generic: true };
+    return null;
   } catch {
     return null;
   }
@@ -412,11 +414,21 @@ function calendarCoverage(query) {
 
 function opportunityDetail(q, covered) {
   const base = `${q.impressions} impresiones, ${q.clicks} clics.`;
+  if (covered?.generic) {
+    return `${base} Consulta demasiado genérica: solo junta wordpress, web, freelance o una ciudad. No añadas un post.`;
+  }
   if (covered) {
     const label = covered.post.title ?? covered.post.slug;
-    return `${base} No añadas un post ni cambies fechas ni reescribas otro artículo hacia este tema (${covered.topics.join(', ')}). Ya cubierto por «${label}» (\`${covered.post.slug}\`, ${covered.post.status ?? 'publicado'}, ${covered.post.scheduledDate ?? 'en el blog'}).`;
+    return `${base} No añadas un post ni cambies fechas ni reescribas otro artículo hacia este tema (${covered.topics.join(', ')}). Ya cubierto por «${label}» (\`${covered.post.slug}\`, ${covered.post.status ?? 'publicado'}, ${covered.post.scheduledDate ?? 'en el blog'}). Ajusta el snippet de ese artículo si hace falta.`;
   }
   return `${base} Posición 4–15: nuevo post en content/blog-calendar.json solo si ninguna entrada ni ningún artículo publicado cubre el mismo tema (aunque la consulta cambie la ciudad o el sinónimo: desarrollador/programador, Mollet/Barcelona). Añádelo después de la última fecha pendiente. No modifiques status, scheduledDate ni publishedDate de entradas existentes. No reescribas title/description de URLs en «En observación».`;
+}
+
+function coverageLabel(query) {
+  const covered = calendarCoverage(query);
+  if (covered?.generic) return 'demasiado genérica, no crear post';
+  if (covered?.post) return `cubierta por ${covered.post.slug}`;
+  return 'sin artículo';
 }
 
 function buildRecommendations(ctx) {
@@ -495,23 +507,38 @@ function buildRecommendations(ctx) {
     recs.push({
       priority: covered ? 'Observación' : 'Alta',
       path: `query:${q.query}`,
-      title: covered
-        ? `Consulta ya cubierta: «${q.query}» (pos. ${formatPos(q.position)})`
-        : `Oportunidad comercial: «${q.query}» (pos. ${formatPos(q.position)})`,
+      title: covered?.generic
+        ? `Consulta demasiado genérica: «${q.query}» (pos. ${formatPos(q.position)})`
+        : covered
+          ? `Consulta ya cubierta: «${q.query}» (pos. ${formatPos(q.position)})`
+          : `Oportunidad comercial: «${q.query}» (pos. ${formatPos(q.position)})`,
       detail: opportunityDetail(q, covered),
-      file: covered ? `content/blog-calendar.json (${covered.post.slug})` : 'content/blog-calendar.json',
+      file: covered?.post ? `content/blog-calendar.json (${covered.post.slug})` : 'content/blog-calendar.json',
     });
   }
 
   for (const q of ctx.topCommercial) {
     if (q.position <= 3 && q.clicks === 0 && q.impressions >= 5) {
-      recs.push({
-        priority: 'Media',
-        path: `query:${q.query}`,
-        title: `Top 3 sin clics: «${q.query}»`,
-        detail: 'Title/H1 probablemente no coincide con la búsqueda. Ajustar meta.',
-        file: 'revisar página que rankea para esa query',
-      });
+      const covered = calendarCoverage(q.query);
+      if (covered) {
+        recs.push({
+          priority: 'Observación',
+          path: `query:${q.query}`,
+          title: covered.generic
+            ? `Top 3 genérica, sin post nuevo: «${q.query}»`
+            : `Top 3 ya cubierta: «${q.query}»`,
+          detail: opportunityDetail(q, covered),
+          file: covered.post ? `content/blog-calendar.json (${covered.post.slug})` : 'content/blog-calendar.json',
+        });
+      } else {
+        recs.push({
+          priority: 'Media',
+          path: `query:${q.query}`,
+          title: `Top 3 sin clics: «${q.query}»`,
+          detail: 'Title/H1 probablemente no coincide con la búsqueda. Ajustar el snippet de la página que ya rankea. No crees un post nuevo.',
+          file: 'revisar página que rankea para esa query',
+        });
+      }
     }
   }
 
@@ -805,11 +832,11 @@ function buildMarkdown(report) {
     lines.push('_Sin consultas comerciales filtradas esta semana._');
     lines.push('');
   } else {
-    lines.push('| Consulta | Imp | Clics | CTR | Pos |');
-    lines.push('|----------|-----|-------|-----|-----|');
+    lines.push('| Consulta | Imp | Clics | CTR | Pos | Cobertura |');
+    lines.push('|----------|-----|-------|-----|-----|-----------|');
     for (const q of topCommercial) {
       lines.push(
-        `| ${q.query.replace(/\|/g, '\\|')} | ${q.impressions} | ${q.clicks} | ${formatCtr(q.ctr)} | ${formatPos(q.position)} |`,
+        `| ${q.query.replace(/\|/g, '\\|')} | ${q.impressions} | ${q.clicks} | ${formatCtr(q.ctr)} | ${formatPos(q.position)} | ${coverageLabel(q.query)} |`,
       );
     }
     lines.push('');
@@ -834,7 +861,7 @@ function buildMarkdown(report) {
   } else {
     for (const o of opportunities) {
       lines.push(
-        `- «${o.query}» — pos ${formatPos(o.position)}, ${o.impressions} imp, ${o.clicks} clics`,
+        `- «${o.query}» — pos ${formatPos(o.position)}, ${o.impressions} imp, ${o.clicks} clics — ${coverageLabel(o.query)}`,
       );
     }
     lines.push('');

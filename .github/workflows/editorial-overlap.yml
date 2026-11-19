@@ -2,12 +2,6 @@ name: Editorial overlap
 
 on:
   pull_request:
-    paths:
-      - 'content/blog-calendar.json'
-      - 'src/content/blog/**'
-      - 'scripts/blog-topics.mjs'
-      - 'scripts/check-editorial-overlap.mjs'
-      - '.github/workflows/editorial-overlap.yml'
 
 jobs:
   check:

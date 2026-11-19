@@ -13,7 +13,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { findTopicOverlap, readCoverageFromDisk } from './blog-topics.mjs';
+import { findTopicOverlap, isGenericTopic, readCoverageFromDisk } from './blog-topics.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -60,6 +60,12 @@ function pickPost(calendar, { force, slug }) {
     const post = posts.find((p) => p.slug === slug);
     if (!post) throw new Error(`No hay entrada en el calendario para slug: ${slug}`);
     if (post.status === 'published') throw new Error(`El post ${slug} ya está publicado.`);
+    if (post.status === 'skipped') {
+      return {
+        action: 'skip',
+        message: `${slug} está descartado${post.overlapSlug ? `: lo cubre ${post.overlapSlug}` : ''}.`,
+      };
+    }
     return { action: 'draft', post };
   }
 
@@ -250,9 +256,8 @@ async function handleOpenPrReminder(post, openPr, calendar) {
 }
 
 async function handleTopicOverlap(post, overlap, calendar) {
-  const today = todayIso();
-  if (post.lastOverlapAt === today) {
-    console.log(`Aviso de solape ya enviado hoy para ${post.slug}. No se crea borrador.`);
+  if (post.status === 'skipped') {
+    console.log(`${post.slug} ya está descartado. No se crea borrador.`);
     return;
   }
 
@@ -262,42 +267,50 @@ async function handleTopicOverlap(post, overlap, calendar) {
     throw new Error('Hay cambios sin commitear antes de registrar el solape.');
   }
 
-  const other = overlap.post.title ?? overlap.post.slug;
-  console.log(`\n→ Solape: ${post.slug} cubre ${overlap.topics.join(', ')}, igual que ${overlap.post.slug}.`);
-  console.log('→ No se crea rama ni PR.\n');
+  const other = overlap?.post.slug;
+  post.status = 'skipped';
+  delete post.lastOverlapAt;
+  if (other) {
+    post.overlapSlug = other;
+    console.log(`\n→ Solape: ${post.slug} cubre ${overlap.topics.join(', ')}, igual que ${other}.`);
+  } else {
+    post.skipReason = 'generico';
+    console.log(`\n→ ${post.slug} no tiene tema propio. No se redacta.`);
+  }
+  console.log('→ Queda skipped. No se crea rama ni PR.\n');
 
-  post.lastOverlapAt = today;
   await writeCalendar(calendar);
   sendBlogEmail({ post, overlap });
 
   run('git add content/blog-calendar.json');
   const msgFile = path.join(root, '.git-commit-msg.txt');
+  const reason = other ? `ya lo cubre ${other} (${overlap.topics.join(', ')})` : 'la consulta no distingue un tema';
   await fs.writeFile(
     msgFile,
-    `Calendario: solape de tema en ${post.slug}\n\nNo se redacta: ya lo cubre ${overlap.post.slug} (${overlap.topics.join(', ')}).`,
+    `Calendario: ${post.slug} descartado\n\nNo se redacta: ${reason}.`,
     'utf8',
   );
   run(`git commit -F ${msgFile}`);
   await fs.unlink(msgFile);
   run('git push origin main');
-  console.log(`Queda pendiente, sin publicar. El aviso cita «${other}».`);
 }
 
 async function main() {
   const opts = parseArgs();
-  const calendar = await readCalendar();
-  const picked = pickPost(calendar, opts);
-
-  if (picked.action === 'skip') {
-    console.log(picked.message);
-    return;
-  }
-
-  const post = picked.post;
-  const overlap = findTopicOverlap(post, readCoverageFromDisk(root));
-  if (overlap) {
+  let calendar = await readCalendar();
+  let post;
+  while (true) {
+    const picked = pickPost(calendar, opts);
+    if (picked.action === 'skip') {
+      console.log(picked.message);
+      return;
+    }
+    post = picked.post;
+    const overlap = findTopicOverlap(post, readCoverageFromDisk(root));
+    if (!overlap && !isGenericTopic(post)) break;
     await handleTopicOverlap(post, overlap, calendar);
-    return;
+    if (opts.slug) return;
+    calendar = await readCalendar();
   }
 
   const branch = branchName(post.slug);

@@ -11,11 +11,11 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
+  classifyTopics,
   findTopicOverlap,
   mergePosts,
   parseFrontmatter,
   postsFromMarkdownEntries,
-  topicsOf,
 } from './blog-topics.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -89,6 +89,8 @@ function problemsBetween(base, head) {
   for (const post of base.calendarPosts) {
     const next = headBySlug.get(post.slug);
     if (!next) {
+      const hasMarkdown = base.markdownSlugs.has(post.slug) || head.markdownSlugs.has(post.slug);
+      if (post.status === 'skipped' && !hasMarkdown) continue;
       problems.push(`Falta la entrada del calendario \`${post.slug}\`.`);
       continue;
     }
@@ -104,7 +106,10 @@ function problemsBetween(base, head) {
         `\`${post.slug}\`: publishedDate no se puede cambiar (${prevPublished ?? '—'} → ${nextPublished ?? '—'}).`,
       );
     }
-    const statusOk = next.status === post.status || (post.status === 'pending' && next.status === 'pr');
+    const statusOk =
+      next.status === post.status ||
+      (post.status === 'pending' && (next.status === 'pr' || next.status === 'skipped')) ||
+      (post.status === 'pr' && next.status === 'skipped');
     if (!statusOk) {
       problems.push(`\`${post.slug}\`: status ${post.status} → ${next.status} no está permitido en una PR.`);
     }
@@ -128,15 +133,15 @@ function problemsBetween(base, head) {
     }
   }
 
-  const baseTopics = new Map(base.posts.map((post) => [post.slug, topicsOf(post)]));
+  const baseTopics = new Map(base.posts.map((post) => [post.slug, classifyTopics(post).primary]));
   for (const post of head.posts) {
     const previous = baseTopics.get(post.slug);
     if (!previous) continue;
-    const added = [...topicsOf(post)].filter((topic) => !previous.has(topic));
+    const added = [...classifyTopics(post).primary].filter((topic) => !previous.has(topic));
     if (added.length === 0) continue;
     const others = head.posts.filter((other) => other.slug !== post.slug);
     for (const topic of added) {
-      const owner = others.find((other) => topicsOf(other).has(topic));
+      const owner = others.find((other) => classifyTopics(other).primary.has(topic));
       if (!owner) continue;
       problems.push(
         `\`${post.slug}\` pasa a cubrir ${topic}, que ya usa \`${owner.slug}\`. No reescribas el snippet hacia ese tema.`,

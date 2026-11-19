@@ -286,7 +286,8 @@
     },
     {
       "slug": "freelance-mantenimiento-wordpress-guia",
-      "status": "pr",
+      "status": "skipped",
+      "overlapSlug": "mantenimiento-wordpress-empresas",
       "scheduledDate": "2026-11-17",
       "targetQuery": "freelance mantenimiento wordpress",
       "title": "Freelance mantenimiento WordPress · guía España",

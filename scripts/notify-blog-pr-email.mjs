@@ -47,16 +47,20 @@ async function main() {
   if (isOverlap) {
     const otherTitle = env('OVERLAP_TITLE', env('OVERLAP_SLUG'));
     const topics = env('OVERLAP_TOPICS');
+    const generic = !otherTitle;
     const resend = new Resend(apiKey);
     const result = await resend.emails.send({
       from: 'RimoByte <no-reply@rimobyte.com>',
       to,
-      subject: `No se redacta el artículo: ${title}`,
-      html: `
+      subject: `Artículo descartado: ${title}`,
+      html: generic
+        ? `
+        <h2 style="font-family:sans-serif;color:#111">Este artículo no se ha redactado</h2>
+        <p style="font-family:sans-serif;color:#444"><strong>${escapeHtml(title)}</strong> no nombra un tema distinto. Queda en el calendario como descartado y el cron pasa al siguiente.</p>`
+        : `
         <h2 style="font-family:sans-serif;color:#111">Este artículo no se ha redactado</h2>
         <p style="font-family:sans-serif;color:#444"><strong>${escapeHtml(title)}</strong> (${escapeHtml(scheduled || 'sin fecha')}) cubre el mismo tema${topics ? ` (${escapeHtml(topics)})` : ''} que <strong>${escapeHtml(otherTitle)}</strong>.</p>
-        <p style="font-family:sans-serif;color:#444">Sigue en el calendario como pendiente. No hay PR nuevo. Si quieres publicarlo igual, quita el otro o cambia el tema a mano.</p>
-      `,
+        <p style="font-family:sans-serif;color:#444">Queda descartado en el calendario. No hay PR nuevo y el cron pasa al siguiente pendiente.</p>`,
     });
     if (result.error) throw new Error(`Resend: ${result.error.message}`);
     console.log(`Email de solape enviado a ${to} (id: ${result.data?.id ?? '—'})`);
