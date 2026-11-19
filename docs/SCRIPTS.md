@@ -180,7 +180,7 @@ Calendario en [`content/blog-calendar.json`](../content/blog-calendar.json). Scr
 
 ### Cuándo usarlos
 
-- **Automático:** GitHub Actions [`blog-draft-pr.yml`](../.github/workflows/blog-draft-pr.yml) — **cada día** a las 08:00 UTC comprueba si hay un post con `scheduledDate` ≤ hoy. Si ya existe un PR abierto para ese slug, envía **recordatorio por email** (máx. uno al día) en lugar de duplicar el borrador.
+- **Automático:** GitHub Actions [`blog-draft-pr.yml`](../.github/workflows/blog-draft-pr.yml) — **cada día** a las 08:00 UTC comprueba si hay un post con `scheduledDate` ≤ hoy. Si ya existe un PR abierto para ese slug, envía **recordatorio por email** (máx. uno al día) en lugar de duplicar el borrador. Si el post cubre el mismo tema que otro artículo (calendario o markdown ya publicado), no crea rama ni PR: manda un aviso y lo deja pendiente.
 - **Manual:** `pnpm blog:draft` (misma lógica; requiere `gh` para crear el PR).
 - **Tras merge del PR:** `pnpm blog:mark-published -- --slug=nombre-del-post` en `main`.
 
@@ -193,6 +193,7 @@ Calendario en [`content/blog-calendar.json`](../content/blog-calendar.json). Scr
 | `pnpm blog:draft -- --slug=…` | Borrador de un slug concreto del calendario |
 | `pnpm blog:draft -- --no-pr` | Solo rama y commit local (sin push) |
 | `pnpm blog:mark-published -- --slug=…` | Marca el post como `published` en el calendario |
+| `pnpm editorial:check` | Falla si el diff duplica un tema, mueve fechas del calendario o reescribe un snippet hacia el tema de otro post |
 
 ### Flujo
 
@@ -302,8 +303,8 @@ Si `title`, `description` o `ctaLink` de una URL se mergeó hace menos de 28 dí
 Cuando el primer informe esté en `main`, puedes crear una automation en Cursor (cron martes ~10:00 UTC o manual) con instrucciones como:
 
 1. Lee el archivo más reciente `docs/reports/seo-YYYY-MM-DD.md` (ordenar por fecha en el nombre).
-2. Ejecuta solo recomendaciones **Alta** y **Media**. Ignora la sección **En observación** (snippet tocado hace menos de 28 días, o consulta ya cubierta por el calendario).
-3. En `content/blog-calendar.json` no cambies `status`, `scheduledDate` ni `publishedDate` de entradas que ya existen. Un post nuevo solo si el informe no dice «ya cubierto», con fecha posterior a la última pendiente.
+2. Ejecuta solo recomendaciones **Alta** y **Media**. Ignora la sección **En observación** (snippet tocado hace menos de 28 días, o consulta ya cubierta por el calendario o por un artículo publicado, aunque cambie el sinónimo o la ciudad).
+3. En `content/blog-calendar.json` no cambies `status`, `scheduledDate` ni `publishedDate` de entradas que ya existen. Un post nuevo solo si el informe no dice «ya cubierto», con fecha posterior a la última fecha del calendario. La PR tiene que pasar `pnpm editorial:check`.
 4. Edita metadatos/copy en español (title ≤ 60 caracteres, description ≤ 155, tono RimoByte, CTA hacia contacto/presupuesto donde aplique).
 5. Abre un PR `seo-automation/YYYY-MM-DD` con label `seo-automation` — **nunca merges automático**.
 

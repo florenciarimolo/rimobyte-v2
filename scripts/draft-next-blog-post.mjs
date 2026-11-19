@@ -7,12 +7,13 @@
  *   pnpm blog:draft -- --slug=mantenimiento-wordpress-empresas
  *   pnpm blog:draft -- --no-pr
  *
- * Exit 0 si no toca publicar aún o si envía recordatorio de PR abierto.
+ * Exit 0 si no toca publicar aún, si el tema ya está cubierto o si envía recordatorio de PR abierto.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { findTopicOverlap, readCoverageFromDisk } from './blog-topics.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -184,7 +185,7 @@ function getPreviewUrl(prNumber) {
   }
 }
 
-function sendBlogEmail({ post, pr, previewUrl, reminder }) {
+function sendBlogEmail({ post, pr, previewUrl, reminder, overlap }) {
   if (!process.env.RESEND_API_KEY?.trim()) {
     console.warn('RESEND_API_KEY no configurada; no se envía email.');
     return;
@@ -192,12 +193,15 @@ function sendBlogEmail({ post, pr, previewUrl, reminder }) {
 
   const env = {
     ...process.env,
-    PR_URL: pr.url,
+    PR_URL: pr?.url ?? '',
     POST_SLUG: post.slug,
-    POST_TITLE: post.title ?? pr.title ?? post.slug,
+    POST_TITLE: post.title ?? pr?.title ?? post.slug,
     SCHEDULED_DATE: post.scheduledDate ?? '',
-    PREVIEW_URL: previewUrl,
-    BLOG_EMAIL_KIND: reminder ? 'reminder' : 'review',
+    PREVIEW_URL: previewUrl ?? '',
+    BLOG_EMAIL_KIND: overlap ? 'overlap' : reminder ? 'reminder' : 'review',
+    OVERLAP_SLUG: overlap?.post.slug ?? '',
+    OVERLAP_TITLE: overlap?.post.title ?? overlap?.post.slug ?? '',
+    OVERLAP_TOPICS: overlap?.topics.join(', ') ?? '',
   };
 
   runCapture('node scripts/notify-blog-pr-email.mjs', {
@@ -245,6 +249,40 @@ async function handleOpenPrReminder(post, openPr, calendar) {
   run('git push origin main');
 }
 
+async function handleTopicOverlap(post, overlap, calendar) {
+  const today = todayIso();
+  if (post.lastOverlapAt === today) {
+    console.log(`Aviso de solape ya enviado hoy para ${post.slug}. No se crea borrador.`);
+    return;
+  }
+
+  try {
+    run('git diff --quiet && git diff --cached --quiet');
+  } catch {
+    throw new Error('Hay cambios sin commitear antes de registrar el solape.');
+  }
+
+  const other = overlap.post.title ?? overlap.post.slug;
+  console.log(`\n→ Solape: ${post.slug} cubre ${overlap.topics.join(', ')}, igual que ${overlap.post.slug}.`);
+  console.log('→ No se crea rama ni PR.\n');
+
+  post.lastOverlapAt = today;
+  await writeCalendar(calendar);
+  sendBlogEmail({ post, overlap });
+
+  run('git add content/blog-calendar.json');
+  const msgFile = path.join(root, '.git-commit-msg.txt');
+  await fs.writeFile(
+    msgFile,
+    `Calendario: solape de tema en ${post.slug}\n\nNo se redacta: ya lo cubre ${overlap.post.slug} (${overlap.topics.join(', ')}).`,
+    'utf8',
+  );
+  run(`git commit -F ${msgFile}`);
+  await fs.unlink(msgFile);
+  run('git push origin main');
+  console.log(`Queda pendiente, sin publicar. El aviso cita «${other}».`);
+}
+
 async function main() {
   const opts = parseArgs();
   const calendar = await readCalendar();
@@ -256,6 +294,12 @@ async function main() {
   }
 
   const post = picked.post;
+  const overlap = findTopicOverlap(post, readCoverageFromDisk(root));
+  if (overlap) {
+    await handleTopicOverlap(post, overlap, calendar);
+    return;
+  }
+
   const branch = branchName(post.slug);
   const openPr = findOpenPr(branch);
 

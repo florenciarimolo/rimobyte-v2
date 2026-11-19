@@ -18,6 +18,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { google } from 'googleapis';
 import { Resend } from 'resend';
+import { findTopicOverlap, readCoverageFromDisk } from './blog-topics.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -397,83 +398,25 @@ async function fetchPsi(url, apiKey, { retries = 1 } = {}) {
   return { url, error: lastError ?? 'unknown' };
 }
 
-const QUERY_STOP = new Set([
-  'en',
-  'de',
-  'la',
-  'el',
-  'los',
-  'las',
-  'para',
-  'por',
-  'y',
-  'una',
-  'un',
-  'con',
-  'del',
-  'al',
-  'que',
-  'wordpress',
-  'web',
-]);
-
-/** Tokens demasiado genéricos para decidir que dos consultas son el mismo post. */
-const WEAK_TOPIC_TOKENS = new Set(['freelance', 'empresa', 'empresas', 'guia', 'espana', 'barcelona']);
-
-function normalizeQueryText(value) {
-  return String(value)
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/\p{M}/gu, '')
-    .replace(/[^a-z0-9\s]/g, ' ');
-}
-
-function topicTokens(value) {
-  return normalizeQueryText(value)
-    .split(/\s+/)
-    .filter((token) => token.length >= 3 && !QUERY_STOP.has(token));
-}
-
-function sameTopic(left, right) {
-  const needles = topicTokens(left);
-  const hay = topicTokens(right);
-  return needles.some((token) => {
-    if (WEAK_TOPIC_TOKENS.has(token)) return false;
-    const stem = token.slice(0, 7);
-    return hay.some((other) => {
-      if (WEAK_TOPIC_TOKENS.has(other)) return false;
-      const otherStem = other.slice(0, 7);
-      return stem.startsWith(otherStem) || otherStem.startsWith(stem);
-    });
-  });
-}
-
-function loadCalendarPosts() {
-  try {
-    const raw = readFileSync(path.join(root, 'content/blog-calendar.json'), 'utf8');
-    return JSON.parse(raw).posts ?? [];
-  } catch {
-    return [];
-  }
-}
-
-/** Post ya publicado o programado que cubre la misma consulta. */
+/** Post ya publicado o programado que cubre la misma consulta, aunque el sinónimo o la ciudad cambien. */
 function calendarCoverage(query) {
-  for (const post of loadCalendarPosts()) {
-    const covered = [post.targetQuery, post.title, post.slug?.replace(/-/g, ' ')]
-      .filter(Boolean)
-      .some((text) => sameTopic(query, text));
-    if (covered) return post;
+  try {
+    return findTopicOverlap(
+      { slug: '__query__', targetQuery: query, title: query },
+      readCoverageFromDisk(root),
+    );
+  } catch {
+    return null;
   }
-  return null;
 }
 
 function opportunityDetail(q, covered) {
   const base = `${q.impressions} impresiones, ${q.clicks} clics.`;
   if (covered) {
-    return `${base} No añadas un post ni cambies fechas. Ya cubierto por «${covered.title ?? covered.slug}» (\`${covered.slug}\`, ${covered.status}, ${covered.scheduledDate}).`;
+    const label = covered.post.title ?? covered.post.slug;
+    return `${base} No añadas un post ni cambies fechas ni reescribas otro artículo hacia este tema (${covered.topics.join(', ')}). Ya cubierto por «${label}» (\`${covered.post.slug}\`, ${covered.post.status ?? 'publicado'}, ${covered.post.scheduledDate ?? 'en el blog'}).`;
   }
-  return `${base} Posición 4–15: nuevo post en content/blog-calendar.json solo si ninguna entrada tiene la misma consulta. Añádelo después de la última fecha pendiente. No modifiques status, scheduledDate ni publishedDate de entradas existentes. No reescribas title/description de URLs en «En observación».`;
+  return `${base} Posición 4–15: nuevo post en content/blog-calendar.json solo si ninguna entrada ni ningún artículo publicado cubre el mismo tema (aunque la consulta cambie la ciudad o el sinónimo: desarrollador/programador, Mollet/Barcelona). Añádelo después de la última fecha pendiente. No modifiques status, scheduledDate ni publishedDate de entradas existentes. No reescribas title/description de URLs en «En observación».`;
 }
 
 function buildRecommendations(ctx) {
@@ -556,7 +499,7 @@ function buildRecommendations(ctx) {
         ? `Consulta ya cubierta: «${q.query}» (pos. ${formatPos(q.position)})`
         : `Oportunidad comercial: «${q.query}» (pos. ${formatPos(q.position)})`,
       detail: opportunityDetail(q, covered),
-      file: covered ? `content/blog-calendar.json (${covered.slug})` : 'content/blog-calendar.json',
+      file: covered ? `content/blog-calendar.json (${covered.post.slug})` : 'content/blog-calendar.json',
     });
   }
 

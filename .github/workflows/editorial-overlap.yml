@@ -1,0 +1,23 @@
+name: Editorial overlap
+
+on:
+  pull_request:
+    paths:
+      - 'content/blog-calendar.json'
+      - 'src/content/blog/**'
+      - 'scripts/blog-topics.mjs'
+      - 'scripts/check-editorial-overlap.mjs'
+      - '.github/workflows/editorial-overlap.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Rechazar posts duplicados o fechas movidas
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/check-editorial-overlap.mjs

@@ -7,7 +7,8 @@
  *   BLOG_NOTIFY_TO | SEO_REPORT_TO (destinatario)
  *   PR_URL, POST_SLUG, POST_TITLE (opcional), SCHEDULED_DATE (opcional)
  *   PREVIEW_URL (base del deployment Vercel, sin path)
- *   BLOG_EMAIL_KIND=review|reminder (default review)
+ *   BLOG_EMAIL_KIND=review|reminder|overlap (default review)
+ *   OVERLAP_SLUG, OVERLAP_TITLE, OVERLAP_TOPICS (solo overlap)
  */
 import { Resend } from 'resend';
 
@@ -37,9 +38,29 @@ async function main() {
   const previewBase = env('PREVIEW_URL');
   const kind = env('BLOG_EMAIL_KIND', 'review');
   const isReminder = kind === 'reminder';
+  const isOverlap = kind === 'overlap';
 
-  if (!prUrl || !slug) {
+  if (!slug || (!isOverlap && !prUrl)) {
     throw new Error('Faltan PR_URL o POST_SLUG');
+  }
+
+  if (isOverlap) {
+    const otherTitle = env('OVERLAP_TITLE', env('OVERLAP_SLUG'));
+    const topics = env('OVERLAP_TOPICS');
+    const resend = new Resend(apiKey);
+    const result = await resend.emails.send({
+      from: 'RimoByte <no-reply@rimobyte.com>',
+      to,
+      subject: `No se redacta el artículo: ${title}`,
+      html: `
+        <h2 style="font-family:sans-serif;color:#111">Este artículo no se ha redactado</h2>
+        <p style="font-family:sans-serif;color:#444"><strong>${escapeHtml(title)}</strong> (${escapeHtml(scheduled || 'sin fecha')}) cubre el mismo tema${topics ? ` (${escapeHtml(topics)})` : ''} que <strong>${escapeHtml(otherTitle)}</strong>.</p>
+        <p style="font-family:sans-serif;color:#444">Sigue en el calendario como pendiente. No hay PR nuevo. Si quieres publicarlo igual, quita el otro o cambia el tema a mano.</p>
+      `,
+    });
+    if (result.error) throw new Error(`Resend: ${result.error.message}`);
+    console.log(`Email de solape enviado a ${to} (id: ${result.data?.id ?? '—'})`);
+    return;
   }
 
   const articleUrl = previewBase
