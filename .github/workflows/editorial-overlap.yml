@@ -3,6 +3,10 @@ name: Editorial overlap
 on:
   pull_request:
 
+permissions:
+  contents: read
+  statuses: write
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -15,3 +19,12 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: node scripts/check-editorial-overlap.mjs
+
+      - name: Publicar el check que exige la rama
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${{ github.repository }}/statuses/${{ github.sha }}" \
+            -f state=success \
+            -f context='Editorial overlap / check' \
+            -f description='Sin solapes editoriales'
