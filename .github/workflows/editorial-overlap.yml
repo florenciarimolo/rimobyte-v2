@@ -24,7 +24,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api "repos/${{ github.repository }}/statuses/${{ github.sha }}" \
+          gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
             -f state=success \
             -f context='Editorial overlap / check' \
             -f description='Sin solapes editoriales'
