@@ -1,11 +1,11 @@
 ---
 title: "Rediseño web WordPress: cuándo merece la pena y cuánto cuesta"
-description: "Señales de que tu web WordPress necesita rediseño, qué incluye un rediseño serio, migración desde Wix o agencia y precios orientativos en España."
+description: "¿Hace falta rediseñar tu WordPress? Señales claras, migración y precios en España. Freelance directo, presupuesto cerrado — pide el tuyo."
 date: 2026-10-22
 type: guia
 keywords: ["rediseño web wordpress","renovar web wordpress","migrar web a wordpress"]
 readingTime: "6 min"
-ctaText: "¿Tu web WordPress necesita rediseño?"
+ctaText: "¿Rediseño o migración? Pide presupuesto sin compromiso"
 ctaLink: "/desarrollo-web-wordpress/"
 relatedSlugs: ["tu-web-debe-ser-tuya","wordpress-vs-wix","cuanto-cuesta-una-web-wordpress"]
 coverImage: "/assets/blog/rediseno-web-wordpress-cuando-merece.webp"
