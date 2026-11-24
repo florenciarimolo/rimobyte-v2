@@ -1,11 +1,11 @@
 ---
 title: "WordPress a medida vs plantilla: qué te están vendiendo"
-description: "¿Plantilla o desarrollo WordPress a medida? Coste real, SEO y señales de alerta. Presupuesto cerrado desde 600€ — pide el tuyo."
+description: "Plantilla o WordPress a medida: coste real, SEO y trampas habituales. Freelance en España, desde 600€ cerrados. Pide presupuesto en 24 h."
 date: 2026-08-24
 type: guia
 keywords: ["wordpress a medida", "wordpress vs plantilla", "elementor o a medida"]
 readingTime: "6 min"
-ctaText: "¿Quieres WordPress a medida, no una plantilla?"
+ctaText: "WordPress a medida · pide presupuesto cerrado"
 ctaLink: "/desarrollo-web-wordpress/"
 relatedSlugs: ["cuanto-cuesta-una-web-wordpress", "wordpress-vs-wix", "tu-web-debe-ser-tuya"]
 coverImage: "/assets/blog/wordpress-a-medida-vs-plantilla.webp"
