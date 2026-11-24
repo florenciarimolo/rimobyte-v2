@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import interLatinUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import CookieBanner from '../components/ui/CookieBanner.astro';
 import PageLoader from '../components/ui/PageLoader.astro';
 import { resolveOgImage } from '../lib/og/url';
@@ -101,6 +102,7 @@ const structuredData = isPersonalPage ? personBusinessSchema : websiteSchema;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="preload" href={interLatinUrl} as="font" type="font/woff2" crossorigin />
   <meta name="apple-mobile-web-app-status-bar-style" id="apple-status-bar-meta" content="default" />
   <meta name="description" content={description} />
   {noindex ? (

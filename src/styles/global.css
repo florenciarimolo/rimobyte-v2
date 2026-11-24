@@ -37,6 +37,16 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Arial ajustada a las métricas de Inter para que el swap no empuje el titular. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.64%;
+  ascent-override: 89.79%;
+  descent-override: 22.36%;
+  line-gap-override: 0%;
+}
+
 @theme {
   /* Surfaces — Glass / Aurora (light default) */
   --color-bg-base:     #FAFAFC;
@@ -107,9 +117,9 @@
   --dot-pattern-color: rgba(101, 53, 229, 0.1);
 
   /* Typography — Inter only (v6) */
-  --font-display: 'Inter Variable', system-ui, -apple-system, sans-serif;
-  --font-body:    'Inter Variable', system-ui, -apple-system, sans-serif;
-  --font-mono:    'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
+  --font-body:    'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
+  --font-mono:    'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
   --font-serif:   'Source Serif 4', Georgia, 'Times New Roman', serif;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
@@ -240,6 +250,8 @@ body {
   min-height: -webkit-fill-available;
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+html { scrollbar-gutter: stable; }
+
 body.is-loading { overflow: hidden; }
 
 /* Accesibilidad — skip link y foco visible */
