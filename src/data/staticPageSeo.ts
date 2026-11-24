@@ -57,6 +57,13 @@ export function proyectosIndexSeo(count: number = projectCount): PageSeo {
   };
 }
 
+export const avisoLegalSeo: PageSeo = {
+  title: 'Aviso legal · RimoByte',
+  description:
+    'Titular de rimobyte.com: Florencia Rímolo Figueira (RimoByte). NIF, domicilio en Badalona, email y teléfono, conforme a la LSSI.',
+  image: '/assets/brand/flor-rimobyte.webp',
+};
+
 export const politicaPrivacidadSeo: PageSeo = {
   title: 'Política de privacidad · RimoByte',
   description:
@@ -85,6 +92,7 @@ export function staticOgPageEntries(): { routePath: string; seo: PageSeo }[] {
     { routePath: '/contacto/', seo: contactoSeo },
     { routePath: '/blog/', seo: blogIndexSeo },
     { routePath: '/servicios/', seo: serviciosHubSeo },
+    { routePath: '/aviso-legal/', seo: avisoLegalSeo },
     { routePath: '/politica-privacidad/', seo: politicaPrivacidadSeo },
     { routePath: '/politica-cookies/', seo: politicaCookiesSeo },
   ];

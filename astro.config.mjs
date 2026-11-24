@@ -17,7 +17,9 @@ export default defineConfig({
     react(),
     sitemap({
       filter: (page) =>
-        !page.includes('/politica-privacidad') && !page.includes('/politica-cookies'),
+        !page.includes('/aviso-legal') &&
+        !page.includes('/politica-privacidad') &&
+        !page.includes('/politica-cookies'),
       serialize(item) {
         const pathname = new URL(item.url).pathname;
         item.lastmod = lastmodForUrl(pathname);

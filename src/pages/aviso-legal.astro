@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import LegalDocument from '../components/ui/LegalDocument.astro';
+import { avisoLegalSeo } from '../data/staticPageSeo';
+---
+
+<Base title={avisoLegalSeo.title} description={avisoLegalSeo.description} image={avisoLegalSeo.image} noindex>
+  <Navbar />
+  <main id="main">
+    <LegalDocument
+      pill="Legal · Titular"
+      title="Aviso legal"
+      description="Identificación de quien presta el servicio de este sitio, conforme al artículo 10 de la Ley 34/2002 (LSSI-CE) y al artículo 5 de la Directiva 2000/31/CE."
+    >
+      <h3>Titular</h3>
+      <ul>
+        <li><strong>Nombre:</strong> Florencia Rímolo Figueira.</li>
+        <li><strong>Nombre comercial:</strong> RimoByte.</li>
+        <li><strong>Actividad:</strong> diseño y desarrollo web, como persona física.</li>
+        <li><strong>NIF (IVA):</strong> 49931843Q.</li>
+        <li>
+          <strong>NIF-IVA intracomunitario:</strong> no dispone de número distinto. No está inscrita en el Registro de operadores intracomunitarios.
+        </li>
+        <li><strong>Domicilio:</strong> Carrer del Drac 2, 3.º 2.ª, 08911 Badalona, Barcelona, España.</li>
+        <li>
+          <strong>Email:</strong> <a href="mailto:info@rimobyte.com">info@rimobyte.com</a>.
+        </li>
+        <li>
+          <strong>Teléfono:</strong> <a href="https://wa.me/34684713743">+34 684 713 743</a>.
+        </li>
+        <li><strong>Sitio web:</strong> https://rimobyte.com.</li>
+        <li>
+          <strong>Registro mercantil:</strong> no inscrita. La actividad no está sujeta a autorización administrativa previa ni es una profesión regulada.
+        </li>
+      </ul>
+
+      <h3>Objeto</h3>
+      <p>
+        Este sitio presenta los servicios de diseño y desarrollo web de RimoByte y permite solicitar un presupuesto. La información tiene carácter profesional. Un presupuesto cerrado se formaliza por escrito antes de empezar el trabajo.
+      </p>
+
+      <h3>Propiedad intelectual</h3>
+      <p>
+        Los textos, el diseño y el código de rimobyte.com son de Florencia Rímolo Figueira, salvo los contenidos de terceros que se identifiquen. Queda reservada su reproducción.
+      </p>
+
+      <h3>Responsabilidad</h3>
+      <p>
+        Los contenidos se ofrecen de buena fe y pueden actualizarse. Los enlaces a sitios de terceros están fuera del control de RimoByte.
+      </p>
+
+      <p>
+        El tratamiento de datos personales está en la <a href="/politica-privacidad/">política de privacidad</a>. Las cookies, en la <a href="/politica-cookies/">política de cookies</a>. Última revisión: noviembre de 2026.
+      </p>
+    </LegalDocument>
+  </main>
+  <Footer />
+</Base>
